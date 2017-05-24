@@ -56,6 +56,10 @@ export default Ember.Route.extend({
                     state: ['undefined'],
                     value: undefined
                 },
+                preprint_file_url: {
+                    state: ['undefined'],
+                    value: undefined
+                },
                 save_upload_section_widget: {
                     state: ['undefined'],
                     value: undefined
@@ -69,6 +73,10 @@ export default Ember.Route.extend({
                     value: undefined
                 },
                 authors_widget: {
+                    state: ['undefined'],
+                    value: undefined
+                },
+                file_url_missing_notice: {
                     state: ['undefined'],
                     value: undefined
                 }
@@ -196,6 +204,26 @@ export default Ember.Route.extend({
             }, {
                 type: 'create_widget',
                 args: {
+                    widget_component: 'paragraph-display',
+                    description: 'The preprint\'s file has not yet been uploaded.',
+                    section: 'submit'
+                },
+                parameters: {
+                    output_parameter: 'null'
+                },
+                output_parameter: 'file_url_missing_notice',
+                conditions: [{
+                    all: [{
+                        parameter: 'file_url_missing_notice',
+                        state: 'undefined',
+                    }, {
+                        parameter: 'preprint_file_url',
+                        state: 'undefined'
+                    }]
+                }]
+            }, {
+                type: 'create_widget',
+                args: {
                     widget_component: 'preprint-form-authors',
                     description: 'Add and manage authors',
                     section: 'authors'
@@ -208,12 +236,10 @@ export default Ember.Route.extend({
                     all: [{
                         parameter: 'authors_widget',
                         state: 'undefined',
-                    },
-                    {
+                    }, {
                         parameter: 'basic_info',
                         state: 'defined'
-                    }
-                    ],
+                    }],
                 }]
             }]
         };
