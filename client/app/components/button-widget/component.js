@@ -5,6 +5,8 @@ export default Ember.Component.extend({
 
     buttonString: 'Save',
 
+    buttonStyle: 'section-submit-button',
+
     actions: {
         async pressButton() {
             //try {

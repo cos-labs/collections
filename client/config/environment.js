@@ -155,6 +155,13 @@ module.exports = function(environment) {
 
 
     ENV['sanity'] = environment;
+    
+
+    if (process.env.BACKEND === "prod") {
+        ENV['osfHostUrl'] = 'https://api.osf.io';
+        ENV['node_guid'] = 'h8d72';
+
+    }
   if (environment === 'production') {
     ENV['osfHostUrl'] = 'https://api.osf.io';
     ENV['node_guid'] = 'h8d72';
