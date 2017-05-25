@@ -215,18 +215,18 @@ export default Ember.Route.extend({
                 parameters: {
                     parameter: 'upload_section'
                 }
-            }, {
-                type: 'delete_widget',
-                parameters: {
-                    widget_object: 'save_upload_section_widget'
-                },
-                output_parameter: 'null',
-                conitions: [{
-                    all: [{
-                        parameter: 'upload_section',
-                        state: 'saved',
-                    }]
-                }]
+            //}, {
+            //    type: 'delete_widget',
+            //    parameters: {
+            //        widget_object: 'save_upload_section_widget'
+            //    },
+            //    output_parameter: 'null',
+            //    conitions: [{
+            //        all: [{
+            //            parameter: 'upload_section',
+            //            state: 'saved',
+            //        }]
+            //    }]
             }, {
                 type: 'create_widget',
                 args: {
@@ -267,18 +267,65 @@ export default Ember.Route.extend({
                         state: 'defined'
                     }],
                 }]
-            }, {
-                type: 'delete_widget',
-                parameters: {
-                    widget_object: 'save_upload_section_widget'
-                },
-                output_parameter: 'null',
-                conditions: [{
-                    all: [{
-                        parameter: 'preprint_file_url',
-                        state: 'defined'
-                    }]
-                }]
+            //}, {
+            //    type: 'delete_widget',
+            //    parameters: {
+            //        widget_object: 'save_upload_section_widget'
+            //    },
+            //    output_parameter: 'null',
+            //    conditions: [{
+            //        all: [{
+            //            parameter: 'preprint_file_url',
+            //            state: 'defined'
+            //        }]
+            //    }]
+            //}, {
+            //    type: 'delete_widget',
+            //    parameters: {
+            //        widget_object: 'preprint_file_upload_widget'
+            //    },
+            //    output_parameter: 'null',
+            //    conditions: [{
+            //        all: [{
+            //            parameter: 'preprint_file_upload_widget',
+            //            state: 'defined',
+            //        }, {
+            //            parameter: 'upload_section',
+            //            state: 'saved'
+            //        }]
+            //    }]
+            //}, {
+            //    type: 'delete_widget',
+            //    parameters: {
+            //        widget_object: 'preprint_title_widget'
+            //    },
+            //    output_parameter: 'null',
+            //    conditions: [{
+            //        all: [{
+            //            parameter: 'preprint_title_widget',
+            //            state: 'defined',
+            //        }, {
+            //            parameter: 'upload_section',
+            //            state: 'saved'
+            //        }]
+            //    }]
+            //}, {
+            //    type: 'create_widget',
+            //    args: {
+            //        widget_component: 'paragraph-display',
+            //        description: 'FILE NAME',
+            //        section: 'upload'
+            //    },
+            //    output_parameter: 'file_name_display',
+            //    conditions: [{
+            //        all: [{
+            //            parameter: 'upload_section',
+            //            state: 'saved',
+            //        }, {
+            //            parameter: 'preprint_file_url',
+            //            state: 'defined'
+            //        }]
+            //    }]
             }, {
                 type: 'create_widget',
                 args: {
