@@ -10,9 +10,20 @@ $dark-banner: #607D8B;
 
 /* Global */
 
+
+.submit_button {
+    display: block;
+    margin: 0 auto;
+}
+
+.preprint-form-section {
+    overflow: hidden;
+}
+
 .section-submit-button {
     margin-top: 10px;
     float: right;
+    margin-left: 10px;
 }
 
 body {

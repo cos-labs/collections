@@ -84,6 +84,14 @@ export default Ember.Route.extend({
                 edit_upload_section_widget: {
                     state: ['undefined'],
                     value: undefined
+                },
+                save_authors_section_widget: {
+                    state: ['undefined'],
+                    value: undefined
+                },
+                submit_button_widget: {
+                    state: ['undefined'],
+                    value: undefined
                 }
             },
             initial_widgets: [],
@@ -95,7 +103,8 @@ export default Ember.Route.extend({
                     section: 'upload',
                 },
                 parameters: {
-                    output_parameter: 'preprint_file_data'
+                    fileName: 'preprint_file_name',
+                    fileData: 'preprint_file_data',
                 },
                 output_parameter: 'preprint_file_upload_widget',
                 conditions: [{
@@ -115,7 +124,7 @@ export default Ember.Route.extend({
                     section: 'upload',
                 },
                 parameters: {
-                    output_parameter: 'preprint_file_name'
+                    output: 'preprint_file_name'
                 },
                 output_parameter: 'preprint_title_widget',
                 conditions: [{
@@ -136,6 +145,7 @@ export default Ember.Route.extend({
                     widget_component: 'button-widget',
                     description: 'Edit this section',
                     section: 'upload',
+                    css_classes: ['section-submit-button'],
                     action_id: '28fe8c59-fab7-4a0c-8e7e-38a5176ae34d'
                 },
                 parameters: {
@@ -174,10 +184,11 @@ export default Ember.Route.extend({
                     widget_component: 'button-widget',
                     description: 'Save this section',
                     section: 'upload',
+                    css_classes: ['section-submit-button'],
                     action_id: '5db3456b-cef7-4c87-bb60-16a04ee89bad'
                 },
                 parameters: {
-                    output_parameter: 'preprint_file_url',
+                    parameter: 'preprint_file_url',
                 },
                 output_parameter: 'save_upload_section_widget',
                 conditions: [{
@@ -215,7 +226,28 @@ export default Ember.Route.extend({
                 },
                 parameters: {
                     parameter: 'upload_section'
-                }
+                },
+                then: 'cdefb5db-2486-4466-8c1c-5d24ffd7e6ab'
+            }, {
+                id: 'cdefb5db-2486-4466-8c1c-5d24ffd7e6ab',
+                type: 'closeSection',
+                args: {
+                    sectionName: 'upload'
+                },
+                then: '7fb38183-d1f2-41a2-aef5-1bc99743762e'
+            }, {
+                id: '7fb38183-d1f2-41a2-aef5-1bc99743762e',
+                type: 'disableWidget',
+                parameters: {
+                    widget_object: 'save_upload_section_widget'
+                },
+                then: '6606b697-9a53-4fc7-aab6-898a2904c579'
+            }, {
+                id: '6606b697-9a53-4fc7-aab6-898a2904c579',
+                type: 'openSection',
+                args: {
+                    sectionName: 'disciplines'
+                },
             //}, {
             //    type: 'delete_widget',
             //    parameters: {
@@ -233,10 +265,11 @@ export default Ember.Route.extend({
                 args: {
                     widget_component: 'subject-picker',
                     description: 'Save this section',
-                    section: 'disciplines'
+                    section: 'disciplines',
+                    action_id: 'a11388e0-c3b2-488a-a100-60de46172adf'
                 },
                 parameters: {
-                    output_parameter: 'selected_subjects'
+                    subjects: 'selected_subjects'
                 },
                 output_parameter: 'subject_picker_widget',
                 conditions: [{
@@ -246,14 +279,28 @@ export default Ember.Route.extend({
                     }]
                 }]
             }, {
+                id: 'a11388e0-c3b2-488a-a100-60de46172adf',
+                type: 'openSection',
+                args: {
+                    sectionName: 'basic info'
+                },
+                then: '39cb9157-617e-404a-ac1d-77e9d273b478'
+            }, {
+                id: '39cb9157-617e-404a-ac1d-77e9d273b478',
+                type: 'closeSection',
+                args: {
+                    sectionName: 'disciplines'
+                },
+            }, {
                 type: 'create_widget',
                 args: {
                     widget_component: 'preprint-basics',
                     description: 'License and other things',
-                    section: 'basic info'
+                    section: 'basic info',
+                    action_id: '886cde3c-9e25-4950-b02f-832fad8923cc'
                 },
                 parameters: {
-                    output_parameter: 'basic_info'
+                    basicInfo: 'basic_info'
                 },
                 output_parameter: 'basic_info_widget',
                 conditions: [{
@@ -262,6 +309,19 @@ export default Ember.Route.extend({
                         state: 'undefined'
                     }]
                 }]
+            }, {
+                id: '886cde3c-9e25-4950-b02f-832fad8923cc',
+                type: 'closeSection',
+                args: {
+                    sectionName: 'basic info'
+                },
+                then: '1eaae481-1a80-4dfe-9c12-1a7f7383c1a7'
+            }, {
+                id: '1eaae481-1a80-4dfe-9c12-1a7f7383c1a7',
+                type: 'openSection',
+                args: {
+                    sectionName: 'authors'
+                },
             //}, {
             //    type: 'delete_widget',
             //    parameters: {
@@ -349,20 +409,134 @@ export default Ember.Route.extend({
                     section: 'authors'
                 },
                 parameters: {
-                    output_parameter: 'authors_list'
+                    authors_list: 'authors_list'
                 },
                 output_parameter: 'authors_widget',
                 conditions: [{
                     all: [{
                         parameter: 'authors_widget',
                         state: 'undefined',
-                    }, {
-                        parameter: 'basic_info',
-                        state: 'defined'
+                    //}, {
+                    //    parameter: 'basic_info',
+                    //    state: 'defined'
                     }],
                 }]
+            }, {
+                id: '7231cc6f-b861-439e-a628-a01fe0a20587',
+                type: 'create_widget',
+                args: {
+                    widget_component: 'button-widget',
+                    css_classes: ['section-submit-button'],
+                    description: 'Save this section',
+                    section: 'authors',
+                    action_id: '60d11fd0-c2da-4fdd-9d08-0310aa17a3e4'
+                },
+                parameters: {
+                    output_parameter: 'authors_section',
+                },
+                output_parameter: 'save_authors_section_widget',
+                conditions: [{
+                    all: [{
+                        parameter: 'save_authors_section_widget',
+                        state: 'undefined',
+                    }, {
+                        parameter: 'authors_section',
+                        state: 'editing'
+                    }],
+                }]
+            }, {
+                id: '60d11fd0-c2da-4fdd-9d08-0310aa17a3e4',
+                type: 'create_widget',
+                args: {
+                    widget_component: 'button-widget',
+                    description: 'Edit this section',
+                    css_classes: ['section-submit-button'],
+                    section: 'authors',
+                    action_id: '0dcc508a-9946-437a-a0b2-73c7f88aa2fe'
+                },
+                parameters: {
+                    output_parameter: 'authors_section',
+                },
+                output_parameter: 'edit_authors_section_widget',
+                then: '3f5d1d8e-a01c-4c22-bbba-c7d5ad385a88'
+            }, {
+                id: '3f5d1d8e-a01c-4c22-bbba-c7d5ad385a88',
+                type: 'delete_widget',
+                parameters: {
+                    widget_object: 'save_authors_section_widget'
+                },
+                then: '18db45c2-029e-4c0a-b662-69a6a14d3d3d'
+            }, {
+                id: '18db45c2-029e-4c0a-b662-69a6a14d3d3d',
+                type: 'closeSection',
+                args: {
+                    sectionName: 'authors'
+                }
+            }, {
+                id: '0dcc508a-9946-437a-a0b2-73c7f88aa2fe',
+                type: 'openSection',
+                args: {
+                    sectionName: 'authors'
+                },
+                then: '1cf0323c-72c5-4344-b238-f3d8c5bd7b63'
+            }, {
+                id: '1cf0323c-72c5-4344-b238-f3d8c5bd7b63',
+                type: 'delete_widget',
+                parameters: {
+                    widget_object: 'edit_authors_section_widget'
+                },
+                then: '7231cc6f-b861-439e-a628-a01fe0a20587'
+            }, {
+                type: 'create_widget',
+                args: {
+                    widget_component: 'button-widget',
+                    section: 'submit',
+                    description: 'Submit',
+                    disabled: true,
+                    css_classes: ['submit_button', 'btn-lg', 'btn-success'],
+                    action_id: 'afa2e526-ea5f-47f7-a99d-459536e24fd1'
+                },
+                conditions: [{
+                    all: [{
+                        parameter: 'submit_button_widget',
+                        state: 'undefined'
+                    }]
+                }],
+                output_parameter: 'submit_button_widget'
+            }, {
+                id: 'afa2e526-ea5f-47f7-a99d-459536e24fd1',
+                type: 'browserAlert',
+                args: {
+                    alertString: 'FORM SUBMITTTED'
+                }
+            }, {
+                type: 'saveParameter',
+                args: {
+                    updated_parameter: {
+                        state: ['enabled']
+                    }
+                },
+                parameters: {
+                    parameter: 'submit_button'
+                },
+                conditions: [{
+                    all: [{
+                        parameter: 'submit_button',
+                        state: 'disabled'
+                    }, {
+                        parameter: 'preprint_file_url',
+                        state: 'defined'
+                    }]
+                }],
+                output_parameter: 'null',
+                then: '60edeef7-189c-4189-b44a-157b79ce88ef'
+            }, {
+                id: '60edeef7-189c-4189-b44a-157b79ce88ef',
+                type: 'enableWidget',
+                parameters: {
+                    widget_object: 'submit_button_widget'
+                },
             }]
-
         };
     },
 
@@ -370,7 +544,7 @@ export default Ember.Route.extend({
 
         // Set up state defined on the model.
         controller.set('sections', model.sections);
-        controller.set('parameters', model.initial_parameters);
+        controller.parameters = model.initial_parameters
 
         // Hydrate actions in preperation for engine ignition
         const actions = model.actions.map(controller.hydrate_action.bind(controller));
