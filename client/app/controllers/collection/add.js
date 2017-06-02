@@ -389,10 +389,22 @@ function check_any(conditions) {
 }
 
 
+// Constructs an array containing the parameters or arguments that are used by an
+// action function. Based on the action function's signature, which is an array of
+// strings that describe how to map the parameters from their keys on the controller
+// to the position in the function's arguments. This function constructs the array
+// that the action function gets applied with
+//
+// Future improvements:
+//
+// - Pass in only the signature, args, and parameters objects to the function;
+//   the function does not require the whole action object.
+
 function cons_arg_arr(action) {
 
     const parameters = this.get('parameters');
 
+    // The signature is an array of keys that descripbe the position of parameters.
     let argarr = action.signature.map((key) => {
 
         // Default to undefined.
