@@ -75,7 +75,6 @@ export default Ember.Controller.extend({
     // Fire enabled actions.
     updateState: function(actions) {
         let controller = this;
-        console.log(actions)
         actions.forEach((action) => {
             // Check if the action can fire.
             const may_fire = check_all.call(this, action.conditions);
@@ -91,27 +90,16 @@ export default Ember.Controller.extend({
                     if (typeof action_obj.action === 'function') {
                         let result = await action_obj.action.apply(this, action_obj.arg_arr);
                         if (typeof action_obj.then === 'string') {
-                            debugger;
                             fire_actions.call(this, action_obj.then);
                         }
                         action_obj.output_parameter.value = result;
                         action_obj.output_parameter.state = ['defined'];
                         controller.notifyPropertyChange('parameters');
-                        return result;
                     }
-                } else {
-                    return;
                 }
             }
 
             fire_actions.call(this, action.id);
-
-            //console.log('Firing action: ' + action.type);
-
-            //let result = action.action.apply(this, action.arg_arr);
-            //action.output_parameter.value = result;
-            //action.output_parameter.state = ['defined'];
-            //return result;
         });
     },
 
@@ -135,10 +123,6 @@ export default Ember.Controller.extend({
             conditions: action.conditions,
             parameters: Object.keys(action.parameters).reduce((result, key) => {
                 if (typeof parameters[action.parameters[key]] !== 'object') {
-                    console.log('in hydrate action, parameter does not exist, creating object')
-                    console.log(action);
-                    console.log(result);
-                    console.log(key);
                     parameters[action.parameters[key]] = {
                         state: ['undefined'],
                         value: undefined
@@ -162,8 +146,6 @@ export default Ember.Controller.extend({
     // `this` must be bound to the controller for `create_widget`, as
     // `create_widget` requires access to the controller, and does so through `this`.
     create_widget: function(widget_component, description, disabled, css_classes, section, output_parameter, action_id, parameters) {
-        console.log('create widget' + widget_component)
-        if (widget_component === 'subject-picker') debugger;
         let action;
         let controller = this;
 
@@ -207,7 +189,6 @@ export default Ember.Controller.extend({
     // Delete widget and resets state
     delete_widget_signature: ['widget_object'],
     delete_widget: function(widget_object, parameters) {
-        console.log('delete widget');
         this.get('widgets').removeObject(widget_object.value);
         Ember.set(widget_object, 'value', undefined);
         Ember.set(widget_object, 'state', ['undefined']);
@@ -216,14 +197,12 @@ export default Ember.Controller.extend({
 
     disableWidget_signature: ['widget_object'],
     disableWidget: function(widget_object, parameters) {
-        console.log('disable widget');
         Ember.set(widget_object, 'value.disabled', true);
     },
 
 
     enableWidget_signature: ['widget_object'],
     enableWidget: function(widget_object, parameters) {
-        console.log('enable widget')
         Ember.set(widget_object, 'value.disabled', false);
         Ember.run.next(this, function() {
             this.get('updateState').call(this, this.get('formActions'));
@@ -233,7 +212,6 @@ export default Ember.Controller.extend({
 
     toggleleWidget_signature: ['widget_object'],
     toggleleWidget: function(widget_object, parameters) {
-        console.log('toggle widget');
         if (widget_object.value.disabled === false) {
             Ember.set(widget_object, 'value.disabled', true);
         } else {
@@ -247,7 +225,6 @@ export default Ember.Controller.extend({
 
     upload_file_signature: ['file_name', 'file_data', 'node'],
     upload_file: async function(file_name, file_data, node, parameters) {
-        console.log('uploading file');
         if (typeof file_name.value === 'undefined') return;
         if (typeof file_data.value === 'undefined') return;
         if (typeof node.value === 'undefined') node.value = ENV.node_guid;
@@ -271,7 +248,6 @@ export default Ember.Controller.extend({
 
 
     save_section: function(section) {
-        console.log('save section')
         return function() {
             widgets.filter((widget) => {
                 return widget.section == section;
@@ -285,9 +261,6 @@ export default Ember.Controller.extend({
     //},
     saveParameter_signature: ['parameter', 'updated_parameter'],
     saveParameter: function(parameter, updated_parameter, parameters) {
-        console.log('Saving Parameter\n================' )
-        console.log(parameter);
-        console.log(updated_parameter);
         if (typeof updated_parameter === 'undefined' ||
             typeof parameter === 'undefined' ||
             typeof parameters === 'undefined'
@@ -314,7 +287,6 @@ export default Ember.Controller.extend({
 
     openSection_signature: ['sectionName'],
     openSection: function(sectionName, parameters) {
-        console.log('open section');
         this.get('panelActions').open(this.get(`_names.${this.get('_names').indexOf(sectionName)}`));
         this.get('parameters')[this.get('sections').find(section => section.name === sectionName).param].state = ['open', 'editing'];
     },
@@ -418,54 +390,59 @@ function check_any(conditions) {
 
 
 function cons_arg_arr(action) {
+
     const parameters = this.get('parameters');
+
     let argarr = action.signature.map((key) => {
+
         // Default to undefined.
         var value = undefined;
+
         // First try to use the parameter.
         if (typeof action.parameters === 'object' &&
             typeof action.parameters[key] === 'object'
         ) {
+
             let exists = false;
             let pkeys = Object.keys(parameters);
-            pkeys.forEach((pkey) => {
 
+            pkeys.forEach((pkey) => {
                 if (parameters[pkey] === action.parameters[key]) {
                     value = parameters[pkey];
                     exists = true;
                 }
-
             });
 
-            console.log(value);
-
-            if (!exists) {
-
-                console.log("this is an issue");
-
-            }
+            if (!exists) console.log("No action with that key exists in the controller's action array. client/app/controllers/collection/add.js, line 421]");
 
         }
+
         if (typeof action.parameters === 'object' &&
             typeof action.parameters[key] === 'string'
         ) {
+
             if (typeof parameters[action.parameters[key]] !== 'object') {
-                console.log('no parameter, initializing with empty object');
                 parameters[action.parameters[key]] = {};
             }
+
             value = parameters[action.parameters[key]];
+
         }
+
         // If an arg is defined, it takes priority.
         if (typeof action.args === 'object' &&
             action.args[key] !== undefined
         ) {
             value = action.args[key];
         }
+
         return value;
+
     });
+
     argarr.push(action.parameters);
-    console.log(argarr);
     return argarr;
+
 }
 
 

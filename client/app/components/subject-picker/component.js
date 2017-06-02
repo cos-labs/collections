@@ -222,8 +222,6 @@ export default Ember.Component.extend({
             let subjectMap = Ember.$.extend(true, [], this.get('selected'));
             let disciplineChanged = this.get('disciplineChanged');
             this.get('action')(this).then((result) => {
-                debugger;
-                console.log(result);
                 this.attrs.saveParameter(this.attrs.widget.value.parameters.subjects, {
                     value: subjectMap,
                     state: ['defined']

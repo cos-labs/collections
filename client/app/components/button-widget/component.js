@@ -13,10 +13,6 @@ export default Ember.Component.extend({
 
     buttonString: 'Save',
 
-    disabledobserver: Ember.observer('widget.value.disabled', () => {
-        debugger;
-    }),
-
     widgetClasses: ['section-submit-button'],
     widgetClassString: Ember.computed('widgetClasses', function() {
         let classArr = this.get('widgetClasses')
@@ -30,17 +26,11 @@ export default Ember.Component.extend({
 
     actions: {
         async pressButton() {
-            //try {
-                const parameters = this.attrs.widget.value.parameters;
-                let result = await this.get('action')(this);
-                console.log(result);
-                this.attrs.saveParameter(parameters.parameter, {
-                    value: result,
-                    state: ['defined']
-                });
-            //} catch(ex) {
-            //    alert(ex);
-            //}
+            const parameters = this.attrs.widget.value.parameters;
+            this.attrs.saveParameter(parameters.parameter, {
+                value: await this.get('action')(this),
+                state: ['defined']
+            });
         }
     }
 
