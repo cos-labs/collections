@@ -74,6 +74,7 @@ export default Ember.Controller.extend({
 
     // Fire enabled actions.
     updateState: function(actions) {
+        let controller = this;
         console.log(actions)
         actions.forEach((action) => {
             // Check if the action can fire.
@@ -82,9 +83,35 @@ export default Ember.Controller.extend({
             // Action may fire if execution has reached this point.
             // Call the action and set its result and any
             // changes to its state on `controller.parameters`.
-            console.log('Firing action: ' + action.type);
-            action.output_parameter['value'] = action.action.apply(this, action.arg_arr);
-            action.output_parameter['state'] = ['defined'];
+            //
+            async function fire_actions(action_id) {
+                if (typeof action_id === "string") {
+
+                    let action_obj = actions.find(action => action.id == action_id);
+                    if (typeof action_obj.action === 'function') {
+                        let result = await action_obj.action.apply(this, action_obj.arg_arr);
+                        if (typeof action_obj.then === 'string') {
+                            debugger;
+                            fire_actions.call(this, action_obj.then);
+                        }
+                        action_obj.output_parameter.value = result;
+                        action_obj.output_parameter.state = ['defined'];
+                        controller.notifyPropertyChange('parameters');
+                        return result;
+                    }
+                } else {
+                    return;
+                }
+            }
+
+            fire_actions.call(this, action.id);
+
+            //console.log('Firing action: ' + action.type);
+
+            //let result = action.action.apply(this, action.arg_arr);
+            //action.output_parameter.value = result;
+            //action.output_parameter.state = ['defined'];
+            //return result;
         });
     },
 
@@ -138,6 +165,7 @@ export default Ember.Controller.extend({
         console.log('create widget' + widget_component)
         if (widget_component === 'subject-picker') debugger;
         let action;
+        let controller = this;
 
         let actions = this.get('formActions');
 
@@ -151,6 +179,7 @@ export default Ember.Controller.extend({
                         fire_actions.call(this, action_obj.then);
                     }
                     action_obj.output_parameter.value = result;
+                    controller.notifyPropertyChange('parameters');
                     return result;
                 }
             } else {
@@ -196,6 +225,9 @@ export default Ember.Controller.extend({
     enableWidget: function(widget_object, parameters) {
         console.log('enable widget')
         Ember.set(widget_object, 'value.disabled', false);
+        Ember.run.next(this, function() {
+            this.get('updateState').call(this, this.get('formActions'));
+        });
     },
 
 
@@ -207,6 +239,9 @@ export default Ember.Controller.extend({
         } else {
             Ember.set(widget_object, 'value.disabled', false);
         }
+        Ember.run.next(this, function() {
+            this.get('updateState').call(this, this.get('formActions'));
+        });
     },
 
 
@@ -250,18 +285,23 @@ export default Ember.Controller.extend({
     //},
     saveParameter_signature: ['parameter', 'updated_parameter'],
     saveParameter: function(parameter, updated_parameter, parameters) {
+        console.log('Saving Parameter\n================' )
+        console.log(parameter);
+        console.log(updated_parameter);
         if (typeof updated_parameter === 'undefined' ||
             typeof parameter === 'undefined' ||
             typeof parameters === 'undefined'
         ) {
         }
         if (typeof updated_parameter.value !== 'undefined') {
-            parameter.value = updated_parameter.value;
+            Ember.set(parameter, 'value', updated_parameter.value);
         }
         if (typeof updated_parameter.state !== 'undefined') {
-            parameter.state = updated_parameter.state;
+            Ember.set(parameter, 'state', updated_parameter.state);
         }
-        this.get('updateState').call(this, this.get('formActions'));
+        Ember.run.next(this, function() {
+            this.get('updateState').call(this, this.get('formActions'));
+        });
     },
 
 

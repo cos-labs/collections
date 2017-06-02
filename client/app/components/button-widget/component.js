@@ -13,6 +13,10 @@ export default Ember.Component.extend({
 
     buttonString: 'Save',
 
+    disabledobserver: Ember.observer('widget.value.disabled', () => {
+        debugger;
+    }),
+
     widgetClasses: ['section-submit-button'],
     widgetClassString: Ember.computed('widgetClasses', function() {
         let classArr = this.get('widgetClasses')

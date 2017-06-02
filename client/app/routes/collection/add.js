@@ -96,6 +96,7 @@ export default Ember.Route.extend({
             },
             initial_widgets: [],
             actions: [{
+                id: '2bf24381-75f5-4e73-aa6e-ec25b3300600',
                 type: 'create_widget',
                 args: {
                     widget_component: 'file-uploader',
@@ -117,6 +118,7 @@ export default Ember.Route.extend({
                     }]
                 }]
             }, {
+                id: 'c6e5a8ff-e1e9-49fe-8ee4-7d12d2fb56dd',
                 type: 'create_widget',
                 args: {
                     widget_component: 'text-field',
@@ -140,6 +142,7 @@ export default Ember.Route.extend({
                     }],
                 }]
             }, {
+                id: '99e941be-3fae-41d7-b481-89764a1561b6',
                 type: 'create_widget',
                 args: {
                     widget_component: 'button-widget',
@@ -179,6 +182,7 @@ export default Ember.Route.extend({
                     parameter: 'upload_section'
                 }
             }, {
+                id: '5d46c582-7335-43cc-bf15-fb30ba52a39c',
                 type: 'create_widget',
                 args: {
                     widget_component: 'button-widget',
@@ -261,6 +265,7 @@ export default Ember.Route.extend({
             //        }]
             //    }]
             }, {
+                id: '2726a848-6240-4e24-8492-6aab673f1f6d',
                 type: 'create_widget',
                 args: {
                     widget_component: 'subject-picker',
@@ -292,6 +297,7 @@ export default Ember.Route.extend({
                     sectionName: 'disciplines'
                 },
             }, {
+                id: '9ac6cdb6-1ae4-47ad-b25b-7f7f8d627265',
                 type: 'create_widget',
                 args: {
                     widget_component: 'preprint-basics',
@@ -382,6 +388,7 @@ export default Ember.Route.extend({
             //        }]
             //    }]
             }, {
+                id: 'd82139b4-4975-4410-92d1-ab0dee02b4e8',
                 type: 'create_widget',
                 args: {
                     widget_component: 'paragraph-display',
@@ -402,6 +409,7 @@ export default Ember.Route.extend({
                     }]
                 }]
             }, {
+                id: 'a91f560f-b8c1-4087-be3b-3490c2861f24',
                 type: 'create_widget',
                 args: {
                     widget_component: 'preprint-form-authors',
@@ -487,12 +495,13 @@ export default Ember.Route.extend({
                 },
                 then: '7231cc6f-b861-439e-a628-a01fe0a20587'
             }, {
+                id: '1d4bcab7-c454-450d-95c5-113d89121f89',
                 type: 'create_widget',
                 args: {
                     widget_component: 'button-widget',
                     section: 'submit',
                     description: 'Submit',
-                    disabled: true,
+                    disabled: 'true',
                     css_classes: ['submit_button', 'btn-lg', 'btn-success'],
                     action_id: 'afa2e526-ea5f-47f7-a99d-459536e24fd1'
                 },
@@ -510,6 +519,7 @@ export default Ember.Route.extend({
                     alertString: 'FORM SUBMITTTED'
                 }
             }, {
+                id: 'a58fcc41-ed0c-43ab-a765-d83cb36f6a9b',
                 type: 'saveParameter',
                 args: {
                     updated_parameter: {
@@ -521,10 +531,22 @@ export default Ember.Route.extend({
                 },
                 conditions: [{
                     all: [{
+                        parameter: 'preprint_file_data',
+                        state: 'defined',
+                    }, {
                         parameter: 'submit_button',
                         state: 'disabled'
                     }, {
                         parameter: 'preprint_file_url',
+                        state: 'defined'
+                    }, {
+                        parameter: 'selected_subjects',
+                        state: 'defined',
+                    }, {
+                        parameter: 'basic_info',
+                        state: 'defined'
+                    }, {
+                        parameter: 'authors_list',
                         state: 'defined'
                     }]
                 }],
