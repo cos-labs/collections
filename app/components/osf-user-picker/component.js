@@ -44,9 +44,9 @@ export default Ember.Component.extend(NodeActionsMixin, {
 
     contributors: Ember.computed('node', function () {
         const contribs = this.get('node.contributors');
-        this.attrs.saveParameter(this.attrs.widget.value.parameters.authorsList, {
-            value: contribs,
-            state: ['defined'],
+        this.set('widget.parameter', {
+            contribs: contribs,
+            state: ['defined']
         });
         return contribs;
     }),
@@ -56,7 +56,11 @@ export default Ember.Component.extend(NodeActionsMixin, {
         this.get('contributors').forEach(contrib => contribIds.push(contrib.get('userId')));
         return contribIds;
     }),
-    numParentContributors: Ember.computed('parentNode', function () {
+    // In Add mode, contributors are emailed on creation of preprint. In Edit mode,
+    // contributors are emailed as soon as they are added to preprint.
+    sendEmail: false,
+    editing: true,
+    numParentContributors: Ember.computed('parentNode', function() {
         if (this.get('parentNode')) {
             return this.get('parentNode').get('contributors').get('length');
         } else {
