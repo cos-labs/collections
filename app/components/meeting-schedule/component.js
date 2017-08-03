@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import _ from 'lodash';
+import moment from 'moment';
 
 export default Ember.Component.extend({
     session: Ember.inject.service(),
@@ -21,23 +22,26 @@ export default Ember.Component.extend({
             results.forEach(function (i) {
                 tempList.push(i);
             });
+
             let tempItems = tempList.sort(function (a, b) {
-                if (a.get('startTime') === b.get('startTime')) {
-                    if (a.get('endTime') === b.get('endTime')) {
-                        return a.get('location') - b.get('location');
-                    }
-                    else {
-                        return a.get('endTime') - b.get('endTime');
-                    }
+                let stA = moment(a.get('startTime'));
+                let stB = moment(b.get('startTime'));
+                let etA = moment(a.get('endTime'));
+                let etB = moment(b.get('endTime'));
+                let lA = a.get('location')
+                let lB = b.get('location')
+
+                // Sorts by: 1st) start time, 2nd) end time, 3rd) location
+                if (stA.isSame(stB)) {
+                    if (etA.isSame(etB)) { return lA > lB; }
+                    else { return etA.diff(etB); }
                 }
-                else {
-                    return a.get('startTime') - b.get('startTime');
-                }
+                else { return stA.diff(stB); }
             });
 
             let retList = [];
             tempItems.forEach(function (i) {
-                if (retList.length == 0) {
+                if (retList.length === 0) {
                     retList.push([i]);
                 }
                 else if (retList[retList.length - 1][0].get('startTime').toISOString() === i.get('startTime').toISOString()) {
