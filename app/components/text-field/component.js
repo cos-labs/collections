@@ -5,10 +5,6 @@ export default Ember.Component.extend({
 
     description: 'Enter a title for the preprint.',
 
-    didReceiveAttrs() {
-        this.set('description', this.attrs.description);
-    },
-
     textFieldValueObserver: Ember.observer('textFieldValue', function() {
         const saveParameter = this.attrs.saveParameter;
         const parameters = this.attrs.widget.value.parameters;
@@ -17,5 +13,9 @@ export default Ember.Component.extend({
             value: this.get('textFieldValue'),
         });
     }),
+
+    didReceiveAttrs() {
+        this.set('description', this.attrs.description);
+    },
 
 });

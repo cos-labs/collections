@@ -9,9 +9,9 @@ export default Ember.Component.extend({
         // if text color is specified, use that. otherwise, use branding text color
         const bgColor = this.get('layout.background_color') ? this.get('layout.background_color') : this.get('branding.colors.background');
         const bgImage = this.get('layout.img_url');
-        const bg = bgImage ? 'background:url(' + bgImage + ') no-repeat left center; background-size: cover;' : 'background-color:' + bgColor + ';';
+        const bg = bgImage ? `background:url(${bgImage}) no-repeat left center; background-size: cover;` : `background-color:${bgColor};`;
         let textColor = this.get('layout.text_color') ? this.get('layout.text_color') : this.get('branding.colors.text');
-        textColor = 'color:' + textColor + ';';
+        textColor = `color:${textColor};`;
         return Ember.String.htmlSafe(bg + textColor);
     }),
     titleColor: Ember.computed('layout', function() {

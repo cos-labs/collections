@@ -8,6 +8,6 @@ export default Ember.Component.extend({
         if (moment(startDate).format('MM D YY') === moment(endDate).format('MM D YY')) {
             return moment(startDate).format('MMMM D');
         }
-        return moment(startDate).format('MMMM D') + ' - ' + moment(endDate).format('MMMM D');
+        return `${moment(startDate).format('MMMM D')} - ${moment(endDate).format('MMMM D')}`;
     })
 });
