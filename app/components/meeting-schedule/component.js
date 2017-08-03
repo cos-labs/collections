@@ -24,19 +24,19 @@ export default Ember.Component.extend({
             });
 
             let tempItems = tempList.sort(function (a, b) {
-                let stA = moment(a.get('startTime'));
-                let stB = moment(b.get('startTime'));
-                let etA = moment(a.get('endTime'));
-                let etB = moment(b.get('endTime'));
-                let lA = a.get('location')
-                let lB = b.get('location')
+                let startTimeA = moment(a.get('startTime'));
+                let startTimeB = moment(b.get('startTime'));
+                let endTimeA = moment(a.get('endTime'));
+                let endTimeB = moment(b.get('endTime'));
+                let locationA = a.get('location')
+                let locationB = b.get('location')
 
                 // Sorts by: 1st) start time, 2nd) end time, 3rd) location
-                if (stA.isSame(stB)) {
-                    if (etA.isSame(etB)) { return lA > lB; }
-                    else { return etA.diff(etB); }
+                if (startTimeA.isSame(startTimeB)) {
+                    if (endTimeA.isSame(endTimeB)) { return locationA > locationB; }
+                    else { return endTimeA.diff(endTimeB); }
                 }
-                else { return stA.diff(stB); }
+                else { return startTimeA.diff(startTimeB); }
             });
 
             let retList = [];
