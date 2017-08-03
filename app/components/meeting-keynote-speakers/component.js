@@ -12,8 +12,8 @@ export default Ember.Component.extend({
         return Ember.String.htmlSafe(`background-color: ${this.get('layout.background_color')}; color: ${this.get('layout.text_color')};`);
     }),
     users: Ember.computed('model.items', function() {
-        let items = this.get('model.items');
-        let userIDs = [];
+        const items = this.get('model.items');
+        const userIDs = [];
         items.forEach((item) => {
             const userID = item.get('createdBy.id');
             if (userID !== undefined) {

@@ -6,11 +6,11 @@ export default Ember.Component.extend({
     organizeMode: false,
     groupView: false,
     cardView: true,
-    selectedItems: Ember.A(), // List of items selected for actions like delete
     showDeleteConfirmation: false, // Modal for deleting items
     showGroupConfirmation: false, // Modal for grouping
     addingGroup: false,
     groupTitle: '',
+    selectedItems: Ember.A(), // List of items selected for actions like delete
     actions: {
         toggleOrganizeMode () {
             this.send('emptySelectedList');
