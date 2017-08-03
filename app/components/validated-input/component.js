@@ -28,7 +28,7 @@ export default Ember.Component.extend({
         return (this.get('validation.isDirty') || this.get('didValidate')) && this.get('isInvalid');
     }),
 
-    showWarningMessage: computed('validation.{isDirty, warnings.[]}', 'isValid', 'didValidate', function() {
+    showWarningMessage: computed('validation.{isDirty,warnings.[]}', 'isValid', 'didValidate', function() {
         return (this.get('validation.isDirty') || this.get('didValidate')) && this.get('isValid') && !isEmpty(this.get('validation.warnings'));
     }),
 
