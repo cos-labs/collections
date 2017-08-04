@@ -13,7 +13,6 @@ export default Model.extend({
     sections: hasMany('section', {
         async: false,
         inverse: null,
-        embedded: 'always',
     }),
     //sections: Ember.computed('_sections', function() {
     //    return this.get('_sections');
@@ -21,11 +20,9 @@ export default Model.extend({
     actions: hasMany('action', {
         async: false,
         inverse: null,
-        embedded: 'always',
     }),
     initialParameters: hasMany('parameter', {
         async: false,
         inverse: null,
-        embedded: 'always'
     }),
 });

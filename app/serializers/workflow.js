@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import Workflow from 'collections/models/workflow';
 
-const { JSONAPISerializer } = DS;
+const { JSONSerializer } = DS;
 
 
 function normalizeRelationships(store, type, rawRecord, JSONAPIDocument) {
@@ -79,9 +79,9 @@ function normalizeRecordsHash(store, JSONAPIDocument, childRelationshipMeta, chi
 }
 
 
-export default JSONAPISerializer.extend({
+export default JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 
-    normalizeResponse(store, type, payload, id, requestType) {
+    /*normalizeResponse(store, type, payload, id, requestType) {
 
         const JSONAPIDocument = {
             included: [],
@@ -91,6 +91,12 @@ export default JSONAPISerializer.extend({
         console.log(JSONAPIDocument);
         return JSONAPIDocument;
 
+    },*/
+
+    attrs: {
+        sections: {
+            embedded: 'always',
+        }
     },
 
     isSuccess(status) {
