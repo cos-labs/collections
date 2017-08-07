@@ -84,5 +84,5 @@ export default Ember.Component.extend({
                 return i;
             });
         }
-    }),
+    })
 });
