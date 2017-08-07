@@ -7,6 +7,13 @@ const { JSONSerializer } = DS;
 
 export default JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 
+    normalize: function(modelClass, resourceHash) {
+        console.log(modelClass);
+        console.log(resourceHash);
+        debugger;
+        return resourceHash;
+    },
+
     attrs: {
         sections: {
             embedded: 'always',
