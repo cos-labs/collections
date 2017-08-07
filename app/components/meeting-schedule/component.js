@@ -7,6 +7,7 @@ export default Ember.Component.extend({
     filterString: '',
     trackFilter: '',
     roomFilter: '',
+    selectedItemId: 0,
     data: Ember.computed('layout', function () {
         const dataSource = this.get('layout.data');
         return this.get('model.settings').data[dataSource];
@@ -24,14 +25,22 @@ export default Ember.Component.extend({
                 tempList.push(i);
             });
             const tempItems = tempList.sort(function (a, b) {
-                if (a.get('startTime') === b.get('startTime')) {
-                    if (a.get('endTime') === b.get('endTime')) {
-                        return a.get('location') - b.get('location');
+                const startTimeA = moment(a.get('startTime'));
+                const startTimeB = moment(b.get('startTime'));
+                const endTimeA = moment(a.get('endTime'));
+                const endTimeB = moment(b.get('endTime'));
+                const locationA = a.get('location');
+                const locationB = b.get('location');
+
+                // Sorts by: 1st) start time, 2nd) end time, 3rd) location
+                if (startTimeA.isSame(startTimeB)) {
+                    if (endTimeA.isSame(endTimeB)) {
+                        return locationA > locationB;
                     } else {
-                        return a.get('endTime') - b.get('endTime');
+                        return endTimeA.diff(endTimeB);
                     }
                 } else {
-                    return a.get('startTime') - b.get('startTime');
+                    return startTimeA.diff(startTimeB);
                 }
             });
 
@@ -76,6 +85,7 @@ export default Ember.Component.extend({
             });
         }
     }),
+<<<<<<< HEAD
     selectedItemId: Ember.computed(function () {
         // return this.get('model.items').then((results) => {
         //     console.log(results.get('firstObject.id'));
@@ -83,4 +93,6 @@ export default Ember.Component.extend({
         // });
         return 2;
     })
+=======
+>>>>>>> e3a5f2e... Fix eslint errors in schedule component
 });
