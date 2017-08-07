@@ -19,23 +19,24 @@ function uuid() {
 
 export default JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 
-    normalize: function(modelClass, resourceHash) {
+    normalize: function(modelClass, resourceHash, prop) {
         console.log(modelClass);
         console.log(resourceHash);
-        resourceHash.parameters = Object.keys(resourceHash.parameters).map((key) => {
-            return {
-                id: uuid(),
-                mappingKey: key,
-                widget: resourceHash.id,
-                parameter: resourceHash.parameters[key],
-            };
-        })
-        debugger;
-        return resourceHash;
+        if (resourceHash.parameters) {
+            resourceHash.parameters = Object.keys(resourceHash.parameters).map((key) => {
+                return {
+                    id: uuid(),
+                    mappingKey: key,
+                    widget: resourceHash.id,
+                    parameter: resourceHash.parameters[key],
+                };
+            });
+        }
+        return this._super(modelClass, resourceHash, prop);
     },
 
     attrs: {
-        widgets: {
+        parameters: {
             embedded: 'always',
         }
     },
