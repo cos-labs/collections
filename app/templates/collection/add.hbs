@@ -39,11 +39,10 @@
 
                     {{section.widgets}}
                     {{#each section.widgets as |widget|}}
+                        {{widget.widgetType}}
+                        {{widget.label}}
                         {{widget}}
-                        {{widget.type}}
-                        {{widget}}
-                        {{widget}}
-                        {{component widget.type widget=widget}}
+                        {{component widget.widgetType widget=widget}}
 
                     {{/each}}
                 </div>

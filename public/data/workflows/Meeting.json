@@ -12,7 +12,7 @@
           "id": "1",
           "label": "File",
           "desciption": "Choose a file to upload that represents the talk or poster. Drag and drop the file into the box below, or press the 'Upload File' button to pick the file using a dialog box.",
-          "type": "file-uploader",
+          "widgetType": "file-uploader",
           "parameters": {
             "fileData": "fileData",
             "fileName": "fileName"
@@ -22,7 +22,7 @@
           "id": "2",
           "label": "Title",
           "description": "Enter the title of the talk.",
-          "type": "text-field",
+          "widgetType": "text-field",
           "parameters": {
             "value": "title-widget"
           }
@@ -38,7 +38,7 @@
           "id": "3",
           "label": "Speakers",
           "description": "To add a speaker press the add speaker button and search for the user that will be conducting the talk. If the user does not have an account, they may be referenced by their email address. To remove a speaker, press the 'X' next to their name. Users added by email address will be given the opportunity to create a full account and will receive permissions on the talk created here automatically once they have signed up.",
-          "type": "osf-user-picker"
+          "widgetType": "osf-user-picker"
         }
       ]
     }
