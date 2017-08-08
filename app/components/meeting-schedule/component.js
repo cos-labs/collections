@@ -85,14 +85,4 @@ export default Ember.Component.extend({
             });
         }
     }),
-<<<<<<< HEAD
-    selectedItemId: Ember.computed(function () {
-        // return this.get('model.items').then((results) => {
-        //     console.log(results.get('firstObject.id'));
-        //     return results.get('firstObject.id');
-        // });
-        return 2;
-    })
-=======
->>>>>>> e3a5f2e... Fix eslint errors in schedule component
 });
