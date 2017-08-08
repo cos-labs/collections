@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import _ from 'lodash';
+import moment from 'moment';
 
 export default Ember.Component.extend({
     session: Ember.inject.service(),
@@ -54,6 +55,9 @@ export default Ember.Component.extend({
                     retList.push([i]);
                 }
             });
+            if (retList.length > 0) {
+                this.set('selectedItemId', retList[0][0].id);
+            }
             return retList;
         });
     }),
