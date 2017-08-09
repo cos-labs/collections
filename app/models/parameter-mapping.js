@@ -9,7 +9,7 @@ const {
 export default Model.extend({
     mappingKey: attr('string'),
     widget: belongsTo('widget', {
-        inverse: 'parameters',
+        inverse: 'parameterMapping',
     }),
     parameter: belongsTo('parameter', {
         inverse: null,

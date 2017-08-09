@@ -10,6 +10,7 @@ export default Ember.Route.extend({
             }).catch(() => {
                 this.transitionTo('/not-found');
             });
+            this.transitionTo('/not-found');
         });
     }
 });

@@ -72,6 +72,7 @@
     "ember-cli-shims": "^1.1.0",
     "ember-i18n": "^5.0.2",
     "ember-lodash": "^4.17.5",
+    "ember-promise-helpers": "^1.0.3",
     "eslint-config-cos-ember": "^0.5.0",
     "moment": "^2.18.1",
     "heimdall-query": "^0.0.7",

@@ -6,7 +6,6 @@ export default Ember.Component.extend({
 
     didRender() {
         console.log('hello')
-        debugger;
     },
 
     actions: {
@@ -17,13 +16,10 @@ export default Ember.Component.extend({
             const saveParameter = this.attrs.saveParameter;
             const filenameParts = ev.currentTarget.value.split('\\');
             const filename = filenameParts[filenameParts.length - 1];
-            const parameters = this.attrs.widget.value.parameters;
 
-            reader.onloadend = function(ev) {
-                this.set('widget.parameter', {
-                    fileName: filename,
-                    fileData: ev.target.result
-                });
+            reader.onloadend = (ev) => {
+                this.set('widget.parameters.fileName.value',  filename);
+                this.set('widget.parameters.fileData.value',  ev.target.result);
             };
 
             reader.readAsBinaryString(fileHandle);

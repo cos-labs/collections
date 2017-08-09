@@ -23,7 +23,7 @@ export default JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
         console.log(modelClass);
         console.log(resourceHash);
         if (resourceHash.parameters) {
-            resourceHash.parameters = Object.keys(resourceHash.parameters).map((key) => {
+            resourceHash.parameterMapping = Object.keys(resourceHash.parameters).map((key) => {
                 return {
                     id: uuid(),
                     mappingKey: key,
@@ -36,7 +36,7 @@ export default JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
     },
 
     attrs: {
-        parameters: {
+        parameterMapping: {
             embedded: 'always',
         }
     },
