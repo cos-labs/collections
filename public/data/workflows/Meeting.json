@@ -44,14 +44,14 @@
     },
     {
       "id": "3",
-      "label": "submit",
+      "label": "Submit",
       "description": "Submit this talk to the meeting",
       "widgets": [
         {
           "id": "4",
-          "label": "submit",
+          "label": "Submit",
           "description": "Submit this talk",
-          "widgetType": "submit-meeting",
+          "widgetType": "meeting-submit",
           "parameters": {
             "title": "title-widget"
           }
