@@ -6,11 +6,13 @@ import CpPanelComponent from 'ember-collapsible-panel/components/cp-panel';
  */
 
 /**
- * Extends Ember Collapsible Panel's CpPanelComponent. Preprint-form-header and preprint-form-body components go inside.
+ * Extends Ember Collapsible Panel's CpPanelComponent. Preprint-form-header and preprint-form-body
+ * components go inside.
  *
  * Sample usage:
  * ```handlebars
- * {{#preprint-form-section class="upload-section-block" allowOpen=false name='locationOfPreprint' open=false}}
+ * {{#preprint-form-section class="upload-section-block" allowOpen=false
+ *    name='locationOfPreprint' open=false}}
  *    {{preprint-form-header}}
  *    {{#preprint-form-body}}
  *    {{/preprint-form-body}}
@@ -31,10 +33,17 @@ export default CpPanelComponent.extend({
     allowOpen: false,
 
     /**
-     * Track whether this panel has ever been opened (eg to suppress validation indicators until page is viewed)
+     * Track whether this panel has ever been opened (eg to suppress
+     * validation indicators until page is viewed)
      * @property {boolean} hasOpened
      */
     hasOpened: false,
+
+    // Fix deprecation warning
+    // eslint-disable-next-line ember/no-on-calls-in-components
+    _setup: Ember.on('init', Ember.observer('open', function() {
+        this.set('panelState.boundOpenState', this.get('open'));
+    })),
 
     trackOpenState: Ember.observer('isOpen', function() {
         // Whenever panel is opened (via any means), update the hasOpened state to reflect this fact
@@ -44,10 +53,6 @@ export default CpPanelComponent.extend({
         }
     }),
 
-    // Fix deprecation warning
-    _setup: Ember.on('init', Ember.observer('open', function() { // eslint-disable-line ember/no-on-calls-in-components
-        this.set('panelState.boundOpenState', this.get('open'));
-    })),
     /* Manual animation
      * Can be omitted if using {{cp-panel-body}} instead of {{preprint-form-body}} because
      * cp-panel-body uses liquid-if for animation. preprint-form-body purposely avoids liquid-if
@@ -83,12 +88,6 @@ export default CpPanelComponent.extend({
         if (!this.get('isOpen')) {
             if (this.get('allowOpen')) {
                 // Crude mechanism to prevent opening a panel if conditions are not met
-                // Ember.get(this, 'metrics')
-                //    .trackEvent({
-                //        category: 'div',
-                //        action: 'click',
-                //        label: `${this.get('editMode') ? 'Edit' : 'Submit'} - Click to edit, ${this.name} section`
-                //    });
                 this._super(...arguments);
             } else {
                 this.sendAction('errorAction', 'Please complete upload section before continuing');

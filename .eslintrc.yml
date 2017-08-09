@@ -4,6 +4,10 @@ extends:
 rules:
     prefer-template: warn
     no-param-reassign: off
+    comma-dangle: off
     ember/named-functions-in-promises: off
     ember/local-modules: off
     ember/no-empty-attrs: off
+    ember/no-observers: off
+    ember/closure-actions: off
+

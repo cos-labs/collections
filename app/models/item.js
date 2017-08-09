@@ -18,18 +18,18 @@ export default Model.extend({
     metadata: attr('string'),
     dateAdded: attr('date'),
     dateUpdated: attr('date'),
-    collection: belongsTo('collection-base'),
-    group: belongsTo('group'),
-    createdBy: belongsTo('user'),
     location: attr('string'),
     startTime: attr('date'),
     endTime: attr('date'),
+    collection: belongsTo('collection-base'),
+    group: belongsTo('group'),
+    createdBy: belongsTo('user'),
     startTimeFormatted: Ember.computed('startTime', function () {
-        let st = moment(this.get('startTime'));
+        const st = moment(this.get('startTime'));
         return st.format('h:mmA');
     }),
     endTimeFormatted: Ember.computed('startTime', function () {
-        let st = moment(this.get('endTime'));
+        const st = moment(this.get('endTime'));
         return st.format('h:mmA');
     }),
     scheduleFilterText: Ember.computed('title', 'location', 'startTimeFormatted', function () {

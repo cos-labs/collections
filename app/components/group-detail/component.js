@@ -3,13 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     editMode: false,
     showDeleteGroupConfirmation: false, // Modal for deleting group
-    resetModelCache() {
-        const model = this.get('model');
-        return {
-            title: model.get('title'),
-            description: model.get('description'),
-        };
-    },
     modelCache: Ember.computed('model', function() {
         return this.resetModelCache();
     }),
@@ -47,5 +40,12 @@ export default Ember.Component.extend({
             },
             );
         },
+    },
+    resetModelCache() {
+        const model = this.get('model');
+        return {
+            title: model.get('title'),
+            description: model.get('description'),
+        };
     },
 });

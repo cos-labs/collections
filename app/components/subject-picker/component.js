@@ -55,13 +55,25 @@ export default Ember.Component.extend({
     _tier1: null,
     _tier2: null,
     _tier3: null,
-
     // Filter the list of subjects if appropriate
     tier1FilterText: '',
     tier2FilterText: '',
     tier3FilterText: '',
-
     tierSorting: ['text:asc'], // eslint-disable-line ember/avoid-leaking-state-in-components
+    // Currently selected subjects
+    selection1: null,
+    selection2: null,
+    selection3: null,
+    disciplineModifiedToggle: false,
+    disciplineSaveState: false,
+    editMode: false,
+
+    disciplineValid: Ember.computed.notEmpty('selected'),
+
+    tier1Sorted: Ember.computed.sort('tier1Filtered', 'tierSorting'),
+    tier2Sorted: Ember.computed.sort('tier2Filtered', 'tierSorting'),
+    tier3Sorted: Ember.computed.sort('tier3Filtered', 'tierSorting'),
+
     tier1Filtered: Ember.computed('tier1FilterText', '_tier1.[]', function() {
         const items = this.get('_tier1') || [];
         const filterText = this.get('tier1FilterText').toLowerCase();
@@ -70,7 +82,6 @@ export default Ember.Component.extend({
         }
         return items;
     }),
-    tier1Sorted: Ember.computed.sort('tier1Filtered', 'tierSorting'),
 
     tier2Filtered: Ember.computed('tier2FilterText', '_tier2.[]', function() {
         const items = this.get('_tier2') || [];
@@ -80,7 +91,6 @@ export default Ember.Component.extend({
         }
         return items;
     }),
-    tier2Sorted: Ember.computed.sort('tier2Filtered', 'tierSorting'),
 
     tier3Filtered: Ember.computed('tier3FilterText', '_tier3.[]', function() {
         const items = this.get('_tier3') || [];
@@ -90,15 +100,6 @@ export default Ember.Component.extend({
         }
         return items;
     }),
-    tier3Sorted: Ember.computed.sort('tier3Filtered', 'tierSorting'),
-
-    // Currently selected subjects
-    selection1: null,
-    selection2: null,
-    selection3: null,
-    disciplineModifiedToggle: false,
-    disciplineValid: Ember.computed.notEmpty('selected'),
-    disciplineSaveState: false,
 
     // Pending subjects
     subjectsList: Ember.computed('subjects.@each', function() {
@@ -118,42 +119,14 @@ export default Ember.Component.extend({
             const changed = !(disciplineArraysEqual(subjectIdMap(this.get('subjects')), subjectIdMap(this.get('selected'))));
             this.set('isSectionSaved', !changed);
             return changed;
-        },
+        }
     ),
-
-    editMode: false,
-
-    querySubjects(parents = 'null', tier = 0) {
-        this.get('theme.provider')
-            .then(provider => provider
-                .query('taxonomies', {
-                    filter: {
-                        parents,
-                    },
-                    page: {
-                        size: 100,
-                    },
-                }),
-            )
-            .then(results => this
-                .set(`_tier${tier + 1}`, results.toArray()),
-            );
-    },
 
     init() {
         this._super(...arguments);
         this.set('subjects', []);
         this.set('selected', this.get('subjectsList'));
         this.querySubjects();
-    },
-
-    setSubjects(subjects) {
-        // Sets selected with pending subjects. Does not save.
-        const disciplineModifiedToggle = this.get('disciplineModifiedToggle');
-        // Need to observe if discipline in nested array has changed.
-        // Toggling this will force 'disciplineChanged' to be recalculated
-        this.set('disciplineModifiedToggle', !disciplineModifiedToggle);
-        this.set('selected', subjects);
     },
 
     actions: {
@@ -195,7 +168,8 @@ export default Ember.Component.extend({
             let index = -1;
             const selection = [...Array(tier).keys()].map(index => this.get(`selection${index + 1}`));
 
-            // An existing tag has this prefix, and this is the lowest level of the taxonomy, so no need to fetch child results
+            // An existing tag has this prefix, and this is the lowest level of the taxonomy,
+            // so no need to fetch child results
             if (!(tier !== 3 && this.get('selected').findIndex(item => arrayStartsWith(item, selection)) !== -1)) {
                 for (let i = 0; i < selection.length; i++) {
                     const sub = selection.slice(0, i + 1);
@@ -240,5 +214,30 @@ export default Ember.Component.extend({
                 }
             });
         },
+    },
+    querySubjects(parents = 'null', tier = 0) {
+        this.get('theme.provider')
+            .then(provider => provider
+                .query('taxonomies', {
+                    filter: {
+                        parents,
+                    },
+                    page: {
+                        size: 100,
+                    },
+                }),
+            )
+            .then(results => this
+                .set(`_tier${tier + 1}`, results.toArray()),
+            );
+    },
+
+    setSubjects(subjects) {
+        // Sets selected with pending subjects. Does not save.
+        const disciplineModifiedToggle = this.get('disciplineModifiedToggle');
+        // Need to observe if discipline in nested array has changed.
+        // Toggling this will force 'disciplineChanged' to be recalculated
+        this.set('disciplineModifiedToggle', !disciplineModifiedToggle);
+        this.set('selected', subjects);
     },
 });

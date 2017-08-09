@@ -21,20 +21,6 @@ export default Ember.Controller.extend({
         return JSON.stringify(this.get('model.settings'));
     }),
 
-    resetModelCache() {
-        const model = this.get('model');
-        return {
-            title: model.get('title'),
-            description: model.get('description'),
-            tags: model.get('tags'),
-            settings: JSON.stringify(model.get('settings')),
-            location: model.get('location'),
-            address: model.get('address'),
-            startDate: model.get('startDate'),
-            endDate: model.get('endDate')
-        };
-    },
-
     actions: {
         showEdit () {
             this.set('editMode', true);
@@ -61,12 +47,25 @@ export default Ember.Controller.extend({
             model.save();
             this.set('editMode', false);
         },
+        updateCacheSettings (jsonSettings) {
+            this.set('modelCache.settings', JSON.stringify(jsonSettings));
+        },
         deleteCollection() {
             this.get('model').destroyRecord().then(() => this.transitionToRoute('/'));
         },
-        updateCacheSettings (jsonSettings) {
-            this.set('modelCache.settings', JSON.stringify(jsonSettings));
-        }
-    }
+    },
+    resetModelCache() {
+        const model = this.get('model');
+        return {
+            title: model.get('title'),
+            description: model.get('description'),
+            tags: model.get('tags'),
+            settings: JSON.stringify(model.get('settings')),
+            location: model.get('location'),
+            address: model.get('address'),
+            startDate: model.get('startDate'),
+            endDate: model.get('endDate')
+        };
+    },
 
 });

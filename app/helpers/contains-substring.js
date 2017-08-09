@@ -10,8 +10,8 @@ import Ember from 'ember';
  */
 export function containsSubstring(params/* , hash*/) {
     const [string, target] = params;
-    let stringLower = string.toLowerCase();
-    let targetLower = target.toLowerCase();
+    const stringLower = string.toLowerCase();
+    const targetLower = target.toLowerCase();
     if (stringLower.length === 0) {
         return false;
     } else {

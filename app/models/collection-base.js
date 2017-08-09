@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 const {
     Model,
@@ -17,6 +18,7 @@ export default Model.extend({
     createdBy: belongsTo('user'),
     groups: hasMany('group'),
     items: hasMany('item'),
+    list: Ember.computed.union('groupsComputed', 'items'),
     groupsComputed: Ember.computed('groups', function() {
         const groups = this.get('groups');
         groups.forEach(function(group) {
@@ -24,5 +26,4 @@ export default Model.extend({
         });
         return groups;
     }),
-    list: Ember.computed.union('groupsComputed', 'items')
 });

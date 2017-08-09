@@ -170,14 +170,16 @@ export default Ember.Controller.extend({
     addMethod: 'select', // 'select' or 'create'
     widgets: [],
     formActions: [],
+    createWidgetSignature: ['widgetComponent', 'description', 'disabled',
+        'cssClasses', 'section', 'outputParameter', 'actionId'],
 
-    _names: Ember.computed('sections', function() {
+    _names: Ember.computed('sections', function () {
         const sections = this.get('sections');
         return sections.map((section) => {
             return section.name;
         });
     }),
-    type: Ember.computed('model.settings', function() {
+    type: Ember.computed('model.settings', function () {
         const collectionType = this.get('model.settings.collectionType') || 'project';
         return collectionType.toLowerCase();
     }),
@@ -196,7 +198,7 @@ export default Ember.Controller.extend({
 
     },
 
-    init () {
+    init() {
         this._super();
         this.set('content', Ember.Object.create({
             info: null,
@@ -274,12 +276,10 @@ export default Ember.Controller.extend({
         return hydratedAction;
     },
 
-
-    createWidgetSignature: ['widgetComponent', 'description', 'disabled',
-        'cssClasses', 'section', 'outputParameter', 'actionId'],
     // `this` must be bound to the controller for `create_widget`, as
     // `create_widget` requires access to the controller, and does so through `this`.
-    createWidget(widgetComponent, description, disabled, cssClasses, section, outputParameter, actionId, parameters) {
+    createWidget(widgetComponent, description, disabled, cssClasses, section, outputParameter,
+        actionId, parameters) {
         const controller = this;
 
         const actions = this.get('formActions');
@@ -316,7 +316,7 @@ export default Ember.Controller.extend({
     },
 
     saveSection(section) {
-        return function(widgets) {
+        return function (widgets) {
             widgets.filter((widget) => {
                 return widget.section === section;
             }).map((widget) => {
@@ -344,7 +344,7 @@ export default Ember.Controller.extend({
     enableWidgetSignature: ['widgetObject'], // eslint-disable-line ember/order-in-controllers
     enableWidget(widgetObject) {
         Ember.set(widgetObject, 'value.disabled', false);
-        Ember.run.next(this, function() {
+        Ember.run.next(this, function () {
             this.get('updateState').call(this, this.get('formActions'));
         });
     },
@@ -357,7 +357,7 @@ export default Ember.Controller.extend({
         } else {
             Ember.set(widgetObject, 'value.disabled', false);
         }
-        Ember.run.next(this, function() {
+        Ember.run.next(this, function () {
             this.get('updateState').call(this, this.get('formActions'));
         });
     },
@@ -368,8 +368,8 @@ export default Ember.Controller.extend({
         if (typeof fileName.value === 'undefined') return;
         if (typeof fileData.value === 'undefined') return;
         if (typeof node.value === 'undefined') node.value = ENV.NODE_GUID;
-        const uri = `${ENV.OSF.waterbutlerUrl}v1/resources/${node.value
-        }/providers/osfstorage/?kind=file&name=${fileName.value}`;
+        const uri = `${ENV.OSF.waterbutlerUrl}v1/resources/${node.value}/providers
+        /osfstorage/?kind=file&name=${fileName.value}`;
         const xhr = new XMLHttpRequest();
         xhr.open('PUT', uri, true);
         xhr.withCredentials = false;
@@ -395,7 +395,7 @@ export default Ember.Controller.extend({
         if (typeof updatedParameter.state !== 'undefined') {
             Ember.set(parameter, 'state', updatedParameter.state);
         }
-        Ember.run.next(this, function() {
+        Ember.run.next(this, function () {
             this.get('updateState').call(this, this.get('formActions'));
         });
     },

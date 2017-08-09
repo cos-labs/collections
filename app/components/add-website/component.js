@@ -6,11 +6,6 @@ export default Ember.Component.extend({
     urlAddress: '',
     urlDescription: '',
     urlSaveErrors: null,
-    clearInputs () {
-        this.set('urlTitle', '');
-        this.set('urlAddress', '');
-        this.set('urlDescription', '');
-    },
     actions: {
         addWebsite () {
             const item = this.get('store').createRecord('item', {
@@ -29,5 +24,10 @@ export default Ember.Component.extend({
             });
             this.clearInputs();
         },
+    },
+    clearInputs () {
+        this.set('urlTitle', '');
+        this.set('urlAddress', '');
+        this.set('urlDescription', '');
     },
 });
