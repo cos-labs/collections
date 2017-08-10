@@ -66,6 +66,15 @@ ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
+ajv@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.2.0.tgz#c1735024c5da2ef75cc190713073d44f098bf486"
+  dependencies:
+    co "^4.6.0"
+    fast-deep-equal "^0.1.0"
+    json-schema-traverse "^0.3.0"
+    json-stable-stringify "^1.0.1"
+
 ajv@^4.7.0, ajv@^4.9.1:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
@@ -1076,6 +1085,12 @@ brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   dependencies:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
+
+brace@0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/brace/-/brace-0.10.0.tgz#edef4eb9b0928ba1ee5f717ffc157749a6dd5d76"
+  dependencies:
+    w3c-blob "0.0.1"
 
 braces@^1.8.2:
   version "1.8.5"
@@ -2507,7 +2522,7 @@ ember-cli-babel@^5.0.0, ember-cli-babel@^5.1.10, ember-cli-babel@^5.1.3, ember-c
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.1:
+ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.4.1, ember-cli-babel@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.7.1.tgz#98de75cb3eaf3198a80aac36ae82d8ea48c9d91f"
   dependencies:
@@ -2624,6 +2639,14 @@ ember-cli-is-package-missing@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-is-package-missing/-/ember-cli-is-package-missing-1.0.0.tgz#6e6184cafb92635dd93ca6c946b104292d4e3390"
 
+ember-cli-jsoneditor@0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/ember-cli-jsoneditor/-/ember-cli-jsoneditor-0.1.4.tgz#c85f5d3397e8036f57d8029cd0a5655a3be5a7ca"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^1.1.1"
+    ember-cli-babel "^5.1.6"
+
 ember-cli-legacy-blueprints@^0.1.2:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/ember-cli-legacy-blueprints/-/ember-cli-legacy-blueprints-0.1.5.tgz#93c15ca242ec5107d62a8af7ec30f6ac538f3ad9"
@@ -2650,16 +2673,16 @@ ember-cli-lodash-subset@^1.0.11, ember-cli-lodash-subset@^1.0.7:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-1.0.12.tgz#af2e77eba5dcb0d77f3308d3a6fd7d3450f6e537"
 
-ember-cli-moment-shim@^3.3.1:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.4.0.tgz#2fbe13d8654097da86abb64016cddf12ff19a3de"
+ember-cli-moment-shim@3.3.3, ember-cli-moment-shim@^3.3.1:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.3.3.tgz#f0609c6ff606287c3eeee717163310331e0e9397"
   dependencies:
     broccoli-funnel "^1.1.0"
     broccoli-merge-trees "^2.0.0"
     broccoli-source "^1.1.0"
     broccoli-stew "^1.4.0"
     chalk "^1.1.3"
-    ember-cli-babel "^6.6.0"
+    ember-cli-babel "^5.1.7"
     ember-cli-import-polyfill "^0.2.0"
     exists-sync "^0.0.4"
     lodash.defaults "^4.2.0"
@@ -3113,7 +3136,7 @@ ember-osf@^0.6.0:
     keen-tracking "1.1.3"
     langs "1.0.2"
 
-ember-promise-helpers@^1.0.3:
+ember-promise-helpers@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/ember-promise-helpers/-/ember-promise-helpers-1.0.3.tgz#eb1a987aec4f4e9ad8b51519540c92299d1a5d71"
   dependencies:
@@ -3711,6 +3734,10 @@ extglob@^0.3.1:
 extsprintf@1.3.0, extsprintf@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.3.0.tgz#96918440e3041a7a414f8c52e3c574eb3c3e1e05"
+
+fast-deep-equal@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-0.1.0.tgz#5c6f4599aba6b333ee3342e2ed978672f1001f8d"
 
 fast-deep-equal@^1.0.0:
   version "1.0.0"
@@ -4653,6 +4680,10 @@ istextorbinary@2.1.0:
     editions "^1.1.1"
     textextensions "1 || 2"
 
+javascript-natural-sort@0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/javascript-natural-sort/-/javascript-natural-sort-0.7.1.tgz#f9e2303d4507f6d74355a73664d1440fb5a0ef59"
+
 js-base64@^2.1.8:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
@@ -4739,6 +4770,14 @@ json5@0.4.0, json5@^0.4.0:
 json5@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
+
+jsoneditor@^5.9.3:
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-5.9.3.tgz#0622bd530289c69c558ebcb4fcd97bd6c8f444c4"
+  dependencies:
+    ajv "5.2.0"
+    brace "0.10.0"
+    javascript-natural-sort "0.7.1"
 
 jsonfile@^2.1.0:
   version "2.4.0"
@@ -7226,6 +7265,10 @@ vm-browserify@~0.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+w3c-blob@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/w3c-blob/-/w3c-blob-0.0.1.tgz#b0cd352a1a50f515563420ffd5861f950f1d85b8"
 
 walk-sync@^0.1.3:
   version "0.1.3"
