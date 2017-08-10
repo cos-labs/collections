@@ -5,7 +5,6 @@ export default Ember.Route.extend({
     panelActions: Ember.inject.service('panelActions'),
     model() {
         const collectionSettings = this.modelFor('collection').get('settings');
-        debugger;
         const collectionType = collectionSettings.collection_type;
         return this.store.findRecord('workflow', collectionType);
     },

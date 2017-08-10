@@ -14,9 +14,6 @@ export default Model.extend({
         async: false,
         inverse: null,
     }),
-    //sections: Ember.computed('_sections', function() {
-    //    return this.get('_sections');
-    //}),
     actions: hasMany('action', {
         async: false,
         inverse: null,
