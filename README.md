@@ -1,13 +1,10 @@
-# Collections
+# <img src="https://cdn.cos.io/media/images/cos_center_logo_small.original.png" alt="alt text" width="22px" height="22px">  Collections
 
-Collections is a prototype project at the Center for Open Science. This project is experimental, scope, technologies, code and functionality may change. 
+[![Join the chat at https://gitter.im/cos-labs/collections](https://badges.gitter.im/cos-labs/collections.svg)](https://gitter.im/cos-labs/collections?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-# Django Instructions
-Run the server with this command:
+Collections is a prototype project at the Center for Open Science. This project is experimental, scope, technologies, code and functionality may change. This app has two main parts. The service stores data about the collection, and the client lets users interact with their collections.
 
-`python manage.py runserver`
 
-# Ember Instructions
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
@@ -17,22 +14,38 @@ You will need the following things properly installed on your computer.
 * [Bower](http://bower.io/)
 * [Ember CLI](http://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
+* [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd collections`
-* `npm install`
-* `bower install`
+#### Get the code:
 
-## Running / Development
+    $ git clone git@github.com:cos-labs/collections.git
+    $ cd collections
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+#### Install Dependencies:
 
-### Code Generators
+    $ yarn install
+    $ bower install
 
-Make use of the many generators for code, try `ember help generate` for more details
+
+## Running
+
+#### Run the service
+
+Follow the set-up instructions in the README for https://github.com/cos-labs/collections-service.
+
+Visit the api at `http://localhost:8000/api/` or admin panel at `http://localhost:8000/admin/`.
+
+#### Run the client
+
+Set up the client to use either OSF staging (`export BACKEND=stage`) or production `export BACKEND=prod`.
+
+    $ ember serve
+
+Visit your app at [http://localhost:4200](http://localhost:4200).
+
 
 ### Running Tests
 
@@ -46,7 +59,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+`export BACKEND=prod`
 
 ## Further Reading / Useful Links
 
