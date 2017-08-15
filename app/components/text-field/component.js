@@ -9,7 +9,6 @@ export default Ember.Component.extend({
 
     textFieldValueObserver: Ember.observer('textFieldValue', function() {
         this.set('widget.parameters.value.value', this.get('textFieldValue'));
-        debugger;
     }),
 
     didReceiveAttrs() {

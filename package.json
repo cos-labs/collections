@@ -73,8 +73,6 @@
     "ember-i18n": "^5.0.2",
     "ember-lodash": "^4.17.5",
     "eslint-config-cos-ember": "^0.5.0",
-    "heimdall-query": "^0.0.7",
-    "heimdalljs": "^0.2.5",
     "lodash": "^4.17.4",
     "lodash.omit": "^4.5.0",
     "moment": "^2.18.1",

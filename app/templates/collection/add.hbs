@@ -10,50 +10,17 @@
 
         {{#each workflow.sections as |section|}}
 
-        {{!--
-            <!-- The step to add existing projects has to be put back here at some point. Do not remove this comment. -->
-
-            {{#cp-panels accordion=true}}
-                {{#preprint-form-section
-                    id=section.divId
-                    class="preprint-form-block"
-                    editMode=editMode
-                    name=section.label
-                    open=(get (get parameters section.param) 'open')
-                    allowOpen=(get (get parameters section.param) 'allowOpen') as |hasOpened isOpen|
-                }}
-                    {{preprint-form-header
-                        name=section.label
-                        valid=section.isSectionSaved
-                        showValidationIndicator=(get (get parameters section.param) 'showValidationIndicator')
-                        isValidationActive=hasOpened
-                    }}
-
-        --}}
-
             <div class="section">
                 <div class="label">
                     {{section.label}}
                 </div>
                 <div class="content">
 
-                    {{section.widgets}}
                     {{#each section.widgets as |widget|}}
-                        {{widget.widgetType}}
-                        {{widget.label}}
-                        {{widget}}
                         {{component widget.widgetType widget=widget}}
-
                     {{/each}}
                 </div>
             </div>
-
-        {{!--
-
-                  {{/preprint-form-section}}
-            {{/cp-panels}}
-
-        --}}
 
         {{/each}}
 
