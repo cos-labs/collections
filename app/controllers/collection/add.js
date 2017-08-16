@@ -179,7 +179,7 @@ export default Ember.Controller.extend({
             return section.name;
         });
     }),
-    type: Ember.computed('model.settings', function () {
+    type: Ember.computed('model.settings', function() {
         const collectionType = this.get('model.settings.collectionType') || 'project';
         return collectionType.toLowerCase();
     }),

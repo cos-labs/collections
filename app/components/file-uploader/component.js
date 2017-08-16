@@ -11,18 +11,10 @@ export default Ember.Component.extend({
             const saveParameter = this.attrs.saveParameter;
             const filenameParts = ev.currentTarget.value.split('\\');
             const filename = filenameParts[filenameParts.length - 1];
-            const parameters = this.attrs.widget.value.parameters;
 
-            saveParameter(parameters.fileName, {
-                value: filename,
-                state: ['defined'],
-            });
-
-            reader.onloadend = function(ev) {
-                saveParameter(parameters.fileData, {
-                    value: ev.target.result,
-                    state: ['defined'],
-                });
+            reader.onloadend = (ev) => {
+                this.set('widget.parameters.fileName.value',  filename);
+                this.set('widget.parameters.fileData.value',  ev.target.result);
             };
 
             reader.readAsBinaryString(fileHandle);
