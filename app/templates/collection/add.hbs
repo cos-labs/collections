@@ -17,7 +17,7 @@
                 <div class="content">
 
                     {{#each section.widgets as |widget|}}
-                        {{component widget.widgetType widget=widget}}
+                        {{component widget.widgetType widget=widget collection=collection}}
                     {{/each}}
                 </div>
             </div>

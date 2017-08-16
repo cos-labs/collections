@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import hashMany from 'collections/utils/hash-many';
 
 
 const {
