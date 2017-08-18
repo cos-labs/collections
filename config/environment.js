@@ -9,6 +9,19 @@ module.exports = function(environment) {
         osfHostUrl: 'http://localhost:8000',
         csrfCookie: 'csrftoken',
         locationType: 'auto',
+        //browserify: {
+        //    extensions: ['.js'],
+        //    transform: [
+        //        [
+        //            'babelify',
+        //            {
+        //                presets: [
+        //                    'es2016'
+        //                ]
+        //            }
+        //        ]
+        //    ]
+        //},
         authorizationType: 'token',
         EmberENV: {
             FEATURES: {
