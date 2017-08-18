@@ -174,6 +174,8 @@ module.exports = function(environment) {
     if (environment === 'production') {
         ENV.osfHostUrl = 'https://api.osf.io';
         ENV.apiBaseUrl = 'https://osf-collections.herokuapp.com';
+        ENV.locationType = 'hash';
+        ENV.rootURL = '/collections/';
         csrfCookie: 'csrftoken',
         ENV.NODE_GUID = 'h8d72';
     }
