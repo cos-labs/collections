@@ -38,5 +38,7 @@ module.exports = function(defaults) {
     app.import('vendor/assets/ember-osf.css');
 
 
+    app.import()
+
     return app.toTree();
 };
