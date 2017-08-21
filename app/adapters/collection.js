@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import ENV from '../../config/environment';
 
 const { JSONAPIAdapter } = DS;
 
 export default JSONAPIAdapter.extend({
     session: Ember.inject.service(),
-    host: 'http://localhost:8000',
+    host: ENV.osfHostUrl,
     namespace: 'api',
     ajax(url, method, hash) {
         hash = hash || {};
