@@ -173,7 +173,7 @@ module.exports = function(environment) {
     }
     if (environment === 'production') {
         ENV.osfHostUrl = 'https://api.osf.io';
-        ENV.apiBaseUrl = 'https://dev-labs-2.cos.io/';
+        ENV.apiBaseUrl = 'https://dev-labs-2.cos.io';
         ENV.APP.apiURL = ENV.apiBaseUrl + "/api";
         ENV.locationType = 'hash';
         //ENV.rootURL = '/collections/';
