@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import ENV from '../config/environment';
 
 const { RESTAdapter } = DS;
 
@@ -10,6 +11,6 @@ export default RESTAdapter.extend({
     },
     buildURL() {
         const base = this._super(...arguments);
-        return `http://localhost:4200/data${base}.json`;
+        return `{ENV.apiBaseUrl}/data${base}.json`;
     },
 });

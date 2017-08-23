@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import NavbarAuthDropdown from 'ember-osf/components/navbar-auth-dropdown/component';
-
+import ENV from '../../config/environment';
 
 /**
  * Display the login dropdown on the navbar
@@ -28,7 +28,7 @@ export default NavbarAuthDropdown.extend({
     }),
     actions: {
         logout() {
-            this.get('session').invalidate().catch(function() { window.location.href = 'http://localhost:4200/'; });
+            this.get('session').invalidate().catch(function() { window.location.href = ENV.apiBaseUrl; });
         },
     },
 });
