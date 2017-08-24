@@ -9,19 +9,6 @@ module.exports = function(environment) {
         osfHostUrl: 'http://localhost:8000',
         csrfCookie: 'csrftoken',
         locationType: 'auto',
-        //browserify: {
-        //    extensions: ['.js'],
-        //    transform: [
-        //        [
-        //            'babelify',
-        //            {
-        //                presets: [
-        //                    'es2016'
-        //                ]
-        //            }
-        //        ]
-        //    ]
-        //},
         authorizationType: 'token',
         EmberENV: {
             FEATURES: {
@@ -138,11 +125,6 @@ module.exports = function(environment) {
     ENV.headerAuth = process.env.HEADER_AUTH;
 
     if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
         ENV.osfHostUrl = 'https://staging-api.osf.io';
         ENV['ember-cli-mirage'] = {
@@ -176,7 +158,6 @@ module.exports = function(environment) {
         ENV.apiBaseUrl = 'https://dev-labs-2.cos.io';
         ENV.APP.apiURL = ENV.apiBaseUrl + "/api";
         ENV.locationType = 'hash';
-        //ENV.rootURL = '/collections/';
         csrfCookie: 'csrftoken',
         ENV.NODE_GUID = 'h8d72';
     }
