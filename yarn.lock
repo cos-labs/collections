@@ -387,7 +387,7 @@ babel-core@^5.0.0:
     trim-right "^1.0.0"
     try-resolve "^1.0.0"
 
-babel-core@^6.14.0, babel-core@^6.24.1, babel-core@^6.25.0:
+babel-core@^6.14.0, babel-core@^6.24.1:
   version "6.25.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.25.0.tgz#7dd42b0463c742e9d5296deb3ec67a9322dad729"
   dependencies:
@@ -563,6 +563,12 @@ babel-plugin-debug-macros@^0.1.10, babel-plugin-debug-macros@^0.1.11:
 babel-plugin-ember-modules-api-polyfill@^1.4.1:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-ember-modules-api-polyfill/-/babel-plugin-ember-modules-api-polyfill-1.4.2.tgz#e254f8ed0ba7cf32ea6a71c4770b3568a8577402"
+  dependencies:
+    ember-rfc176-data "^0.2.0"
+
+babel-plugin-ember-modules-api-polyfill@^1.5.1:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-ember-modules-api-polyfill/-/babel-plugin-ember-modules-api-polyfill-1.6.0.tgz#abd1afa4237b3121cb51222f9bf3283cad8990aa"
   dependencies:
     ember-rfc176-data "^0.2.0"
 
@@ -1466,20 +1472,6 @@ broccoli-templater@^1.0.0:
     broccoli-filter "^0.1.11"
     broccoli-stew "^1.2.0"
     lodash.template "^3.3.2"
-
-broccoli-uglify-sourcemap@^1.0.0:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/broccoli-uglify-sourcemap/-/broccoli-uglify-sourcemap-1.5.2.tgz#04f84ab0db539031fa868ccfa563c9932d50cedb"
-  dependencies:
-    broccoli-plugin "^1.2.1"
-    debug "^2.2.0"
-    lodash.merge "^4.5.1"
-    matcher-collection "^1.0.0"
-    mkdirp "^0.5.0"
-    source-map-url "^0.3.0"
-    symlink-or-copy "^1.0.1"
-    uglify-js "^2.7.0"
-    walk-sync "^0.1.3"
 
 broccoli-unwatched-tree@^0.1.1:
   version "0.1.3"
@@ -2415,7 +2407,7 @@ ember-breadcrumbs@0.1.9:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/ember-breadcrumbs/-/ember-breadcrumbs-0.1.9.tgz#f899ac401da03e2b6f02e1c084c8e07145e2236f"
 
-ember-browserify@^1.1.13:
+ember-browserify@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ember-browserify/-/ember-browserify-1.2.0.tgz#c774896dc44ab2c5c608226f31628994348a3fd5"
   dependencies:
@@ -2503,6 +2495,23 @@ ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.4.1, e
     clone "^2.0.0"
     ember-cli-version-checker "^2.0.0"
 
+ember-cli-babel@^6.6.0:
+  version "6.8.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.8.1.tgz#695f94c57a9375c2a0e219306a41105d6b937991"
+  dependencies:
+    amd-name-resolver "0.0.7"
+    babel-plugin-debug-macros "^0.1.11"
+    babel-plugin-ember-modules-api-polyfill "^1.5.1"
+    babel-plugin-transform-es2015-modules-amd "^6.24.0"
+    babel-polyfill "^6.16.0"
+    babel-preset-env "^1.5.1"
+    broccoli-babel-transpiler "^6.1.2"
+    broccoli-debug "^0.6.2"
+    broccoli-funnel "^1.0.0"
+    broccoli-source "^1.1.0"
+    clone "^2.0.0"
+    ember-cli-version-checker "^2.0.0"
+
 ember-cli-bootstrap-sassy@0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/ember-cli-bootstrap-sassy/-/ember-cli-bootstrap-sassy-0.5.3.tgz#aca28c34f6b68057e94fd90c177b9fad4ce86afd"
@@ -2543,14 +2552,6 @@ ember-cli-get-component-path-option@^1.0.0:
 ember-cli-get-dependency-depth@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-get-dependency-depth/-/ember-cli-get-dependency-depth-1.0.0.tgz#e0afecf82a2d52f00f28ab468295281aec368d11"
-
-ember-cli-github-pages@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-github-pages/-/ember-cli-github-pages-0.1.2.tgz#83b11d307858595582ba61e90602209a37d5b348"
-  dependencies:
-    ember-cli-babel "^5.1.3"
-    ember-cli-version-checker "^1.1.6"
-    rsvp "^3.0.14"
 
 ember-cli-htmlbars-inline-precompile@0.4.3:
   version "0.4.3"
@@ -2645,7 +2646,7 @@ ember-cli-lodash-subset@^1.0.11, ember-cli-lodash-subset@^1.0.7:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-1.0.12.tgz#af2e77eba5dcb0d77f3308d3a6fd7d3450f6e537"
 
-ember-cli-moment-shim@3.3.3, ember-cli-moment-shim@^3.3.1:
+ember-cli-moment-shim@3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.3.3.tgz#f0609c6ff606287c3eeee717163310331e0e9397"
   dependencies:
@@ -2655,6 +2656,22 @@ ember-cli-moment-shim@3.3.3, ember-cli-moment-shim@^3.3.1:
     broccoli-stew "^1.4.0"
     chalk "^1.1.3"
     ember-cli-babel "^5.1.7"
+    ember-cli-import-polyfill "^0.2.0"
+    exists-sync "^0.0.4"
+    lodash.defaults "^4.2.0"
+    moment "^2.18.1"
+    moment-timezone "~0.5.11"
+
+ember-cli-moment-shim@^3.3.1:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.4.0.tgz#2fbe13d8654097da86abb64016cddf12ff19a3de"
+  dependencies:
+    broccoli-funnel "^1.1.0"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-source "^1.1.0"
+    broccoli-stew "^1.4.0"
+    chalk "^1.1.3"
+    ember-cli-babel "^6.6.0"
     ember-cli-import-polyfill "^0.2.0"
     exists-sync "^0.0.4"
     lodash.defaults "^4.2.0"
@@ -2773,12 +2790,6 @@ ember-cli-test-loader@^1.1.0:
   resolved "https://registry.yarnpkg.com/ember-cli-test-loader/-/ember-cli-test-loader-1.1.1.tgz#333311209b18185d0e0e95f918349da10cacf0b1"
   dependencies:
     ember-cli-babel "^5.2.1"
-
-ember-cli-uglify@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-uglify/-/ember-cli-uglify-1.2.0.tgz#3208c32b54bc2783056e8bb0d5cfe9bbaf17ffb2"
-  dependencies:
-    broccoli-uglify-sourcemap "^1.0.0"
 
 ember-cli-valid-component-name@^1.0.0:
   version "1.0.0"
@@ -3150,7 +3161,7 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
     ember-cli-babel "^6.0.0"
     ember-cli-version-checker "^1.1.6"
 
-ember-simple-auth@^1.3.0:
+ember-simple-auth@^1.3.0, ember-simple-auth@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-1.4.0.tgz#b989fb94a334ca1634e62f9ca99b0b94f16167ec"
   dependencies:
@@ -5021,7 +5032,7 @@ lodash.memoize@~3.0.3:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-3.0.4.tgz#2dcbd2c287cbc0a55cc42328bd0c736150d53e3f"
 
-lodash.merge@^4.3.0, lodash.merge@^4.4.0, lodash.merge@^4.5.1, lodash.merge@^4.6.0:
+lodash.merge@^4.3.0, lodash.merge@^4.4.0, lodash.merge@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
 
@@ -7050,7 +7061,7 @@ uc.micro@^1.0.1, uc.micro@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.3.tgz#7ed50d5e0f9a9fb0a573379259f2a77458d50192"
 
-uglify-js@^2.6, uglify-js@^2.7.0:
+uglify-js@^2.6:
   version "2.8.29"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.29.tgz#29c5733148057bb4e1f75df35b7a9cb72e6a59dd"
   dependencies:
