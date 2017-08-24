@@ -31,7 +31,7 @@ export default BaseAuthenticator.extend({
                     if (redirectToLogin) {
                         window.location = `${ENV.apiBaseUrl
                         }/accounts/osf/login/?${
-                            Ember.$.param({ next: 'http://localhost:4200/' })}`;
+                            Ember.$.param({ next: ENV.apiBaseUrl })}`;
                         return window.location;
                     }
                     reject('not logged in');
