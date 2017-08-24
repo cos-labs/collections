@@ -7,6 +7,7 @@ module.exports = function(environment) {
         rootURL: '/',
         apiBaseUrl: 'http://localhost:8000',
         osfHostUrl: 'http://localhost:8000',
+        workflowUrl: 'http://localhost:4200',
         csrfCookie: 'csrftoken',
         locationType: 'auto',
         authorizationType: 'token',
@@ -160,6 +161,7 @@ module.exports = function(environment) {
         ENV.locationType = 'hash';
         csrfCookie: 'csrftoken',
         ENV.NODE_GUID = 'h8d72';
+        ENV.workflowUrl = ENV.apiBaseUrl;
     }
 
     ENV['simple-auth'] = {
