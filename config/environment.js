@@ -157,7 +157,7 @@ module.exports = function(environment) {
         ENV.osfHostUrl = 'https://api.osf.io';
         ENV.apiBaseUrl = 'https://dev-labs-2.cos.io';
         ENV.APP.apiURL = ENV.apiBaseUrl + "/api";
-        ENV.locationType = 'hash';
+        ENV.locationType = 'auto';
         csrfCookie: 'csrftoken',
         ENV.NODE_GUID = 'h8d72';
     }
