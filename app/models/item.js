@@ -24,6 +24,7 @@ export default Model.extend({
     collection: belongsTo('collection-base'),
     group: belongsTo('group'),
     createdBy: belongsTo('user'),
+    fileLink: attr('string'),
     startTimeFormatted: Ember.computed('startTime', function () {
         const st = moment(this.get('startTime'));
         return st.format('h:mmA');

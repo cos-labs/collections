@@ -53,7 +53,8 @@
           "description": "Submit this talk",
           "widgetType": "meeting-submit",
           "parameters": {
-            "title": "title-widget"
+            "title": "title-widget",
+            "fileData": "file-data"
           }
         }
       ]
