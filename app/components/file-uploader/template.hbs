@@ -33,7 +33,11 @@
 
 <div class='submission-upload'>
   <div class='directions'>
+    {{#if fileChosen}}
+      {{widget.parameters.fileName.value}} selected for upload.
+    {{else}}
       Select a preprint file to upload
+    {{/if}}
   </div>
   <input
       class='upload'

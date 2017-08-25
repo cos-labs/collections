@@ -3,6 +3,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+    fileChosen: false,
+
     actions: {
 
         uploadFile(ev) {
@@ -14,6 +16,7 @@ export default Ember.Component.extend({
 
             reader.onloadend = (ev) => {
                 this.set('widget.parameters.fileName.value',  filename);
+                this.set('fileChosen', true); 
                 this.set('widget.parameters.fileData.value',  ev.target.result);
             };
 
