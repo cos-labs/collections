@@ -35,7 +35,7 @@
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jsoneditor": "0.1.4",
-    "ember-cli-moment-shim": "3.3.0",
+    "ember-cli-moment-shim": "~3.3.0",
     "ember-cli-qunit": "^2.1.0",
     "ember-cli-release": "^0.2.9",
     "ember-cli-sass": "6.1.1",
