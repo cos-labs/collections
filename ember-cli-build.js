@@ -34,11 +34,8 @@ module.exports = function(defaults) {
     app.import('bower_components/loaders.css/loaders.min.css');
     app.import('bower_components/hint.css/hint.min.css');
     app.import('bower_components/jquery.tagsinput/src/jquery.tagsinput.js');
-    app.import('bower_components/moment/min/moment.min.js');
     app.import('vendor/assets/ember-osf.css');
-
-
-    app.import()
+    app.import();
 
     return app.toTree();
 };
