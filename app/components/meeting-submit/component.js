@@ -31,10 +31,12 @@ export default Ember.Component.extend({
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
 
-            var node = {};
+            const node = this.get('store').createRecord('node');
+            node.set('title', this.get('widget.parameters.title.value'));
+            node.set('category', 'communication');
+            await node.save();
 
-            if (typeof node.value === 'undefined') node.value = ENV.NODE_GUID;
-            const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.value + "/providers/osfstorage/?kind=file&name=" + item.get('title') + "&direct=true";
+            const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + item.get('title') + "&direct=true";
 
             const xhr = new XMLHttpRequest();
             xhr.open("PUT", uri, true);

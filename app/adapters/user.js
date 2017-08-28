@@ -1,4 +1,4 @@
 import CollectionAdapter from './collection';
 
-export default CollectionAdapter.extend({
+export default JSONAPIAdapter.extend({
 });

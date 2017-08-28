@@ -93,8 +93,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
     }),
     init() {
         this._super(...arguments);
-        this.get('store').findRecord('node', ENV.NODE_GUID)
-            .then(result => this.set('node', result));
+        this.set('node', this.get('store').createRecord('node'));
     },
 
     actions: {
@@ -277,7 +276,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
      * @return {User[]} Returns specified page of user records matching query
      */
     findContributors(query, page) {
-        return this.get('store').query('user', {
+        return this.get('store').query('osf-user', {
             filter: {
                 'full_name,given_name,middle_names,family_name': query,
             },
@@ -290,7 +289,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
             this.highlightSuccessOrFailure('author-search-box', this, 'error');
         });
     },
-    /**
+    /*
      * highlightSuccessOrFailure method. Element with specified ID flashes green or red
      * depending on response success.
      *
