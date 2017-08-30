@@ -30,6 +30,8 @@ export default Ember.Component.extend({
             item.set('type', 'event');
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
+            item.set('category', this.get('widget.parameters.category.value'));
+            item.set('description', '');
 
             const node = this.get('store').createRecord('node');
             node.set('title', this.get('widget.parameters.title.value'));
@@ -45,7 +47,7 @@ export default Ember.Component.extend({
 
             let deferred = Ember.RSVP.defer();
             xhr.onreadystatechange = () => {
-                if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300) {
+                if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save();
                 }

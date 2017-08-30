@@ -11,7 +11,7 @@
         {
           "id": "1",
           "label": "File",
-          "desciption": "Choose a file to upload that represents the talk or poster. Drag and drop the file into the box below, or press the 'Upload File' button to pick the file using a dialog box.",
+          "description": "Choose a file to upload that represents the talk or poster. Drag and drop the file into the box below, or press the 'Upload File' button to pick the file using a dialog box.",
           "widgetType": "file-uploader",
           "parameters": {
             "fileData": "file-data",
@@ -43,18 +43,72 @@
       ]
     },
     {
-      "id": "3",
+      "id": "2",
+      "label": "Presentation Type",
+      "description": "Is this a poster or a talk?",
+      "widgets": [
+        {
+          "id": "4",
+          "label": "Category",
+          "description": "Is this a \"poster\" or a \"talk\"?",
+          "widgetType": "text-field",
+          "parameters": {
+            "value": "category"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "label": "Talk Logistics",
+      "description": "When and where is it happening?",
+      "widgets": [
+        {
+          "id": "5",
+          "label": "Location",
+          "description": "Where is your talk happening?",
+          "widgetType": "text-field",
+          "parameters": {
+            "value": "location"
+          }
+        },
+        {
+          "id": "6",
+          "label": "Start Date",
+          "description": "When does your talk start?",
+          "widgetType": "datetime-field",
+          "parameters": {
+            "date": "start-datetime"
+          }
+        },
+        {
+          "id": "7",
+          "label": "End Date",
+          "description": "When does your talk end?",
+          "widgetType": "datetime-field",
+          "parameters": {
+            "date": "end-datetime"
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
       "label": "Submit",
       "description": "Submit this talk to the meeting",
       "widgets": [
         {
-          "id": "4",
+          "id": "8",
           "label": "Submit",
           "description": "Submit this talk",
           "widgetType": "meeting-submit",
           "parameters": {
             "title": "title-widget",
-            "fileData": "file-data"
+            "fileData": "file-data",
+            "startTime": "start-datetime",
+            "endTime": "end-datetime",
+            "category": "category",
+            "location": "location"
           }
         }
       ]
