@@ -1,0 +1,9 @@
+<ul class="choice-list">
+
+    {{#each widget.parameters.choices.value as |choice|}}
+
+        <li>{{radio-button value=choice.parameter checked=chosen}}{{choice.label}}</li>
+
+    {{/each}}
+
+</ul>

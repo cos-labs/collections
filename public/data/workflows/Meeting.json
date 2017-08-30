@@ -2,7 +2,42 @@
   "id": "Meeting",
   "title": "Meeting Submission Form",
   "description": "The meeting submission form guides a speaker or meeting organizer through the process of creating an event for the meeting.",
+  "initialParameters": {
+    "event-creation-choices": {
+      "value": [
+        {
+          "label": "Use an existing node",
+          "parameter": "useExistingNode"
+        },
+        {
+          "label": "Create a new node",
+          "parameter": "createNewNode"
+        }
+      ]
+    }
+  },
   "sections": [
+    {
+      "id": "4",
+      "label": "How should the event be created?",
+      "widgets": [
+        {
+          "id": "5",
+          "widgetType": "choice-picker",
+          "parameters": {
+            "choices": "event-creation-choices",
+            "choice": "event-creation-choice"
+          }
+        },
+        {
+          "id": "6",
+          "widgetType": "node-creator",
+          "parameters": {
+            "enable": "needsNode"
+          }
+        }
+      ]
+    },
     {
       "id": "1",
       "label": "Upload",

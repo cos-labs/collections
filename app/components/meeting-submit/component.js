@@ -3,7 +3,6 @@ import ENV from '../../config/environment';
 
 function getToken() {
     let token;
-    debugger;
     const session = window.localStorage['ember_simple_auth-session'];
     if (session) {
         token = JSON.parse(session).authenticated;
