@@ -8,7 +8,7 @@ module.exports = function(defaults) {
         // Add options here
         sassOptions: {
             includePaths: [
-                'node_modules/ember-osf/addon/styles',
+                'node_modules/@centerforopenscience/ember-osf/addon/styles',
                 'bower_components/bootstrap-sass/assets/stylesheets',
                 'bower_components/osf-style/sass',
                 'bower_components/hint.css',
