@@ -1,4 +1,4 @@
-import CollectionAdapter from './collection';
+import ApplicationAdapter from './application';
 
-export default CollectionAdapter.extend({
+export default ApplicationAdapter.extend({
 });

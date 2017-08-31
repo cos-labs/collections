@@ -1,4 +1,4 @@
-import CollectionAdapter from './collection';
+import ApplicationAdapter from './application';
 
-export default JSONAPIAdapter.extend({
+export default ApplicationAdapter.extend({
 });
