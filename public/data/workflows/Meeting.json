@@ -21,10 +21,19 @@
         {
           "id": "2",
           "label": "Title",
-          "description": "Enter the title of the talk.",
+          "description": "Enter the title of the presentation.",
           "widgetType": "text-field",
           "parameters": {
             "value": "title-widget"
+          }
+        },
+        {
+          "id": "3",
+          "label": "Description",
+          "description": "Provide a description that will appear on your presentation's page.",
+          "widgetType": "text-field",
+          "parameters": {
+            "value": "description"
           }
         }
       ]
@@ -35,7 +44,7 @@
       "description": "Select the speakers the will be conducting the talk",
       "widgets": [
         {
-          "id": "3",
+          "id": "4",
           "label": "Speakers",
           "description": "To add a speaker press the add speaker button and search for the user that will be conducting the talk. If the user does not have an account, they may be referenced by their email address. To remove a speaker, press the 'X' next to their name. Users added by email address will be given the opportunity to create a full account and will receive permissions on the talk created here automatically once they have signed up.",
           "widgetType": "osf-user-picker"
@@ -43,12 +52,12 @@
       ]
     },
     {
-      "id": "2",
+      "id": "3",
       "label": "Presentation Type",
       "description": "Is this a poster or a talk?",
       "widgets": [
         {
-          "id": "4",
+          "id": "5",
           "label": "Category",
           "description": "Is this a \"poster\" or a \"talk\"?",
           "widgetType": "text-field",
@@ -64,7 +73,7 @@
       "description": "When and where is it happening?",
       "widgets": [
         {
-          "id": "5",
+          "id": "6",
           "label": "Location",
           "description": "Where is your talk happening?",
           "widgetType": "text-field",
@@ -73,7 +82,7 @@
           }
         },
         {
-          "id": "6",
+          "id": "7",
           "label": "Start Date",
           "description": "When does your talk start?",
           "widgetType": "datetime-field",
@@ -82,7 +91,7 @@
           }
         },
         {
-          "id": "7",
+          "id": "8",
           "label": "End Date",
           "description": "When does your talk end?",
           "widgetType": "datetime-field",
@@ -98,7 +107,7 @@
       "description": "Submit this talk to the meeting",
       "widgets": [
         {
-          "id": "8",
+          "id": "9",
           "label": "Submit",
           "description": "Submit this talk",
           "widgetType": "meeting-submit",
@@ -108,7 +117,8 @@
             "startTime": "start-datetime",
             "endTime": "end-datetime",
             "category": "category",
-            "location": "location"
+            "location": "location",
+            "description": "description"
           }
         }
       ]

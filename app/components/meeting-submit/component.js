@@ -3,7 +3,6 @@ import ENV from '../../config/environment';
 
 function getToken() {
     let token;
-    debugger;
     const session = window.localStorage['ember_simple_auth-session'];
     if (session) {
         token = JSON.parse(session).authenticated;
@@ -31,7 +30,15 @@ export default Ember.Component.extend({
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
             item.set('category', this.get('widget.parameters.category.value'));
-            item.set('description', '');
+            item.set('location', this.get('widget.parameters.location.value'));
+            item.set('startTime', this.get('widget.parameters.startTime.value'));
+            item.set('endTime', this.get('widget.parameters.endTime.value'));
+            item.set('description', this.get('widget.parameters.description.value'));
+
+            // TODO: REPLACE THESE WITH REAL WIDGETS
+            item.set('metadata', '{}');
+            item.set('source_id', 'mst3k');
+            item.set('url', 'http://example.com');
 
             const node = this.get('store').createRecord('node');
             node.set('title', this.get('widget.parameters.title.value'));
