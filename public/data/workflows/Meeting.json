@@ -11,7 +11,7 @@
         {
           "id": "1",
           "label": "File",
-          "desciption": "Choose a file to upload that represents the talk or poster. Drag and drop the file into the box below, or press the 'Upload File' button to pick the file using a dialog box.",
+          "description": "Choose a file to upload that represents the talk or poster. Drag and drop the file into the box below, or press the 'Upload File' button to pick the file using a dialog box.",
           "widgetType": "file-uploader",
           "parameters": {
             "fileData": "file-data",
@@ -21,10 +21,19 @@
         {
           "id": "2",
           "label": "Title",
-          "description": "Enter the title of the talk.",
+          "description": "Enter the title of the presentation.",
           "widgetType": "text-field",
           "parameters": {
             "value": "title-widget"
+          }
+        },
+        {
+          "id": "3",
+          "label": "Description",
+          "description": "Provide a description that will appear on your presentation's page.",
+          "widgetType": "text-field",
+          "parameters": {
+            "value": "description"
           }
         }
       ]
@@ -35,7 +44,7 @@
       "description": "Select the speakers the will be conducting the talk",
       "widgets": [
         {
-          "id": "3",
+          "id": "4",
           "label": "Speakers",
           "description": "To add a speaker press the add speaker button and search for the user that will be conducting the talk. If the user does not have an account, they may be referenced by their email address. To remove a speaker, press the 'X' next to their name. Users added by email address will be given the opportunity to create a full account and will receive permissions on the talk created here automatically once they have signed up.",
           "widgetType": "osf-user-picker"
@@ -44,17 +53,72 @@
     },
     {
       "id": "3",
+      "label": "Presentation Type",
+      "description": "Is this a poster or a talk?",
+      "widgets": [
+        {
+          "id": "5",
+          "label": "Category",
+          "description": "Is this a \"poster\" or a \"talk\"?",
+          "widgetType": "text-field",
+          "parameters": {
+            "value": "category"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "label": "Talk Logistics",
+      "description": "When and where is it happening?",
+      "widgets": [
+        {
+          "id": "6",
+          "label": "Location",
+          "description": "Where is your talk happening?",
+          "widgetType": "text-field",
+          "parameters": {
+            "value": "location"
+          }
+        },
+        {
+          "id": "7",
+          "label": "Start Date",
+          "description": "When does your talk start?",
+          "widgetType": "datetime-field",
+          "parameters": {
+            "date": "start-datetime"
+          }
+        },
+        {
+          "id": "8",
+          "label": "End Date",
+          "description": "When does your talk end?",
+          "widgetType": "datetime-field",
+          "parameters": {
+            "date": "end-datetime"
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
       "label": "Submit",
       "description": "Submit this talk to the meeting",
       "widgets": [
         {
-          "id": "4",
+          "id": "9",
           "label": "Submit",
           "description": "Submit this talk",
           "widgetType": "meeting-submit",
           "parameters": {
             "title": "title-widget",
-            "fileData": "file-data"
+            "fileData": "file-data",
+            "startTime": "start-datetime",
+            "endTime": "end-datetime",
+            "category": "category",
+            "location": "location",
+            "description": "description"
           }
         }
       ]
