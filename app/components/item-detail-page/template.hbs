@@ -14,11 +14,7 @@
                                 {{~/each}}
                             {{else}}
                                 <div class="loader">
-                                    <div class="loader-inner ball-pulse">
-                                      <div></div>
-                                      <div></div>
-                                      <div></div>
-                                    </div>
+                                    <div class="loader-inner ball-pulse"></div>
                                 </div>
                             {{/if}}
                         {{/if}}
@@ -40,9 +36,6 @@
                     {{else}}
                         <div class="loader text-center">
                             <div class="loader-inner ball-pulse ball-pulse-dark">
-                              <div></div>
-                              <div></div>
-                              <div></div>
                             </div>
                         </div>
                     {{/if}}
@@ -56,11 +49,7 @@
                         </div>
                     {{else}}
                         <div class="loader text-center">
-                            <div class="loader-inner ball-pulse ball-pulse-dark">
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                            </div>
+                            <div class="loader-inner ball-pulse ball-pulse-dark"></div>
                         </div>
                     {{/if}}
                 {{/if}}
@@ -73,9 +62,6 @@
                 {{else}}
                     <div class="loader text-center">
                         <div class="loader-inner ball-pulse ball-pulse-dark">
-                          <div></div>
-                          <div></div>
-                          <div></div>
                         </div>
                     </div>
                 {{/if}}
@@ -95,12 +81,13 @@
                 {{else}}
                     <div class="loader text-center">
                         <div class="loader-inner ball-pulse ball-pulse-dark">
-                          <div></div>
-                          <div></div>
-                          <div></div>
                         </div>
                     </div>
                 {{/if}}
+            {{/if}}
+
+            {{#if item.settings.collectionType}}
+
             {{/if}}
 
             {{#if constructedItem.viewContent.sourceLink.visible}}
@@ -111,9 +98,6 @@
                 {{else}}
                     <div class="loader text-center">
                         <div class="loader-inner ball-pulse ball-pulse-dark">
-                          <div></div>
-                          <div></div>
-                          <div></div>
                         </div>
                     </div>
                 {{/if}}
