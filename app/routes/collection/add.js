@@ -4,8 +4,8 @@ import Ember from 'ember';
 export default Ember.Route.extend({
     panelActions: Ember.inject.service('panelActions'),
     model() {
-        var collectionSettings = this.modelFor('collection').get('settings');
-        const collectionType = collectionSettings.collection_type;
+        debugger;
+        const collectionType = this.modelFor('collection').get('collectionType');
         return Ember.RSVP.hash({
             workflow: this.store.findRecord('workflow', collectionType),
             collection: this.modelFor('collection'),
