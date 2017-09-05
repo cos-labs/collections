@@ -4,15 +4,16 @@ export default Ember.Controller.extend({
     title: '',
     selectedType: 'Preprint',
     description: '',
-
-    typeList: Ember.A(['Project', 'Registration', 'Preprint', 'Website']),
+    // preprints, websites/links, etc. will be added later to the following list:
+    typeList: Ember.A(['meeting', 'dataset']),
 
     actions: {
         addCollection () {
             const collection = this.store.createRecord('collection', {
                 title: this.get('title'),
                 tags: '',
-                settings: { collectionType: this.get('selectedType') },
+                settings: {},
+                collectionType: this.get('selectedType'),
                 description: this.get('description')
             });
             collection.save().then((record) => {
