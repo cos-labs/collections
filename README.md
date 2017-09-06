@@ -69,3 +69,93 @@ Visit your app at [http://localhost:4200](http://localhost:4200).
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
+
+# How to edit your landing page
+
+Editing a landing page involves editing a nested settings document. It's not as hard as it sounds, we promise! There are three important sections in the settings: `branding`, `layout`, and `data`.
+
+### Branding
+
+Branding mostly determines the colors that your landing page will default to, and should generally be a riff on colors of your organization, or whichever colors you typically use for your meeting's website. Colors are specified in hexadecimal, e.g. `#942ae8`. If the color is all the same character (i.e. `#777777`), the shorthand `#777` is also accepted. You can use w3school's [color picker](https://www.w3schools.com/colors/colors_picker.asp) to find the hexadecimal code for a color you like.
+```
+"branding": {
+    "colors": {
+        "primary": "#444",
+        "secondary": "#fff",
+        "background": "#000",
+        "text": "#fff"
+    }
+}
+```
+`primary` designates the color of the background for the meeting's navbar. `secondary` designates the text color for the same. `background` and `text` designate the respective colors for the title layer.
+
+### Layout
+
+#### Title Layer
+
+* `title`: todo
+* `tagline`: todo
+
+#### Paragraph Layer
+
+* `title`: todo
+* `body`: todo
+
+#### Image Layer
+
+* `img_url`: todo
+
+#### Schedule Layer
+
+* no parameters
+
+#### Speakers Layer
+
+* no parameters 
+
+#### Presentation Table Layer
+
+* `header_color`: todo
+
+#### Sponsors Layer
+
+* `data`: todo
+
+Example:
+```
+"sponsor_categories": [
+    {
+        "category": "Gold",
+        "sponsors": [
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        },
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        },
+        ...
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        }
+    },
+    {
+        "category": "Silver",
+        "sponsors": [
+        {
+            ...
+        },
+        {
+            ...
+        },
+        ...
+        {
+            ...
+        }
+]
+```
