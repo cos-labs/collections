@@ -70,7 +70,7 @@ Visit your app at [http://localhost:4200](http://localhost:4200).
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
 
-# How to edit your landing page
+# How to edit your meeting's landing page
 
 Editing a landing page involves editing a nested settings document. It's not as hard as it sounds, we promise! There are three important sections in the settings: `branding`, `layout`, and `data`.
 
@@ -91,35 +91,42 @@ Branding mostly determines the colors that your landing page will default to, an
 
 ### Layout
 
+#### General
+
+The two following parameters can be specified for any of the following layers.
+
+* `background_color`: A hex value that specifies the color of the background.
+* `text_color`: A hex value that specifies the color of the text.
+
 #### Title Layer
 
-* `title`: todo
-* `tagline`: todo
+* `title` (optional): Overrides the title of the collection, to be displayed in the title layer.
+* `tagline` (optional): Overrides the description of the collection, to be displayed in the title layer.
 
 #### Paragraph Layer
 
-* `title`: todo
-* `body`: todo
+* `title` (optional): The title that will be displayed in the layer above the paragraph text.
+* `body`: The main text of the paragraph.
 
 #### Image Layer
 
-* `img_url`: todo
+* `img_url`: The URL of the image you want to load for this layer. Make sure it's high enough definition to span the width of your landing page!
 
 #### Schedule Layer
 
-* no parameters
+* no additional parameters
 
 #### Speakers Layer
 
-* no parameters 
+* no additional parameters 
 
 #### Presentation Table Layer
 
-* `header_color`: todo
+* `header_color` (optional): this is the only layer where you can't choose a `background_color`. Instead, choosing a `header_color` will let you specify the color of the table's header row (all the other rows will remain standard white).
 
 #### Sponsors Layer
 
-* `data`: todo
+* `data`: the name of the key in the `data` segment that you want to be loaded. If you wanted to use the following example date, this line in the settings would look like `"data": "sponsor_categories"`.
 
 Example:
 ```
