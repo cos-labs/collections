@@ -29,6 +29,16 @@ export default Ember.Component.extend({
             item.set('type', 'event');
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
+            item.set('category', this.get('widget.parameters.category.value'));
+            item.set('location', this.get('widget.parameters.location.value'));
+            item.set('startTime', this.get('widget.parameters.startTime.value'));
+            item.set('endTime', this.get('widget.parameters.endTime.value'));
+            item.set('description', this.get('widget.parameters.description.value'));
+
+            // TODO: REPLACE THESE WITH REAL WIDGETS
+            item.set('metadata', '{}');
+            item.set('source_id', 'mst3k');
+            item.set('url', 'http://example.com');
 
             const node = this.get('store').createRecord('node');
             node.set('title', this.get('widget.parameters.title.value'));
@@ -44,7 +54,7 @@ export default Ember.Component.extend({
 
             let deferred = Ember.RSVP.defer();
             xhr.onreadystatechange = () => {
-                if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300) {
+                if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save();
                 }

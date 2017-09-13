@@ -69,3 +69,100 @@ Visit your app at [http://localhost:4200](http://localhost:4200).
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
+
+# How to edit your meeting's landing page
+
+Editing a landing page involves editing a nested settings document. It's not as hard as it sounds, we promise! There are three important sections in the settings: `branding`, `layout`, and `data`.
+
+### Branding
+
+Branding mostly determines the colors that your landing page will default to, and should generally be a riff on colors of your organization, or whichever colors you typically use for your meeting's website. Colors are specified in hexadecimal, e.g. `#942ae8`. If the color is all the same character (i.e. `#777777`), the shorthand `#777` is also accepted. You can use w3school's [color picker](https://www.w3schools.com/colors/colors_picker.asp) to find the hexadecimal code for a color you like.
+```
+"branding": {
+    "colors": {
+        "primary": "#444",
+        "secondary": "#fff",
+        "background": "#000",
+        "text": "#fff"
+    }
+}
+```
+`primary` designates the color of the background for the meeting's navbar. `secondary` designates the text color for the same. `background` and `text` designate the respective colors for the title layer.
+
+### Layout
+
+#### General
+
+The two following parameters can be specified for any of the following layers.
+
+* `background_color`: A hex value that specifies the color of the background.
+* `text_color`: A hex value that specifies the color of the text.
+
+#### Title Layer
+
+* `title` (optional): Overrides the title of the collection, to be displayed in the title layer.
+* `tagline` (optional): Overrides the description of the collection, to be displayed in the title layer.
+
+#### Paragraph Layer
+
+* `title` (optional): The title that will be displayed in the layer above the paragraph text.
+* `body`: The main text of the paragraph.
+
+#### Image Layer
+
+* `img_url`: The URL of the image you want to load for this layer. Make sure it's high enough definition to span the width of your landing page!
+
+#### Schedule Layer
+
+* no additional parameters
+
+#### Speakers Layer
+
+* no additional parameters 
+
+#### Presentation Table Layer
+
+* `header_color` (optional): this is the only layer where you can't choose a `background_color`. Instead, choosing a `header_color` will let you specify the color of the table's header row (all the other rows will remain standard white).
+
+#### Sponsors Layer
+
+* `data`: the name of the key in the `data` segment that you want to be loaded. If you wanted to use the following example date, this line in the settings would look like `"data": "sponsor_categories"`.
+
+Example:
+```
+"sponsor_categories": [
+    {
+        "category": "Gold",
+        "sponsors": [
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        },
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        },
+        ...
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        }
+    },
+    {
+        "category": "Silver",
+        "sponsors": [
+        {
+            ...
+        },
+        {
+            ...
+        },
+        ...
+        {
+            ...
+        }
+]
+```
