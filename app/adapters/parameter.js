@@ -1,11 +1,9 @@
 import DS from 'ember-data';
 import ENV from '../config/environment';
 
-import DisableableAdapter from '../mixins/disableable-adapter';
-
 const { RESTAdapter } = DS;
 
-export default RESTAdapter.extend(DisableableAdapter, {
+export default RESTAdapter.extend({
     ajax(url, method, hash) {
         hash = hash || {};
         hash.headers = hash.headers || {};
@@ -13,7 +11,7 @@ export default RESTAdapter.extend(DisableableAdapter, {
     },
     buildURL() {
         const base = this._super(...arguments);
-        return `${ENV.workflowUrl}/data${base}.json`;
-    },
+        return `${ENV.APP.apiURL}/parameters`;
+    }
 });
 

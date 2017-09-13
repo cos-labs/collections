@@ -11,6 +11,7 @@ export default RESTAdapter.extend({
     },
     buildURL() {
         const base = this._super(...arguments);
-        return `${ENV.workflowUrl}/data${base}.json`;
+        debugger;
+        return `${ENV.apiBaseUrl}/data${base}.json`;
     },
 });
