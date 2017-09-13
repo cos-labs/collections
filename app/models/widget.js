@@ -21,12 +21,12 @@ export default Model.extend({
     widgetType: attr('string'),
     defaultValue: attr('string'),
 
-    parameterMapping: hasMany('parameter-mapping', {
+    parameterMappings: hasMany('parameter-mapping', {
         inverse: 'widget',
     }),
 
     parameters: Ember.computed('parameterMapping.@each', function() {
-        return this.get('parameterMapping')
+        return this.get('parameterMappings')
             .reduce((parameters, mapping) => {
                 parameters[mapping.get('mappingKey')] = mapping.get('parameter')
                 return parameters
