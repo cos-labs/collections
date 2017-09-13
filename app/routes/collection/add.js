@@ -5,8 +5,11 @@ export default Ember.Route.extend({
     panelActions: Ember.inject.service('panelActions'),
     model() {
         const collectionType = this.modelFor('collection').get('collectionType');
+        let submissionFormId = {
+            'meeting': 1
+        }[collectionType];
         return Ember.RSVP.hash({
-            workflow: this.store.findRecord('workflow', collectionType),
+            workflow: this.store.findRecord('workflow', submissionFormId),
             collection: this.modelFor('collection'),
         });
     },

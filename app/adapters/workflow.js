@@ -11,7 +11,6 @@ export default RESTAdapter.extend({
     },
     buildURL() {
         const base = this._super(...arguments);
-        debugger;
-        return `${ENV.apiBaseUrl}/data${base}.json`;
+        return `${ENV.APP.apiURL}${base}`;
     },
 });
