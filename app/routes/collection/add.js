@@ -2,7 +2,10 @@ import Ember from 'ember';
 
 
 export default Ember.Route.extend({
+
     panelActions: Ember.inject.service('panelActions'),
+    caxe: Ember.inject.service(),
+
     model() {
         const collectionType = this.modelFor('collection').get('collectionType');
         let submissionFormId = {

@@ -10,6 +10,9 @@ const {
 export default Model.extend({
     title: attr('string'),
     description: attr('string'),
+    sortedSections: Ember.computed('sections.@each.index', function() {
+        return this.get('sections').sortBy('index');
+    }),
     sections: hasMany('section', {
         inverse: null,
     }),

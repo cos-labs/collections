@@ -21,16 +21,32 @@ export default Model.extend({
     widgetType: attr('string'),
     defaultValue: attr('string'),
 
-    parameterMappings: hasMany('parameter-mapping', {
+    widgetParameterMappings: hasMany('widget-parameter-mapping', {
         inverse: 'widget',
     }),
 
-    parameters: Ember.computed('parameterMapping.@each', function() {
-        return this.get('parameterMappings')
-            .reduce((parameters, mapping) => {
-                parameters[mapping.get('mappingKey')] = mapping.get('parameter')
-                return parameters
-            }, {});
-    }),
+    _parameters: {},
+    parameters: Ember.computed('widgetParameterMappings.@each.parameter', {
+        get() {
+            this.get('widgetParameterMappings').then(mappings => {
+                let promises = mappings.reduce((parameters, mapping) => {
+                    let deferred = Ember.RSVP.defer(mapping.get('name'));
+                    mapping.get('parameter').then((parameter) => {
+                        deferred.resolve(parameter);
+                    });
+                    parameters[mapping.get('name')] = deferred.promise
+                    return parameters;
+                }, {});
+                Ember.RSVP.hash(promises).then(resolved => {
+                    this.set('parameters', resolved);
+                });
+            });
+            return this.get('_parameters');
+        },
+        set(key, value) {
+            this.set('_parameters', value);
+            return value;
+        }
+    })
 
 });
