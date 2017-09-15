@@ -1,10 +1,9 @@
 import DS from 'ember-data';
 import ENV from '../config/environment';
 
-const { RESTAdapter } = DS;
+const { JSONAPIAdapter } = DS;
 
-export default RESTAdapter.extend({
-    caxe: ember.inject.service(),
+export default JSONAPIAdapter.extend({
     ajax(url, method, hash) {
         hash = hash || {};
         hash.headers = hash.headers || {};
@@ -12,6 +11,8 @@ export default RESTAdapter.extend({
     },
     buildURL(type, id) {
         const base = this._super(...arguments);
-        return `${ENV.APP.apiUrl}${base}`;
+        const url = `${ENV.APP.apiURL}${base}`;
+        console.log(url);
+        return url;
     }
 });

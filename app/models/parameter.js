@@ -3,7 +3,8 @@ import DS from 'ember-data';
 const {
     Model,
     attr,
-    hasMany
+    hasMany,
+    belongsTo
 } = DS;
 
 export default Model.extend({
@@ -11,6 +12,10 @@ export default Model.extend({
 
     widgetParameterMappings: hasMany('widget-parameter-mapping', {
         inverse: 'widget',
+    }),
+
+    case: belongsTo('case', {
+        inverse: 'parameters'
     }),
 
     value: attr(),

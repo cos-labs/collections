@@ -11,6 +11,11 @@ export default Ember.Route.extend({
         let submissionFormId = {
             'meeting': 1
         }[collectionType];
+        const caxe = this.store.createRecord('case');
+        this.store.findRecord('workflow', submissionFormId).then(workflow => {
+            caxe.set('workflow', workflow);
+            caxe.save();
+        });
         return Ember.RSVP.hash({
             workflow: this.store.findRecord('workflow', submissionFormId),
             collection: this.modelFor('collection'),

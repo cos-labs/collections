@@ -22,4 +22,7 @@ export default Model.extend({
     initialParameters: hasMany('parameter', {
         inverse: null,
     }),
+    cases: hasMany('case', {
+        inverse: 'workflow'
+    })
 });
