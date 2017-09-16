@@ -12,14 +12,19 @@ export default Ember.Route.extend({
             'meeting': 1
         }[collectionType];
         const caxe = this.store.createRecord('case');
-        this.store.findRecord('workflow', submissionFormId).then(workflow => {
-            caxe.set('workflow', workflow);
-            caxe.save();
-        });
-        return Ember.RSVP.hash({
-            workflow: this.store.findRecord('workflow', submissionFormId),
-            collection: this.modelFor('collection'),
-        });
+        return this.store.findRecord('workflow', submissionFormId)
+            .then(workflow => {
+                caxe.set('workflow', workflow);
+                return caxe.save();
+            }).then(caxe => {
+                this.set('caxe.activeCase', caxe.id);
+                return caxe;
+            }).then(() => {
+                return Ember.RSVP.hash({
+                    workflow: this.store.findRecord('workflow', submissionFormId),
+                    collection: this.modelFor('collection')
+                });
+            });
     },
 
     setupController(controller, model) {

@@ -20,21 +20,33 @@ export default Model.extend({
     description: attr('string'),
     widgetType: attr('string'),
     defaultValue: attr('string'),
+    index: attr('number'),
+    parameterAliases: hasMany('parameter-alias', {
+        inverse: 'widget'
+    }),
 
-    widgetParameterMappings: hasMany('widget-parameter-mapping', {
-        inverse: 'widget',
+    //parameterStub: belongsTo('parameter-stub', {
+    //    inverse: 'widgets'
+    //}),
+
+    workflow: belongsTo('workflow', {
+        inverse: 'widgets'
+    }),
+
+    section: belongsTo('section', {
+        inverse: 'widgets'
     }),
 
     _parameters: {},
-    parameters: Ember.computed('widgetParameterMappings.@each.parameter', {
+    parameters: Ember.computed('parameterAliases.@each.parameter', {
         get() {
-            this.get('widgetParameterMappings').then(mappings => {
-                let promises = mappings.reduce((parameters, mapping) => {
-                    let deferred = Ember.RSVP.defer(mapping.get('name'));
-                    mapping.get('parameter').then((parameter) => {
+            this.get('parameterAliases').then(aliases => {
+                let promises = aliases.reduce((parameters, alias) => {
+                    let deferred = Ember.RSVP.defer(alias.get('alias'));
+                    alias.get('parameter').then((parameter) => {
                         deferred.resolve(parameter);
                     });
-                    parameters[mapping.get('name')] = deferred.promise
+                    parameters[alias.get('alias')] = deferred.promise
                     return parameters;
                 }, {});
                 Ember.RSVP.hash(promises).then(resolved => {

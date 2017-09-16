@@ -1,17 +1,48 @@
 import DS from 'ember-data';
 import ENV from '../config/environment';
 
-const { RESTAdapter } = DS;
+const { JSONAPIAdapter } = DS;
 
-export default RESTAdapter.extend({
+export default JSONAPIAdapter.extend({
+
     caxe: Ember.inject.service(),
     ajax(url, method, hash) {
         hash = hash || {};
         hash.headers = hash.headers || {};
         return this._super(url, method, hash);
     },
-    buildURL(type, id) {
-        debugger;
+
+    // Polyfill queryRecord
+    queryRecord(store, type, query) {
+
+        var url = this.buildURL(type.modelName, null, null, 'queryRecord', query) + '/';
+
+        console.log(url)
+
+        if (this.sortQueryParams) {
+            query = this.sortQueryParams(query);
+        }
+
+        return this.ajax(url, 'GET', { data: query })
+            .then(function(result) {
+                result = result.data;
+                // hack to fix https://github.com/emberjs/data/issues/3790
+                // and https://github.com/emberjs/data/pull/3866
+                try {
+                    store.push({data: null});
+                    return {data: result || null};
+                } catch(e) {
+                    return {data: result || []};
+                }
+            }, function(result) {
+                return {
+                    data: null
+                }
+            });
+
+    },
+
+    buildURL(type, id, snapshot, requestType, query) {
         const base = this._super(...arguments);
         let url = [];
         url.push(ENV.APP.apiURL)
@@ -20,6 +51,8 @@ export default RESTAdapter.extend({
             url.push(`/cases/${caxe}`);
         }
         url.push(base);
-        return url.join('');
+        let builtUrl = url.join('');
+        return builtUrl;
     }
+
 });

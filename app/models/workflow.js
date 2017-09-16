@@ -9,6 +9,9 @@ const {
 
 export default Model.extend({
     title: attr('string'),
+    parameters: hasMany('parameter', {
+        inverse: 'workflow'
+    }),
     description: attr('string'),
     sortedSections: Ember.computed('sections.@each.index', function() {
         return this.get('sections').sortBy('index');
@@ -21,6 +24,12 @@ export default Model.extend({
     }),
     initialParameters: hasMany('parameter', {
         inverse: null,
+    }),
+    widgets: hasMany('widget', {
+        inverse: 'workflow'
+    }),
+    parameterAliases: hasMany('parameter-alias', {
+        inverse: 'workflow'
     }),
     cases: hasMany('case', {
         inverse: 'workflow'
