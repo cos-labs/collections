@@ -7,6 +7,7 @@ export default JSONAPIAdapter.extend({
     ajax(url, method, hash) {
         hash = hash || {};
         hash.headers = hash.headers || {};
+        hash.headers['X-CSRFTOKEN'] = this.get('session.data.authenticated.csrfToken');
         return this._super(url, method, hash);
     },
     buildURL() {
