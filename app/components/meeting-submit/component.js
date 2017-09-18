@@ -62,6 +62,7 @@ export default Ember.Component.extend({
             };
 
             xhr.send(this.get('widget.parameters.fileData.value'));
+            this.get('transitionToItem');
         },
     },
 
