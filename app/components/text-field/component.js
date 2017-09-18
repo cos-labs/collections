@@ -8,7 +8,10 @@ export default Ember.Component.extend({
     description: 'Enter a title for the preprint.',
 
     textFieldValueObserver: Ember.observer('textFieldValue', function() {
-        this.set('widget.parameters.value.value', this.get('textFieldValue'));
+        let currentComponentValue = this.get('textFieldValue');
+        let currentParameterValue = this.get('widget.parameters.value.value');
+        if (currentComponentValue === currentParameterValue) return;
+        this.set('widget.parameters.value.value', currentComponentValue);
         this.get('widget.parameters.value').save();
     }),
 

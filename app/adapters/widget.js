@@ -1,9 +1,9 @@
 import DS from 'ember-data';
 import ENV from '../config/environment';
 
-const { RESTAdapter } = DS;
+const { JSONAPIAdapter } = DS;
 
-export default RESTAdapter.extend({
+export default JSONAPIAdapter.extend({
     ajax(url, method, hash) {
         hash = hash || {};
         hash.headers = hash.headers || {};
