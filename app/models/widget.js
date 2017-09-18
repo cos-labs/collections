@@ -25,10 +25,6 @@ export default Model.extend({
         inverse: 'widget'
     }),
 
-    //parameterStub: belongsTo('parameter-stub', {
-    //    inverse: 'widgets'
-    //}),
-
     workflow: belongsTo('workflow', {
         inverse: 'widgets'
     }),

@@ -21,10 +21,6 @@ export default Model.extend({
 
     aliases: hasMany('parameter-alias', {
         inverse: 'parameterStub'
-    }),
-
-    //widgets: hasMany('widget', {
-    //    inverse: 'parameterStub'
-    //})
+    })
 
 });
