@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     filterString: '',
     eventFilter: '',
     theadStyle: Ember.computed('layout', function() {
-        const headerColor = this.get('layout.header_color') ? this.get('layout.header_color') : this.get('branding.colors.primary');
+        const headerColor = this.get('layout.background_color') ? this.get('layout.background_color') : this.get('branding.colors.primary');
         const textColor = this.get('layout.text_color') ? this.get('layout.text_color') : this.get('branding.colors.text');
         return Ember.String.htmlSafe(`background-color: ${headerColor}; color: ${textColor};`);
     }),

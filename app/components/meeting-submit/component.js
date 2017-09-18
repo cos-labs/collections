@@ -26,7 +26,7 @@ export default Ember.Component.extend({
         async pressButton() {
             const item = this.get('store').createRecord('item');
             item.set('title', this.get('widget.parameters.title.value'));
-            item.set('type', 'event');
+            item.set('type', 'meeting');
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
             item.set('category', this.get('widget.parameters.category.value'));
@@ -37,7 +37,7 @@ export default Ember.Component.extend({
 
             // TODO: REPLACE THESE WITH REAL WIDGETS
             item.set('metadata', '{}');
-            item.set('source_id', 'mst3k');
+            item.set('source_id', 'xrfye');
             item.set('url', 'http://example.com');
 
             const node = this.get('store').createRecord('node');
