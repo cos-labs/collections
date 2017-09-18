@@ -17,7 +17,7 @@ export default JSONAPIAdapter.extend({
         const base = this._super(...arguments);
         let url = [];
         url.push(ENV.APP.apiURL)
-        let caxe = this.get('caxe.activeCase');
+        let caxe = this.get('caxe.activeCase.id');
         if (caxe) {
             url.push(`/cases/${caxe}`);
         }

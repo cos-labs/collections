@@ -17,7 +17,7 @@ export default Ember.Route.extend({
                 caxe.set('workflow', workflow);
                 return caxe.save();
             }).then(caxe => {
-                this.set('caxe.activeCase', caxe.id);
+                this.set('caxe.activeCase', caxe);
                 return caxe;
             }).then(() => {
                 return Ember.RSVP.hash({
