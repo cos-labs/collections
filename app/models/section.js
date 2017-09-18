@@ -14,7 +14,13 @@ const {
 export default Model.extend({
     label: attr('string'),
     description: attr('string'),
-    widgets: hasMany('widget'),
+    widgets: hasMany('widget', {
+        inverse: 'section'
+    }),
+    sortedWidgets: Ember.computed('widgets.@each.index', function() {
+        return this.get('widgets').sortBy('index');
+    }),
+    index: attr('number'),
     divId: computed('label', function() {
         return this.get('label').dasherize();
     }),

@@ -1,0 +1,6 @@
+{{widget.description}}
+{{#each widget.parameters.choices.value as |choice|}}
+    <div>
+        {{radio-button value=choice.parameter checked=chosen}}{{choice.label}}
+    </div>
+{{/each}}

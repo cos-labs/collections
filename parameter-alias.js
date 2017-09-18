@@ -7,11 +7,15 @@ const {
 } = DS;
 
 export default Model.extend({
-    mappingKey: attr('string'),
+
+    name: attr('string'),
+
     widget: belongsTo('widget', {
-        inverse: 'parameterMapping',
+        inverse: 'parameterAlias',
     }),
+
     parameter: belongsTo('parameter', {
-        inverse: null,
-    }),
+        inverse: 'parameterAlias',
+    })
+
 });
