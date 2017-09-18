@@ -114,7 +114,7 @@ _Shows a paragraph filled with custom text from the meeting, with an optional ti
 
 #### Image Layer
 
-_Displays a full-width image on the meeting page. This image can be used
+_Displays a full-width image on the meeting page. This image can be used_
 
 * `img_url`: The URL of the image you want to load for this layer. Make sure it's high enough
 definition to span the width of your landing page, but not so large that it will take a long
