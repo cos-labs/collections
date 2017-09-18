@@ -1,4 +1,4 @@
-<h1 class="form-banner">Add {{workflow.title}}</h1>
+<h1 class="form-banner">{{workflow.title}}</h1>
 
 <div class="container">
 
@@ -8,15 +8,18 @@
 
     {{else}}
 
-        {{#each workflow.sections as |section|}}
+        {{#each workflow.sortedSections as |section|}}
 
             <div class="section">
                 <div class="label">
                     {{section.label}}
                 </div>
+                <div>
+                    {{section.description}}
+                </div>
                 <div class="content">
 
-                    {{#each section.widgets as |widget|}}
+                    {{#each section.sortedWidgets as |widget|}}
                         {{component widget.widgetType widget=widget collection=collection}}
                     {{/each}}
                 </div>

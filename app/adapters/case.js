@@ -9,8 +9,10 @@ export default JSONAPIAdapter.extend({
         hash.headers = hash.headers || {};
         return this._super(url, method, hash);
     },
-    buildURL() {
+    buildURL(type, id) {
         const base = this._super(...arguments);
-        return `${ENV.APP.apiURL}${base}`;
-    },
+        const url = `${ENV.APP.apiURL}${base}`;
+        console.log(url);
+        return url;
+    }
 });
