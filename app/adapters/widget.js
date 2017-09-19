@@ -4,6 +4,7 @@ import ENV from '../config/environment';
 const { JSONAPIAdapter } = DS;
 
 export default JSONAPIAdapter.extend({
+    session: Ember.inject.service(),
     ajax(url, method, hash) {
         hash = hash || {};
         hash.crossOrigin = true;

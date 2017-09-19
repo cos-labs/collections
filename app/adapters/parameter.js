@@ -5,6 +5,7 @@ const { JSONAPIAdapter } = DS;
 
 export default JSONAPIAdapter.extend({
 
+    session: Ember.inject.service(),
     caxe: Ember.inject.service(),
 
     ajax(url, method, hash) {
