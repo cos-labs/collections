@@ -16,6 +16,7 @@ libpeerconnection.log
 npm-debug.log
 testem.log
 .editorconfig
+tags
 
 .python-version
 *.pyc

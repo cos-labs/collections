@@ -21,7 +21,7 @@ export default Model.extend({
     location: attr('string'),
     startTime: attr('date'),
     endTime: attr('date'),
-    collection: belongsTo('collection-base'),
+    collection: belongsTo('collection'),
     group: belongsTo('group'),
     createdBy: belongsTo('user'),
     fileLink: attr('string'),

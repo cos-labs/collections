@@ -155,6 +155,27 @@ const Preprint = Item.extend({
     },
 });
 
+const Presentation = Item.extend({
+    setPreprint() {
+        const node = this.get('node');
+        this.get('viewContent.file').show();
+        node.get('preprints').then((result) => {
+            if (result.objectAt(0)) {
+                result.objectAt(0).get('primaryFile').then((pf) => {
+                    this.get('viewContent.file').setValue(pf.get('links').download);
+                });
+            }
+        });
+    },
+    init() {
+        this._super();
+        this.get('store').findRecord('node', this.get('item.source_id')).then((node) => {
+            this.setCommonNodeContent(node);
+            this.setPreprint();
+        });
+    },
+});
+
 /*
   *  Builds data points for registration type item
   */
@@ -176,5 +197,6 @@ export default {
     preprint: Preprint,
     registration: Registration,
     presentation: Project, // TODO: Look at different detail pages for event and presentation items, but for now use project detail page
-    event: Project
+    event: Project,
+    meeting: Project
 };

@@ -25,8 +25,9 @@ export default Ember.Component.extend({
     actions: {
         async pressButton() {
             const item = this.get('store').createRecord('item');
-            item.set('title', this.get('widget.parameters.title.value'));
-            item.set('type', 'event');
+            item.set('type', 'meeting');
+            item.set('title', this.get('widget.parameters.eventTitle.value'));
+//             item.set('type', 'event');
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
             item.set('category', this.get('widget.parameters.category.value'));
@@ -37,12 +38,13 @@ export default Ember.Component.extend({
 
             // TODO: REPLACE THESE WITH REAL WIDGETS
             item.set('metadata', '{}');
-            item.set('source_id', 'mst3k');
+            item.set('source_id', 'xrfye');
             item.set('url', 'http://example.com');
 
-            const node = this.get('store').createRecord('node');
-            node.set('title', this.get('widget.parameters.title.value'));
-            node.set('category', 'communication');
+            let node = this.get('widget.parameters.node.value');
+            //const node = this.get('store').createRecord('node');
+            //node.set('title', this.get('widget.parameters.title.value'));
+            //node.set('category', 'communication');
             await node.save();
 
             const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + item.get('title') + "&direct=true";

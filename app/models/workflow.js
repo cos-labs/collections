@@ -9,17 +9,29 @@ const {
 
 export default Model.extend({
     title: attr('string'),
+    parameters: hasMany('parameter', {
+        inverse: 'workflow'
+    }),
     description: attr('string'),
+    sortedSections: Ember.computed('sections.@each.index', function() {
+        return this.get('sections').sortBy('index');
+    }),
     sections: hasMany('section', {
-        async: false,
         inverse: null,
     }),
     actions: hasMany('action', {
-        async: false,
         inverse: null,
     }),
     initialParameters: hasMany('parameter', {
-        async: false,
         inverse: null,
     }),
+    widgets: hasMany('widget', {
+        inverse: 'workflow'
+    }),
+    parameterAliases: hasMany('parameter-alias', {
+        inverse: 'workflow'
+    }),
+    cases: hasMany('case', {
+        inverse: 'workflow'
+    })
 });

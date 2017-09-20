@@ -100,18 +100,34 @@ export default Ember.Component.extend(NodeActionsMixin, {
         // Adds contributor then redraws view - addition of contributor
         // may change which update/remove contributor requests are permitted
         addContributorLocal(user) {
-            this.get('actions.addContributor').call(this, user.id, 'write', true, false, undefined,
-                undefined, true)
-                .then((res) => {
-                    this.toggleAuthorModification();
-                    this.get('contributors').pushObject(res);
-                    this.get('toast').success(this.get('i18n').t('submit.preprint_author_added'));
-                    this.highlightSuccessOrFailure(res.id, this, 'success');
-                }, () => {
-                    this.get('toast').error(this.get('i18n').t('submit.error_adding_author'));
-                    this.highlightSuccessOrFailure(user.id, this, 'error');
-                    user.rollbackAttributes();
-                });
+            const node = this.get('node')
+            if (node) {
+
+
+                const contributor = this.get('store').createRecord('contributor');
+                contributor.set('users', user); 
+
+                node.get('contributors').pushObject(contributor);
+                window.nod = node;
+
+
+                //this.get('actions.addContributor').call(this, user.id, 'write', true, false, undefined,
+                //    undefined, true)
+                //    .then((res) => {
+                //        this.toggleAuthorModification();
+                //        this.get('contributors').pushObject(res);
+                //        this.get('toast').success(this.get('i18n').t('submit.preprint_author_added'));
+                //        this.highlightSuccessOrFailure(res.id, this, 'success');
+                //    }, () => {
+                //        this.get('toast').error(this.get('i18n').t('submit.error_adding_author'));
+                //        this.highlightSuccessOrFailure(user.id, this, 'error');
+                //        user.rollbackAttributes();
+                //    });
+            } else {
+
+                this.get('toast').error('No node selected');
+
+            }
         },
         // Adds all contributors from parent project to current
         // component as long as they are not current contributors
