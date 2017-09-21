@@ -84,7 +84,7 @@ export default Ember.Component.extend({
     actions: {
         async pressButton() {
             const item = this.get('store').createRecord('item');
-            item.set('type', this.get('parameters.type.value'));
+            item.set('type', 'meeting');
             item.set('title', this.get('parameters.eventTitle.value'));
 //             item.set('type', 'event');
             item.set('status', 'none');
@@ -100,8 +100,7 @@ export default Ember.Component.extend({
             item.set('source_id', 'xrfye');
             item.set('url', 'http://example.com');
 
-            let node = this.get('parameters.node.value');
-            debugger;
+            let node = this.get('widget.parameters.node.value');
             //const node = this.get('store').createRecord('node');
             //node.set('title', this.get('widget.parameters.title.value'));
             //node.set('category', 'communication');
@@ -118,10 +117,7 @@ export default Ember.Component.extend({
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
-                    item.save().then((item) => {
-                        console.log('about to transition');
-                        this.sendAction('transition', 'collection.item', item.get('id'));
-                    });
+                    item.save();
                 }
             };
 

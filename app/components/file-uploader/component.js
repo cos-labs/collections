@@ -5,6 +5,22 @@ export default Ember.Component.extend({
 
     fileChosen: false,
 
+    parameters: {},
+
+    fileNameObserver: Ember.observer('widget.parameters.fileName', function() {
+        this.set('parameters.fileName', this.get('widget.parameters.fileName'));
+    }),
+
+    fileDataObserver: Ember.observer('widget.parameters.fileData', function() {
+        this.set('parameters.fileData', this.get('widget.parameters.fileData'));
+    }),
+
+    init() {
+        this.set('parameters.fileName', this.get('widget.parameters.fileName'));
+        this.set('parameters.fileData', this.get('widget.parameters.fileData'));
+        return this._super(...arguments);
+    },
+
     actions: {
 
         uploadFile(ev) {
@@ -15,13 +31,14 @@ export default Ember.Component.extend({
             const filename = filenameParts[filenameParts.length - 1];
 
             reader.onloadend = (ev) => {
-                this.set('widget.parameters.fileName.value',  filename);
-                this.set('fileChosen', true); 
-                this.set('widget.parameters.fileData.value',  ev.target.result);
+                this.set('parameters.fileName.value',  filename);
+                this.set('fileChosen', true);
+                this.set('parameters.fileData.value',  ev.target.result);
             };
 
             reader.readAsBinaryString(fileHandle);
-        },
+        }
+
     },
 
 });
