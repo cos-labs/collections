@@ -85,7 +85,7 @@ export default Ember.Component.extend({
         async pressButton() {
             const item = this.get('store').createRecord('item');
             item.set('type', this.get('parameters.type.value'));
-            item.set('title', this.get('parameters.eventTitle.value'));
+            item.set('title', this.get('parameters.title.value'));
 //             item.set('type', 'event');
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
