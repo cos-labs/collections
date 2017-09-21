@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
     selectedType: 'Preprint',
     description: '',
     // preprints, websites/links, etc. will be added later to the following list:
-    typeList: Ember.A(['meeting', 'dataset']),
+    typeList: Ember.A(['meeting', 'dataset', 'appendix']),
 
     actions: {
         addCollection () {

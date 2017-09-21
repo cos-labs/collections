@@ -20,6 +20,7 @@ Router.map(function() {
         this.route('browse');
         this.route('edit');
     });
+    this.route('appendices');
     this.route('create');
     this.route('not-found', { path: '/*path' });
     this.route('create_meeting');
