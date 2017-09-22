@@ -51,7 +51,7 @@
                         <small>{{get (await selectedItem) 'createdBy.computedFullName'}}</small>
                     </h2>
                     <p>{{get (await selectedItem) 'description'}}</p>
-                    <p><a href="#">Link to author</a> | <a href="#">Link to presentation</a></p>
+                    <p><a href="#">Link to author</a> | {{#link-to 'collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
                 </div>
             </div>
         </div>
