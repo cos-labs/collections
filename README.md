@@ -95,8 +95,8 @@ Branding mostly determines the colors that your landing page will default to, an
 
 The two following parameters can be specified for any of the following layers.
 
-* `background_color`: A hex value that specifies the color of the background.
-* `text_color`: A hex value that specifies the color of the text.
+* `background-color`: A hex value that specifies the color of the background.
+* `text-color`: A hex value that specifies the color of the text.
 
 #### Title Layer
 
@@ -116,7 +116,7 @@ _Shows a paragraph filled with custom text from the meeting, with an optional ti
 
 _Displays a full-width image on the meeting page. This image can be used_
 
-* `img_url`: The URL of the image you want to load for this layer. Make sure it's high enough
+* `img-url`: The URL of the image you want to load for this layer. Make sure it's high enough
 definition to span the width of your landing page, but not so large that it will take a long
 time to load!
 
@@ -132,7 +132,7 @@ time to load!
 
 #### Presentation Table Layer
 
-* NOTE: changing the `background_color` for this layer will only affect the color of the header row.
+* NOTE: changing the `background-color` for this layer will only affect the color of the header row.
 
 #### Sponsors Layer
 
@@ -140,7 +140,7 @@ time to load!
 
 Example:
 ```
-"sponsor_categories": [
+"sponsor-categories": [
     {
         "category": "Gold",
         "sponsors": [
