@@ -5,13 +5,15 @@
     }
 </style>
 <div class="search-wrapper">
-    <div class="text-center">{{input value=searchText}}
-        <div {{action 'search'}} class="btn btn-sm btn-primary">Search</div>
-    </div>
+    <form class="form-inline text-center">
+        <div class="form-group">
+            <div class="input-group">
+                {{input class="form-control" placeholder="Ex: \"Lorem\"" value=searchText}}
+            </div>
+            <div {{action 'search'}} class="btn btn-primary">Search Collections</div>
+        </div>
+    </form>
     <div id="search-results">
-        {{#unless results}}
-            <p>No results yet</p>
-        {{/unless}}
         {{#if results}}
             <table class="table table-striped">
                 <thead>
