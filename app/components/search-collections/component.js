@@ -10,7 +10,6 @@ export default Ember.Component.extend({
             // make a call to the collections endpoint
             const input = this.get('searchText');
             return Ember.$.get(`${ENV.apiBaseUrl}/api/collections/search/?text__contains=${input}`, (data) => {
-                debugger;
                 this.set('results', data);
             });
         }
