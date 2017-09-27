@@ -7,6 +7,7 @@ export default Ember.Component.extend({
     constructedItem: null,
     didReceiveAttrs () {
         const type = this.get('item.type');
+        console.log(type) 
         this.set('constructedItem', itemClasses[type].create({
             session: this.get('session'),
             store: this.get('store'),

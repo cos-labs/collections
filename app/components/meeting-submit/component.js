@@ -97,14 +97,12 @@ export default Ember.Component.extend({
 
             // TODO: REPLACE THESE WITH REAL WIDGETS
             item.set('metadata', '{}');
-            item.set('source_id', 'xrfye');
-            item.set('url', 'http://example.com');
-
             let node = this.get('parameters.node.value');
             //const node = this.get('store').createRecord('node');
             //node.set('title', this.get('widget.parameters.title.value'));
             //node.set('category', 'communication');
             await node.save();
+            item.set('source_id', node.get('id'));
 
             const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + item.get('title') + "&direct=true";
 
@@ -116,6 +114,7 @@ export default Ember.Component.extend({
             let deferred = Ember.RSVP.defer();
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+                    item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then((item) => {
                         console.log('about to transition');
