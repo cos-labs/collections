@@ -1,3 +1,9 @@
+<style>
+    .pagination-wrapper {
+
+    }
+</style>
+
 <div class="container">
     <div class="row m-b-md">
         <form class="form-inline">
@@ -29,5 +35,10 @@
                 {{/each}}
             </tbody>
         </table>
+        <div class="pagination-wrapper text-center">
+            <div class="btn btn-default" {{action 'prevPage'}}> prev </div>
+            <div class="btn btn-default" {{action 'nextPage'}}> next </div>
+        </div>
+
     </div>
 </div>
