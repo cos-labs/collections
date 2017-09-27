@@ -10,7 +10,8 @@ export default Ember.Route.extend({
         const collectionType = this.modelFor('collection').get('collectionType');
         let submissionFormId = {
             'meeting': 1,
-            'appendix': 2
+            'appendix': 2,
+            'dataset': 14
         }[collectionType];
         const caxe = this.store.createRecord('case');
         return this.store.findRecord('workflow', submissionFormId)

@@ -101,7 +101,6 @@ export default Ember.Component.extend({
             item.set('url', 'http://example.com');
 
             let node = this.get('parameters.node.value');
-            debugger;
             //const node = this.get('store').createRecord('node');
             //node.set('title', this.get('widget.parameters.title.value'));
             //node.set('category', 'communication');
@@ -120,7 +119,8 @@ export default Ember.Component.extend({
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then((item) => {
                         console.log('about to transition');
-                        this.sendAction('transition', 'collection.item', item.get('id'));
+                        this.get('router').transitionTo('collection.item', this.get('collection'), item);
+
                     });
                 }
             };
