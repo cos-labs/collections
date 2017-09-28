@@ -1,44 +1,41 @@
-<div id="{{get-section-id layout.title}}" class="meeting-keynote-speakers-container p-xl"
+<div id="{{get-section-id layout.title}}" class="meeting-keynote-speakers-container p-t-xl p-b-xl"
      style="{{containerStyle}}">
     <div class="container">
         {{#if layout.title}}
             <div class="row text-center section-title">
-                <h2 style="display: inline">
+                <h2>
                     {{layout.title}}
-                    <a class="headerlink" href="#{{get-section-id layout.title}}">
-                        <i class="fa fa-link"></i>
-                    </a>
                 </h2>
             </div>
         {{/if}}
-        <div class="row">
-            <div class="row">
-                {{#if data}}
-                    {{#each data as |speaker|}}
-                        <div class="col-xl-1 col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <div class="speaker-detail">
-                                <img class="speaker-pic-thumbnail" src="{{speaker.img_url}}"/>
-                                <p class="speaker-name">{{speaker.first_name}} {{speaker.last_name}}
-                                    <br>
-                                    <span class="affiliation">{{speaker.affiliation}}</span>
-                                </p>
-                            </div>
+        <div class="row text-center">
+            {{#if data}}
+                {{#each data as |speaker|}}
+                    <div class="col-xl-1 col-lg-3 col-md-3 col-sm-6 col-xs-12 p-l-md">
+                        <div class="speaker-detail">
+                            <img class="speaker-pic-thumbnail" src="{{speaker.img_url}}"/>
+                            <p class="speaker-name"><a href='https://staging.osf.io/{{speaker.username}}'>{{speaker.first_name}} {{speaker.last_name}}</a>
+                                <br>
+                                <span class="affiliation">{{speaker.affiliation}}</span>
+                            </p>
                         </div>
-                    {{/each}}
-                {{else if users}}
-                    {{#each users as |speaker|}}
-                        <div class="col-xl-1 col-lg-3 col-md-4 col-sm-4 col-xs-12 m-b-s m-t-lg">
-                                {{#if speaker.gravatar}}
-                                    <img class="speaker-pic-thumbnail" alt="User gravatar" src="{{speaker.gravatar}}"/>
-                                {{else}}
-                                    <img class="speaker-pic-thumbnail" alt="User gravatar"
-                                         src="https://udayton.edu/0/img/generic-profile.png"/>
-                                {{/if}}
-                            <p class="speaker-name p-t-xs">{{speaker.computedFullName}}</p>
-                        </div>
-                    {{/each}}
-                {{/if}}
-            </div>
+                    </div>
+                {{/each}}
+            {{else if users}}
+                {{#each users as |speaker|}}
+                    <div class="speaker-detail col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-12 m-b-s m-t-lg">
+                        <div class="img-wrapper">
+                        {{#if speaker.gravatar}}
+                        <a href='https://staging.osf.io/{{speaker.username}}'><img class="speaker-pic-thumbnail" alt="User gravatar"
+                                                                                   src="{{speaker.gravatar}}"/></a>
+                        {{else}}
+                            <a href='https://staging.osf.io/{{speaker.username}}'><img class="speaker-pic-thumbnail" alt="User gravatar"
+                                                                                       src="https://udayton.edu/0/img/generic-profile.png"/></a>
+                        {{/if}}</div>
+                        <p class="speaker-name p-t-xs text-center"><a href='https://staging.osf.io/{{speaker.username}}'>{{speaker.computedFullName}}</a></p>
+                    </div>
+                {{/each}}
+            {{/if}}
         </div>
     </div>
 </div>
