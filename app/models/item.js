@@ -9,7 +9,7 @@ const {
 } = DS;
 
 export default Model.extend({
-    source_id: attr('string'),
+    sourceId: attr('string'),
     title: attr('string'),
     description: attr('string'),
     type: attr('string'),
