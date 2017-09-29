@@ -606,6 +606,12 @@ babel-plugin-ember-modules-api-polyfill@^1.5.1:
   dependencies:
     ember-rfc176-data "^0.2.0"
 
+babel-plugin-ember-modules-api-polyfill@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-ember-modules-api-polyfill/-/babel-plugin-ember-modules-api-polyfill-2.0.1.tgz#baaf26dcebe2ed1de120021bc42be29f520497b3"
+  dependencies:
+    ember-rfc176-data "^0.2.7"
+
 babel-plugin-eval@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-eval/-/babel-plugin-eval-1.0.1.tgz#a2faed25ce6be69ade4bfec263f70169195950da"
@@ -2518,6 +2524,23 @@ ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.4.1, e
     clone "^2.0.0"
     ember-cli-version-checker "^2.0.0"
 
+ember-cli-babel@^6.1.0:
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.8.2.tgz#eac2785964f4743f4c815cd53c6288f00cc087d7"
+  dependencies:
+    amd-name-resolver "0.0.7"
+    babel-plugin-debug-macros "^0.1.11"
+    babel-plugin-ember-modules-api-polyfill "^2.0.1"
+    babel-plugin-transform-es2015-modules-amd "^6.24.0"
+    babel-polyfill "^6.16.0"
+    babel-preset-env "^1.5.1"
+    broccoli-babel-transpiler "^6.1.2"
+    broccoli-debug "^0.6.2"
+    broccoli-funnel "^1.0.0"
+    broccoli-source "^1.1.0"
+    clone "^2.0.0"
+    ember-cli-version-checker "^2.0.0"
+
 ember-cli-bootstrap-datetimepicker@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/ember-cli-bootstrap-datetimepicker/-/ember-cli-bootstrap-datetimepicker-0.5.0.tgz#f8c7a948fa3e6577490177746f53328991b2797e"
@@ -3044,7 +3067,7 @@ ember-getowner-polyfill@^1.0.1, ember-getowner-polyfill@^1.1.0, ember-getowner-p
     ember-cli-version-checker "^1.2.0"
     ember-factory-for-polyfill "^1.1.0"
 
-ember-getowner-polyfill@^2.0.1:
+ember-getowner-polyfill@^2.0.0, ember-getowner-polyfill@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-2.0.1.tgz#9bfe2b4d527ed174e76fef2c8f30937d77cb66fb"
   dependencies:
@@ -3108,6 +3131,15 @@ ember-macro-helpers@^0.15.1:
     ember-cli-test-info "^1.0.0"
     ember-weakmap "^2.0.0"
 
+ember-metrics@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/ember-metrics/-/ember-metrics-0.12.1.tgz#8659343bf7b8bda403e70d482ff59cc9714d89f6"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    ember-cli-babel "^6.1.0"
+    ember-getowner-polyfill "^2.0.0"
+    ember-runtime-enumerable-includes-polyfill "^2.0.0"
+
 ember-moment@7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/ember-moment/-/ember-moment-7.3.1.tgz#20cf679f4a10abd839633afead1dd816963bf3d2"
@@ -3154,7 +3186,7 @@ ember-resolver@^2.0.3:
     ember-cli-babel "^5.1.6"
     ember-cli-version-checker "^1.1.6"
 
-ember-rfc176-data@^0.2.0, ember-rfc176-data@^0.2.2:
+ember-rfc176-data@^0.2.0, ember-rfc176-data@^0.2.2, ember-rfc176-data@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.2.7.tgz#bd355bc9b473e08096b518784170a23388bc973b"
 
