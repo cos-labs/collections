@@ -21,6 +21,7 @@ export default Ember.Component.extend({
     items: Ember.computed('model', function () {
         // fetches the items, sorts them into buckets by start time, returns them as a list
         return this.get('model.items').then((results) => {
+            debugger;
             const tempList = [];
             results.forEach(function (i) {
                 tempList.push(i);
@@ -49,7 +50,7 @@ export default Ember.Component.extend({
             tempItems.forEach(function (i) {
                 if (retList.length === 0) {
                     retList.push([i]);
-                } else if (retList[retList.length - 1][0].get('startTime').toISOString() === i.get('startTime').toISOString()) {
+                } else if (retList[retList.length - 1][0].get('startTime') === i.get('startTime')) {
                     retList[retList.length - 1].push(i);
                 } else {
                     retList.push([i]);

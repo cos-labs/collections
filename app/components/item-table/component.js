@@ -58,12 +58,14 @@ export default Ember.Component.extend({
             Ember.$.get(`${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}&text__contains=${input}`, (data) => {
                 this.set('searchResults', data);
                 this.set('totalPages', data.meta.pagination.pages);
-            });        }
+            });
+        }
     },
     didReceiveAttrs() {
         const modelId = this.get('model.id');
         const pageNumber = this.get('pageNumber');
         Ember.$.get(`${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}`, (data) => {
+            debugger;
             this.set('searchResults', data);
             this.set('totalPages', data.meta.pagination.pages);
         });
