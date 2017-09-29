@@ -33,7 +33,7 @@ const ViewData = Ember.Object.extend({
 });
 
 /*
-  *  Base item variavles and helpers, sets content common to all or most
+  *  Base item variables and helpers, sets content common to all or most
   */
 const Item = Ember.Object.extend({
     viewContent: null,
