@@ -71,7 +71,7 @@ export default Component.extend({
                 metadata: '',
                 status: 'pending',
                 url: nodeObject.get('link'),
-                source_id: nodeObject.get('source_id'),
+                sourceId: nodeObject.get('sourceId'),
                 collection: this.get('model'),
             });
             item.save().then(() => {
@@ -126,7 +126,7 @@ export default Component.extend({
             title: item.get('title'),
             description: item.get('description'),
             type: this.get('type'), // set by the app based on selection of tab
-            source_id: item.get('id'),
+            sourceId: item.get('id'),
             link: item.get('links.html'),
         });
     },

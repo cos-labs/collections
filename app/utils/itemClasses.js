@@ -148,7 +148,7 @@ const Preprint = Item.extend({
     },
     init() {
         this._super();
-        this.get('store').findRecord('node', this.get('item.source_id')).then((node) => {
+        this.get('store').findRecord('node', this.get('item.sourceId')).then((node) => {
             this.setCommonNodeContent(node);
             this.setPreprint();
         });
@@ -169,7 +169,7 @@ const Presentation = Item.extend({
     },
     init() {
         this._super();
-        this.get('store').findRecord('node', this.get('item.source_id')).then((node) => {
+        this.get('store').findRecord('node', this.get('item.sourceId')).then((node) => {
             this.setCommonNodeContent(node);
             this.setPreprint();
         });
@@ -182,7 +182,7 @@ const Presentation = Item.extend({
 const Registration = Item.extend({
     init() {
         this._super();
-        this.get('store').findRecord('registration', this.get('item.source_id')).then((node) => {
+        this.get('store').findRecord('registration', this.get('item.sourceId')).then((node) => {
             this.setCommonNodeContent(node);
         });
     },
