@@ -124,7 +124,7 @@ const Project = Item.extend({
     },
     init() {
         this._super();
-        this.get('store').findRecord('node', this.get('item.source_id')).then((node) => {
+        this.get('store').findRecord('node', this.get('item.sourceId')).then((node) => {
             this.setCommonNodeContent(node);
             this.setWiki();
         });
