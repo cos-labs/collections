@@ -65,7 +65,6 @@ export default Ember.Component.extend({
         const modelId = this.get('model.id');
         const pageNumber = this.get('pageNumber');
         Ember.$.get(`${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}`, (data) => {
-            debugger;
             this.set('searchResults', data);
             this.set('totalPages', data.meta.pagination.pages);
         });

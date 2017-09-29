@@ -21,7 +21,6 @@ export default Ember.Component.extend({
     items: Ember.computed('model', function () {
         // fetches the items, sorts them into buckets by start time, returns them as a list
         return this.get('model.items').then((results) => {
-            debugger;
             const tempList = [];
             results.forEach(function (i) {
                 tempList.push(i);
