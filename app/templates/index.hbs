@@ -10,13 +10,11 @@
 </div>
 <div class="container">
     <div class="coll-toolbar row">
-        <div class="col-xs-6"><h2> All collections</h2></div>
-        <div class="col-xs-6">
-            <div class="pull-right">{{input class="form-control" value=filterText key-up='filter' placeholder="Filter"}}  {{model.length}} shown </div>
-        </div>
+        <div class="col-xs-12 text-center"><h2>Newest collections</h2></div>
     </div>
-    <div class="coll-group">
+    <div class="row">
         {{#each model as |item|}}
+            <div class="col-xl-4 col-lg-6 col-md-12">
             <div class="coll-single">
                 {{#link-to "collection" item.id class="btn btn-info pull-right"}}<span {{action 'clearFilter'}}>View</span>{{/link-to}}
                 <h3>{{#link-to "collection" item.id}}<span {{action 'clearFilter'}}>{{item.title}}</span>{{/link-to}}</h3>
@@ -26,8 +24,8 @@
                 {{/if}}
                 <div class="text-muted">Created on {{moment-format item.dateCreated "MMMM DD, YYYY"}} </div>
             </div>
+            </div>
         {{/each}}
-
         <div class="text-center">
             {{#if showLoadMore}}
                 {{#if loadingMore}}

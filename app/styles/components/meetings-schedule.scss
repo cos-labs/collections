@@ -2,7 +2,7 @@
   #schedule-window {
     height: 500px;
     overflow: auto;
-    padding: 15px;
+    padding: 15px 15px 15px 2px;
   }
 
   td.right-cell {
@@ -37,7 +37,13 @@
   }
 
   .item-detail {
-    padding: 5px 30px 5px 5px;
+    padding: 0 0 5px 5px;
+    text-align: justify;
+    text-justify: inter-word;
+    h2 {
+      padding-top: 0;
+      margin-top: 0;
+    }
   }
 
   tr {

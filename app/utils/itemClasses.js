@@ -33,7 +33,7 @@ const ViewData = Ember.Object.extend({
 });
 
 /*
-  *  Base item variavles and helpers, sets content common to all or most
+  *  Base item variables and helpers, sets content common to all or most
   */
 const Item = Ember.Object.extend({
     viewContent: null,
@@ -124,7 +124,7 @@ const Project = Item.extend({
     },
     init() {
         this._super();
-        this.get('store').findRecord('node', this.get('item.source_id')).then((node) => {
+        this.get('store').findRecord('node', this.get('item.sourceId')).then((node) => {
             this.setCommonNodeContent(node);
             this.setWiki();
         });
