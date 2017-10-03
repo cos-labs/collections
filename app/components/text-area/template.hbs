@@ -1,7 +1,10 @@
 <style>
 
-    .submission-text-field {
+    .submission-text-area {
         margin-top: 10px;
+    }
+    .submission-text-area > textarea {
+        resize: vertical;
     }
 
 
@@ -9,14 +12,14 @@
 
 {{#if (not editing)}}
 
-    {{valueName}}: {{widget.parameter.value.value}}
+    {{valueName}}: {{parameters.value.value}}
 
 {{/if}}
 
 {{#if editing}}
-    <div class='submission-text-field'>
+    <div class='submission-text-area'>
         <label>{{widget.description}}</label>
-        {{textarea value=textFieldValue class='form-control'}}
+        {{textarea value=parameters.value.value class='form-control'}}
     </div>
 {{/if}}
 {{yield}}

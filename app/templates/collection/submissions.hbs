@@ -1,0 +1,36 @@
+<h1 class="form-banner">{{collection.title}} Submissions</h1>
+
+<div class="container">
+
+
+        <div class="section" style="background-color:#daf5ff; border-color:#b2dcff">
+
+            In progress submissions to the {{collection.title}}. Any of the submissions may be continued by pressing the continue button.
+
+        </div>
+
+        <button class="btn btn-success btn-lg" {{action "newCase" collection}}>
+            Start a new submission
+        </button>
+
+        {{#each cases as |case|}}
+
+            <div class="section">
+                <div class="label">
+                    {{case.id}}
+                </div>
+                <div class="content">
+                </div>
+            </div>
+
+        {{else}}
+
+            <div class="section">
+                <div class="label">
+                    You have not started any submissions to {{collection.title}}
+                </div>
+            </div>
+
+        {{/each}}
+
+</div>

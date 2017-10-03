@@ -14,10 +14,10 @@ export default Model.extend({
     properties: attr(), // Property hash to store additional information about a parameter.
 
     aliases: hasMany('parameter-aliases', {
-        inverse: 'parameter'
+        inverse: 'parameters'
     }),
 
-    case: belongsTo('case', {
+    cases: hasMany('case', {
         inverse: 'parameters'
     }),
 

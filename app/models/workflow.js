@@ -13,7 +13,7 @@ export default Model.extend({
         inverse: 'workflow'
     }),
     description: attr('string'),
-    sortedSections: Ember.computed('sections.@each.index', function() {
+    sortedSections: Ember.computed('sections.@each.index', "sections.@each", "sections", function() {
         return this.get('sections').sortBy('index');
     }),
     sections: hasMany('section', {
@@ -26,12 +26,15 @@ export default Model.extend({
         inverse: null,
     }),
     widgets: hasMany('widget', {
-        inverse: 'workflow'
+        inverse: 'workflow',
     }),
     parameterAliases: hasMany('parameter-alias', {
         inverse: 'workflow'
     }),
+    collections: hasMany('collection', {
+        inverse: 'workflow',
+    }),
     cases: hasMany('case', {
-        inverse: 'workflow'
+        inverse: 'workflow',
     })
 });

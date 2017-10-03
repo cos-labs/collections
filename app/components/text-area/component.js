@@ -7,17 +7,27 @@ export default Ember.Component.extend({
 
     description: 'Enter a title for the preprint.',
 
-    textFieldValueObserver: Ember.observer('textFieldValue', function() {
-        let currentComponentValue = this.get('textFieldValue');
-        let currentParameterValue = this.get('widget.parameters.value.value');
-        if (currentComponentValue === currentParameterValue) return;
-        this.set('widget.parameters.value.value', currentComponentValue);
-        this.get('widget.parameters.value').save();
+/*    parameterValueObserver: Ember.observer('parameters', 'parameters.value.value', function() {
+        this.set('textFieldValue', this.get('parameters.value.value'));
     }),
 
+    textFieldValueObserver: Ember.observer('textFieldValue', function() {
+        let currentComponentValue = this.get('textFieldValue');
+        let currentParameterValue = this.get('parameters.value.value');
+        if (currentComponentValue === currentParameterValue) return;
+        this.set('parameters.value.value', currentComponentValue);
+        this.get('widget.parameters.value').save();
+    }),
+*/
     didReceiveAttrs() {
         this.set('description', this.attrs.description);
-        this.set('textFieldValue', this.get('widget.parameters.value.value'));
+ /*       let v = this.get('parameters.value.value')
+        if (typeof v === "object") {
+            this.set('parameters.value.value', '');
+            this.set('textFieldValue', '');
+        } else {
+            this.set('textFieldValue', v);
+        }*/
     },
 
 });

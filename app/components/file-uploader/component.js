@@ -6,7 +6,7 @@ export default Ember.Component.extend({
     fileChosen: false,
 
     parameters: {},
-
+/*
     fileNameObserver: Ember.observer('widget.parameters.fileName', function() {
         this.set('parameters.fileName', this.get('widget.parameters.fileName'));
     }),
@@ -14,10 +14,10 @@ export default Ember.Component.extend({
     fileDataObserver: Ember.observer('widget.parameters.fileData', function() {
         this.set('parameters.fileData', this.get('widget.parameters.fileData'));
     }),
-
+*/
     init() {
-        this.set('parameters.fileName', this.get('widget.parameters.fileName'));
-        this.set('parameters.fileData', this.get('widget.parameters.fileData'));
+ //       this.set('parameters.fileName', this.get('widget.parameters.fileName'));
+ //       this.set('parameters.fileData', this.get('widget.parameters.fileData'));
         return this._super(...arguments);
     },
 
@@ -31,6 +31,7 @@ export default Ember.Component.extend({
             const filename = filenameParts[filenameParts.length - 1];
 
             reader.onloadend = (ev) => {
+
                 this.set('parameters.fileName.value',  filename);
                 this.set('fileChosen', true);
                 this.set('parameters.fileData.value',  ev.target.result);

@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     description: 'Submit',
 
     parameters: {},
-
+/*
     typeObserver: Ember.observer('widget.parameters', 'widget.parameters.type.value', function() {
         this.set('parameters.type', {
             value: 'meeting'}
@@ -31,6 +31,9 @@ export default Ember.Component.extend({
     }),
     titleObserver: Ember.observer('widget.parameters', 'widget.parameters.title.value', function() {
         this.set('parameters.title', this.get('widget.parameters.title'));
+    }),
+    fileNameObserver: Ember.observer('widget.parameters', 'widget.parameters.fileName.value', function() {
+        this.set('parameters.fileName', this.get('widget.parameters.fileName'));
     }),
     statusObserver: Ember.observer('widget.parameters', 'widget.parameters.status.value', function() {
         this.set('parameters.status', this.get('widget.parameters.status'));
@@ -61,12 +64,13 @@ export default Ember.Component.extend({
     nodeObserver: Ember.observer('widget.parameters', 'widget.parameters.node.value', function() {
         this.set('parameters.node', this.get('widget.parameters.node'));
     }),
-
+*/
     init() {
         this.set('parameters.type', {
             value: 'meeting'}
         );
         this.set('parameters.title', this.get('widget.parameters.title'));
+        this.set('parameters.fileName', this.get('widget.parameters.fileName'));
         this.set('parameters.status', this.get('widget.parameters.status'));
         this.set('parameters.collection', {
             value: this.get('collection')
@@ -104,7 +108,7 @@ export default Ember.Component.extend({
             await node.save();
             item.set('source_id', node.get('id'));
 
-            const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + item.get('title') + "&direct=true";
+            const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + item.get('fileName') + "&direct=true";
 
             const xhr = new XMLHttpRequest();
             xhr.open("PUT", uri, true);

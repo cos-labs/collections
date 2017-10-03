@@ -4,6 +4,7 @@ const {
     Model,
     attr,
     belongsTo,
+    hasMany
 } = DS;
 
 export default Model.extend({
@@ -14,11 +15,15 @@ export default Model.extend({
         inverse: 'parameterAliases',
     }),
 
+    cases: hasMany('case', {
+        inverse: 'parameterAliases'
+    }),
+
     workflow: belongsTo('workflow', {
         inverse: 'parameterAliases'
     }),
 
-    parameter: belongsTo('parameter', {
+    parameters: hasMany('parameter', {
         inverse: 'aliases'
     }),
 

@@ -1,8 +1,8 @@
-<h1 class="form-banner">{{workflow.title}}</h1>
+<h1 class="form-banner">{{caxe.workflow.title}}</h1>
 
 <div class="container">
 
-    {{#if (eq workflow.submissionFormType 'Website')}}
+    {{#if (eq caxe.workflow.submissionFormType 'Website')}}
 
         {{add-website model=model transition=(action "transition")}}
 
@@ -10,11 +10,11 @@
 
         <div class="section" style="background-color:#daf5ff; border-color:#b2dcff">
 
-            {{workflow.description}}
+            {{caxe.workflow.description}}
 
         </div>
 
-        {{#each workflow.sortedSections as |section|}}
+        {{#each caxe.workflow.sortedSections as |section|}}
 
             <div class="section">
                 <div class="label">
@@ -26,7 +26,10 @@
                 <div class="content">
 
                     {{#each section.sortedWidgets as |widget|}}
-                        {{component widget.widgetType widget=widget collection=collection}}
+                        {{component widget.widgetType
+                            widget=widget
+                            collection=collection
+                            parameters=widget.caseParameters}}
                     {{/each}}
                 </div>
             </div>

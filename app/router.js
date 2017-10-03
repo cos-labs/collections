@@ -15,6 +15,7 @@ Router.map(function() {
         this.route('group', { path: 'group/:group_id' }, function() {
             this.route('item', { path: 'item/:group_item_id' });
         });
+        this.route('submissions');
         this.route('add');
         this.route('search');
         this.route('browse');
