@@ -26,6 +26,13 @@ export default Model.extend({
     createdBy: belongsTo('user'),
     fileLink: attr('string'),
     category: attr('string'),
+    truncatedDescription: Ember.computed('description', function() {
+        debugger;
+        let desc = this.get('description');
+        if (desc.length > 300) {
+            return desc.substring(0,297) + '...'
+        } else return desc;
+    }),
     startTimeFormatted: Ember.computed('startTime', function () {
         const st = moment(this.get('startTime'));
         return st.format('h:mmA');
