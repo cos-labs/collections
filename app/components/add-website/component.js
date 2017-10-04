@@ -14,7 +14,7 @@ export default Ember.Component.extend({
                 metadata: this.get('urlDescription'),
                 status: 'pending',
                 url: this.get('urlAddress'),
-                source_id: this.get('urlAddress'),
+                sourceId: this.get('urlAddress'),
                 collection: this.get('model'),
             });
             item.save().then(() => {

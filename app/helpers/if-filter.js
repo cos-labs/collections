@@ -24,7 +24,6 @@ export function ifFilter(params) {
     if ((typeof filter === 'object')) {
         return filter.includes(element);
     }
-    debugger;
     if ((typeof filter === 'undefined') || ((element.toLowerCase()).includes(filter.toLowerCase()))) {
         return true;
     }
