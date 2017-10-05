@@ -29,15 +29,5 @@ export default Ember.Component.extend({
         return this._super(...arguments);
     },
 
-    actions: {
-        async pressButton() {
-            //const parameters = this.get('parameters');
-            //this.attrs.saveParameter(parameters.parameter, {
-            //    value: await this.get('action')(this),
-            //    state: ['defined'],
-            //});
-        },
-    },
-
 });
 

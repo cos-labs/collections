@@ -47,10 +47,8 @@ export default Ember.Component.extend({
 
             // TODO: REPLACE THESE WITH REAL WIDGETS
             item.set('metadata', '{}');
+
             let node = this.get('parameters.node.value');
-            //const node = this.get('store').createRecord('node');
-            //node.set('title', this.get('widget.parameters.title.value'));
-            //node.set('category', 'communication');
             await node.save();
             item.set('source_id', node.get('id'));
 

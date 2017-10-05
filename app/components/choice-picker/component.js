@@ -32,7 +32,6 @@ export default Ember.Component.extend({
                 }
 
                 choice.set('value', choiceName.parameter === chosen);
-                //await choice.save();
 
             });
 
