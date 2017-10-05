@@ -2,7 +2,7 @@
 <div class="coll-banner text-center">
     <div class="container">
         <h1 class="f-w-lg"> OSF Collections </h1>
-        <p class="lead f-w-md">Integrate your research interests into groups</p>
+        <p class="lead f-w-md">Organize your research interests in a way that makes sense</p>
         {{#if session.isAuthenticated}}
             {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
         {{/if}}
@@ -10,24 +10,22 @@
 </div>
 <div class="container">
     <div class="coll-toolbar row">
-        <div class="col-xs-6"><h2> All collections</h2></div>
-        <div class="col-xs-6">
-            <div class="pull-right">{{input class="form-control" value=filterText key-up='filter' placeholder="Filter"}}  {{model.length}} shown </div>
-        </div>
+        <div class="col-xs-12 text-center"><h2>Newest collections</h2></div>
     </div>
-    <div class="coll-group">
-        {{#each model as |item|}}
+    <div class="row">
+        {{#each model as |collection|}}
+            <div class="col-xl-4 col-lg-6 col-md-12">
             <div class="coll-single">
-                {{#link-to "collection" item.id class="btn btn-info pull-right"}}<span {{action 'clearFilter'}}>View</span>{{/link-to}}
-                <h3>{{#link-to "collection" item.id}}<span {{action 'clearFilter'}}>{{item.title}}</span>{{/link-to}}</h3>
-                <p>{{item.description}}</p>
-                {{#if item.tags}}
-                    <div>Tags: {{item.tags}}</div>
+                {{#link-to "collection" collection.id class="btn btn-info pull-right"}}<span {{action 'clearFilter'}}>View</span>{{/link-to}}
+                <h3>{{#link-to "collection" collection.id}}<span {{action 'clearFilter'}}>{{collection.title}}</span>{{/link-to}}</h3>
+                <p>{{truncate-text collection.description limit=250 omission="..."}}</p>
+                {{#if collection.tags}}
+                    <div>Tags: {{collection.tags}}</div>
                 {{/if}}
-                <div class="text-muted">Created on {{moment-format item.dateCreated "MMMM DD, YYYY"}} </div>
+                <div class="text-muted">Created on {{moment-format collection.dateCreated "MMMM DD, YYYY"}} </div>
+            </div>
             </div>
         {{/each}}
-
         <div class="text-center">
             {{#if showLoadMore}}
                 {{#if loadingMore}}

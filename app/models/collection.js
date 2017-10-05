@@ -15,6 +15,8 @@ export default Model.extend({
     dateCreated: attr('date'),
     dateUpdated: attr('date'),
     settings: attr(),
+    location: attr('string'),
+    address: attr('string'),
     collectionType: attr('string'),
     createdBy: belongsTo('user'),
     groups: hasMany('group'),

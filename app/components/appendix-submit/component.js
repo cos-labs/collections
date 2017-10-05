@@ -97,7 +97,7 @@ export default Ember.Component.extend({
 
             // TODO: REPLACE THESE WITH REAL WIDGETS
             item.set('metadata', '{}');
-            item.set('source_id', 'xrfye');
+            item.set('sourceId', 'xrfye');
             item.set('url', 'http://example.com');
 
             let node = this.get('widget.parameters.node.value');

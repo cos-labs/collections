@@ -49,7 +49,7 @@ export default Ember.Component.extend({
             tempItems.forEach(function (i) {
                 if (retList.length === 0) {
                     retList.push([i]);
-                } else if (retList[retList.length - 1][0].get('startTime').toISOString() === i.get('startTime').toISOString()) {
+                } else if (retList[retList.length - 1][0].get('startTime') === i.get('startTime')) {
                     retList[retList.length - 1].push(i);
                 } else {
                     retList.push([i]);

@@ -9,7 +9,7 @@ const {
 } = DS;
 
 export default Model.extend({
-    source_id: attr('string'),
+    sourceId: attr('string'),
     title: attr('string'),
     description: attr('string'),
     type: attr('string'),
@@ -19,8 +19,8 @@ export default Model.extend({
     dateAdded: attr('date'),
     dateUpdated: attr('date'),
     location: attr('string'),
-    startTime: attr('date'),
-    endTime: attr('date'),
+    startTime: attr('string'),
+    endTime: attr('string'),
     collection: belongsTo('collection'),
     group: belongsTo('group'),
     createdBy: belongsTo('user'),

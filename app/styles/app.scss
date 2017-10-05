@@ -5,6 +5,7 @@
 @import 'components/meeting-keynote-speakers';
 @import 'components/datetime-picker';
 @import 'components/landing-paragraph';
+@import 'osf-style';
 
 
 $navbar-color: #009688;
@@ -46,6 +47,11 @@ h2:hover >.headerlink {
     border-radius: 4px;
     margin-bottom: 18px;
     margin-top: 18px;
+}
+
+.anchor-link {
+    text-decoration: inherit;
+
 }
 
 
@@ -173,11 +179,20 @@ ul.comma-list {
     border-bottom: 1px solid #ddd;
 }
 
+#myNavbar {
+    padding: 0;
+}
+
+a.dropdown-toggle.nav-user-dropdown {
+    padding-right: 0;
+}
 
 /* Collection Navbar */
 .coll-navbar {
     background-color: $navbar-color;
     color: #fff;
+    padding-left: 0;
+    padding-right: 0;
 }
 .coll-navbar-inner {
     a {
@@ -187,8 +202,17 @@ ul.comma-list {
     .navbar {
         margin: 0;
     }
+    .navbar-brand {
+        padding-left: 0;
+    }
 
+    .navbar-toggle {
+        margin-right: 0;
 
+    }
+}
+.container {
+    box-sizing: border-box;
 }
 .nav > li > a:hover, .nav > li > a:focus {
     background-color: #1fa99c;
@@ -217,7 +241,9 @@ ul.comma-list {
     border-bottom: 1px solid #eee;
     border-right: 1px solid #eee;
     background: #ffffff;
-    margin: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-height:200px;
 }
 .coll-add-item {
     padding: 20px;
@@ -375,6 +401,8 @@ tr.item-row-selected {
     color: #fff;
     min-height: 500px;
 }
+
+
 
 /* Create collection page */
 .coll-create-header {
