@@ -5,21 +5,20 @@ export default Ember.Component.extend({
 
     chosen: null,
     create: false,
+    node_created: false,
 
     store: Ember.inject.service(),
 
-    createNodeObserver: Ember.observer('create', function() {
-        Ember.run(() => {
-            let create = this.get('widget.parameters.create.value');
-            if (create === true) {
-                this.get('node').save();
-                this.set('widget.parameters.node.value', this.get('node'));
+    createNodeObserver: Ember.observer('parameters.enable.value', function() {
+        if (this.get('parameters.enable.value') === true) {
+            if (this.nodeCreated === false) {
+                node.save();
+                this.nodeCreated = true;
             }
-        });
-    }),
-
-    parametersObserver: Ember.observer('widget.parameters', 'widget.parameters.create.value', function() {
-        this.set('create', this.get('widget.parameters.create.value'));
+            Ember.run(() => {
+                this.set('parameters.node.value', this.get('node'));
+            });
+        }
     }),
 
     init() {
@@ -27,17 +26,16 @@ export default Ember.Component.extend({
         node.set('category', 'other');
         node.set('title', 'Created by collections submission form.');
         this.set('node', node);
-        this.set('create', this.get('widget.parameters.create.value'));
         return this._super(...arguments);
     },
 
     actions: {
         async pressButton() {
-            const parameters = this.attrs.widget.value.parameters;
-            this.attrs.saveParameter(parameters.parameter, {
-                value: await this.get('action')(this),
-                state: ['defined'],
-            });
+            //const parameters = this.get('parameters');
+            //this.attrs.saveParameter(parameters.parameter, {
+            //    value: await this.get('action')(this),
+            //    state: ['defined'],
+            //});
         },
     },
 

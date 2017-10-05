@@ -26,9 +26,11 @@ export default Ember.Component.extend({
         uploadFile(ev) {
             const reader = new FileReader();
             const fileHandle = ev.target.files[0];
-            const saveParameter = this.attrs.saveParameter;
+            console.log(fileHandle)
             const filenameParts = ev.currentTarget.value.split('\\');
+            console.log(filenameParts)
             const filename = filenameParts[filenameParts.length - 1];
+            console.log(filename)
 
             reader.onloadend = (ev) => {
 

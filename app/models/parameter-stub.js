@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 const {
@@ -25,6 +26,7 @@ export default Model.extend({
 
     aliases: hasMany('parameter-alias', {
         inverse: 'parameterStub'
-    })
+    }),
+
 
 });
