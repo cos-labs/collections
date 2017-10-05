@@ -37,7 +37,6 @@ export default Model.extend({
     }),
 
     caseParameters: Ember.computed('caxe.activeCase.parameters.@each', function() {
-        console.log('New Parameter!')
         let activeCase = this.get('caxe.activeCase');
         if (activeCase) {
             let aliases = this.get('parameterAliases');

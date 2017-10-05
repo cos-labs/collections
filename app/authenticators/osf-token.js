@@ -6,8 +6,6 @@ import ENV from '../config/environment';
 export default BaseAuthenticator.extend({
     session: Ember.inject.service(),
 
-    
-
     csrfToken() {
         if (!document.cookie && document.cookie === '') {
             return null;
@@ -63,10 +61,14 @@ export default BaseAuthenticator.extend({
     },
 
     getUserInfo() {
+        let that = this
         return Ember.$.ajax({
             url: `${ENV.APP.apiURL}/userinfo/`,
             crossDomain: true,
             xhrFields: { withCredentials: true },
+        }).then(function(results){
+            that.get('session').set('fullName', results['data']['attributes']['full-name'])
+            return results;
         });
     },
 });

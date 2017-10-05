@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
-
-    pickerValue: null
+    store: Ember.inject.service(),
+    session: Ember.inject.service(),
 });
