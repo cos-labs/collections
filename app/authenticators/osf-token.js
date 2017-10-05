@@ -6,8 +6,6 @@ import ENV from '../config/environment';
 export default BaseAuthenticator.extend({
     session: Ember.inject.service(),
 
-    
-
     csrfToken() {
         if (!document.cookie && document.cookie === '') {
             return null;
