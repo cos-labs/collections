@@ -20,8 +20,29 @@ export default Model.extend({
         inverse: 'cases'
     }),
 
+    sections: hasMany('section', {
+        async: false,
+        inverse: null
+    }),
+
+    widgets: hasMany('widget', {
+        inverse: null,
+        async: false
+    }),
+
+    parameterAliases: hasMany('parameter-alias', {
+        inverse: 'cases',
+        async: false
+    }),
+
     parameters: hasMany('parameter', {
-        inverse: 'case'
+        inverse: 'cases',
+        async: false
+    }),
+
+    stubs: hasMany('parameter-stub', {
+        inverse: 'cases',
+        async: false
     })
 
 });

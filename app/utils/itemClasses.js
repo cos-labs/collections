@@ -46,7 +46,7 @@ const Item = Ember.Object.extend({
     },
     setCommonNodeContent(node) {
         this.set('node', node);
-        this.get('viewContent.description').setValue(node.get('description'));
+        this.get('viewContent.description').setValue(this.get('item.description'));
         const tags = node.get('tags');
         if (tags.length === 0) {
             this.get('viewContent.tags').set('visible', false);

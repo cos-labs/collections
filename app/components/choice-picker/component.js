@@ -15,7 +15,7 @@ export default Ember.Component.extend({
                 name: chosen
             });
 
-            this.get('widget.parameters.choices.value').map(async (choiceName) => {
+            this.get('parameters.choices.value').map(async (choiceName) => {
 
                 let choice = await this.get('store').queryRecord('parameter', {
                     name: choiceName.parameter
@@ -24,14 +24,14 @@ export default Ember.Component.extend({
                 if (!choice) {
                     choice = this.get('store').createRecord('parameter');
                     let caxe = await this.get('store').findRecord('case', this.get('caxe.activeCase.id'));
-                    choice.set('case', caxe);
+                    let choiceCases = await choice.get('cases')
+                    choiceCases.addObject(caxe);
                     let wf = await caxe.get('workflow')
                     choice.set('workflow', wf);
                     choice.set('name', choiceName.parameter);
                 }
 
                 choice.set('value', choiceName.parameter === chosen);
-                await choice.save();
 
             });
 

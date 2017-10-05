@@ -14,10 +14,10 @@ export default Model.extend({
     properties: attr(), // Property hash to store additional information about a parameter.
 
     aliases: hasMany('parameter-aliases', {
-        inverse: 'parameter'
+        inverse: 'parameters'
     }),
 
-    case: belongsTo('case', {
+    cases: hasMany('case', {
         inverse: 'parameters'
     }),
 
@@ -27,6 +27,19 @@ export default Model.extend({
 
     stub: belongsTo('parameter-stub', {
         inverse: 'parameters'
-    })
+    }),
+
+    autoSave: Ember.observer('currentState.isDirty', function() {
+        if (this.get('currentState.isDirty')) {
+            Ember.run.next(() => this.save());
+        }
+        if ((() => {
+            let attrs = [];
+            this.eachAttribute(attr => attrs.push(attr));
+            return Object.keys(this, this.changedAttributes())
+                .find(key => attrs.includes(key));
+        })()) {}
+    }),
+
 
 });

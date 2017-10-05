@@ -37,6 +37,7 @@
                 {{textarea class="form-control" value=description rows="6"}}
             </div>
         </div>
+        <hr class="soften" />
         {{#if (eq selectedType 'meeting')}}
             <hr class="soften" />
             <div class="row">
@@ -63,6 +64,20 @@
                 </div>
             </div>
         {{/if}}
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-1">
+                <h4> 6. Submission Form Type </h4>
+
+                <select class="form-control" onchange={{action 'setWorkflow'}}>
+                    <option disabled selected> -- Select a submission workflow for the service -- </option>
+                    {{#each workflows as |workflowChoice|}}
+                        <option value={{workflowChoice.id}} selected={{eq selectedWorkflow.id workflowChoice.id}}>{{workflowChoice.title}}</option>
+                    {{/each}}
+                </select>
+
+            </div>
+        </div>
+        <hr class="soften" />
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3 m-t-lg text-center">
                 {{#link-to 'index' class="btn btn-default"}}Cancel {{/link-to}}

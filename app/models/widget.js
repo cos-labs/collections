@@ -16,13 +16,16 @@ const {
 
 export default Model.extend({
 
+    caxe: Ember.inject.service(),
+
     label: attr('string'),
     description: attr('string'),
     widgetType: attr('string'),
     defaultValue: attr('string'),
     index: attr('number'),
     parameterAliases: hasMany('parameter-alias', {
-        inverse: 'widget'
+        inverse: 'widget',
+        async: false
     }),
 
     workflow: belongsTo('workflow', {
@@ -33,28 +36,18 @@ export default Model.extend({
         inverse: 'widgets'
     }),
 
-    _parameters: {},
-    parameters: Ember.computed('parameterAliases.@each.parameter', {
-        get() {
-            this.get('parameterAliases').then(aliases => {
-                let promises = aliases.reduce((parameters, alias) => {
-                    let deferred = Ember.RSVP.defer(alias.get('alias'));
-                    alias.get('parameter').then((parameter) => {
-                        deferred.resolve(parameter);
-                    });
-                    parameters[alias.get('alias')] = deferred.promise
-                    return parameters;
-                }, {});
-                Ember.RSVP.hash(promises).then(resolved => {
-                    this.set('parameters', resolved);
-                });
-            });
-            return this.get('_parameters');
-        },
-        set(key, value) {
-            this.set('_parameters', value);
-            return value;
+    caseParameters: Ember.computed('caxe.activeCase.parameters.@each', function() {
+        let activeCase = this.get('caxe.activeCase');
+        if (activeCase) {
+            let aliases = this.get('parameterAliases');
+            let caseParams = aliases.reduce((case_parameters, alias) => {
+                let key = alias.get('alias')
+                let value = activeCase.get('parameters').find(p => p.get('stub.id') === alias.get('parameterStub.id'))
+                return Object.assign({ [key]: value }, case_parameters)
+            }, {});
+            return caseParams;
         }
+        return {};
     })
 
 });

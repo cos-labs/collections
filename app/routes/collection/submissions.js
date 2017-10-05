@@ -7,18 +7,18 @@ export default Ember.Route.extend({
     caxe: Ember.inject.service(),
 
     model() {
-        const caxe = this.get('caxe.activeCase');
+        const collection = this.modelFor('collection');
         return Ember.RSVP.hash({
-            caxe: this.get('store').findRecord('case', caxe.get('id'), {
-                reload: true
+            cases: this.store.query("case", {
+                collection: collection.id
             }),
-            collection: this.modelFor('collection')
+            collection: collection
         });
     },
 
     setupController(controller, model) {
-        controller.set('caxe', model.caxe);
         controller.set('collection', model.collection);
+        controller.set('cases', model.cases);
     },
 
 });

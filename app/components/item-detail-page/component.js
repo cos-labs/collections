@@ -2,9 +2,11 @@ import Ember from 'ember';
 import itemClasses from 'collections/utils/itemClasses';
 
 export default Ember.Component.extend({
+
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     constructedItem: null,
+
     didReceiveAttrs () {
         const type = this.get('item.type');
         this.set('constructedItem', itemClasses[type].create({
@@ -13,4 +15,5 @@ export default Ember.Component.extend({
             item: this.get('item')
         }));
     }
+
 });

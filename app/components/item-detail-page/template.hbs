@@ -32,12 +32,9 @@
 <div class="container">
     <div class="row p-t-lg">
             <div class="col-sm-8">
-                {{#if constructedItem.viewContent.file.visible}}
-                    {{#if constructedItem.viewContent.file.loaded}}
                         <div>
-                            {{file-renderer download=constructedItem.viewContent.file.value width="99%" height="1000" allowfullscreen=true}}
+                            {{file-renderer download=item.fileLink width="99%" height="1000" allowfullscreen=true}}
                         </div>
-                    {{else}}
                         <div class="loader text-center">
                             <div class="loader-inner ball-pulse ball-pulse-dark">
                                 <div></div>
@@ -45,8 +42,6 @@
                                 <div></div>
                             </div>
                         </div>
-                    {{/if}}
-                {{/if}}
                 {{#if constructedItem.viewContent.wiki.visible}}
                     {{#if constructedItem.viewContent.wiki.loaded}}
                         <div>
