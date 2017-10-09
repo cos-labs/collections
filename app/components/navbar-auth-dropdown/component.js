@@ -22,7 +22,6 @@ export default NavbarAuthDropdown.extend({
     }),
     userName: Ember.computed('session.data.authenticated.user', function() {
         const userData = this.get('session.data.authenticated.user');
-        debugger;
         if (userData) {
             return `${userData.first_name} ${userData.last_name}`;
         }
