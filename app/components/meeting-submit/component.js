@@ -33,12 +33,10 @@ export default Ember.Component.extend({
 
     actions: {
         async pressButton() {
-            // debugger;
             const item = this.get('store').createRecord('item');
 
             item.set('type', this.get('parameters.type.value'));
             item.set('title', this.get('parameters.title.value'));
-
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
             item.set('category', this.get('parameters.category.value'));

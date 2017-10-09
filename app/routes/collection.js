@@ -5,5 +5,8 @@ export default Ember.Route.extend({
         return this.store.findRecord('collection', params.collection_id).then((data) => {
             return data;
         });
+    },
+    afterModel(model) {
+        $(document).attr('title', model.get('title'));
     }
 });
