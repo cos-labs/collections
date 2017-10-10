@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
         return itemClasses[type].create({
             session: this.get('session'),
             store: this.get('store'),
-            item: this.get('model')
+            item: this.get('model.item')
         });
     }),
 });
