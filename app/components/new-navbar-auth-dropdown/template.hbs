@@ -12,7 +12,7 @@
     <a id="auth-dropdown" class="btn-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-label={{t 'eosf.authDropdown.toggleAuthDropdown'}} onclick={{action closeOtherNavigation}}>
         <span class="osf-gravatar">
             <img id="user-gravatar" src="{{session.session.content.authenticated.user.gravatar}}?s=25" alt="User gravatar">
-        </span> {{session.fullName}}
+        </span> {{fullName}} {{debugger}}
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu auth-dropdown" role="menu">
