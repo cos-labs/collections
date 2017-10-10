@@ -78,19 +78,6 @@ const Item = Ember.Object.extend({
 });
 
 /*
-  *  Builds data points for website type item
-  */
-const Website = Item.extend({
-    init() {
-        this._super();
-        this.get('viewContent.description').setValue(this.get('item.metadata'));
-        this.get('viewContent.sourceLink').setValue(this.get('item.url'));
-        this.get('viewContent.tags').hide();
-        this.get('viewContent.authors').hide();
-    },
-});
-
-/*
   *  Builds data points for project ('node') type item
   */
 const Project = Item.extend({
@@ -131,71 +118,11 @@ const Project = Item.extend({
     },
 });
 
-/*
-  *  Builds data points for preprint type item
-  */
-const Preprint = Item.extend({
-    setPreprint() {
-        const node = this.get('node');
-        this.get('viewContent.file').show();
-        node.get('preprints').then((result) => {
-            if (result.objectAt(0)) {
-                result.objectAt(0).get('primaryFile').then((pf) => {
-                    this.get('viewContent.file').setValue(pf.get('links').download);
-                });
-            }
-        });
-    },
-    init() {
-        this._super();
-        this.get('store').findRecord('node', this.get('item.sourceId')).then((node) => {
-            this.setCommonNodeContent(node);
-            this.setPreprint();
-        });
-    },
-});
-
-const Presentation = Item.extend({
-    setPreprint() {
-        const node = this.get('node');
-        this.get('viewContent.file').show();
-        node.get('preprints').then((result) => {
-            if (result.objectAt(0)) {
-                result.objectAt(0).get('primaryFile').then((pf) => {
-                    this.get('viewContent.file').setValue(pf.get('links').download);
-                });
-            }
-        });
-    },
-    init() {
-        this._super();
-        this.get('store').findRecord('node', this.get('item.sourceId')).then((node) => {
-            this.setCommonNodeContent(node);
-            this.setPreprint();
-        });
-    },
-});
-
-/*
-  *  Builds data points for registration type item
-  */
-const Registration = Item.extend({
-    init() {
-        this._super();
-        this.get('store').findRecord('registration', this.get('item.sourceId')).then((node) => {
-            this.setCommonNodeContent(node);
-        });
-    },
-});
-
 
 export default {
     viewData: ViewData,
     item: Item,
-    website: Website,
     project: Project,
-    preprint: Preprint,
-    registration: Registration,
     presentation: Project, // TODO: Look at different detail pages for event and presentation items, but for now use project detail page
     event: Project,
     meeting: Project
