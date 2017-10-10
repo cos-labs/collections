@@ -2,14 +2,12 @@
     <h2 class="text-center p-b-xl">Browse files</h2>
     <div class="row">
         {{#each (await model.items) as |item|}}
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class=" col-lg-2 col-md-3 col-sm-3 col-xs-6">
                 <div class="panel panel-default item-panel">
-                    <div class="">
                         {{#link-to 'collection.item' model.id item.id}}<img class="item-thumbnail" src="http://placehold.it/250x150"/>{{/link-to}}
-                    </div>
                     <div class="panel-body">
                             <span class="clamp">{{#link-to 'collection.item' model.id item.id}}{{item.title}}{{/link-to}}</span>
-                        <a href="https://staging.osf.io/{{await item.createdBy.username}}"><p><small>{{await item.createdBy.fullName}}</small></p></a>
+                        <a href="https://staging.osf.io/{{await item.createdBy.username}}"><p><small>{{await item.createdBy.firstName}} {{await item.createdBy.lastName}}</small></p></a>
                     </div>
                 </div>
             </div>
