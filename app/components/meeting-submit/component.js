@@ -33,12 +33,10 @@ export default Ember.Component.extend({
 
     actions: {
         async pressButton() {
-            // debugger;
             const item = this.get('store').createRecord('item');
 
-            item.set('type', this.get('parameters.type.value'));
+            item.set('type', 'meeting');
             item.set('title', this.get('parameters.title.value'));
-
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
             item.set('category', this.get('parameters.category.value'));
@@ -52,7 +50,7 @@ export default Ember.Component.extend({
 
             let node = this.get('parameters.node.value');
             await node.save();
-            item.set('source_id', node.get('id'));
+            item.set('sourceId', node.get('id'));
 
             const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + this.get('parameters.fileName.value') + "&direct=true";
 

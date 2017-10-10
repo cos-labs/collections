@@ -9,16 +9,13 @@ export default Ember.Component.extend({
 
     store: Ember.inject.service(),
 
-    createNodeObserver: Ember.observer('parameters.enable.value', function() {
-        if (this.get('parameters.enable.value') === true) {
-            if (this.nodeCreated === false) {
-                node.save();
-                this.nodeCreated = true;
-            }
-            Ember.run(() => {
+    createNodeObserver: Ember.observer('parameters.enable.value', function () {
+        Ember.run(() => {
+            this.get('parameters.node').disableAutosave = true;
+            if (this.get('parameters.enable.value') === true) {
                 this.set('parameters.node.value', this.get('node'));
-            });
-        }
+            }
+        });
     }),
 
     init() {
