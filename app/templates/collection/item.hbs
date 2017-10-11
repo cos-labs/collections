@@ -20,27 +20,8 @@
                     {{file-renderer download=model.item.fileLink width="99%" height="1000"
                                     allowfullscreen=true}}
                 </div>
-                {{#if constructedItem.viewContent.wiki.visible}}
-                    {{#if constructedItem.viewContent.wiki.loaded}}
-                        <div>
-                            <pre style='white-space: pre-wrap; border:none; width:100%; text-align:justify; max-height: 300px;'>
-                                {{constructedItem.viewContent.wiki.value}}
-                            </pre>
-                        </div>
-                    {{else}}
-                        <div class="loader text-center">
-                            <div class="loader-inner ball-pulse ball-pulse-dark">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                    {{/if}}
-                {{/if}}
             </div>
-            <div class="{{if
-                    (or constructedItem.viewContent.file.visible constructedItem.viewContent.wiki.visible)
-                    'col-sm-4' 'col-sm-12'}}">
+            <div class="col-sm-4 col-sm-12">
                 <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
                 <p>{{model.item.location}}<br>{{model.item.startTimeFormatted}}
                     - {{model.item.endTimeFormatted}}</p>
