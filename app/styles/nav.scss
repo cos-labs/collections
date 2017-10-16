@@ -4,7 +4,23 @@
     top: 0px;
 }
 #osf-nav > .global-nav > a.service-link {
-    font-size: 2.6rem !important;
+    font-size: 2.4rem !important;
+    line-height: 1.0;
+    margin-right: 0;
+
+    &:hover {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+    }
+    span.osf {
+        display: inline-block;
+        font-weight: 300;
+        line-height: 1.0;
+    }
+
+    span.service-name {
+        font-weight: 600;
+    }
 }
 
 #osf-nav > .local-nav > a.hamburger {
@@ -32,6 +48,7 @@
         box-shadow: none;
         position: relative;
         justify-content: flex-end;
+        align-self: stretch;
         margin-left: 0;
         padding: 0;
 
@@ -330,9 +347,17 @@ nav input[type="text"] {
 .global-nav > .dropdown > .dropdown-content {
     top: 100%;
     right: 0;
+
+    a {
+        font-size: 1.6rem;
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
 }
 
-.local-nav > .dropdown > .dropdown-content {
+.local-nav > .dropdown-content > .dropdown > .dropdown-content {
     top: 100%;
     right: 0;
 }
