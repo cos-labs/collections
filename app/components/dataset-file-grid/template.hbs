@@ -1,7 +1,7 @@
 <div class="file-grid-container container">
     <h2 class="text-center p-b-xl">Browse files</h2>
     <div class="row">
-        {{#each (await model.items) as |item|}}
+        {{#each pagedContent as |item|}}
             <div class=" col-lg-2 col-md-3 col-sm-3 col-xs-6">
                 <div class="panel panel-default item-panel">
                         {{#link-to 'collections.collection.item' model.id item.id}}<img class="item-thumbnail" src="http://placehold.it/250x150"/>{{/link-to}}
@@ -12,5 +12,10 @@
                 </div>
             </div>
         {{/each}}
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12">
+            {{page-numbers content=pagedContent}}
+        </div>
     </div>
 </div>
