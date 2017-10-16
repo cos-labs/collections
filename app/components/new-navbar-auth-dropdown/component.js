@@ -25,7 +25,6 @@ export default Ember.Component.extend(AnalyticsMixin, {
     i18n: Ember.inject.service(),
     tagName: 'div',
     classNames: ['dropdown'],
-    classNameBindings: ['notAuthenticated:sign-in'],
     redirectUrl: null,
     notAuthenticated: Ember.computed.not('session.isAuthenticated'),
     fullName: Ember.computed('session', function() {
