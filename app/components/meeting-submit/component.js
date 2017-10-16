@@ -66,7 +66,7 @@ export default Ember.Component.extend({
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then(item => {
                         console.log('about to transition');
-                        this.get('router').transitionTo('collection.item', this.get('collection'), item);
+                        this.get('router').transitionTo('collections.collection.item', this.get('collection'), item);
 
                     }, err => console.log(err));
                 }

@@ -16,8 +16,8 @@
         {{#each model as |collection|}}
             <div class="col-xl-4 col-lg-6 col-md-12">
             <div class="coll-single">
-                {{#link-to "collection" collection.id class="btn btn-info pull-right"}}<span {{action 'clearFilter'}}>View</span>{{/link-to}}
-                <h3>{{#link-to "collection" collection.id}}<span {{action 'clearFilter'}}>{{collection.title}}</span>{{/link-to}}</h3>
+                {{#link-to "collections.collection" collection.id class="btn btn-info pull-right"}}<span {{action 'clearFilter'}}>View</span>{{/link-to}}
+                <h3>{{#link-to "collections.collection" collection.id}}<span {{action 'clearFilter'}}>{{collection.title}}</span>{{/link-to}}</h3>
                 <p>{{truncate-text collection.description limit=250 omission="..."}}</p>
                 {{#if collection.tags}}
                     <div>Tags: {{collection.tags}}</div>
