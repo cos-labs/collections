@@ -77,6 +77,7 @@
   },
   "devDependencies": {
     "ember-cli-bootstrap-datetimepicker": "^0.5.0",
+    "ember-cli-pagination": "^3.1.0",
     "ember-simple-auth": "^1.4.0",
     "eonasdan-bootstrap-datetimepicker-npm": "4.17.42",
     "moment": "^2.18.1",
