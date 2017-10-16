@@ -12,7 +12,7 @@ export default Ember.Route.extend({
             caxe: this.get('store').findRecord('case', caxe.get('id'), {
                 reload: true
             }),
-            collection: this.modelFor('collection')
+            collection: this.modelFor('collections.collection')
         });
     },
 
