@@ -1,5 +1,3 @@
-export default Router;
-
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -28,7 +26,7 @@ Router.map(function() {
     }, function() {
         this.route('my-collection', {
             path: "my-collection"
-        })
+        });
         this.route("collection", {
             path: ":collection_id"
         }, function() {
