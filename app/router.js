@@ -34,6 +34,7 @@ Router.map(function() {
                 path: 'item/:item_id'
             });
             this.route('submissions');
+            this.route('browse');
             this.route('edit');
             this.route('add');
         });
