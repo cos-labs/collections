@@ -1,13 +1,9 @@
 import Ember from 'ember';
 
-
 export default Ember.Route.extend({
-
-    panelActions: Ember.inject.service('panelActions'),
     caxe: Ember.inject.service(),
-
     model() {
-        const collection = this.modelFor('collection');
+        const collection = this.modelFor('collections.collection');
         return Ember.RSVP.hash({
             cases: this.store.query("case", {
                 collection: collection.id
@@ -16,9 +12,8 @@ export default Ember.Route.extend({
         });
     },
 
-    setupController(controller, model) {
-        controller.set('collection', model.collection);
-        controller.set('cases', model.cases);
-    },
+    setupController(controller, data) {
+        controller.set("model", data.collection);
+    }
 
 });

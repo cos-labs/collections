@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
             collection.set('workflow', this.get('selectedWorkflow'));
             collection.save().then((record) => {
                 this.set('newCollectionTitle', '');
-                this.transitionToRoute('collection', record);
+                this.transitionToRoute('collections.collection', record);
             });
         },
         updateType (value) {
