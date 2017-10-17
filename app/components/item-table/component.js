@@ -38,6 +38,23 @@ export default Ember.Component.extend({
             this.set('totalPages', data.meta.pagination.pages);
         });
     },
+    didRender(){
+        if( this.get('pageNumber')  < this.get('totalPages')){
+            $('.nextPage').prop("disabled", false);
+            console.log("there are pages")
+        }else{
+            $('.nextPage').prop("disabled", true);
+            console.log('out of pages')
+        }
+
+        if( this.get('pageNumber') === 1){
+            $('.prevPage').prop("disabled", true);
+            console.log("there are pages")
+        }else{
+            $('.prevPage').prop("disabled", false);
+            console.log('out of pages')
+        }
+    },
     actions: {
         search() {
             // make a call to the collections endpoint
