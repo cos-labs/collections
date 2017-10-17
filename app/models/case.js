@@ -43,7 +43,7 @@ export default Model.extend({
     stubs: hasMany('parameter-stub', {
         inverse: 'cases',
         async: false
-    })
+    }),
 
     collection: belongsTo('collection', {
         inverse: null,
