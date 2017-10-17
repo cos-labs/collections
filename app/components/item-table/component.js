@@ -38,31 +38,12 @@ export default Ember.Component.extend({
             this.set('totalPages', data.meta.pagination.pages);
         });
     },
-    didRender(){
-        if( this.get('pageNumber')  < this.get('totalPages')){
-            $('.nextPage').prop("disabled", false);
-            console.log("there are pages")
-        }else{
-            $('.nextPage').prop("disabled", true);
-            console.log('out of pages')
-        }
-
-        if( this.get('pageNumber') === 1){
-            $('.prevPage').prop("disabled", true);
-            console.log("there are pages")
-        }else{
-            $('.prevPage').prop("disabled", false);
-            console.log('out of pages')
-        }
-    },
     actions: {
         search() {
             // make a call to the collections endpoint
             const input = this.get('searchInput');
             const modelId = this.get('model.id');
             const pageNumber = this.get('pageNumber');
-
-
             let query = `${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}`;
             if (input !== '') {
                 query += `&text__contains=${input}`;
@@ -78,7 +59,6 @@ export default Ember.Component.extend({
             Ember.$.get(`${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNo}&text__contains=${input}`, (data) => {
                 this.set('searchResults', data);
                 this.set('totalPages', data.meta.pagination.pages);
-                console.log('data.meta.pagination.pages' , data.meta.pagination.pages)
                 this.set('pageNumber', pageNo);
             });
         },
