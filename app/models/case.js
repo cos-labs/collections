@@ -45,4 +45,9 @@ export default Model.extend({
         async: false
     })
 
+    collection: belongsTo('collection', {
+        inverse: null,
+        async: true
+    })
+
 });

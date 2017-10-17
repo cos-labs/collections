@@ -29,13 +29,14 @@ export default Model.extend({
         inverse: 'parameters'
     }),
 
+    disableAutosave: false,
+
     autoSave: Ember.observer('currentState.isDirty', function() {
         Ember.run.debounce(() => {
             this.get('currentState.isDirty') &&
             !this.disableAutosave &&
             this.save();
         }, 1000)
-    }),
-
+    })
 
 });
