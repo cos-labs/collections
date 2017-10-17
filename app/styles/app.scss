@@ -118,24 +118,6 @@ ul.comma-list {
     height: 40px;
     padding-top: 3px;
 }
-/* override breadcrumb plugin css */
-.breadcrumbs {
-    padding: 8px 15px 8px 0;
-    margin-bottom: 0;
-    list-style: none;
-    background-color: transparent;
-    >li {
-        display: inline-block;
-    }
-    > li + li:before {
-      padding: 0 5px;
-      color: #ccc;
-      content: "/\00a0";
-    }
-    > .active {
-      color: #777;
-    }
-}
 
 .coll-table {
     background: #fff;
