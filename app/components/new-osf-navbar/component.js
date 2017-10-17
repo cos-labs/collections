@@ -21,6 +21,29 @@ import Ember from 'ember';
  * @class osf-navbar
  */
 export default Ember.Component.extend(AnalyticsMixin, {
+
+    elementId: 'osf-nav',
+    tagName: 'nav',
+    classNames: [],
+
+    navLinks: [
+        {
+            name: "Explore",
+            type: "link-to",
+            route: "explore"
+        },
+        {
+            name: "My Collection",
+            type: "link-to",
+            route: "collections.my-collection"
+        },
+        {
+            name: "Support",
+            type: "link",
+            href: "https://osf.io/support/"
+        },
+    ],
+
     session: Ember.inject.service(),
     showSearch: false,
     osfServices: {

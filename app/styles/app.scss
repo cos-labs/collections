@@ -7,6 +7,9 @@
 @import 'components/landing-paragraph';
 @import 'components/file-grid.scss';
 @import 'osf-style';
+@import "nav";
+@import "logo";
+@import "cards";
 
 
 $navbar-color: #009688;
@@ -20,6 +23,12 @@ $dark-banner: #607D8B;
 h2:hover >.headerlink {
     opacity: 1;
 }
+
+h2 {
+    padding: 30px;
+    padding-top: 50px;
+}
+
 .headerlink {
     opacity: 0;
     font-size: 14px;
@@ -81,7 +90,6 @@ h2:hover >.headerlink {
 }
 
 body {
-    margin-top: 50px;
     background-color: #f8f8f8;
 }
 .btn:focus {
@@ -237,13 +245,17 @@ a.dropdown-toggle.nav-user-dropdown {
 .coll-items, .coll-group {
     padding: 25px;
 }
-.coll-item, .coll-single {
+
+.coll-cards {
+    display: flex;
+}
+
+.coll-item,
+.coll-single {
     padding: 20px;
-    border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee;
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,0.3);
     background: #ffffff;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px 15px;
     min-height:200px;
 }
 .coll-add-item {
