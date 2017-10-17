@@ -23,6 +23,12 @@ $dark-banner: #607D8B;
 h2:hover >.headerlink {
     opacity: 1;
 }
+
+h2 {
+    padding: 30px;
+    padding-top: 50px;
+}
+
 .headerlink {
     opacity: 0;
     font-size: 14px;

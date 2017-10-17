@@ -4,7 +4,7 @@
     align-items: stretch;
     flex-wrap: wrap;
     margin: 0 0;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .cards .card {
@@ -13,11 +13,10 @@
     //background-color: #263947;
     //background-image: linear-gradient(to bottom,rgba(0,60,60,.0)60%,rgba(34,34,34,.06)100%);
     background-color: #fff;
-    color: #444;
-    font-weight: 100;
-    margin: 10px 10px;
-    font-size: 2.0rem;
-    padding: 10px 15px;
+    color: #333;
+    margin: 25px 15px;
+    font-size: 1.4rem;
+    padding: 20px 20px;
     box-sizing: border-box;
     //padding-top: 90px;
     position: relative;
@@ -27,35 +26,35 @@
     border-radius: 1px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 820px) {
 
     .cards .card {
-        width: calc(50% - 20px);
+        width: calc(50% - 30px);
     }
 
 }
 
-@media (min-width: 1224px) {
+@media (min-width: 1234px) {
 
     .cards .card {
-        width: calc(33.3333% - 20px);
+        width: calc(33.3333% - 30px);
     }
 
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
 
     .cards .card {
-        width: calc(25% - 20px);
+        width: calc(25% - 30px);
     }
 
 }
 
 
-@media (max-width: 1023px) { // Contributors section, XS screen
+@media (max-width: 819px) { // Contributors section, XS screen
 
     .cards .card {
-        width: calc(100% - 20px);
+        width: calc(100% - 30px);
     }
 
 }
