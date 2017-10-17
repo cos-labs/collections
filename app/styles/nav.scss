@@ -200,6 +200,7 @@ img + .caret {
     width: 0;
     height: 0;
     margin-left: 2px;
+    margin-right: 8px;
     vertical-align: middle;
     border-top: 6px dashed;
     border-top: 6px solid;
@@ -212,6 +213,7 @@ img + .caret {
     border: none;
     box-shadow: none;
     justify-content: flex-end;
+    
 }
 
 .local-nav > a {

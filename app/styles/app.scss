@@ -9,6 +9,7 @@
 @import 'osf-style';
 @import "nav";
 @import "logo";
+@import "cards";
 
 
 $navbar-color: #009688;
@@ -238,11 +239,17 @@ a.dropdown-toggle.nav-user-dropdown {
 .coll-items, .coll-group {
     padding: 25px;
 }
-.coll-item, .coll-single {
+
+.coll-cards {
+    display: flex;
+}
+
+.coll-item,
+.coll-single {
     padding: 20px;
     box-shadow: 0 5px 5px -5px rgba(0,0,0,0.3);
     background: #ffffff;
-    margin: 15px 30px;
+    margin: 15px 15px;
     min-height:200px;
 }
 .coll-add-item {
