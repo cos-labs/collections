@@ -1,34 +1,4 @@
-<style>
-    .cards {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        flex-wrap: wrap;
-        margin: 0 0;
-        padding: 0 15px;
-    }
-
-    .cards .card {
-        display: block;
-        flex: 0 0 auto;
-    //background-color: #263947;
-    //background-image: linear-gradient(to bottom,rgba(0,60,60,.0)60%,rgba(34,34,34,.06)100%);
-        background-color: #fff;
-        color: #333;
-        margin: 15px 15px;
-        font-size: 1.4rem;
-        padding: 20px 20px;
-        box-sizing: border-box;
-    //padding-top: 90px;
-        position: relative;
-        box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-    //border: 1px solid rgba(0,0,0,0.1);
-        border-radius: 1px;
-    }
-</style>
-
-<div id="{{get-section-id layout.title}}" class="meeting-keynote-speakers-container p-t-xl p-b-xl"
+<div id="{{get-section-id layout.title}}" class="contributors-list-container p-t-xl p-b-xl"
      style="{{containerStyle}}">
     <div class="container">
         {{#if layout.title}}
