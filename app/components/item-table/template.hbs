@@ -9,14 +9,14 @@
     </form>
     <table class="coll-table m-b-md">
         <thead style="{{theadStyle}}">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Type</th>
-        </tr>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Type</th>
+            </tr>
         </thead>
         <tbody>
-        {{#each searchResults.data as |r|}}
+            {{#each searchResults.data as |r|}}
             <tr>
                 <td>
                     {{#link-to "collections.collection.item" model.id r.id}}
@@ -26,11 +26,25 @@
                 <td>{{r.attributes.created-by}}</td>
                 <td>{{r.attributes.category}}</td>
             </tr>
-        {{/each}}
+            {{/each}}
         </tbody>
     </table>
     <div class="pagination-wrapper text-center m-b-md">
-        <div class="btn btn-default" {{action 'prevPage'}}> prev</div>
-        <div class="btn btn-default" {{action 'nextPage'}}> next</div>
-    </div>
+
+
+        <ul class="pagination">
+          <li class="arrow prev prevPage" >
+            <a class="btn btn-default " {{action 'prevPage'}}>«</a>
+        </li>
+        {{#each pageNumberButtons as |item|}}
+            <li class="page-number"{{action 'loadPage' item}} data-id="{{item}}"><a>{{item}}</a></li>
+        {{/each}}
+        <li class="arrow next nextPage">
+            <a class="btn btn-default " {{action 'nextPage'}}>»</a>
+        </li>
+    </ul>
+
+
 </div>
+</div>
+
