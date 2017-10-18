@@ -72,7 +72,8 @@ export default Ember.Component.extend({
             // make a call to the collections endpoint
             const input = this.get('searchInput');
             const modelId = this.get('model.id');
-            const pageNumber = this.get('pageNumber');
+            const pageNumber = 1;
+            this.set('pageNumber' , 1)
             let query = `${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}`;
             if (input !== '') {
                 query += `&text__contains=${input}`;
@@ -86,6 +87,7 @@ export default Ember.Component.extend({
                     buttonHTML.push(i)
                 }
                 this.set('pageNumberButtons' , buttonHTML)
+                $("li[data-id='1']").addClass("active")
 
             });
 

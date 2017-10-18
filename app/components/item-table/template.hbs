@@ -18,8 +18,11 @@
         <tbody>
             {{#each searchResults.data as |r|}}
             <tr>
-                <td>{{#link-to "collections.collection.item"
-                model.id r.id}}{{r.attributes.title}}{{/link-to}}</td>
+                <td>
+                    {{#link-to "collections.collection.item" model.id r.id}}
+                        {{r.attributes.title}}
+                    {{/link-to}}
+                </td>
                 <td>{{r.attributes.created-by}}</td>
                 <td>{{r.attributes.category}}</td>
             </tr>
