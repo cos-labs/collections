@@ -10,6 +10,7 @@ export default Ember.Component.extend({
     pageNumber: 1,
     totalPages: 1,
     searchInput: '',
+    pageNumberButtons:'',
     theadStyle: Ember.computed('layout', function () {
         const headerColor = this.get('layout.background_color') ? this.get('layout.background_color') : this.get('branding.colors.primary');
         const textColor = this.get('layout.text_color') ? this.get('layout.text_color') : this.get('branding.colors.text');
@@ -35,24 +36,66 @@ export default Ember.Component.extend({
         const pageNumber = this.get('pageNumber');
         Ember.$.get(`${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}`, (data) => {
             this.set('searchResults', data);
+
             this.set('totalPages', data.meta.pagination.pages);
+
+            let totalPages = this.get('totalPages');
+            let buttonHTML=[];
+            for(let i = 1; i <= totalPages; i++){
+                buttonHTML.push(i)
+            }
+            this.set('pageNumberButtons' , buttonHTML)
         });
+
+
+
+    },
+    didRender(){
+        if(this.get('pageNumber') === 1){
+            $("li[data-id='1']").addClass("active")
+        }
+
+        if( this.get('pageNumber')  < this.get('totalPages')){
+            $('.nextPage').removeClass("disabled");
+        }else{
+            $('.nextPage').addClass("disabled");
+        }
+
+        if( this.get('pageNumber') === 1){
+            $('.prevPage').addClass("disabled");
+        }else{
+            $('.prevPage').removeClass("disabled");
+        }
     },
     actions: {
         search() {
             // make a call to the collections endpoint
             const input = this.get('searchInput');
             const modelId = this.get('model.id');
-            const pageNumber = this.get('pageNumber');
+            const pageNumber = 1;
+            this.set('pageNumber' , 1)
             let query = `${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}`;
             if (input !== '') {
                 query += `&text__contains=${input}`;
             }
             return Ember.$.get(query, (data) => {
                 this.set('searchResults', data);
+                this.set('totalPages', data.meta.pagination.pages);
+                let totalPages = this.get('totalPages');
+                let buttonHTML=[];
+                for(let i = 1; i <= totalPages; i++){
+                    buttonHTML.push(i)
+                }
+                this.set('pageNumberButtons' , buttonHTML)
+                $("li[data-id='1']").addClass("active")
+
             });
+
         },
         loadPage(pageNo) {
+            $('.pagination li').removeClass('active')
+            $("li[data-id='" + pageNo +"']").addClass("active")
+
             const modelId = this.get('model.id');
             const input = this.get('searchInput');
 
