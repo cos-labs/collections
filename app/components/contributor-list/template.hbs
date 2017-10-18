@@ -1,4 +1,4 @@
-<div id="{{get-section-id layout.title}}" class="contributors-list-container p-t-xl p-b-xl"
+<div id="{{get-section-id layout.title}}" class="contributor-list-container p-t-xl p-b-xl"
      style="{{containerStyle}}">
     <div class="container">
         {{#if layout.title}}
@@ -8,31 +8,31 @@
                 </h2>
             </div>
         {{/if}}
-        <div class="flex-container">
+        <div class="contributor-flex-container">
             {{#if data}}
                 {{#each data as |speaker|}}
-                    <div class="speaker-card">
-                        <div class="speaker-detail">
-                            <img class="speaker-pic-thumbnail" src="{{speaker.img_url}}"/>
-                            <p class="speaker-name"><a href='https://staging.osf.io/{{speaker.username}}'>{{speaker.first_name}} {{speaker.last_name}}</a>
+                    <div class="contributor-card">
+                        <div class="contributor-detail">
+                            <img class="contributor-pic-thumbnail" src="{{contributor.img_url}}"/>
+                            <p class="contributor-name"><a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.first_name}} {{contributor.last_name}}</a>
                                 <br>
-                                <span class="affiliation">{{speaker.affiliation}}</span>
+                                <span class="affiliation">{{contributor.affiliation}}</span>
                             </p>
                         </div>
                     </div>
                 {{/each}}
             {{else if users}}
-                {{#each users as |speaker|}}
-                    <div class="speaker-detail">
+                {{#each users as |contributor|}}
+                    <div class="contributor-detail">
                         <div class="img-wrapper">
-                        {{#if speaker.gravatar}}
-                        <a href='https://staging.osf.io/{{speaker.username}}'><img class="speaker-pic-thumbnail" alt="User gravatar"
-                                                                                   src="{{speaker.gravatar}}"/></a>
+                        {{#if contributor.gravatar}}
+                        <a href='https://staging.osf.io/{{contributor.username}}'><img class="contributor-pic-thumbnail" alt="User gravatar"
+                                                                                   src="{{contributor.gravatar}}"/></a>
                         {{else}}
-                            <a href='https://staging.osf.io/{{speaker.username}}'><img class="speaker-pic-thumbnail" alt="User gravatar"
+                            <a href='https://staging.osf.io/{{contributor.username}}'><img class="contributor-pic-thumbnail" alt="User gravatar"
                                                                                        src="https://udayton.edu/0/img/generic-profile.png"/></a>
                         {{/if}}</div>
-                        <p class="speaker-name p-t-xs text-center"><a href='https://staging.osf.io/{{speaker.username}}'>{{speaker.computedFullName}}</a></p>
+                        <p class="contributor-name p-t-xs text-center"><a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.computedFullName}}</a></p>
                     </div>
                 {{/each}}
             {{/if}}

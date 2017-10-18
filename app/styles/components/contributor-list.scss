@@ -1,6 +1,6 @@
 .contributor-list-container {
 
-  .speaker-pic-thumbnail {
+  .contributor-pic-thumbnail {
     width: 60px;
     height: 60px;
     border: 1px solid #CDCDCD;
@@ -9,7 +9,7 @@
     display: block;
   }
 
-  .speaker-detail {
+  .contributor-detail {
     a {
       text-decoration: none;
       :hover {
@@ -19,10 +19,10 @@
     }
     width: 30%;
 
-    @media (max-width: 599px ) { width: calc(50% - 30px);      } // XS
-    @media (min-width: 600px ) { width: calc(33.33333333% - 30px);       } // SM
-    @media (min-width: 980px ) { width: calc(25% - 30px);       } // LG
-    @media (min-width: 1234px) { width: calc(16.6666666% - 30px);  } // MD
+    @media (max-width: 599px ) { width: calc(50% - 30px); } // XS
+    @media (min-width: 600px ) { width: calc(33.33333333% - 30px); } // SM
+    @media (min-width: 980px ) { width: calc(25% - 30px); } // LG
+    @media (min-width: 1234px) { width: calc(16.6666666% - 30px); } // MD
   }
 
   .section-title {
@@ -33,11 +33,11 @@
     font-weight: lighter;
   }
 
-  .speaker-name {
+  .contributor-name {
     font-weight: 600;
   }
 
-  .flex-container {
+  .contributor-flex-container {
     display: flex;
     flex-wrap: wrap;
   }
