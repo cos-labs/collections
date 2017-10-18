@@ -9,7 +9,6 @@ export default Ember.Component.extend({
     searchResults: null,
     pageNumber: 1,
     totalPages: 1,
-    pagerNumber:[],
     searchInput: '',
     pageNumberButtons:'',
     theadStyle: Ember.computed('layout', function () {
@@ -81,14 +80,12 @@ export default Ember.Component.extend({
             return Ember.$.get(query, (data) => {
                 this.set('searchResults', data);
                 this.set('totalPages', data.meta.pagination.pages);
-
-
-            let totalPages = this.get('totalPages');
-            let buttonHTML=[];
-            for(let i = 1; i <= totalPages; i++){
-                buttonHTML.push(i)
-            }
-            this.set('pageNumberButtons' , buttonHTML)
+                let totalPages = this.get('totalPages');
+                let buttonHTML=[];
+                for(let i = 1; i <= totalPages; i++){
+                    buttonHTML.push(i)
+                }
+                this.set('pageNumberButtons' , buttonHTML)
 
             });
 
