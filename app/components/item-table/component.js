@@ -9,7 +9,9 @@ export default Ember.Component.extend({
     searchResults: null,
     pageNumber: 1,
     totalPages: 1,
+    pagerNumber:[],
     searchInput: '',
+    pageNumberButtons:'',
     theadStyle: Ember.computed('layout', function () {
         const headerColor = this.get('layout.background_color') ? this.get('layout.background_color') : this.get('branding.colors.primary');
         const textColor = this.get('layout.text_color') ? this.get('layout.text_color') : this.get('branding.colors.text');
@@ -35,24 +37,35 @@ export default Ember.Component.extend({
         const pageNumber = this.get('pageNumber');
         Ember.$.get(`${ENV.apiBaseUrl}/api/items/search/?collection=${modelId}&page=${pageNumber}`, (data) => {
             this.set('searchResults', data);
+
             this.set('totalPages', data.meta.pagination.pages);
+
+            let totalPages = this.get('totalPages');
+            let buttonHTML=[];
+            for(let i = 1; i <= totalPages; i++){
+                buttonHTML.push(i)
+            }
+            this.set('pageNumberButtons' , buttonHTML)
         });
+
+
+
     },
     didRender(){
+        if(this.get('pageNumber') === 1){
+            $("li[data-id='1']").addClass("active")
+        }
+
         if( this.get('pageNumber')  < this.get('totalPages')){
-            $('.nextPage').prop("disabled", false);
-            console.log("there are pages")
+            $('.nextPage').removeClass("disabled");
         }else{
-            $('.nextPage').prop("disabled", true);
-            console.log('out of pages')
+            $('.nextPage').addClass("disabled");
         }
 
         if( this.get('pageNumber') === 1){
-            $('.prevPage').prop("disabled", true);
-            console.log("there are pages")
+            $('.prevPage').addClass("disabled");
         }else{
-            $('.prevPage').prop("disabled", false);
-            console.log('out of pages')
+            $('.prevPage').removeClass("disabled");
         }
     },
     actions: {
@@ -67,9 +80,23 @@ export default Ember.Component.extend({
             }
             return Ember.$.get(query, (data) => {
                 this.set('searchResults', data);
+                this.set('totalPages', data.meta.pagination.pages);
+
+
+            let totalPages = this.get('totalPages');
+            let buttonHTML=[];
+            for(let i = 1; i <= totalPages; i++){
+                buttonHTML.push(i)
+            }
+            this.set('pageNumberButtons' , buttonHTML)
+
             });
+
         },
         loadPage(pageNo) {
+            $('.pagination li').removeClass('active')
+            $("li[data-id='" + pageNo +"']").addClass("active")
+
             const modelId = this.get('model.id');
             const input = this.get('searchInput');
 

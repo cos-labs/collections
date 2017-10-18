@@ -9,26 +9,39 @@
     </form>
     <table class="coll-table m-b-md">
         <thead style="{{theadStyle}}">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Type</th>
-        </tr>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Type</th>
+            </tr>
         </thead>
         <tbody>
-        {{#each searchResults.data as |r|}}
+            {{#each searchResults.data as |r|}}
             <tr>
                 <td>{{#link-to "collections.collection.item"
-                               model.id r.id}}{{r.attributes.title}}{{/link-to}}</td>
+                model.id r.id}}{{r.attributes.title}}{{/link-to}}</td>
                 <td>{{r.attributes.created-by}}</td>
                 <td>{{r.attributes.category}}</td>
             </tr>
-        {{/each}}
+            {{/each}}
         </tbody>
     </table>
     <div class="pagination-wrapper text-center m-b-md">
-        <button class="btn btn-default prevPage" {{action 'prevPage'}}> prev</button>
-        {{pageNumber}} of {{totalPages}}
-        <button class="btn btn-default nextPage" {{action 'nextPage'}}> next</button>
-    </div>
+
+
+        <ul class="pagination">
+          <li class="arrow prev prevPage" >
+            <a class="btn btn-default " {{action 'prevPage'}}>«</a>
+        </li>
+        {{#each pageNumberButtons as |item|}}
+            <li class="page-number"{{action 'loadPage' item}} data-id="{{item}}"><a>{{item}}</a></li>
+        {{/each}}
+        <li class="arrow next nextPage">
+            <a class="btn btn-default " {{action 'nextPage'}}>»</a>
+        </li>
+    </ul>
+
+
 </div>
+</div>
+
