@@ -1,24 +1,42 @@
+<style>
+    .collection-card-content {
+        flex: 1 0 auto;
+    }
+    .card.coll-single {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 {{outlet}}
 {{nav-bar}}
 <div class="coll-banner text-center">
-        <h1 class="f-w-lg"> OSF Collections </h1>
-        <p class="lead f-w-md">Organize your research interests in a way that makes sense</p>
-        {{#if session.isAuthenticated}}
-            {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
-        {{/if}}
+    <h1 class="f-w-lg"> OSF Collections </h1>
+    <p class="lead f-w-md">Organize your research interests in a way that makes sense</p>
+    {{#if session.isAuthenticated}}
+        {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
+    {{/if}}
 </div>
 
 <h2 class="text-center">Newest collections</h2>
 <div class="cards">
     {{#each model as |collection|}}
         <div class="card coll-single">
-            {{#link-to "collections.collection" collection.id class="btn btn-info pull-right"}}<span {{action 'clearFilter'}}>View</span>{{/link-to}}
-            <h3>{{#link-to "collections.collection" collection.id}}<span {{action 'clearFilter'}}>{{collection.title}}</span>{{/link-to}}</h3>
-            <p>{{truncate-text collection.description limit=250 omission="..."}}</p>
-            {{#if collection.tags}}
-                <div>Tags: {{collection.tags}}</div>
-            {{/if}}
-            <div class="text-muted">Created on {{moment-format collection.dateCreated "MMMM DD, YYYY"}} </div>
+            <div class="collection-card-content">
+                {{#link-to "collections.collection" collection.id class="btn btn-info pull-right"}}
+                    <span {{action 'clearFilter'}}>View</span>{{/link-to}}
+                <h3>{{#link-to "collections.collection" collection.id}}
+                    <span {{action 'clearFilter'}}>{{collection.title}}</span>{{/link-to}}</h3>
+                <p>{{truncate-text collection.description limit=250 omission="..."}}</p>
+            </div>
+            <div class="collection-card-footer">
+                {{#if collection.tags}}
+                    <div>Tags: {{collection.tags}}</div>
+                {{/if}}
+                <div class="text-muted">
+                    Created on {{moment-format collection.dateCreated "MMMM DD, YYYY"}}
+                    <span class="pull-right collection-type">{{collection.titleCaseCollectionType}}</span>
+                </div>
+            </div>
         </div>
     {{/each}}
 </div>
@@ -28,7 +46,7 @@
         {{#if loadingMore}}
             <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw text-muted m-t-md"></i>
         {{else}}
-            <button class="btn btn-default" {{action 'loadMore'}}> Load more </button>
+            <button class="btn btn-default" {{action 'loadMore'}}> Load more</button>
         {{/if}}
     {{/if}}
 </div>
