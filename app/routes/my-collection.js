@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     path: Ember.inject.service(),
     navLinks: Ember.inject.service(),
 
-    title: "My Collections",
+    title: "My Content",
 
     model(params) {
         return Ember.RSVP.hash({
@@ -18,18 +18,20 @@ export default Ember.Route.extend({
     },
 
     afterModel(model, transition) {
-
         this.set("navLinks.links", [
             {
-                "label": "Public View",
-                "route": "collections.my-collection"
+                label: "My Collection",
+                route: "my-content"
             },
             {
-                "label": "Settings",
-                "route": "collections.my-collection"
+                label: "In Progress",
+                route: "my-content"
+            },
+            {
+                label: "Settings",
+                route: "my-content"
             }
-        ])
-
+        ]);
     },
 
     setupController(controller, data) {
@@ -44,6 +46,5 @@ export default Ember.Route.extend({
                 routePart: cur
             };
         }));
-    }
-
+    },
 });

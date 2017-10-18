@@ -13,10 +13,6 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
         this.set("navLinks.links", [
-            {
-                "label": "Browse",
-                "route": "explore"
-            }
         ]);
     },
 
