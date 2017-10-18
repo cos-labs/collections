@@ -1,3 +1,33 @@
+<style>
+    .cards {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        flex-wrap: wrap;
+        margin: 0 0;
+        padding: 0 15px;
+    }
+
+    .cards .card {
+        display: block;
+        flex: 0 0 auto;
+    //background-color: #263947;
+    //background-image: linear-gradient(to bottom,rgba(0,60,60,.0)60%,rgba(34,34,34,.06)100%);
+        background-color: #fff;
+        color: #333;
+        margin: 15px 15px;
+        font-size: 1.4rem;
+        padding: 20px 20px;
+        box-sizing: border-box;
+    //padding-top: 90px;
+        position: relative;
+        box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    //border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 1px;
+    }
+</style>
+
 <div id="{{get-section-id layout.title}}" class="meeting-keynote-speakers-container p-t-xl p-b-xl"
      style="{{containerStyle}}">
     <div class="container">
@@ -8,10 +38,10 @@
                 </h2>
             </div>
         {{/if}}
-        <div class="row text-center">
+        <div class="flex-container">
             {{#if data}}
                 {{#each data as |speaker|}}
-                    <div class="col-xl-1 col-lg-3 col-md-3 col-sm-6 col-xs-12 p-l-md">
+                    <div class="speaker-card">
                         <div class="speaker-detail">
                             <img class="speaker-pic-thumbnail" src="{{speaker.img_url}}"/>
                             <p class="speaker-name"><a href='https://staging.osf.io/{{speaker.username}}'>{{speaker.first_name}} {{speaker.last_name}}</a>
@@ -23,7 +53,7 @@
                 {{/each}}
             {{else if users}}
                 {{#each users as |speaker|}}
-                    <div class="speaker-detail col-lg-2 col-md-3 col-sm-4 col-xs-4 m-b-s m-t-lg">
+                    <div class="speaker-detail">
                         <div class="img-wrapper">
                         {{#if speaker.gravatar}}
                         <a href='https://staging.osf.io/{{speaker.username}}'><img class="speaker-pic-thumbnail" alt="User gravatar"
