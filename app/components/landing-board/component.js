@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    tagName: 'section',
     listColumns: Ember.computed('layout', function() {
         const dataSource = this.get('layout.data');
         const list = this.get('model.settings').data[dataSource];

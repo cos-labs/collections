@@ -2,6 +2,7 @@ import Ember from 'ember';
 import moment from 'moment';
 
 export default Ember.Component.extend({
+    tagName: 'section',
     meetingDates: Ember.computed('model.startDate', function() {
         const startDate = this.get('model.startDate');
         const endDate = this.get('model.endDate');

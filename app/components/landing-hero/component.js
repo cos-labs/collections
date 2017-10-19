@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     session: Ember.inject.service(),
+    tagName: 'section',
     searchQuery: '',
     data: Ember.computed('layout', function() {
         const dataSource = this.get('layout.data');
