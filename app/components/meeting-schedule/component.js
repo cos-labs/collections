@@ -100,16 +100,16 @@ export default Ember.Component.extend({
           $(".filter-dropdown-text").text("Add filter");
 
         },
-        roomFilter(){
-            console.log('serrv' , $('.roomSelect :selected').text())
-            let roomFilter = [$('.roomSelect :selected').text()];
-            this.set('filters', roomFilter)
-        },
-        trackFilter(){
-            console.log('serrv' , $('.trackSelect :selected').text())
-            let Filter = [$('.trackSelect :selected').text()];
-            trackFilter.push(this.get(filters))
-            this.set('filters', trackFilter)
+        addFilter(){
+            console.log("this.get('filters')" , this.get('filters'))
+
+            let filter = [];
+            this.get('filters').forEach(function(element) {
+                filter.push(element);
+            })
+
+            filter.push( $(`#${event.target.id} :selected`).text())
+            this.set('filters', filter)
         },
         removeFilter(){
             $(".filter, .filter-remove, .fa-plus, .fa-filter").toggleClass("filter-hidden");

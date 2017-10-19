@@ -24,8 +24,8 @@
 
             <div class="filter-bar">
                 <a class="filter-dropdown" {{action 'toggleFilterOptions'}}><i class="fa fa-filter" aria-hidden="true"></i><i class="fa fa-plus filter-hidden" aria-hidden="true"></i><span class="filter-dropdown-text">Filter dataset</span> </a>
-                {{#each filters as |filter|}}
-
+               
+               {{#each filters as |filter|}}
                     <a class="filter filter-hidden"> {{filter}} </a>
                     <a class="filter-remove filter-hidden"{{action 'removeFilter'}}>&times;</a>
                 {{/each}}
@@ -34,17 +34,16 @@
 
             <div class="edit-filter-modal hidden">
 
-                <select onchange={{action 'trackFilter'}} class="form-control trackSelect">
+                <select onchange={{action 'addFilter'}} class="form-control" id="trackSelect">
                     <option value="cvvvv" >All Tracks</option>
                     <option value="cccc" >All Roomsddf</option>
 
                     {{#each (await tracks) as |track|}}
-
                     <option value={{track}} >{{track}}</option>
                     {{/each}}
                 </select>
                 
-                <select onchange={{action 'roomFilter'}} class="form-control roomSelect">
+                <select onchange={{action 'addFilter'}} class="form-control" id="roomSelect">
                     <option value="">All Rooms</option>
                     {{#each (await rooms) as |room|}}
                     <option value={{room}}>{{room}}</option>
