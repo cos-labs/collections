@@ -6,6 +6,7 @@ export default Ember.Component.extend({
     session: Ember.inject.service(),
     store: Ember.inject.service(),
     tagName: 'section',
+    attributeBindings: ['style'],
     filterString: '',
     trackFilter: '',
     roomFilter: '',
@@ -14,7 +15,7 @@ export default Ember.Component.extend({
         const dataSource = this.get('layout.data');
         return this.get('model.settings').data[dataSource];
     }),
-    containerStyle: Ember.computed('layout', function() {
+    style: Ember.computed('layout', function() {
         const bg = this.get('layout.background_color') ? `background-color:${this.get('layout.background_color')};` : '';
         const txt = this.get('layout.text_color') ? `color: ${this.get('layout.text_color')};` : '';
         return Ember.String.htmlSafe(bg + txt);

@@ -33,8 +33,11 @@ h2:hover >.headerlink {
 }
 
 h2 {
-    padding: 30px;
-    padding-top: 50px;
+}
+
+section {
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .info {
@@ -239,6 +242,7 @@ a.dropdown-toggle.nav-user-dropdown {
 .navbar-nav > li > a {
     padding-bottom: 14px;
 }
+
 /* Collection Toolbar - it has filtering only now*/
 .coll-toolbar {
     padding-top: 50px;
@@ -270,7 +274,8 @@ a.dropdown-toggle.nav-user-dropdown {
     display: flex;
     flex-direction: column;
 
-    .card-content {  flex: 1 0 auto;  }
+    .card-content { flex: 1 0 auto; }
+    footer { margin: 0; }
 
     .btn {
         align-self: flex-end;
@@ -364,7 +369,6 @@ tr.item-row-selected {
             z-index: 3;
             position: relative;
             border-bottom: none;
-            border-radius: 2px;
             &.active{
                 background: #fff;
                 z-index: 9;
@@ -401,8 +405,6 @@ tr.item-row-selected {
 /* Item detail */
 .coll-item-header {
     background-color: $dark-banner;
-    /*background: url('/img/triangle.jpg') top center;
-    background-size: cover;*/
     padding: 25px 0;
     color: #fff;
 
@@ -528,13 +530,7 @@ tr.item-row-selected {
             opacity: 1;
         }
     }
-    // THESE STYLES ARE INTERFERING WITH MY STYLES.
-    // .row {
-    //     margin: 0;
-    // }
-    // label, input, textarea {
-    //     display: block;
-    // }
+
     label > input, label > textarea {
         font-weight: normal;
     }
