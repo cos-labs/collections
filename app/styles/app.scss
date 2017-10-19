@@ -267,6 +267,20 @@ a.dropdown-toggle.nav-user-dropdown {
     background: #ffffff;
     margin: 15px 15px;
     min-height:200px;
+    display: flex;
+    flex-direction: column;
+    p {
+        flex: 1 0 auto;
+    }
+    .btn {
+        align-self: flex-end;
+        float: right;
+        margin: -5px auto auto 10px;
+    }
+    h3 {
+        margin-top: 6px;
+        padding-bottom: 5px;
+    }
 }
 .coll-add-item {
     padding: 20px;
@@ -821,13 +835,7 @@ span.sortable-bars:hover {
         input {
             margin-right: 10px;
         }
-
     }
 }
 
 /* End of Authors */
-
-.coll-single h3 {
-    margin-top: 6px;
-    padding-bottom: 5px;
-}
