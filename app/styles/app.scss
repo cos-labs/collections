@@ -261,7 +261,7 @@ a.dropdown-toggle.nav-user-dropdown {
 }
 
 .coll-item,
-.coll-single {
+.coll-single.card {
     padding: 20px;
     box-shadow: 0 5px 5px -5px rgba(0,0,0,0.3);
     background: #ffffff;
@@ -269,14 +269,15 @@ a.dropdown-toggle.nav-user-dropdown {
     min-height:200px;
     display: flex;
     flex-direction: column;
-    p {
-        flex: 1 0 auto;
-    }
+
+    .card-content {  flex: 1 0 auto;  }
+
     .btn {
         align-self: flex-end;
         float: right;
         margin: -5px auto auto 10px;
     }
+
     h3 {
         margin-top: 6px;
         padding-bottom: 5px;
