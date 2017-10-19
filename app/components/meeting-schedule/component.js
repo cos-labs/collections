@@ -91,30 +91,29 @@ export default Ember.Component.extend({
         }
     }),
     actions: {
-        toggleFilterOptions (){
+        toggleFilterOptions(){
             $(".edit-filter-modal").toggleClass("hidden");
         },
         applyFilter(){
-          $(".edit-filter-modal").toggleClass("hidden");
-          $(".filter, .filter-remove, .fa-plus, .fa-filter").toggleClass("filter-hidden");
-          $(".filter-dropdown-text").text("Add filter");
+            $(".edit-filter-modal").toggleClass("hidden");
+            $(".filter, .filter-remove, .fa-plus, .fa-filter").removeClass("filter-hidden");
 
         },
         addFilter(){
-            console.log("this.get('filters')" , this.get('filters'))
-
-            let filter = [];
-            this.get('filters').forEach(function(element) {
-                filter.push(element);
-            })
-
-            filter.push( $(`#${event.target.id} :selected`).text())
+            let filter = this.get('filters');
+            filter.pushObject({id:(filter.length), name: $(`#${event.target.id} :selected`).text() });
             this.set('filters', filter)
         },
         removeFilter(){
-            $(".filter, .filter-remove, .fa-plus, .fa-filter").toggleClass("filter-hidden");
-            $(".filter-dropdown-text").text("Filter dataset");
-        
+            $(event.target).parent().remove()
+        },
+        getInput(e){
+            let filter = this.get('filters');
+            if(filter.some(function(o){return o["name"] === e;}) || e.replace(/ /g,'') === ""){
+                return false;
+            }
+            filter.pushObject({id:(filter.length), name: e });
+            this.set('filters', filter)
         }
-  }
+    }
 });
