@@ -1,26 +1,6 @@
 <div class="meetings-schedule-container p-lg" style="{{containerStyle}}">
     <div class="container">
         <div class="row">
-<!-- 
-            <div id="schedule-header">
-                {{input value=filterString placeholder="Filter schedule" style="color:black;" class="form-control"}} | Filter by:
-                <select onchange={{action (mut trackFilter) value="target.value"}} class="form-control">
-                    <option value="" selected={{eq "" trackFilter}}>All Tracks</option>
-                    {{#each (await tracks) as |track|}}
-                    <option value={{track}} selected={{eq track trackFilter}}>{{track}}</option>
-                    {{/each}}
-                </select>
-                <select onchange={{action (mut roomFilter) value="target.value"}} class="form-control">
-                    <option value="" selected={{eq "" roomFilter}}>All Rooms</option>
-                    {{#each (await rooms) as |room|}}
-                    <option value={{room}} selected={{eq room roomFilter}}>{{room}}</option>
-                    {{/each}}
-                </select>
-            </div> -->
-
-<!-- 
-            <div class="config-panel">
-            </div> -->
 
             <div class="filter-bar">
                 <a class="filter-dropdown" {{action 'toggleFilterOptions'}}>
@@ -71,7 +51,7 @@
                     <h4 class="time-slot-header">{{itemlist.[0].startTimeFormatted}}</h4>
                     <table class="time-slot">
                         {{#each itemlist as |item|}}
-                        <tbody onclick={{action (mut selectedItemId) item.id}}>
+                        <tbody id={{item.id}} onclick={{action (mut selectedItemId) item.id}}>
                             <tr>
                                 <td class="top-row left-cell event-title"><strong>{{item.title}}</strong></td>
                                 <td class="top-row right-cell event-location">{{item.location}}</td>

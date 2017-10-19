@@ -970,3 +970,24 @@ tr.item-row-selected {
         display:none;
       }
 
+
+
+      .selected-schedule{
+        background: #444;
+        color: white;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+      table tbody {
+        border-right: 20px solid transparent;
+        border-left: 20px solid transparent;
+
+      }
+
+
+      .search-bar{
+        width: 75% !important;
+        margin: auto;
+      }
