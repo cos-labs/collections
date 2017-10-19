@@ -24,12 +24,8 @@ export default Model.extend({
     workflow: belongsTo('workflow', {
         inverse: 'collections'
     }),
-    list: Ember.computed.union('groupsComputed', 'items'),
-    groupsComputed: Ember.computed('groups', function() {
-        const groups = this.get('groups');
-        groups.forEach(function(group) {
-            group.set('type', 'group');
-        });
-        return groups;
-    }),
+    titleCaseCollectionType: Ember.computed('collectionType', function() {
+        const t = this.get('collectionType');
+        return t.charAt(0).toUpperCase() + t.slice(1);
+    })
 });
