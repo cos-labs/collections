@@ -8,6 +8,7 @@ export default Ember.Component.extend({
     filterString: '',
     trackFilter: '',
     roomFilter: '',
+    filters: [],
     selectedItemId: 0,
     data: Ember.computed('layout', function () {
         const dataSource = this.get('layout.data');
@@ -88,5 +89,32 @@ export default Ember.Component.extend({
                 return i;
             });
         }
-    })
+    }),
+    actions: {
+        toggleFilterOptions (){
+            $(".edit-filter-modal").toggleClass("hidden");
+        },
+        applyFilter(){
+          $(".edit-filter-modal").toggleClass("hidden");
+          $(".filter, .filter-remove, .fa-plus, .fa-filter").toggleClass("filter-hidden");
+          $(".filter-dropdown-text").text("Add filter");
+
+        },
+        roomFilter(){
+            console.log('serrv' , $('.roomSelect :selected').text())
+            let roomFilter = [$('.roomSelect :selected').text()];
+            this.set('filters', roomFilter)
+        },
+        trackFilter(){
+            console.log('serrv' , $('.trackSelect :selected').text())
+            let Filter = [$('.trackSelect :selected').text()];
+            trackFilter.push(this.get(filters))
+            this.set('filters', trackFilter)
+        },
+        removeFilter(){
+            $(".filter, .filter-remove, .fa-plus, .fa-filter").toggleClass("filter-hidden");
+            $(".filter-dropdown-text").text("Filter dataset");
+        
+        }
+  }
 });
