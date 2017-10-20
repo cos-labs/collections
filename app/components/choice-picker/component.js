@@ -26,7 +26,8 @@ export default Ember.Component.extend({
                     let caxe = await this.get('store').findRecord('case', this.get('caxe.activeCase.id'));
                     let choiceCases = await choice.get('cases')
                     choiceCases.addObject(caxe);
-                    let wf = await caxe.get('workflow')
+                    let wf = await caxe.get('workflow');
+                    choice.disableAutosave = true;
                     choice.set('workflow', wf);
                     choice.set('name', choiceName.parameter);
                 }
