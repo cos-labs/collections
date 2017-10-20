@@ -10,6 +10,7 @@
 @import "nav";
 @import "logo";
 @import "cards";
+@import "mixins";
 
 
 $navbar-color: #009688;
@@ -18,21 +19,10 @@ $light-grey-banner: #eeeeee;
 $dark-banner: #607D8B;
 
 
-@mixin floating-panel {
-    background: #ffffff;
-    padding: 20px;
-    box-shadow: 0 5px 5px -5px rgba(0,0,0,0.3);
-    margin: 15px 15px;
-}
-
-
 /* Global */
 
 h2:hover >.headerlink {
     opacity: 1;
-}
-
-h2 {
 }
 
 section {
@@ -41,12 +31,19 @@ section {
 }
 
 .info {
-    @include floating-panel;
+    @include floating;
+    @include panel;
     background-color:#daf5ff;
+    margin: 15px 15px;
+    padding: 20px;
 }
 
 .case-detail {
-    @include floating-panel;
+    @include floating;
+    @include panel;
+    background: #ffffff;
+    margin: 15px 15px;
+    padding: 20px;
 
     .case-number {
         font-weight: 600;
