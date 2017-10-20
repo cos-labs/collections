@@ -80,16 +80,14 @@
                 <p>Start Date: {{model.startDate}}</p>
                 <p>End Date: {{model.endDate}}</p>
             {{/if}}
-            <p>Settings: {{settingsString}}</p>
+            <pre>Settings:{{settingsString}}</pre>
 
             {{#if session.isAuthenticated}}
-                <div class="pull-right">
-                    <button class="btn btn-danger btn-collection" {{action toggleProperty
-                                                                           'showDeleteConfirmation'}}>
+                <div class="">
+                    <button class="btn btn-danger " style="margin-left:5px!important"{{action toggleProperty 'showDeleteConfirmation'}}>
                         <i class="fa fa-times"></i> Delete
                     </button>
-
-                    <button class="btn btn-info btn-collection" {{action 'showEdit'}}><i
+                    <button class="btn btn-info " {{action 'showEdit'}}><i
                             class="fa fa-pencil"></i> Edit
                     </button>
                 </div>

@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
         return [];
     }),
     settingsString: Ember.computed('model.settings', function() {
-        return JSON.stringify(this.get('model.settings'));
+        return JSON.stringify(this.get('model.settings'), null, 2);
     }),
 
     actions: {
@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
             this.set('editMode', false);
         },
         updateCacheSettings (jsonSettings) {
-            this.set('modelCache.settings', JSON.stringify(jsonSettings));
+            this.set('modelCache.settings', JSON.stringify(jsonSettings, null, 2));
         },
         deleteCollection() {
             this.get('model').destroyRecord().then(() => this.transitionToRoute('/'));
@@ -60,7 +60,7 @@ export default Ember.Controller.extend({
             title: model.get('title'),
             description: model.get('description'),
             tags: model.get('tags'),
-            settings: JSON.stringify(model.get('settings')),
+            settings: JSON.stringify(model.get('settings'), null, 2),
             location: model.get('location'),
             address: model.get('address'),
             startDate: model.get('startDate'),

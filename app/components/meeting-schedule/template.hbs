@@ -20,8 +20,6 @@
 
                 <select onchange={{action 'addFilter'}} class="form-control" id="trackSelect">
                     <option value="cvvvv" >All Tracks</option>
-                    <option value="cccc" >All Roomsddf</option>
-
                     {{#each (await tracks) as |track|}}
                     <option value={{track}} >{{track}}</option>
                     {{/each}}

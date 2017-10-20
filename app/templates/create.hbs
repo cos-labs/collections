@@ -3,88 +3,58 @@
         <h2> Create a collection </h2>
     </div>
 </div>
-<div class="coll-create">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1 m-t-lg">
-                <h4>1. Add title </h4>
-                {{input class="form-control" value=title placeholder="Enter collection name"}}
+<div class="coll-create"> 
+    <div class="container"  style="max-width: 800px;">
+            <h4>Add title </h4>
+            {{input class="form-control input-box" value=title placeholder="Enter collection name"}}
+       
+        <hr class="soften"/>       
+            <h4>Select collection type</h4>
+            <div class="coll-cards input-box">
+                {{#each typeList as |type|}}
+                    <div class="pointer m-b-md p-md box-round osf-box input-box  {{if
+                            (eq selectedType type) 'osf-box-lt coll-active'
+                            'osf-box'}} " style="width: 32%;" {{action 'updateType' type}}>
+                        <div class="coll-radio"></div>
+                        {{type}}
+                    </div>
+                {{/each}}
             </div>
-        </div>
-        <hr class="soften"/>
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <h4>2. Select collection type</h4>
-                <div class="row">
-                    {{#each typeList as |type|}}
-                        <div class="col-md-3 col-xs-6 text-center">
-                            <div class="pointer m-b-md p-md box-round osf-box {{if
-                                    (eq selectedType type) 'osf-box-lt coll-active'
-                                    'osf-box'}} " {{action 'updateType' type}}>
-                                <div class="coll-radio"></div>
-                                {{type}}
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
 
-            </div>
-        </div>
         <hr class="soften"/>
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <h4> 3. Add description <span class="text-muted">Optional </span></h4>
-                {{textarea class="form-control" value=description rows="6"}}
-            </div>
-        </div>
+            <h4>Add description <span class="text-muted">Optional </span></h4>
+            {{textarea class="form-control input-box" value=description rows="6"}}
+
         <hr class="soften" />
         {{#if (eq selectedType 'meeting')}}
+            
             <hr class="soften" />
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <h4> 4. Add Location </h4>
-                    {{input class="form-control" value=location placeholder="Enter meeting location"}}
-                </div>
-            </div>
+                <h4>Add Location </h4>
+                {{input class="form-control input-box" value=location placeholder="Enter meeting location"}}
+            
             <hr class="soften" />
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <h4> 5. Add Address </h4>
-                    {{input class="form-control" value=address placeholder="Enter meeting address"}}
-                </div>
-            </div>
+                <h4>Add Address </h4>
+                {{input class="form-control input-box" value=address placeholder="Enter meeting address"}}
+           
             <hr class="soften" />
-            <div class="row">
-                <div class="col-sm-3 col-sm-offset-1">
-                    <h4> 5. Add Meeting Dates </h4>
+                    <h4> Add Meeting Dates </h4>
                     Start Date:
-                    {{bs-datetimepicker date=startDate}}
+                    {{bs-datetimepicker date=startDate class="input-box"}}
                     End Date:
-                    {{bs-datetimepicker date=endDate}}
-                </div>
-            </div>
+                    {{bs-datetimepicker date=endDate class="input-box"}}
         {{/if}}
-        <div class="row">
-            <div class="col-sm-3 col-sm-offset-1">
-                <h4> 6. Submission Form Type </h4>
+        <h4>Submission Form Type </h4>
 
-                <select class="form-control" onchange={{action 'setWorkflow'}}>
-                    <option disabled selected> -- Select a submission workflow for the service -- </option>
-                    {{#each workflows as |workflowChoice|}}
-                        <option value={{workflowChoice.id}} selected={{eq selectedWorkflow.id workflowChoice.id}}>{{workflowChoice.title}}</option>
-                    {{/each}}
-                </select>
-
-            </div>
-        </div>
-        <hr class="soften" />
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3 m-t-lg text-center">
-                {{#link-to 'explore' class="btn btn-default"}} Cancel {{/link-to}}
-                <button class="btn btn-primary {{unless title 'disabled'}}" {{action
-                        'addCollection'}}>Continue
-                </button>
-            </div>
-        </div>
+        <select class="form-control input-box" onchange={{action 'setWorkflow'}}>
+            <option disabled selected> -- Select a submission workflow for the service -- </option>
+            {{#each workflows as |workflowChoice|}}
+                <option value={{workflowChoice.id}} selected={{eq selectedWorkflow.id workflowChoice.id}}>{{workflowChoice.title}}</option>
+            {{/each}}
+        </select>
+        <br />
+        <div class="pull-right">
+            {{#link-to 'explore' class="btn btn-default"}} Cancel {{/link-to}}
+            <a class="btn btn-primary {{unless title 'disabled'}}" {{action 'addCollection'}}>Continue</a>
+        </div>    
     </div>
 </div>
