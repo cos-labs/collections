@@ -262,7 +262,7 @@ a.dropdown-toggle.nav-user-dropdown {
 }
 
 .coll-item,
-.coll-single {
+.coll-single.card {
     padding: 20px;
     box-shadow: 0 5px 5px -5px rgba(0,0,0,0.3);
     background: #ffffff;
@@ -829,13 +829,7 @@ span.sortable-bars:hover {
         input {
             margin-right: 10px;
         }
-
     }
 }
 
 /* End of Authors */
-
-.coll-single h3 {
-    margin-top: 6px;
-    padding-bottom: 5px;
-}
