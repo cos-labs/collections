@@ -7,10 +7,6 @@ export default Ember.Route.extend({
 
     title: "Collections",
 
-    model(params) {
-        return this.store.findAll('collection')
-    },
-
     afterModel(model, transition) {
         this.set("navLinks.links", [
         ]);
