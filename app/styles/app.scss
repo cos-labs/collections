@@ -8,8 +8,10 @@
 @import 'components/file-grid.scss';
 @import 'osf-style';
 @import "nav";
+@import "forms";
 @import "logo";
 @import "cards";
+@import "mixins";
 
 
 $navbar-color: #009688;
@@ -39,7 +41,35 @@ h2:hover >.headerlink {
 }
 
 .case-detail {
-  @include floating-panel;
+  @include floating;
+  @include panel;
+  background: #ffffff;
+  margin: 15px 15px;
+  padding: 20px;
+
+  /* Global */
+
+  h2:hover > .headerlink {
+    opacity: 1;
+  }
+
+  section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  section {
+    padding: 30px 30px;
+  }
+
+  .info {
+    @include floating;
+    @include panel;
+    background-color:#daf5ff;
+    margin: 15px 15px;
+    padding: 20px;
+  }
+
 
   .case-number {
     font-weight: 600;
@@ -235,6 +265,7 @@ a.dropdown-toggle.nav-user-dropdown {
 .navbar-nav > li > a {
   padding-bottom: 14px;
 }
+
 /* Collection Toolbar - it has filtering only now*/
 .coll-toolbar {
   padding-top: 50px;
@@ -277,125 +308,126 @@ a.dropdown-toggle.nav-user-dropdown {
     margin-top: 6px;
     padding-bottom: 5px;
   }
-}
-.coll-add-item {
-  padding: 20px;
-}
 
-.coll-item-tag {
-  padding: 3px 5px;
-  border-radius: 2px;
-  background: #f5f5f5;
-}
-.coll-item-type-preprint {
-  background-color: #94e3ec;
-}
-.coll-item-type-project {
-  background-color: #f3e888;
-}
-.coll-item-type-registration {
-  background-color: #c3e49c;
-}
-.coll-item-type-file {
-  background-color: #f3d785;
-}
-.coll-item-type-person {
-  background-color: #8d98d8;
-}
-.coll-item-wrapper {
-  position: relative;
-}
-.coll-item-organize {
-  position: absolute;
-  text-align: center;
-  width: calc(100% - 30px);
-  background-color: rgba(255, 255, 255, 0.44);
-  height: 160px;
-  padding-top: 40px;
-  color: #9E9E9E;
-  margin: 0 15px;
-  z-index: 9;
-  .fa {
-    font-size: 30px;
   }
-  &.item-selected {
-    color: #8bc34a;
-    background-color: rgba(255, 255, 255, 0.82);
+  .coll-add-item {
+    padding: 20px;
   }
-}
 
-tr.item-row-selected {
-  background-color: #e3f3f5;
-}
-
-.coll-item-isgroup {
-  background-color: #eee;
-  box-shadow:
-  1px 1px 0 1px #ccc,
-  2px 2px 0 1px #fff,
-  3px 3px 0 1px #ccc,
-  4px 4px 0 1px #fff,
-  5px 5px 0 1px #ccc;
-}
-.btn-collection {
-  background: none;
-  border-radius: 15px;
-  color: #999;
-  min-width: 100px;
-}
-.coll-add-choice {
-  padding: 15px 0 30px 0;
-  .choice-group{
-    .choice-item {
-      border: 1px solid #ccc;
-      padding: 10px;
-      width: 113px;
-      display: inline-block;
-      text-align: center;
-      margin-right: 5px;
-      background-color: #eee;
-      border-radius: 2px;
-      cursor: pointer;
-      z-index: 3;
-      position: relative;
-      border-bottom: none;
-      border-radius: 2px;
-      &.active{
-        background: #fff;
-        z-index: 9;
-      }
-    }
+  .coll-item-tag {
+    padding: 3px 5px;
+    border-radius: 2px;
+    background: #f5f5f5;
   }
-  .add-panel {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    z-index: 4;
+  .coll-item-type-preprint {
+    background-color: #94e3ec;
+  }
+  .coll-item-type-project {
+    background-color: #f3e888;
+  }
+  .coll-item-type-registration {
+    background-color: #c3e49c;
+  }
+  .coll-item-type-file {
+    background-color: #f3d785;
+  }
+  .coll-item-type-person {
+    background-color: #8d98d8;
+  }
+  .coll-item-wrapper {
     position: relative;
-    .add-select-method {
-      text-align: center;
-      line-height: 50px;
-      background: #607D8B;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
+  }
+  .coll-item-organize {
+    position: absolute;
+    text-align: center;
+    width: calc(100% - 30px);
+    background-color: rgba(255, 255, 255, 0.44);
+    height: 160px;
+    padding-top: 40px;
+    color: #9E9E9E;
+    margin: 0 15px;
+    z-index: 9;
+    .fa {
+      font-size: 30px;
+    }
+    &.item-selected {
+      color: #8bc34a;
+      background-color: rgba(255, 255, 255, 0.82);
     }
   }
 
-}
+  tr.item-row-selected {
+    background-color: #e3f3f5;
+  }
 
-/* Search pages */
-.search-result-panel {
+  .coll-item-isgroup {
+    background-color: #eee;
+    box-shadow:
+    1px 1px 0 1px #ccc,
+    2px 2px 0 1px #fff,
+    3px 3px 0 1px #ccc,
+    4px 4px 0 1px #fff,
+    5px 5px 0 1px #ccc;
+  }
+  .btn-collection {
+    background: none;
+    border-radius: 15px;
+    color: #999;
+    min-width: 100px;
+  }
+  .coll-add-choice {
+    padding: 15px 0 30px 0;
+    .choice-group{
+      .choice-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 113px;
+        display: inline-block;
+        text-align: center;
+        margin-right: 5px;
+        background-color: #eee;
+        border-radius: 2px;
+        cursor: pointer;
+        z-index: 3;
+        position: relative;
+        border-bottom: none;
+        border-radius: 2px;
+        &.active{
+            background: #fff;
+            z-index: 9;
+          }
+        }
+      }
+      .add-panel {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        z-index: 4;
+        position: relative;
+        .add-select-method {
+          text-align: center;
+          line-height: 50px;
+          background: #607D8B;
+          color: #fff;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
 
-}
-.search-result{
-  border: 1px solid #eee;
-  background: #ffffff;
-}
+    }
 
-/* Item detail */
-.coll-item-header {
-  background-color: $dark-banner;
+    /* Search pages */
+    .search-result-panel {
+
+    }
+    .search-result{
+      border: 1px solid #eee;
+      background: #ffffff;
+    }
+
+    /* Item detail */
+    .coll-item-header {
+      background-color: $dark-banner;
     /*background: url('/img/triangle.jpg') top center;
     background-size: cover;*/
     padding: 25px 0;
@@ -523,477 +555,471 @@ tr.item-row-selected {
         opacity: 1;
       }
     }
-    // THESE STYLES ARE INTERFERING WITH MY STYLES.
-    // .row {
-      //     margin: 0;
-      // }
-      // label, input, textarea {
-        //     display: block;
-        // }
-        label > input, label > textarea {
-          font-weight: normal;
-        }
-        textarea {
-          resize: none;
-        }
+
+
+    label > input, label > textarea {
+      font-weight: normal;
+    }
+    textarea {
+      resize: none;
+    }
+  }
+
+
+  #preprint-form-basics {
+    span.required:after {
+      content: "(required)";
+      color: lighten(red, 30%);
+      font-weight: normal;
+      float: right;
+    }
+  }
+
+  .preprint-form-block {
+    margin-top: 20px;
+    background: #fff;
+    padding:10px 20px 20px 20px;
+    box-shadow: 0 0 3px #ddd;
+    label {
+      width: 100%;
+    }
+    .preprint-header-preview {
+      color: #444;
+      font-size: 15px;
+      i {
+        color: #888;
+        display: block;
+      }
+      .abstract {
+        white-space: pre-line;
+      }
+    }
+  }
+
+  /* End of Preprint forms */
+
+  /* Authors from preprints */
+  .vert-align-disabled-permissions {
+    padding-top: 6px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .vert-align-enabled-permissions {
+    padding-top: 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .drag-drop-contrib {
+    padding-top: 4px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: gray;
+  }
+
+  .permission-select {
+    width: 110px;
+    display: inline;
+  }
+  .vert-align {
+    padding-top: 4px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .vert-align-contributor-name {
+    padding-top: 8px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .bib-padding {
+    text-align: center;
+  }
+
+  // Author table divisions
+  .author-table {
+    td {
+      border-top: 1px solid #ddd;
+    }
+  }
+
+  .col-division-left {
+    padding-left: 20px;
+    border-left: 1px solid #ccc;
+  }
+
+  .col-division-right {
+    border-right: 1px solid #ccc;
+  }
+
+  .author-search-box {
+    padding-top: 20px;
+  }
+
+  .unregisteredUsers {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom:20px;
+    background-color: #EEEEEE;
+  }
+
+  .unregistered-name {
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .unregistered-email {
+    padding-bottom: 20px;
+    padding-top: 5px;
+  }
+
+  .unregistered-submit {
+    padding-top: 10px;
+  }
+
+  .header-inline {
+    display: inline;
+  }
+
+  .drag-drop {
+    padding-top: 10px;
+  }
+
+  .author-header {
+    padding-top: 15px;
+  }
+
+  tr.contributor-row:hover {
+    background: #EEE;
+  }
+
+  span.sortable-bars:hover {
+    cursor: move;
+  }
+
+  .sortable-item {
+    transition: background-color 125ms;
+    &.is-dragging {
+      transition-duration: 0;
+      background: white;
+      z-index: 10;
+    }
+  }
+
+  .icon-bar {
+    background-color: #fff;
+  }
+
+  .contrib-column-header {
+    padding-left: 12px;
+  }
+
+  .disabled-checkmark {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .nudge-right {
+    text-align: left;
+  }
+
+  .icon-no-border {
+    background:none;
+    border:none;
+    font-size:1em;
+    padding:0px;
+  }
+
+  @keyframes greenHighlight {
+    0% {
+      background: #DFF0D8;
+    }
+    100% {
+      background: white;
+    }
+  }
+
+  @keyframes greenGrayHighlight {
+    0% {
+      background: #DFF0D8
+    }
+    100% {
+      background: #F8F8F8;
+    }
+  }
+
+  @keyframes redHighlight {
+    0% {
+      background: #F2DEDE;
+    }
+    100% {
+      background: white;
+    }
+  }
+
+  .successHighlightGreenGray {
+    animation: greenGrayHighlight 2s;
+  }
+
+  .successHighlight {
+    animation: greenHighlight 2s;
+  }
+
+  .errorHighlight {
+    animation: redHighlight 2s;
+  }
+  @media (max-width: 768px) { // Contributors section, XS screen
+    .current-authors {
+      table, td, tr {
+        display: block;
+        width: 100% !important;
       }
 
-
-
-      #preprint-form-basics {
-        span.required:after {
-          content: "(required)";
-          color: lighten(red, 30%);
-          font-weight: normal;
-          float: right;
-        }
+      th {
+        display: None;
       }
 
-      .preprint-form-block {
-        margin-top: 20px;
-        background: #fff;
-        padding:10px 20px 20px 20px;
-        box-shadow: 0 0 3px #ddd;
-        label {
-          width: 100%;
-        }
-        .preprint-header-preview {
-          color: #444;
-          font-size: 15px;
-          i {
-            color: #888;
-            display: block;
-          }
-          .abstract {
-            white-space: pre-line;
-          }
-        }
+      td {
+        border-top: none !important;
+      }
+      .author-cols {
+        margin-top: 10px;
       }
 
-      /* End of Preprint forms */
-
-      /* Authors from preprints */
-      .vert-align-disabled-permissions {
-        padding-top: 6px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-
-      .vert-align-enabled-permissions {
-        padding-top: 2px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-
-      .drag-drop-contrib {
-        padding-top: 4px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        color: gray;
-      }
-
-      .permission-select {
-        width: 110px;
-        display: inline;
-      }
-      .vert-align {
-        padding-top: 4px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-
-      .vert-align-contributor-name {
-        padding-top: 8px;
-        margin-top: 0px;
-        margin-bottom: 0px;
+      td:before {
+        white-space: nowrap;
       }
 
       .bib-padding {
-        text-align: center;
-      }
-
-      // Author table divisions
-      .author-table {
-        td {
-          border-top: 1px solid #ddd;
-        }
-      }
-
-      .col-division-left {
-        padding-left: 20px;
-        border-left: 1px solid #ccc;
-      }
-
-      .col-division-right {
-        border-right: 1px solid #ccc;
-      }
-
-      .author-search-box {
-        padding-top: 20px;
-      }
-
-      .unregisteredUsers {
-        text-align: center;
-        margin-top: 20px;
-        padding-top: 10px;
-        padding-bottom:20px;
-        background-color: #EEEEEE;
-      }
-
-      .unregistered-name {
-        padding-bottom: 10px;
-        padding-top: 10px;
-      }
-
-      .unregistered-email {
-        padding-bottom: 20px;
-        padding-top: 5px;
-      }
-
-      .unregistered-submit {
-        padding-top: 10px;
-      }
-
-      .header-inline {
-        display: inline;
-      }
-
-      .drag-drop {
-        padding-top: 10px;
-      }
-
-      .author-header {
-        padding-top: 15px;
-      }
-
-      tr.contributor-row:hover {
-        background: #EEE;
-      }
-
-      span.sortable-bars:hover {
-        cursor: move;
-      }
-
-      .sortable-item {
-        transition: background-color 125ms;
-        &.is-dragging {
-          transition-duration: 0;
-          background: white;
-          z-index: 10;
-        }
-      }
-
-      .icon-bar {
-        background-color: #fff;
-      }
-
-      .contrib-column-header {
-        padding-left: 12px;
-      }
-
-      .disabled-checkmark {
-        padding-left: 18px;
-        padding-right: 18px;
-      }
-
-      .nudge-right {
         text-align: left;
+        padding-bottom: 10px;
+        padding-right: 30px
       }
 
-      .icon-no-border {
-        background:none;
-        border:none;
-        font-size:1em;
-        padding:0px;
+      .checkbox-padding {
+        padding-right: 20px;
+        padding-left: 20px;
       }
 
-      @keyframes greenHighlight {
-        0% {
-          background: #DFF0D8;
-        }
-        100% {
-          background: white;
-        }
+      .permission-label {
+        padding-right: 10px;
+        padding-left: 18px;
       }
 
-      @keyframes greenGrayHighlight {
-        0% {
-          background: #DFF0D8
-        }
-        100% {
-          background: #F8F8F8;
-        }
+      .vert-align-disabled-permissions {
+        padding-top: 0px;
       }
-
-      @keyframes redHighlight {
-        0% {
-          background: #F2DEDE;
-        }
-        100% {
-          background: white;
-        }
+      .vert-align-enabled-permissions {
+        padding-top: 0px;
       }
-
-      .successHighlightGreenGray {
-        animation: greenGrayHighlight 2s;
+      .drag-drop-contrib {
+        padding-top: 0px;
       }
-
-      .successHighlight {
-        animation: greenHighlight 2s;
+      .vert-align {
+        padding-top: 0px;
       }
-
-      .errorHighlight {
-        animation: redHighlight 2s;
+      .vert-align-contributor-name {
+        padding-top: 0px;
       }
-      @media (max-width: 768px) { // Contributors section, XS screen
-        .current-authors {
-          table, td, tr {
-            display: block;
-            width: 100% !important;
-          }
-
-          th {
-            display: None;
-          }
-
-          td {
-            border-top: none !important;
-          }
-          .author-cols {
-            margin-top: 10px;
-          }
-
-          td:before {
-            white-space: nowrap;
-          }
-
-          .bib-padding {
-            text-align: left;
-            padding-bottom: 10px;
-            padding-right: 30px
-          }
-
-          .checkbox-padding {
-            padding-right: 20px;
-            padding-left: 20px;
-          }
-
-          .permission-label {
-            padding-right: 10px;
-            padding-left: 18px;
-          }
-
-          .vert-align-disabled-permissions {
-            padding-top: 0px;
-          }
-          .vert-align-enabled-permissions {
-            padding-top: 0px;
-          }
-          .drag-drop-contrib {
-            padding-top: 0px;
-          }
-          .vert-align {
-            padding-top: 0px;
-          }
-          .vert-align-contributor-name {
-            padding-top: 0px;
-          }
-          .contributor-row {
-            border-top: 1px solid #EEE !important;
-            width: auto;
-            padding-left: 10px;
-          }
-          .delete-contrib-button {
-            padding-bottom: 10px;
-          }
-          .remove-contributor-xs {
-            padding: 0;
-            border: none;
-            background: none;
-            color: #D9534F;
-          }
-          .remove-contributor-padding-xs {
-            padding-right: 10px;
-          }
-        }
+      .contributor-row {
+        border-top: 1px solid #EEE !important;
+        width: auto;
+        padding-left: 10px;
       }
-
-      .choice-list {
-
-        margin: 0;
+      .delete-contrib-button {
+        padding-bottom: 10px;
+      }
+      .remove-contributor-xs {
         padding: 0;
-
-        li {
-          list-style-type: none;
-          padding: 0;
-          margin: 0;
-
-          input {
-            margin-right: 10px;
-          }
-        }
-      }
-
-      /* End of Authors */
-
-      .coll-single h3 {
-        margin-top: 6px;
-        padding-bottom: 5px;
-      }
-
-
-      #schedule-header .form-control {
-        display: inline;
-        width: inherit;
-      }
-
-
-
-      /* filters */
-
-
-
-      .filter-bar{
-        min-height: 50px;
-        line-height: 37px;
-        border-bottom: 1px solid #444;
-        padding: 16px;
-      }
-
-      i{
-        margin-left: 8px;
-        margin-right: 8px;
-      }
-
-      .filter-dropdown{
-        color: #444;
-        transition: color 0.2s ease;
-        cursor: pointer;
-        margin-right: 16px;
-      }
-
-      .filter-dropdown:hover{
-        color: #666;
-      }
-
-      .filter{
-        padding: 8px 8px 8px 16px;
-        background-color: #3A3A3A;
-        border-radius: 50px 0 0 50px;
-        color: #e8e4e4;
-        margin: 8px 0;
-        transition: all 0.2s ease;
-      }
-
-      .filter-remove{
-        padding: 8px 16px 8px 8px;
-        background-color: #3A3A3A;
-        border-radius: 0 50px 50px 0;
-        color: rgba(255,255,255,0.8);
-        transition: all 0.2s ease;
-      }
-
-      .filter:hover, .filter-remove:hover{
-        color: white;
-        background-color: #585858;
-      }
-
-      .operator{
-        color: rgba(255,255,255,0.5);
-      }
-
-      .filter-remove{
-        color: rgba(255,255,255,0.5);
-        cursor: pointer;
-      }
-
-      .remove:hover{
-        color: white;
-
-      }
-
-      .edit-filter-modal{
-        background-color: #F2F3F5;
-        width: 260px;
-        position: absolute;
-        border-radius: 0 0 4px 4px;
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.3);
-        transition: transform 0.1s ease, opacity 0.1s ease;
-        transform-origin: 0 0;
-        padding: 16px;
-        z-index: 10;
-      }
-
-      select{
-        width: 100%;
-        height: 32px;
-        background-color: white;
-        border: 1px solid rgba(0,0,0,0.125);
-        margin-bottom: 16px;
-      }
-
-      input{
-        width: 100%;
-        height: 32px;
-        border-radius: 3px;
         border: none;
-        margin-bottom: 16px;
-        background-color: white;
-        border: 1px solid rgba(0,0,0,0.125);
+        background: none;
+        color: #D9534F;
       }
-
-      button{
-        background-color: #80B636;
-        color: white;
-        padding: 8px 16px;
-        border:none;
-        border-radius: 3px;
-        float: right;
+      .remove-contributor-padding-xs {
+        padding-right: 10px;
       }
+    }
+  }
 
-      button:hover{
-        opacity: 0.8;
+  .choice-list {
+
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      input {
+        margin-right: 10px;
       }
+    }
+  }
 
-      .text-button{
-        background-color: transparent;
-        color: #24272A;
-      }
+  /* End of Authors */
 
-      .hidden{
-        transform:scale(0.5);
-        opacity: 0;
-
-      }
-
-      .filter-hidden{
-        display:none;
-      }
+  .coll-single h3 {
+    margin-top: 6px;
+    padding-bottom: 5px;
+  }
 
 
-
-      .selected-schedule{
-        background: #444;
-        color: white;
-      }
-
-      table {
-        border-collapse: collapse;
-      }
-      table tbody {
-        border-right: 20px solid transparent;
-        border-left: 20px solid transparent;
-
-      }
+  #schedule-header .form-control {
+    display: inline;
+    width: inherit;
+  }
 
 
-      .search-bar{
-        width: 75% !important;
-        margin: auto;
-      }
+
+  /* filters */
 
 
-      .input-box{
-        text-align: center;
-        margin: auto;
-      }
+
+  .filter-bar{
+    min-height: 50px;
+    line-height: 37px;
+    border-bottom: 1px solid #444;
+    padding: 16px;
+  }
+
+  i{
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .filter-dropdown{
+    color: #444;
+    transition: color 0.2s ease;
+    cursor: pointer;
+    margin-right: 16px;
+  }
+
+  .filter-dropdown:hover{
+    color: #666;
+  }
+
+  .filter{
+    padding: 8px 8px 8px 16px;
+    background-color: #3A3A3A;
+    border-radius: 50px 0 0 50px;
+    color: #e8e4e4;
+    margin: 8px 0;
+    transition: all 0.2s ease;
+  }
+
+  .filter-remove{
+    padding: 8px 16px 8px 8px;
+    background-color: #3A3A3A;
+    border-radius: 0 50px 50px 0;
+    color: rgba(255,255,255,0.8);
+    transition: all 0.2s ease;
+  }
+
+  .filter:hover, .filter-remove:hover{
+    color: white;
+    background-color: #585858;
+  }
+
+  .operator{
+    color: rgba(255,255,255,0.5);
+  }
+
+  .filter-remove{
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+  }
+
+  .remove:hover{
+    color: white;
+
+  }
+
+  .edit-filter-modal{
+    background-color: #F2F3F5;
+    width: 260px;
+    position: absolute;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.3);
+    transition: transform 0.1s ease, opacity 0.1s ease;
+    transform-origin: 0 0;
+    padding: 16px;
+    z-index: 10;
+  }
+
+  select{
+    width: 100%;
+    height: 32px;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.125);
+    margin-bottom: 16px;
+  }
+
+  input{
+    width: 100%;
+    height: 32px;
+    border-radius: 3px;
+    border: none;
+    margin-bottom: 16px;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.125);
+  }
+
+  button{
+    background-color: #80B636;
+    color: white;
+    padding: 8px 16px;
+    border:none;
+    border-radius: 3px;
+    float: right;
+  }
+
+  button:hover{
+    opacity: 0.8;
+  }
+
+  .text-button{
+    background-color: transparent;
+    color: #24272A;
+  }
+
+  .hidden{
+    transform:scale(0.5);
+    opacity: 0;
+
+  }
+
+  .filter-hidden{
+    display:none;
+  }
+
+
+
+  .selected-schedule{
+    background: #444;
+    color: white;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+  table tbody {
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+
+  }
+
+
+  .search-bar{
+    width: 75% !important;
+    margin: auto;
+  }
+
+
+  .input-box{
+    text-align: center;
+    margin: auto;
+  }

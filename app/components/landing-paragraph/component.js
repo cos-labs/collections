@@ -2,7 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     session: Ember.inject.service(),
-    containerStyle: Ember.computed('layout', function() {
+    tagName: 'section',
+    attributeBindings: ['style'],
+    style: Ember.computed('layout', function() {
         return Ember.String.htmlSafe(`background-color: ${this.get('layout.background-color')}; color: ${this.get('layout.text-color')}`);
     }),
     logoStyle: Ember.computed('branding.logo', function() {

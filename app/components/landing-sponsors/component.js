@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    containerStyle: Ember.computed('layout', function() {
+    tagName: 'section',
+    attributeBindings: ['style'],
+    style: Ember.computed('layout', function() {
         const bg = this.get('layout.background-color') ? this.get('layout.background-color') : this.get('branding.colors.background');
         const txt = this.get('layout.text-color') ? this.get('layout.text-color') : this.get('branding.colors.text');
         return Ember.String.htmlSafe(`background-color: ${bg}; color: ${txt}`);

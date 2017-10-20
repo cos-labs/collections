@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    tagName: 'section',
+    attributeBindings: ['style'],
     listColumns: Ember.computed('layout', function() {
         const dataSource = this.get('layout.data');
         const list = this.get('model.settings').data[dataSource];
@@ -10,7 +12,7 @@ export default Ember.Component.extend({
         column.right = list;
         return column;
     }),
-    containerStyle: Ember.computed('branding.colors', function() {
+    style: Ember.computed('branding.colors', function() {
         return Ember.String.htmlSafe(`background-color: ${this.get('branding.colors.background')}; color: ${this.get('branding.colors.backgroundText')}`);
     }),
 });

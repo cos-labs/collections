@@ -1,60 +1,64 @@
-<div class="coll-create-header p-xl">
-    <div class="text-center">
-        <h2> Create a collection </h2>
-    </div>
+<div class="hero">
+    <h2>Create a collection</h2>
 </div>
-<div class="coll-create"> 
-    <div class="container"  style="max-width: 800px;">
-            <h4>Add title </h4>
-            {{input class="form-control input-box" value=title placeholder="Enter collection name"}}
-       
-        <hr class="soften"/>       
-            <h4>Select collection type</h4>
-            <div class="coll-cards input-box">
-                {{#each typeList as |type|}}
-                    <div class="pointer m-b-md p-md box-round osf-box input-box  {{if
-                            (eq selectedType type) 'osf-box-lt coll-active'
-                            'osf-box'}} " style="width: 32%;" {{action 'updateType' type}}>
-                        <div class="coll-radio"></div>
-                        {{type}}
-                    </div>
-                {{/each}}
-            </div>
+<div style="max-width: 800px; margin: 0 auto">
 
-        <hr class="soften"/>
-            <h4>Add description <span class="text-muted">Optional </span></h4>
-            {{textarea class="form-control input-box" value=description rows="6"}}
+    <section>
+        <h4>1. Add title </h4>
+        {{input class="form-control" value=title placeholder="Enter collection name"}}
+    </section>
 
-        <hr class="soften" />
-        {{#if (eq selectedType 'meeting')}}
-            
-            <hr class="soften" />
-                <h4>Add Location </h4>
-                {{input class="form-control input-box" value=location placeholder="Enter meeting location"}}
-            
-            <hr class="soften" />
-                <h4>Add Address </h4>
-                {{input class="form-control input-box" value=address placeholder="Enter meeting address"}}
-           
-            <hr class="soften" />
-                    <h4> Add Meeting Dates </h4>
-                    Start Date:
-                    {{bs-datetimepicker date=startDate class="input-box"}}
-                    End Date:
-                    {{bs-datetimepicker date=endDate class="input-box"}}
-        {{/if}}
-        <h4>Submission Form Type </h4>
+    <section>
+        <h4>2. Select collection type</h4>
+        {{#each typeList as |type|}}
+        <div class="radio">
+            {{radio-button id=type.value value=type.value name="radio-collection-type" checked=collectionType}}
+            <label for="{{type.value}}" >{{type.label}}<p>{{type.description}}</p></label>
+        </div>
+        {{/each}}
+    </section>
 
-        <select class="form-control input-box" onchange={{action 'setWorkflow'}}>
+    <section>
+        <h4> 3. Add description <span class="text-muted">Optional </span></h4>
+        {{textarea class="form-control" value=description rows="6"}}
+    </section>
+
+    {{#if (eq collectionType 'meeting')}}
+
+    <section>
+        <h4> 4. Add Location </h4>
+        {{input class="form-control" value=location placeholder="Enter meeting location"}}
+    </section>
+
+    <section>
+        <h4> 5. Add Address </h4>
+        {{input class="form-control" value=address placeholder="Enter meeting address"}}
+    </section>
+
+    <section>
+        <h4> 5. Add Meeting Dates </h4>
+        Start Date:
+        {{bs-datetimepicker date=startDate}}
+        End Date:
+        {{bs-datetimepicker date=endDate}}
+    </section>
+
+    {{/if}}
+
+    <section>
+        <h4> 6. Submission Form Type </h4>
+        <select class="form-control" onchange={{action 'setWorkflow'}}>
             <option disabled selected> -- Select a submission workflow for the service -- </option>
             {{#each workflows as |workflowChoice|}}
-                <option value={{workflowChoice.id}} selected={{eq selectedWorkflow.id workflowChoice.id}}>{{workflowChoice.title}}</option>
+            <option value={{workflowChoice.id}} selected={{eq selectedWorkflow.id workflowChoice.id}}>{{workflowChoice.title}}</option>
             {{/each}}
         </select>
-        <br />
-        <div class="pull-right">
-            {{#link-to 'explore' class="btn btn-default"}} Cancel {{/link-to}}
-            <a class="btn btn-primary {{unless title 'disabled'}}" {{action 'addCollection'}}>Continue</a>
-        </div>    
-    </div>
+    </section>
+
+    <section>
+        {{#link-to 'explore' class="btn btn-default"}} Cancel {{/link-to}}
+        <button class="btn btn-primary {{unless title 'disabled'}}" {{action 'addCollection'}}>
+            Continue
+        </button>
+    </section>
 </div>
