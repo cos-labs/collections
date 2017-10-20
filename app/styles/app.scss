@@ -8,6 +8,7 @@
 @import 'components/file-grid.scss';
 @import 'osf-style';
 @import "nav";
+@import "forms";
 @import "logo";
 @import "cards";
 
@@ -28,13 +29,17 @@ $dark-banner: #607D8B;
 
 /* Global */
 
-h2:hover >.headerlink {
+h2:hover > .headerlink {
     opacity: 1;
 }
 
 h2 {
     padding: 30px;
     padding-top: 50px;
+}
+
+section {
+    padding: 30px 30px;
 }
 
 .info {
