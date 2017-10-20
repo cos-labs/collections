@@ -1,13 +1,15 @@
-<h1 class="form-banner">{{collection.title}} Submissions</h1>
+<div class="hero">
+    <h1>{{collection.title}} Submissions</h1>
+    <button class="btn btn-success btn-lg" {{action "newCase" collection}}>
+        Start a new submission
+    </button>
+</div>
 
 
 <div class="info" style="background-color:#daf5ff; border-color:#b2dcff">
     In progress submissions to the {{collection.title}}. Any of the submissions may be continued by pressing the continue button.
 </div>
 
-<button class="btn btn-success btn-lg" {{action "newCase" collection}}>
-    Start a new submission
-</button>
 
 {{#each cases as |case|}}
 
