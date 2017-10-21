@@ -10,5 +10,19 @@
                     index=index}}
     {{/each}}
 {{else}}
-    {{landing-default model=model}}
+
+    <section class="hero">
+        <h2>{{model.title}}</h2>
+        <p class="p-v-md">{{model.description}}</p>
+        {{#if session.isAuthenticated}}
+           {{#link-to "collections.collection.add" model class="btn btn-success btn-lg"}}Add to Collection {{/link-to}}
+        {{/if}}
+    </section>
+    {{#if session.isAuthenticated}}
+        <section>
+            <h4>Customize your landing page</h4>
+            <p>You can add details to your landing page by changing settings to add layout layers. Visit Edit page to make changes.</p>
+        </section>
+    {{/if}}
+
 {{/if}}
