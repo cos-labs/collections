@@ -2,8 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    nav: Ember.inject.service(),
-
     title: "Collections",
     crumb: {},
 
@@ -12,22 +10,14 @@ export default Ember.Route.extend({
     },
 
     afterModel() {
-
-        this.set("crumb.label", this.title);
-        this.set("crumb.route", this.routeName);
-
         this.set("nav.links", [{
             label: "Browse",
-            route: "explore",
-            models: []
+            route: "explore"
         }]);
-
     },
 
     setupController(controller, data) {
-        controller.set("collection", data);
-    },
-
-
+        controller.set("collections", data);
+    }
 
 });

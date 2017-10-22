@@ -3,12 +3,9 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
     session: Ember.inject.service(),
-    nav: Ember.inject.service(),
 
     title: "My Collections",
     crumb: {},
-
-    
 
     model(params) {
         return Ember.RSVP.hash({

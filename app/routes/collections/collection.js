@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
 
-        this.set("crumb.label", model.title);
+        this.set("crumb.label", model.get("title"));
         this.set("crumb.route", this.routeName)
         this.set("crumb.models", [model])
 
@@ -20,12 +20,10 @@ export default Ember.Route.extend({
         }, {
             label: "Settings",
             route: "collections.collection.edit",
-            type: "routeWithModel",
             models: [model]
         }, {
             label: "Submissions",
             route: "collections.collection.submissions",
-            type: "routeWithModel",
             models: [model]
         }]);
 

@@ -7,17 +7,17 @@ export default Ember.Controller.extend({
     filterText: '',
     currentPage: 1,
     loadingMore: false,
-    showLoadMore: Ember.computed('model.meta', function() {
-        return this.get('model.meta.pagination.count') > this.get('model.length');
+    showLoadMore: Ember.computed('collections.meta', function() {
+        return this.get('collections.meta.pagination.count') > this.get('collections.length');
     }),
     actions: {
         filter () {
-            const model = this.get('model');
+            const collections = this.get('collections');
             const text = this.get('filterText').toLowerCase();
             if (this.get('modelCache') === null) {
-                this.set('modelCache', model);
+                this.set('modelCache', collections);
             }
-            this.set('model', this.get('modelCache').filter(function(item) {
+            this.set('collections', this.get('modelCache').filter(function(item) {
                 return item.get('title').toLowerCase().includes(text);
             }));
         },
@@ -30,10 +30,10 @@ export default Ember.Controller.extend({
                 page: this.get('currentPage') + 1,
             }).then((data) => {
                 this.incrementProperty('currentPage');
-                const currentModel = this.get('model').toArray();
+                const currentModel = this.get('collections').toArray();
                 const arr = data.toArray();
                 currentModel.pushObjects(arr);
-                this.set('model', currentModel);
+                this.set('collections', currentModel);
                 this.set('loadingMore', false);
             });
         },
