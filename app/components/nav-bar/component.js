@@ -6,10 +6,6 @@ export default Ember.Component.extend({
     nav: Ember.inject.service(),
     router: Ember.inject.service('-routing'),
 
-    ob: Ember.observer("nav.crumbs", () => {
-        console.log(this.get("nav.crumbs"))
-    }),
-
     elementId: "collections-nav",
     tagName: "nav",
     attributeBindings: ['style'],

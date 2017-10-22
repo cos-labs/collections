@@ -2,8 +2,6 @@ import Ember from "ember";
 
 export default Ember.Route.extend({
 
-    nav: Ember.inject.service(),
-
     model(params) {
 
         const collection = this.modelFor("collections.collection");
@@ -20,14 +18,12 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
 
-        this.get("nav.crumbs").push({
-            label: this.item.title,
-            route: this.routeName,
-            models: [
-                model.collection,
-                model.item
-            ],
-        });
+        this.set("crumb.label", this.item.title);
+        this.set("crumb.route", this.routeName);
+        this.set("crumb.models", [
+            model.collection,
+            model.item
+        ]);
 
         this.set("nav.links", [{
             label: "Edit",
@@ -46,10 +42,6 @@ export default Ember.Route.extend({
         controller.set("item", data.item);
         controller.set("node", data.node);
 
-    },
-
-    deactivate() {
-        this.get("nav.crumbs").pop();
     }
 
 });
