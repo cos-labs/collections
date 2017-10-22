@@ -18,8 +18,8 @@ export default Ember.Component.extend({
 
     actions: {
         transition(link) {
-            const models = link.get("models") || [];
-            this.get("router").transitionTo(link.get("route", ...models));
+            const models = link.models || [];
+            this.get("router").transitionTo(link.route, ...models);
         }
     }
 

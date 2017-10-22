@@ -20,28 +20,23 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
 
-        this.set("crumb.label", this.item.title);
+        this.set("crumb.label", this.title);
         this.set("crumb.route", this.routeName);
         this.set("crumb.models", [model.collection]);
 
-        this.set("nav.links", [
-            {
-                label: "",
-                route: "explore"
-            },
-            {
-                label: "Settings",
-                route: "collections.collection.edit",
-                type: "routeWithModel",
-                model: model.collection
-            },
-            {
-                label: "Submissions",
-                route: "collections.collection.submissions",
-                type: "routeWithModel",
-                model: model.collection
-            }
-        ]);
+        this.set("nav.links", [{
+            label: "",
+            route: "explore"
+        }, {
+            label: "Settings",
+            route: "collections.collection.edit",
+            models: [model.collection]
+        }, {
+            label: "Submissions",
+            route: "collections.collection.submissions",
+            models: [model.collection]
+        }]);
+
 
     },
 

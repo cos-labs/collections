@@ -19,24 +19,18 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
 
-        this.set("nav.links", [
-            {
-                label: "",
-                route: "explore"
-            },
-            {
-                label: "Settings",
-                route: "collections.collection.edit",
-                type: "routeWithModel",
-                model: model.collection
-            },
-            {
-                label: "Submissions",
-                route: "collections.collection.submissions",
-                type: "routeWithModel",
-                model: model.collection
-            }
-        ]);
+        this.set("nav.links", [{
+            label: "",
+            route: "explore"
+        }, {
+            label: "Settings",
+            route: "collections.collection.edit",
+            models: [model.collection]
+        }, {
+            label: "Submissions",
+            route: "collections.collection.submissions",
+            models: [model.collection]
+        }]);
 
     },
 
