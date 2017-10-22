@@ -21,4 +21,8 @@ export default Ember.Route.extend({
         controller.set('collection', model.collection);
     },
 
+    deactivate() {
+        this.get("nav.crumbs").pop();
+    },
+
 });

@@ -3,8 +3,12 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
     session: Ember.inject.service(),
-    path: Ember.inject.service(),
-    navLinks: Ember.inject.service(),
+    nav: Ember.inject.service(),
+    router: Ember.inject.service('-routing'),
+
+    ob: Ember.observer("nav.crumbs", () => {
+        console.log(this.get("nav.crumbs"))
+    }),
 
     elementId: "collections-nav",
     tagName: "nav",
@@ -15,5 +19,12 @@ export default Ember.Component.extend({
         if (!pColor) pColor = "rgb(22, 135, 131)";
         return "background-color:" + pColor;
     }),
+
+    actions: {
+        transition(link) {
+            const models = link.get("models") || [];
+            this.get("router").transitionTo(link.get("route", ...models));
+        }
+    }
 
 });

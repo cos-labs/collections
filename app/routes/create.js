@@ -8,6 +8,10 @@ export default Ember.Route.extend({
 
     setupController(controller, model) {
         controller.set('workflows', model)
+    },
+
+    deactivate() {
+        this.get("nav.crumbs").pop();
     }
 
 });

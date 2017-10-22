@@ -5,8 +5,7 @@ export default Ember.Route.extend({
 
     caxe: Ember.inject.service(),
 
-    path: Ember.inject.service(),
-    navLinks: Ember.inject.service(),
+    nav: Ember.inject.service(),
 
     title: "Submissions",
 
@@ -22,7 +21,7 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
 
-        this.set("navLinks.links", [
+        this.set("nav.links", [
             {
                 label: "",
                 route: "explore"
@@ -60,6 +59,10 @@ export default Ember.Route.extend({
                 routePart: cur
             };
         }));
+    },
+
+    deactivate() {
+        this.get("nav.crumbs").pop();
     },
 
 });
