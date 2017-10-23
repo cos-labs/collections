@@ -48,42 +48,36 @@ h2:hover >.headerlink {
 	background: #ffffff;
 	margin: 15px 15px;
 	padding: 20px;
-
-	/* Global */
-
-	h2:hover > .headerlink {
-		opacity: 1;
-	}
-
-	section {
-		padding-top: 30px;
-		padding-bottom: 30px;
-	}
-
-	section {
-		padding: 30px 30px;
-	}
-
-	.info {
-		@include floating;
-		@include panel;
-		background-color:#daf5ff;
-		margin: 15px 15px;
-		padding: 20px;
-	}
-
-
-	.case-number {
-		font-weight: 600;
-		color: #888;
-	}
-
-	h2 {
-		padding: 0;
-		margin-top: 0;
-	}
-
 }
+/* Global */
+
+h2:hover > .headerlink {
+	opacity: 1;
+}
+
+section {
+	padding: 30px 30px;
+}
+
+.info {
+	@include floating;
+	@include panel;
+	background-color:#daf5ff;
+	margin: 15px 15px;
+	padding: 20px;
+}
+
+
+.case-number {
+	font-weight: 600;
+	color: #888;
+}
+
+h2 {
+	padding: 0;
+	margin-top: 0;
+}
+
 
 .headerlink {
 	opacity: 0;
