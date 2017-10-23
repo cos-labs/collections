@@ -1,6 +1,6 @@
 <h1 class="form-banner">{{caxe.workflow.title}}</h1>
 
-<div class="container">
+<div class="form-holder">
 
     {{#if (eq caxe.workflow.submissionFormType 'Website')}}
 
@@ -8,26 +8,26 @@
 
     {{else}}
 
-        <div class="section" style="background-color:#daf5ff; border-color:#b2dcff">
+        <div class="form-section" style="background-color:#daf5ff; border-color:#b2dcff">
 
             {{caxe.workflow.description}}
 
         </div>
 
-        <div class="section" style="background-color:#fff5da; border-color:#ffdcb2">
+        <div class="form-section" style="background-color:#fff5da; border-color:#ffdcb2">
             Any changes you make here are automatically saved. You can use the reference code <span style="background-color:#ddd; color:#333;">{{caxe.id}}</span> to load this submission again.
         </div>
 
         {{#each caxe.workflow.sortedSections as |section|}}
 
-            <div class="section">
+            <div class="form-section">    
                 <div class="label">
                     {{section.label}}
                 </div>
-                <div>
+                <p>
                     {{section.description}}
-                </div>
-                <div class="content">
+                </p>
+                <div >
 
                     {{#each section.sortedWidgets as |widget|}}
                         {{component widget.widgetType
