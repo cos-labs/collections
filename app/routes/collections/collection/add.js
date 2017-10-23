@@ -3,8 +3,9 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    panelActions: Ember.inject.service('panelActions'),
     caxe: Ember.inject.service(),
+
+    crumb: {},
 
     model() {
         const caxe = this.get('caxe.activeCase');
@@ -14,6 +15,27 @@ export default Ember.Route.extend({
             }),
             collection: this.modelFor('collections.collection')
         });
+    },
+
+    afterModel(model, transition) {
+        this.set("crumb.label", "Submission " + model.caxe.id);
+        this.set("crumb.route", this.routeName);
+        this.set("crumb.models", [
+            model.collection,
+            model.caxe
+        ]);
+
+        this.set("nav.links", [{
+            label: "Settings",
+            route: "collections.collection.edit",
+            models: [model.collection]
+        }, {
+            label: "Submissions",
+            route: "collections.collection.submissions",
+            models: [model.collection]
+        }]);
+
+
     },
 
     setupController(controller, model) {

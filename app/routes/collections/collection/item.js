@@ -2,11 +2,15 @@ import Ember from "ember";
 
 export default Ember.Route.extend({
 
+    crumb: {},
+
     model(params) {
 
         const collection = this.modelFor("collections.collection");
         const item = this.store.findRecord("item", params.item_id);
-        const node = this.store.findRecord("node", item.get("source_id"));
+        const node = item.then(_item => {
+            return this.store.findRecord("node", _item.get("sourceId"));
+        });
 
         return Ember.RSVP.hash({
             collection,
@@ -17,8 +21,7 @@ export default Ember.Route.extend({
     },
 
     afterModel(model, transition) {
-
-        this.set("crumb.label", this.item.title);
+        this.set("crumb.label", model.item.get("title"));
         this.set("crumb.route", this.routeName);
         this.set("crumb.models", [
             model.collection,
