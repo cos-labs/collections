@@ -1,14 +1,14 @@
 <div class="hero">
     <h2>Create a collection</h2>
 </div>
-<div class="width-800-center">
+<div class="form-holder">
 
-    <section class="section">
+    <section class="form-section">
         <h4>Add title </h4>
         {{input class="form-control" value=title placeholder="Enter collection name"}}
     </section>
 
-    <section class="section">
+    <section class="form-section">
         <h4>Select collection type</h4>
         {{#each typeList as |type|}}
         <div class="radio">
@@ -18,24 +18,24 @@
         {{/each}}
     </section>
 
-    <section class="section">
+    <section class="form-section">
         <h4>Add description <span class="text-muted">Optional </span></h4>
         {{textarea class="form-control" value=description rows="6"}}
     </section>
 
     {{#if (eq collectionType 'meeting')}}
 
-    <section class="section">
+    <section class="form-section">
         <h4> Add Location </h4>
         {{input class="form-control" value=location placeholder="Enter meeting location"}}
     </section>
 
-    <section class="section">
+    <section class="form-section">
         <h4> Add Address </h4>
         {{input class="form-control" value=address placeholder="Enter meeting address"}}
     </section>
 
-    <section class="section">
+    <section class="form-section">
         <h4> Add Meeting Dates </h4>
         Start Date:
         {{bs-datetimepicker date=startDate}}
@@ -45,7 +45,7 @@
 
     {{/if}}
 
-    <section class="section">
+    <section class="form-section">
         <h4>Submission Form Type </h4>
         <select class="form-control" onchange={{action 'setWorkflow'}}>
             <option disabled selected> -- Select a submission workflow for the service -- </option>

@@ -100,7 +100,7 @@ h2 {
 	text-align: center;
 }
 
-.section {
+.form-section {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	padding: 14px;
@@ -117,7 +117,7 @@ h2 {
 }
 
 
-.section > .label {
+.form-section > .label {
 	display: block;
 	color: #555;
 	font-size: 20px;
@@ -1024,7 +1024,7 @@ table tbody {
 }
 
 
-.width-800-center{
+.form-holder{
 	max-width: 800px;
 	margin: 0 auto
 }
