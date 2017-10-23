@@ -1,35 +1,41 @@
 <div class="hero">
     <h1>{{collection.title}} Submissions</h1>
-    <button class="btn btn-success btn-lg" {{action "newCase" collection}}>
+    <a class="btn btn-success btn-lg" {{action "newCase" collection}}>
         Start a new submission
-    </button>
+    </a>
 </div>
 
 
-<div class="info" style="background-color:#daf5ff; border-color:#b2dcff">
+<div class="info width-800-center" style="background-color:#daf5ff; border-color:#b2dcff; margin-top: 15px; margin-bottom: 15px;" >
     In progress submissions to the {{collection.title}}. Any of the submissions may be continued by pressing the continue button.
 </div>
 
 
-{{#each cases as |case|}}
+<table class="coll-table m-b-md width-800-center">
+    <thead style="background-color: #444; color: #fff;">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    <div class="case-detail">
-        <span class="case-number">{{case.id}}</span>
-        <h2>{{case.workflow.title}}</h2>
-        <div class="content">
-            <button class="btn btn-success" {{action "continueCase" case collection}}>
-                Continue
-            </button>
-        </div>
-    </div>
+        {{#each cases as |case|}}
 
-{{else}}
+    <tr>
+        <td>{{case.id}}</td>
+        <td>{{case.workflow.title}}</td>
+        <td>        <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a></td>
+    </tr>
+    
 
-    <div class="section">
-        <div class="label">
-            You have not started any submissions to {{collection.title}}
-        </div>
-    </div>
-
+    {{else}}
+        <tr>
+            <td>You have not started any submissions to {{collection.title}}</td>
+        </tr>
 {{/each}}
+
+</tbody>
+</table>
 

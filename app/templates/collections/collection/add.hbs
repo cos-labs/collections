@@ -1,6 +1,6 @@
 <h1 class="form-banner">{{caxe.workflow.title}}</h1>
 
-<div class="container">
+<div class="width-800-center" >
 
     {{#if (eq caxe.workflow.submissionFormType 'Website')}}
 
@@ -20,14 +20,14 @@
 
         {{#each caxe.workflow.sortedSections as |section|}}
 
-            <div class="section">
+            <div class="section">    
                 <div class="label">
                     {{section.label}}
                 </div>
                 <div>
                     {{section.description}}
                 </div>
-                <div class="content">
+                <div >
 
                     {{#each section.sortedWidgets as |widget|}}
                         {{component widget.widgetType

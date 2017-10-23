@@ -6,6 +6,8 @@
 @import 'components/datetime-picker';
 @import 'components/landing-paragraph';
 @import 'components/file-grid.scss';
+@import 'components/footer';
+
 @import 'osf-style';
 @import "nav";
 @import "forms";
@@ -111,6 +113,8 @@ h2:hover >.headerlink {
   border-radius: 4px;
   margin-bottom: 18px;
   margin-top: 18px;
+  @include floating;
+
 }
 
 .anchor-link {
@@ -126,6 +130,7 @@ h2:hover >.headerlink {
   font-weight: 300;
   padding: 6px 0 6px 0;
   text-align:left;
+  text-transform: inherit;
 }
 
 .submit_button {
@@ -1023,3 +1028,15 @@ a.dropdown-toggle.nav-user-dropdown {
     text-align: center;
     margin: auto;
   }
+
+
+  .width-800-center{
+    max-width: 800px;
+    margin: 0 auto
+  }
+
+  footer{
+        height: 70px;
+        padding-top: 35px;
+        color: #333;
+    }
