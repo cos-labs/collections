@@ -56,14 +56,14 @@ export default Ember.Controller.extend({
     resetModelCache() {
         const collection = this.get('collection');
         return {
-            title: model.get('title'),
-            description: model.get('description'),
-            tags: model.get('tags'),
-            settings: JSON.stringify(model.get('settings'), null, 2),
-            location: model.get('location'),
-            address: model.get('address'),
-            startDate: model.get('startDate'),
-            endDate: model.get('endDate')
+            title: collection.get('title'),
+            description: collection.get('description'),
+            tags: collection.get('tags'),
+            settings: JSON.stringify(collection.get('settings'), null, 2),
+            location: collection.get('location'),
+            address: collection.get('address'),
+            startDate: collection.get('startDate'),
+            endDate: collection.get('endDate')
         };
     },
 
