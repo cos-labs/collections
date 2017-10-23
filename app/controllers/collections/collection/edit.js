@@ -7,20 +7,19 @@ export default Ember.Controller.extend({
     editMode: false,
     collectionSettings: {},
 
-    modelCache: Ember.computed('model', function() {
+    modelCache: Ember.computed('collection', function() {
         return this.resetModelCache();
     }),
-    formattedTags: Ember.computed('model.tags', function() {
-        const tags = this.get('model.tags');
+    formattedTags: Ember.computed('collection.tags', function() {
+        const tags = this.get('collection.tags');
         if (tags) {
-            return this.get('model.tags').split(',');
+            return this.get('collection.tags').split(',');
         }
         return [];
     }),
     settingsString: Ember.computed('model.settings', function() {
         return JSON.stringify(this.get('model.settings'), null, 2);
     }),
-
     actions: {
         showEdit () {
             this.set('editMode', true);
@@ -30,32 +29,32 @@ export default Ember.Controller.extend({
             this.set('modelCache', this.resetModelCache());
         },
         saveEdit () {
-            const model = this.get('model');
+            const collection = this.get('collection');
             const location = this.get('modelCache.location');
             const address = this.get('modelCache.address');
             const startDate = this.get('modelCache.startDate');
             const endDate = this.get('modelCache.endDate');
 
-            model.set('settings', JSON.parse(this.get('modelCache.settings')));
-            model.set('title', this.get('modelCache.title'));
-            model.set('description', this.get('modelCache.description'));
-            model.set('tags', this.get('modelCache.tags'));
-            model.set('location', location);
-            model.set('address', address);
-            model.set('startDate', startDate);
-            model.set('endDate', endDate);
-            model.save();
+            collection.set('settings', JSON.parse(this.get('modelCache.settings')));
+            collection.set('title', this.get('modelCache.title'));
+            collection.set('description', this.get('modelCache.description'));
+            collection.set('tags', this.get('modelCache.tags'));
+            collection.set('location', location);
+            collection.set('address', address);
+            collection.set('startDate', startDate);
+            collection.set('endDate', endDate);
+            collection.save();
             this.set('editMode', false);
         },
         updateCacheSettings (jsonSettings) {
             this.set('modelCache.settings', JSON.stringify(jsonSettings, null, 2));
         },
         deleteCollection() {
-            this.get('model').destroyRecord().then(() => this.transitionToRoute('/'));
+            this.get('collection').destroyRecord().then(() => this.transitionToRoute('/'));
         },
     },
     resetModelCache() {
-        const model = this.get('model');
+        const collection = this.get('collection');
         return {
             title: model.get('title'),
             description: model.get('description'),
