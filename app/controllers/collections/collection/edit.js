@@ -60,7 +60,7 @@ export default Ember.Controller.extend({
             title: collection.get('title'),
             description: collection.get('description'),
             tags: collection.get('tags'),
-            settings: JSON.stringify(model.get('settings')),
+            settings: JSON.stringify(collection.get('settings')),
             location: collection.get('location'),
             address: collection.get('address'),
             startDate: collection.get('startDate'),

@@ -18,6 +18,7 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
 
+        debugger;
         this.set("crumb.label", model.item.title);
         this.set("crumb.route", this.routeName);
         this.set("crumb.models", [
