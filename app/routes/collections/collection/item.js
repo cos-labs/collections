@@ -9,8 +9,7 @@ export default Ember.Route.extend({
         const collection = this.modelFor("collections.collection");
         const item = this.store.findRecord("item", params.item_id);
         const node = item.then(_item => {
-            let node = this.store.findRecord("node", _item.get("sourceId"))
-            return node;
+            return this.store.findRecord("node", _item.get("sourceId"));
         });
 
         return Ember.RSVP.hash({
