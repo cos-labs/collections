@@ -106,10 +106,10 @@ export default Ember.Component.extend({
         addFilter(){
             let filter = this.get('filters');
             filter.pushObject({id:(filter.length), name: $(`#${event.target.id} :selected`).text() });
-            this.set('filters', filter)
+            this.set('filters', filter);
         },
         removeFilter(){
-            $(event.target).parent().remove()
+            $(event.target).parent().remove();
         },
         getInput(e){
             let filter = this.get('filters');
@@ -117,7 +117,7 @@ export default Ember.Component.extend({
                 return false;
             }
             filter.pushObject({id:(filter.length), name: e });
-            this.set('filters', filter)
+            this.set('filters', filter);
         }
     }
 });
