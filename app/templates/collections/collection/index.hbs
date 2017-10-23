@@ -1,14 +1,28 @@
-{{#if model.settings.layers}}
-    {{#each model.settings.layers as |view index|}}
+{{#if collection.settings.layers}}
+    {{#each collection.settings.layers as |view index|}}
         {{component view.component
-                    model=model
+                    model=collection
                     collection=collection
                     layout=view.settings
-                    branding=model.settings.branding
+                    branding=collection.settings.branding
                     changeRoute=(action 'changeRoute')
                     editMode=editMode
                     index=index}}
     {{/each}}
 {{else}}
-    {{landing-default model=model}}
+
+    <section class="hero">
+        <h2>{{collection.title}}</h2>
+        <p class="p-v-md">{{collection.description}}</p>
+        {{#if session.isAuthenticated}}
+           {{#link-to "collections.collection.add" collection class="btn btn-success btn-lg"}}Add to Collection {{/link-to}}
+        {{/if}}
+    </section>
+    {{#if session.isAuthenticated}}
+        <section>
+            <h4>Customize your landing page</h4>
+            <p>You can add details to your landing page by changing settings to add layout layers. Visit Edit page to make changes.</p>
+        </section>
+    {{/if}}
+
 {{/if}}

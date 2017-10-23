@@ -37,7 +37,7 @@ export default Ember.Component.extend({
 
             item.set('type', 'meeting');
             item.set('title', this.get('parameters.title.value'));
-            item.set('status', 'none');
+            item.set('status', 'pending');
             item.set('collection', this.get('collection'));
             item.set('category', this.get('parameters.category.value'));
             item.set('location', this.get('parameters.location.value'));
@@ -65,14 +65,13 @@ export default Ember.Component.extend({
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then(item => {
-                        this.get('store').findRecord('workflow', this.get('parameters.nextWorkflow.value')).then(wf => {
+                        this.get('store').findRecord('workflow', this.get('parameters.nextWorkflow.value'), {reload: true}).then(wf => {
                             let caxe = this.get('store').createRecord('case');
                             caxe.set('collection', this.get('collection'));
                             caxe.set('workflow', wf);
-                            caxe.save().then(() =>
-                                this.get('router').transitionTo('collections.collection.item', this.get('collection'), item)
-                            );
-                        })
+                            caxe.save().then(caxe =>
+                                this.get('router').transitionTo('collections.collection.item', this.get('collection'), item));
+                        });
 
                     }, err => console.log(err));
                 }
