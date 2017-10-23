@@ -17,8 +17,8 @@ export default Ember.Controller.extend({
         }
         return [];
     }),
-    settingsString: Ember.computed('model.settings', function() {
-        return JSON.stringify(this.get('model.settings'), null, 2);
+    settingsString: Ember.computed('collection.settings', function() {
+        return JSON.stringify(this.get('collection.settings'), null, 2);
     }),
     actions: {
         showEdit () {
