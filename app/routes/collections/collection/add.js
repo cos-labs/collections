@@ -18,7 +18,6 @@ export default Ember.Route.extend({
     },
 
     afterModel(model, transition) {
-        debugger;
         this.set("crumb.label", "Submission " + model.caxe.id);
         this.set("crumb.route", this.routeName);
         this.set("crumb.models", [
