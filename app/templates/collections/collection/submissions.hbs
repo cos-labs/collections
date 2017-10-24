@@ -11,33 +11,27 @@
 </div>
 
 <div class="active-cases">
-    <table class="active-cases">
-        <thead style="background-color: #444; color: #fff;">
-            <tr>
-                <th>Case No.</th>
-                <th>Form Type</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each cases as |case|}}
+    <div class="table-heading" style="background-color: #444; color: #fff;">
+        <div class="case-no">Case No.</div>
+        <div class="form-type">Form Type</div>
+        <div class="continue-button"></div>
+    </div>
+    {{#each cases as |case|}}
 
-                <tr>
-                    <td>{{case.id}}</td>
-                    <td>{{case.workflow.title}}</td>
-                    <td>
-                        <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a>
-                    </td>
-                </tr>
+        <div class="case-details">
+            <div class="case-no">{{case.id}}</div>
+            <div class="form-type">{{case.workflow.title}}</div>
+            <div class="continue-button">
+                <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a>
+            </div>
+        </div>
 
-            {{else}}
+    {{else}}
 
-                <tr>
-                    <td>You have not started any submissions to {{collection.title}}</td>
-                </tr>
+        <div>
+            <div>You have not started any submissions to {{collection.title}}</div>
+        </div>
 
-            {{/each}}
-        </tbody>
-    </table>
+    {{/each}}
 </div>
 

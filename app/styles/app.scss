@@ -22,7 +22,9 @@ $light-grey-banner: #eeeeee;
 $dark-banner: #607D8B;
 
 
-
+@mixin table-cell {
+    padding: 10px 15px;
+}
 
 body > .ember-view {
     display: flex;
@@ -37,38 +39,71 @@ h2:hover >.headerlink {
 	opacity: 1;
 }
 
+.landing-title {
+    h1 {
+        text-align: center; 
+        margin: 30px auto;
+    }
+    p {
+        text-align: center;
+    }
+}
+
+.landing-paragraph-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    > p, > h2 {
+        max-width: 800px;
+    }
+}
+
 .instructions {
     @include narrow-panel;
 }
 
 .active-cases {
     @include narrow-panel;
+    position: relative;
     padding: 0;
     background: #fff;
 	border: 1px solid #eee;
 	border-bottom: none;
+    overflow: hidden;
 
-    thead,
-    tbody {
+    .table-heading {
+        display: flex;
+        flex-direction: row;
+        background-color: #444;
+        color: #fff;
     }
 
-    table {
+    .case-no {
+        @include table-cell;
+        flex: 1.5 0 auto;
+        width: 100px;
     }
 
-	td, th {
-		padding: 10px;
-		p {
-			margin: 0px 0px 0px;
-		}
-	}
-	tr {
-		border-bottom: 1px solid #eee;
-	}
-    tr {
+    .form-type {
+        @include table-cell;
+        flex: 1 2 auto;
+        width: 500px;
     }
-    td {
-        padding: 10px;
+
+    .continue-button {
+        @include table-cell;
+        flex: 1 1 auto;
+        width: 200px;
     }
+
+    .case-details {
+        display: flex;
+        flex-direction: row;
+		border-bottom: 1px solid rgba(0,0,0,0.05);
+        align-items: center;
+    }
+
 }
 
 .info {
