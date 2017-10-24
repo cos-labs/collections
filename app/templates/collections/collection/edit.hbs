@@ -1,101 +1,97 @@
-<div class="coll-add-layer p-xl">
-    <div class="container">
-        {{# if editMode}}
+{{# if editMode}}
 
-            <div class="form">
-                <div class="form-group">
-                    <label for="collectionTitle">Title</label>
-                    {{input class="form-control" value=modelCache.title placeholder="Enter title"
-                            id="collectionTitle"}}
-                </div>
-                <div class="form-group">
-                    <label for="collectionDescription">Description</label>
-                    {{textarea class="form-control" value=modelCache.description
-                               id="collectionDescription"}}
-                </div>
-                <div class="form-group">
-                    <label for="collectionTags">Tags</label>
-                    {{input class="form-control" value=modelCache.tags
-                            placeholder="Enter comma separated tags" id="collectionTags"}}
-                </div>
-                {{#if (eq model.collectionType 'meeting')}}
-                    <div class="form-group">
-                        <label for="location">Location</label>
-                        {{input class="form-control" value=modelCache.location
-                                placeholder="Enter location" id="location"}}
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        {{input class="form-control" value=modelCache.address
-                                placeholder="Enter address" id="address"}}
-                    </div>
-                    <div class="form-group">
-                        <label for="startDate">Start Date</label>
-                        {{input class="form-control" value=modelCache.startDate
-                                placeholder="Enter start date" id="startDate"}}
-                    </div>
-                    <div class="form-group">
-                        <label for="endDate">End Date</label>
-                        {{input class="form-control" value=modelCache.endDate
-                                placeholder="Enter end date" id="endDate"}}
-                    </div>
-                {{/if}}
-                <p>
-                    <a target="_blank" href="https://github.com/cos-labs/collections/blob/develop/README.md#how-to-edit-your-meetings-landing-page">
-                        Click here for settings documentation
-                    </a>
-                </p>
-                <div class="form-group">
-                    <label for="collectionSettings">Settings</label>
-                    {{json-editor json=modelCache.settings onChange=(action "updateCacheSettings")}}
-                </div>
-
-                <div class="text-right">
-                    <button class="btn btn-default" {{action 'cancelEdit'}}>Cancel</button>
-                    <button class="btn btn-success" {{action 'saveEdit'}}>Save</button>
-                </div>
+    <div class="form">
+        <div class="form-group">
+            <label for="collectionTitle">Title</label>
+            {{input class="form-control" value=modelCache.title placeholder="Enter title"
+                    id="collectionTitle"}}
+        </div>
+        <div class="form-group">
+            <label for="collectionDescription">Description</label>
+            {{textarea class="form-control" value=modelCache.description
+                       id="collectionDescription"}}
+        </div>
+        <div class="form-group">
+            <label for="collectionTags">Tags</label>
+            {{input class="form-control" value=modelCache.tags
+                    placeholder="Enter comma separated tags" id="collectionTags"}}
+        </div>
+        {{#if (eq model.collectionType 'meeting')}}
+            <div class="form-group">
+                <label for="location">Location</label>
+                {{input class="form-control" value=modelCache.location
+                        placeholder="Enter location" id="location"}}
             </div>
-
-        {{else}}
-            <h2>{{model.title}}</h2>
-            <div class="m-b-md">
-                {{#if model.description}}
-                    {{model.description}}
-                {{else}}
-                    <span class="text-muted" {{action 'showEdit'}}>Add description </span>
-                {{/if}}
+            <div class="form-group">
+                <label for="address">Address</label>
+                {{input class="form-control" value=modelCache.address
+                        placeholder="Enter address" id="address"}}
             </div>
-            <div class="m-b-md">
-                {{#each formattedTags as |tag|}}
-                    <span class="coll-item-tag">{{tag}}</span>
-                {{/each}}
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                {{input class="form-control" value=modelCache.startDate
+                        placeholder="Enter start date" id="startDate"}}
             </div>
-            <p>Type: {{model.collectionType}}</p>
-            <p>Created by: {{model.createdBy.firstName}} {{model.createdBy.lastName}}</p>
-            <p>Date created: {{model.dateCreated}} </p>
-            <p>Date updated : {{model.dateUpdated}}</p>
-            {{#if (eq model.settings.collection_type 'Meeting')}}
-                <p>Location: {{model.location}}</p>
-                <p>Address: {{model.address}}</p>
-                <p>Start Date: {{model.startDate}}</p>
-                <p>End Date: {{model.endDate}}</p>
-            {{/if}}
-            <pre>Settings:{{settingsString}}</pre>
-
-            {{#if session.isAuthenticated}}
-                <div class="">
-                    <button class="btn btn-danger " style="margin-left:5px!important"{{action toggleProperty 'showDeleteConfirmation'}}>
-                        <i class="fa fa-times"></i> Delete
-                    </button>
-                    <button class="btn btn-info " {{action 'showEdit'}}><i
-                            class="fa fa-pencil"></i> Edit
-                    </button>
-                </div>
-            {{/if}}
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                {{input class="form-control" value=modelCache.endDate
+                        placeholder="Enter end date" id="endDate"}}
+            </div>
         {{/if}}
+        <p>
+            <a target="_blank" href="https://github.com/cos-labs/collections/blob/develop/README.md#how-to-edit-your-meetings-landing-page">
+                Click here for settings documentation
+            </a>
+        </p>
+        <div class="form-group">
+            <label for="collectionSettings">Settings</label>
+            {{json-editor json=modelCache.settings onChange=(action "updateCacheSettings")}}
+        </div>
 
+        <div class="text-right">
+            <button class="btn btn-default" {{action 'cancelEdit'}}>Cancel</button>
+            <button class="btn btn-success" {{action 'saveEdit'}}>Save</button>
+        </div>
     </div>
-</div>
+
+{{else}}
+    <h2>{{model.title}}</h2>
+    <div class="m-b-md">
+        {{#if model.description}}
+            {{model.description}}
+        {{else}}
+            <span class="text-muted" {{action 'showEdit'}}>Add description </span>
+        {{/if}}
+    </div>
+    <div class="m-b-md">
+        {{#each formattedTags as |tag|}}
+            <span class="coll-item-tag">{{tag}}</span>
+        {{/each}}
+    </div>
+    <p>Type: {{model.collectionType}}</p>
+    <p>Created by: {{model.createdBy.firstName}} {{model.createdBy.lastName}}</p>
+    <p>Date created: {{model.dateCreated}} </p>
+    <p>Date updated : {{model.dateUpdated}}</p>
+    {{#if (eq model.settings.collection_type 'Meeting')}}
+        <p>Location: {{model.location}}</p>
+        <p>Address: {{model.address}}</p>
+        <p>Start Date: {{model.startDate}}</p>
+        <p>End Date: {{model.endDate}}</p>
+    {{/if}}
+    <pre>Settings:{{settingsString}}</pre>
+
+    {{#if session.isAuthenticated}}
+        <div class="">
+            <button class="btn btn-danger " style="margin-left:5px!important"{{action toggleProperty 'showDeleteConfirmation'}}>
+                <i class="fa fa-times"></i> Delete
+            </button>
+            <button class="btn btn-info " {{action 'showEdit'}}><i
+                    class="fa fa-pencil"></i> Edit
+            </button>
+        </div>
+    {{/if}}
+{{/if}}
+
 
 {{#if showDeleteConfirmation}}
     <div class="modal fade in" tabindex="-1" role="dialog">

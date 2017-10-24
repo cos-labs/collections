@@ -6,36 +6,38 @@
 </div>
 
 
-<div class="info form-holder" style="background-color:#daf5ff; border-color:#b2dcff; margin-top: 15px; margin-bottom: 15px;" >
+<div class="instructions" style="background-color:#daf5ff; border-color:#b2dcff; margin-top: 15px; margin-bottom: 15px;" >
     In progress submissions to the {{collection.title}}. Any of the submissions may be continued by pressing the continue button.
 </div>
 
+<div class="active-cases">
+    <table class="active-cases">
+        <thead style="background-color: #444; color: #fff;">
+            <tr>
+                <th>Case No.</th>
+                <th>Form Type</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each cases as |case|}}
 
-<table class="coll-table m-b-md form-holder">
-    <thead style="background-color: #444; color: #fff;">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    <tbody>
+                <tr>
+                    <td>{{case.id}}</td>
+                    <td>{{case.workflow.title}}</td>
+                    <td>
+                        <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a>
+                    </td>
+                </tr>
 
-        {{#each cases as |case|}}
+            {{else}}
 
-    <tr>
-        <td>{{case.id}}</td>
-        <td>{{case.workflow.title}}</td>
-        <td>        <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a></td>
-    </tr>
-    
+                <tr>
+                    <td>You have not started any submissions to {{collection.title}}</td>
+                </tr>
 
-    {{else}}
-        <tr>
-            <td>You have not started any submissions to {{collection.title}}</td>
-        </tr>
-{{/each}}
-
-</tbody>
-</table>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 

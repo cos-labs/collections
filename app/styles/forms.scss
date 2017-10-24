@@ -73,14 +73,9 @@ $color2: #3197EE;
   }
 }
 
+
 @mixin form-section {
-    @include panel;
-    @include floating;
-    margin: 15px 30px;
-    width: 800px;
-    max-width: calc(100% - 60px);
-    border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.05);
+    @include narrow-panel;
     padding: 20px;
 }
 

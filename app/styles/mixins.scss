@@ -4,7 +4,19 @@
 
 @mixin panel {
     background: #ffffff;
-    padding: 20px;
     margin: 15px 15px;
+    padding: 20px;
 
 }
+
+@mixin narrow-panel {
+    @include panel;
+    @include floating;
+    margin: 15px 30px;
+    width: 800px;
+    align-self: center;
+    max-width: calc(100% - 60px) !important;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
