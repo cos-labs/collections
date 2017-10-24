@@ -14,12 +14,9 @@
 @import "logo";
 @import "cards";
 @import "mixins";
+@import "variables";
 
 
-$navbar-color: #009688;
-$light-blue-banner: #e8f0f1;
-$light-grey-banner: #eeeeee;
-$dark-banner: #607D8B;
 
 
 @mixin table-cell {
@@ -40,22 +37,63 @@ h2:hover >.headerlink {
 }
 
 .landing-title {
+    padding-top: 60px;
+    padding-bottom: 40px;
     h1 {
-        text-align: center; 
-        margin: 30px auto;
+        text-align: center;
+        margin: 30px auto 30px auto;
     }
     p {
         text-align: center;
     }
 }
 
-.landing-paragraph-container {
+.item-details {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-around;
+    
+    width: 100%;
+    
 
-    > p, > h2 {
-        max-width: 800px;
+    h2 {
+        text-align: center;
+        width: 100%;
+        margin: 30px auto;
+    }
+
+    .items-list {
+        display: flex;
+        width: $narrow-width + 30px;
+        align-self: center;
+        max-width: calc(100%);
+
+        .item-detail {
+            @include panel;
+            @include floating;
+            padding: 0;
+            width: calc(25% - 30px);
+            margin: 15px;
+
+            > a {
+                display: block;
+                background-size: cover;
+                background-position: 50% 50%;
+                height: 150px;
+            }
+        }
+    }
+
+    .items-pagination {
+        width: 100%;
+        display: flex;
+        .pagination-centered {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
     }
 }
 
