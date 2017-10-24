@@ -33,7 +33,17 @@ export default Ember.Component.extend({
 
     actions: {
         async pressButton() {
-            console.log("Approved")
+            let item = await this.get("store").findRecord("item", this.get('parameters.item.value'))
+            if (this.get("parameters.approve.value")) item.set("status", "approved");
+            if (this.get("parameters.deny.value")) item.set("status", "denied");
+            await item.save();
+            this.get('router')
+                .transitionTo(
+                    'collections.collection.item',
+                    this.get('collection').id,
+                    item.id
+                );
+
         },
     },
 

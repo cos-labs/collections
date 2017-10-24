@@ -11,19 +11,21 @@ export default Ember.Component.extend({
         Ember.run(async () => {
 
             let chosen = this.get('chosen');
+            let caxe = await this.get('store').findRecord('case', this.get('caxe.activeCase.id'));
             let chosenParameter = await this.get('store').queryRecord('parameter', {
-                name: chosen
+                name: chosen,
+                case: caxe.id
             });
 
             this.get('parameters.choices.value').map(async (choiceName) => {
 
                 let choice = await this.get('store').queryRecord('parameter', {
-                    name: choiceName.parameter
+                    name: choiceName.parameter,
+                    case: caxe.id
                 });
 
                 if (!choice) {
                     choice = this.get('store').createRecord('parameter');
-                    let caxe = await this.get('store').findRecord('case', this.get('caxe.activeCase.id'));
                     let choiceCases = await choice.get('cases')
                     choiceCases.addObject(caxe);
                     let wf = await caxe.get('workflow');

@@ -62,15 +62,42 @@ export default Ember.Component.extend({
             let deferred = Ember.RSVP.defer();
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+                    
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then(item => {
-                        this.get('store').findRecord('workflow', this.get('parameters.nextWorkflow.value'), {reload: true}).then(wf => {
+
+                        this.get('store').findRecord(
+                            'workflow',
+                            this.get('parameters.nextWorkflow.value'),
+                            {reload: true}
+                        ).then(wf => {
                             let caxe = this.get('store').createRecord('case');
                             caxe.set('collection', this.get('collection'));
                             caxe.set('workflow', wf);
-                            caxe.save().then(caxe =>
-                                this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
+                            caxe.save().then(caxe => {
+
+                                this.get('store').queryRecord('parameter', {
+                                    name: "item",
+                                    case: caxe.id
+                                }).then(itemParameter => {
+
+                                    if (!itemParameter) {
+                                        itemParameter = this.get('store').createRecord('parameter');
+                                        itemParameter.disableAutosave = true;
+                                        itemParameter.set('workflow', wf);
+                                        itemParameter.set('name', "item");
+                                        itemParameter.get('cases').then(cases => cases.addObject(caxe));
+                                    }
+
+                                    itemParameter.set('value', item.id);
+                                    itemParameter.save().then(itemParameter =>
+                                        this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
+
+                                });
+                            });
+
+
                         });
 
                     }, err => console.log(err));
