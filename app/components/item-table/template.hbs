@@ -1,3 +1,4 @@
+{{#if searchResults.data}}
 <div class="container">
     <form class="form-inline m-b-md" style='text-align: center;'>
         {{input class="form-control search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
@@ -25,9 +26,8 @@
             {{/each}}
         </tbody>
     </table>
+    {{#if (not-eq totalPages 1) }}
     <div class="pagination-wrapper text-center m-b-md">
-
-
         <ul class="pagination">
           <li class="arrow prev prevPage" >
             <a class="btn btn-default " {{action 'prevPage'}}>«</a>
@@ -38,9 +38,10 @@
         <li class="arrow next nextPage">
             <a class="btn btn-default " {{action 'nextPage'}}>»</a>
         </li>
-    </ul>
-
-
+        </ul>
+    </div>
+    {{/if}}
 </div>
-</div>
-
+{{else}}
+    <p class="p-lg text-center"><em>The table cannot be displayed. To display the schedule, add items to this collection and make sure they're indexed.</em></p>
+{{/if}}

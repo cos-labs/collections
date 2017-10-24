@@ -1,3 +1,4 @@
+{{#if (await items)}}
 <div class="meetings-schedule-container p-lg">
     <div class="container">
         <div class="row">
@@ -80,3 +81,6 @@
         </div>
     </div>
 </div>
+{{else}}
+    <p class="p-lg text-center"><em>The schedule cannot be displayed. To display the schedule, add times to some of the items.</em></p>
+{{/if}}

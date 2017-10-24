@@ -1,4 +1,5 @@
 <!-- dataset-file-grid -->
+{{#if model.items}}
 <div class="file-grid-container container">
     <h2 class="text-center p-b-xl">Browse files</h2>
     <div class="row">
@@ -14,9 +15,14 @@
             </div>
         {{/each}}
     </div>
+    {{#if (not-eq totalPages 1)}}
     <div class="row text-center">
         <div class="col-xs-12">
             {{page-numbers content=pagedContent}}
         </div>
     </div>
+    {{/if}}
 </div>
+{{else}}
+    <p class="p-lg text-center"><em>The file grid cannot be displayed. To display the grid, add some items to this collection.</em></p>
+{{/if}}
