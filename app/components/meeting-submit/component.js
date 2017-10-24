@@ -44,6 +44,7 @@ export default Ember.Component.extend({
             item.set('startTime', this.get('parameters.startTime.value'));
             item.set('endTime', this.get('parameters.endTime.value'));
             item.set('description', this.get('parameters.description.value'));
+            item.set('fileName', this.get('parameters.fileName.value'));
 
             // TODO: REPLACE THESE WITH REAL WIDGETS
             item.set('metadata', '{}');
