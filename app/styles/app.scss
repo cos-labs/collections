@@ -22,12 +22,6 @@ $light-grey-banner: #eeeeee;
 $dark-banner: #607D8B;
 
 
-@mixin floating-panel {
-	background: #ffffff;
-	padding: 20px;
-	box-shadow: 0 5px 5px -5px rgba(0,0,0,0.3);
-	margin: 15px 15px;
-}
 
 
 /* Global */
@@ -38,7 +32,6 @@ h2:hover >.headerlink {
 
 
 .info {
-	@include floating-panel;
 	background-color:#daf5ff;
 }
 
@@ -91,24 +84,9 @@ h2 {
 }
 
 .form-banner {
-	margin-top: 0;
-	padding-top: 80px;
-	padding-bottom: 50px;
-	background: url('/img/submit.jpg') top center no-repeat;
-	border-bottom: 1px solid #f0f0f0;
-	background-size: cover;
-	text-align: center;
 }
 
 .form-section {
-	background-color: #fff;
-	border: 1px solid #ddd;
-	padding: 14px;
-	border-radius: 4px;
-	margin-bottom: 18px;
-	margin-top: 18px;
-	@include floating;
-
 }
 
 .anchor-link {
