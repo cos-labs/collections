@@ -26,6 +26,11 @@ export default Model.extend({
     createdBy: belongsTo('user'),
     fileLink: attr('string'),
     category: attr('string'),
+    fileName: attr('string'),
+    fileFormat: Ember.computed('fileName', function() {
+        let arr = this.get('fileName').split('.')
+       return arr[arr.length-1];
+    }),
     startTimeFormatted: Ember.computed('startTime', function () {
         const st = moment(this.get('startTime'));
         return st.format('h:mmA');
