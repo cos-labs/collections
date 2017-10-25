@@ -4,15 +4,13 @@
 
 {{#if data}}
 
-    <div class="contributor-list">
-        {{#each data as |speaker|}}
-            <div class="contributor-detail">
-                <a class="gravatar" src="{{contributor.img_url}}"/>
-                <a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.first_name}} {{contributor.last_name}}</a>
-                <a class="affiliation">{{contributor.affiliation}}</a>
-            </div>
-        {{/each}}
-    </div>
+    {{#each data as |speaker|}}
+        <div class="contributor-detail">
+            <a class="gravatar" src="{{contributor.img_url}}"/>
+            <a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.first_name}} {{contributor.last_name}}</a>
+            <a class="affiliation">{{contributor.affiliation}}</a>
+        </div>
+    {{/each}}
 
 {{else if users}}
 

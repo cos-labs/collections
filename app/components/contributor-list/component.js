@@ -10,6 +10,7 @@ export default Ember.Component.extend({
     }),
     tagName: "section",
     attributeBindings: ["style"],
+    classNames: ["users", "narrow"],
     style: Ember.computed('layout', function() {
         return Ember.String.htmlSafe(`background-color: ${this.get('layout.background_color')}; color: ${this.get('layout.text_color')};`);
     }),
