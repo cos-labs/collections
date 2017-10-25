@@ -1,3 +1,4 @@
+{{#if (await items)}}
 <h2>Meeting Schedule</h2>
 
 <div class="filters">
@@ -61,6 +62,7 @@
                     <div class="end-time">
                         Ends at {{item.endTimeFormatted}}
                     </div>
+                 
                 </div>
 
             {{/each}}
@@ -77,3 +79,6 @@
     <p>{{get (await selectedItem) 'description'}}</p>
     <p><a href="#">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
 </div>
+{{else}}
+    <p class="p-lg text-center"><em>The schedule cannot be displayed. To display the schedule, add times to some of the items.</em></p>
+{{/if}}
