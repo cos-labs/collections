@@ -35,7 +35,7 @@
 }
 
 
-.item-details {
+.layer-file-grid {
     flex-direction: row;
     align-items: stretch;
     h2 {
@@ -48,7 +48,16 @@
         @include panel;
         @include floating;
         padding: 0;
-        width: calc(25% - 30px);
+        width: calc(100% - 30px);
+        @media (min-width: 450px) {
+            width: calc(50% - 30px);
+        }
+        @media (min-width: 600px) {
+            width: calc(33.333333% - 30px);
+        }
+        @media (min-width: 900px) {
+            width: calc(25% - 30px);
+        }
         margin: $half-padding;
 
         > a {
