@@ -10,15 +10,48 @@
     .filters {
         border-bottom: 1px solid rgba(0,0,0,0.1);
         width: 100%;
-        min-height: 50px;
         line-height: 37px;
-        padding: 16px 0;
+        padding: 0 0;
     }
 
     .schedule {
         width: calc(40% - 30px);
-        padding: 15px;
-        background-color: #fff;
+
+        .title {
+            width: calc(60% - 10px);
+            margin: 5px;
+        }
+
+        .location {
+            width: calc(40% - 10px);
+            margin: 5px;
+        }
+
+        .presenters {
+            width: calc(65% - 10px);
+            margin: 5px;
+        }
+
+        .end-time {
+            width: calc(35% - 10px);
+            margin: 5px;
+        }
+
+        .time-slot-header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
+        }
+
+        .time-slot {
+            width: 100%;
+
+            .event {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+        }
     }
 
 }
@@ -52,14 +85,7 @@
     padding: 0 0 5px 0;
   }
 
-  .time-slot {
-    padding: 0 0 15px 0;
-  }
 
-  .time-slot-header {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 3px;
-  }
 
   .item-detail {
     padding: 0 0 5px 5px;
@@ -220,8 +246,6 @@ table {
 	border-collapse: collapse;
 }
 table tbody {
-	border-right: 20px solid transparent;
-	border-left: 20px solid transparent;
 
 }
 

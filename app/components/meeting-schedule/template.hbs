@@ -37,23 +37,36 @@
 
 <div class="schedule">
     {{#each (await items) as |itemlist|}}
+
         <h3 class="time-slot-header">{{itemlist.[0].startTimeFormatted}}</h3>
-        <table class="time-slot">
+
+        <div class="time-slot">
+
             {{#each itemlist as |item|}}
-            <tbody id={{item.id}} onclick={{action (mut selectedItemId) item.id}}>
-                <tr>
-                    <td class="top-row left-cell event-title"><strong>{{item.title}}</strong></td>
-                    <td class="top-row right-cell event-location">{{item.location}}</td>
-                </tr>
-                <tr>
-                    <td class="bottom-row left-cell event-presenter">{{await
-                    item.createdBy.computedFullName}}</td>
-                    <td class="bottom-row right-cell event-end-time">Ends
-                    at {{item.endTimeFormatted}}</td>
-                </tr>
-            </tbody>
+
+                <div
+                    class="event"
+                    id={{item.id}}
+                    onclick={{action (mut selectedItemId) item.id}}
+                >
+                    <div class="title">
+                        <strong>{{item.title}}</strong>
+                    </div>
+                    <div class="location">
+                        {{item.location}}
+                    </div>
+                    <div class="presenters">
+                        {{await item.createdBy.computedFullName}}
+                    </div>
+                    <div class="end-time">
+                        Ends at {{item.endTimeFormatted}}
+                    </div>
+                </div>
+
             {{/each}}
-        </table>
+
+        </div>
+
     {{/each}}
 </div>
 

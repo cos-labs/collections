@@ -27,6 +27,16 @@
                 {{input class="form-control" value=modelCache.address
                         placeholder="Enter address" id="address"}}
             </div>
+
+        {{else}}
+            <h2>{{collection.title}}</h2>
+            <div class="m-b-md">
+                {{#if collection.description}}
+                    {{collection.description}}
+                {{else}}
+                    <span class="text-muted" {{action 'showEdit'}}>Add description </span>
+                {{/if}}
+            </div>
             <div class="form-group">
                 <label for="startDate">Start Date</label>
                 {{input class="form-control" value=modelCache.startDate
@@ -37,6 +47,28 @@
                 {{input class="form-control" value=modelCache.endDate
                         placeholder="Enter end date" id="endDate"}}
             </div>
+            <p>Type: {{collection.collectionType}}</p>
+            <p>Created by: {{collection.createdBy.firstName}} {{collection.createdBy.lastName}}</p>
+            <p>Date created: {{collection.dateCreated}} </p>
+            <p>Date updated : {{collection.dateUpdated}}</p>
+            {{#if (eq collection.settings.collection_type 'Meeting')}}
+                <p>Location: {{collection.location}}</p>
+                <p>Address: {{collection.address}}</p>
+                <p>Start Date: {{collection.startDate}}</p>
+                <p>End Date: {{collection.endDate}}</p>
+            {{/if}}
+            <pre>Settings:{{settingsString}}</pre>
+
+            {{#if session.isAuthenticated}}
+                <div class="">
+                    <button class="btn btn-danger " style="margin-left:5px!important"{{action toggleProperty 'showDeleteConfirmation'}}>
+                        <i class="fa fa-times"></i> Delete
+                    </button>
+                    <button class="btn btn-info " {{action 'showEdit'}}><i
+                            class="fa fa-pencil"></i> Edit
+                    </button>
+                </div>
+            {{/if}}
         {{/if}}
         <p>
             <a target="_blank" href="https://github.com/cos-labs/collections/blob/develop/README.md#how-to-edit-your-meetings-landing-page">
@@ -101,7 +133,7 @@
                     <button type="button" class="close" aria-label="Close" {{action toggleProperty
                                                                                     'showDeleteConfirmation'}}>
                         <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Delete collection "{{model.title}}"?</h4>
+                    <h4 class="modal-title">Delete collection "{{collection.title}}"?</h4>
                 </div>
                 <div class="modal-body">
                     <p>This will remove all groups and items inside collections. Original projects
