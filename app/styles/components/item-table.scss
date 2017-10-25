@@ -1,5 +1,14 @@
 .items {
 
+    form {
+        display: flex;
+        justify-content: center;
+
+        input {
+            margin: 0;
+        }
+    }
+
     .item-list {
         display: flex;
         flex-direction: column;
