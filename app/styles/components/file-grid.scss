@@ -52,7 +52,7 @@
         @include floating;
         padding: 0;
         width: calc(100% - 30px);
-        @media (min-width: 450px) {
+        @media (min-width: 400px) {
             width: calc(50% - 30px);
         }
         @media (min-width: 600px) {
@@ -67,7 +67,7 @@
             display: block;
             background-size: cover;
             background-position: 50% 50%;
-            height: 150px;
+            height: 180px;
         }
     }
 
@@ -82,3 +82,17 @@
     }
 }
 
+
+ .item-thumbnail{
+    text-align: center;
+    padding-top: 115px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #6f6f6f;
+    cursor:pointer;
+    text-transform: uppercase;
+  }
+
+.item-detail a:hover{
+  text-decoration: none;
+}
