@@ -22,9 +22,10 @@ export default Ember.Component.extend({
     // binding the property on the paged array
     // to a property on the controller
     totalPages: Ember.computed.oneWay("pagedContent.totalPages"),
+
     actions: {
         transition(route, ...models) {
-            this.get("routing").transitionTo(route, ...models);
+            this.get("router").transitionTo(route, ...models);
         }
     }
 
