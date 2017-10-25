@@ -44,6 +44,7 @@
         margin: 30px auto;
     }
 
+
     .item-detail {
         @include panel;
         @include floating;
@@ -58,6 +59,7 @@
         @media (min-width: 900px) {
             width: calc(25% - 30px);
         }
+
         margin: $half-padding;
 
         > a {
