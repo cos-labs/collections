@@ -5,19 +5,27 @@ export default Ember.Route.extend({
     title: "Collections",
     crumb: {},
 
-    model(params) {
-        return this.store.findAll('collection');
-    },
-
-    afterModel() {
+    beforeModel() {
+        this.set("crumb.label", this.title);
+        this.set("crumb.route", this.routeName);
         this.set("nav.links", [{
-            label: "Browse",
+            label: "Showcase",
+            route: "explore"
+        }, {
+            label: "Trending",
             route: "explore"
         }]);
     },
 
-    setupController(controller, data) {
-        controller.set("collections", data);
-    }
+    model(params) {
+        return Ember.RSVP.hash({
+            collections: this.store.findAll('collection'),
+        });
+    },
+
+    setupController(collection, data) {
+        collection.set('collections', data.collections);
+    },
 
 });
+

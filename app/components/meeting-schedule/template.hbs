@@ -1,3 +1,6 @@
+
+{{#if (await items)}}
+
 <div class="filters">
     <a class="filter-dropdown" {{action 'toggleFilterOptions'}}>
         <i class="fa fa-filter" aria-hidden="true"></i>
@@ -59,6 +62,7 @@
                     <div class="end-time">
                         Ends at {{item.endTimeFormatted}}
                     </div>
+                 
                 </div>
 
             {{/each}}
@@ -75,3 +79,8 @@
     <p>{{get (await selectedItem) 'description'}}</p>
     <p><a href="#">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
 </div>
+{{else}}
+    <p class="error-message">
+        The schedule cannot be displayed. To display the schedule, add times to some of the items.
+    </p>
+{{/if}}

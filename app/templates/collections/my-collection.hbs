@@ -1,1 +1,47 @@
-My Collection
+{{outlet}}
+<section class="coll-banner text-center">
+    <h1 class="f-w-lg"> My Collection </h1>
+    <p class="lead f-w-md">Where all of your personal items go!</p>
+    {{#if session.isAuthenticated}}
+        {{#link-to class="btn btn-success btn-lg m-t-lg"}}Add a new item{{/link-to}}
+    {{/if}}
+</section>
+<section>
+    <h2 class="text-center">Your Items</h2>
+    <div class="cards">
+        {{#each collections as |collection|}}
+            <div class="card coll-single">
+                <div class="card-content">
+                    <h3>
+                        {{#link-to "collections.collection" collection.id
+                                   class="btn btn-info pull-right"}}
+                            <span {{action 'clearFilter'}}>View</span>{{/link-to}}
+                        {{#link-to "collections.collection" collection.id}}
+                            <span {{action 'clearFilter'}}>{{collection.title}}</span>{{/link-to}}
+                    </h3>
+                    <p>{{truncate-text collection.description limit=250 omission="..."}}</p>
+                </div>
+                <footer>
+                    {{#if collection.tags}}
+                        <div class="coll-tags">Tags: {{truncate-text collection.tags limit=50
+                                                                     omission="..."}}</div>
+                    {{/if}}
+                    <h6 class="text-muted">
+                        {{collection.titleCaseCollectionType}} | Created on {{moment-format
+                            collection.dateCreated "MMMM DD, YYYY"}}
+                    </h6>
+                </footer>
+            </div>
+        {{/each}}
+    </div>
+
+    <div class="text-center">
+        {{#if showLoadMore}}
+            {{#if loadingMore}}
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw text-muted m-t-md"></i>
+            {{else}}
+                <button class="btn btn-default" {{action 'loadMore'}}> Load more</button>
+            {{/if}}
+        {{/if}}
+    </div>
+</section>
