@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
     style: Ember.computed("model.settings.branding.colors.primary", function() {
         let pColor = this.get("model.settings.branding.colors.primary");
-        if (!pColor) pColor = "rgb(22, 135, 131)";
+        if (!pColor) pColor = "#5b7188";
         return "background-color:" + pColor;
     }),
 

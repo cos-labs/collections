@@ -1,12 +1,15 @@
 @import 'validated-input';
 @import 'components/subject-picker';
+@import 'components/layer-items';
 @import 'components/landing-sponsors';
 @import 'components/meetings-schedule';
 @import 'components/contributor-list';
 @import 'components/datetime-picker';
 @import 'components/landing-paragraph';
 @import 'components/file-grid.scss';
+@import 'components/landing-title.scss';
 @import 'components/footer';
+@import 'submissions';
 
 @import 'osf-style';
 @import "nav";
@@ -14,21 +17,49 @@
 @import "logo";
 @import "cards";
 @import "mixins";
+@import "variables";
+@import "hero";
 
 
-$navbar-color: #009688;
-$light-blue-banner: #e8f0f1;
-$light-grey-banner: #eeeeee;
-$dark-banner: #607D8B;
+// /////////////////////////////////////////////////////////////////////////////
+// frozen
 
 
-@mixin floating-panel {
-	background: #ffffff;
-	padding: 20px;
-	box-shadow: 0 5px 5px -5px rgba(0,0,0,0.3);
-	margin: 15px 15px;
+
+
+
+
+body > .ember-view {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
 }
 
+@mixin fluid($width, $min-padding) {
+    padding: $min-padding calc((100% - #{$width}) / 2);
+    @media (max-width: ($width + (2 * $min-padding))) {
+        padding: $min-padding;
+    }
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    @include fluid(($section-width - $padding), $half-padding)
+
+    & > * {
+        margin: $half-padding;
+    }
+
+}
+
+
+// /frozen
+// /////////////////////////////////////////////////////////////////////////////
 
 /* Global */
 
@@ -37,27 +68,15 @@ h2:hover >.headerlink {
 }
 
 
-.info {
-	@include floating-panel;
-	background-color:#daf5ff;
-}
 
-.case-detail {
-	@include floating;
-	@include panel;
-	background: #ffffff;
-	margin: 15px 15px;
-	padding: 20px;
-}
+
+
 /* Global */
 
 h2:hover > .headerlink {
 	opacity: 1;
 }
 
-section {
-	padding: 30px 30px;
-}
 
 .info {
 	@include floating;
@@ -88,27 +107,6 @@ h2 {
 	border: 1px solid #CDCDCD;
 	border-radius: 50%;
 	margin-right: 5px;
-}
-
-.form-banner {
-	margin-top: 0;
-	padding-top: 80px;
-	padding-bottom: 50px;
-	background: url('/img/submit.jpg') top center no-repeat;
-	border-bottom: 1px solid #f0f0f0;
-	background-size: cover;
-	text-align: center;
-}
-
-.form-section {
-	background-color: #fff;
-	border: 1px solid #ddd;
-	padding: 14px;
-	border-radius: 4px;
-	margin-bottom: 18px;
-	margin-top: 18px;
-	@include floating;
-
 }
 
 .anchor-link {
@@ -166,28 +164,7 @@ ul.comma-list {
 		content: "";
 	}
 }
-.coll-breadcrumbs {
-	background-color: #f5f5f5;
-	height: 40px;
-	padding-top: 3px;
-}
 
-.coll-table {
-	background: #fff;
-	border: 1px solid #eee;
-	border-bottom: none;
-	box-shadow: 0 2px 12px -5px #ccc;
-	width: 100%;
-	td, th {
-		padding: 10px;
-		p {
-			margin: 0px 0px 0px;
-		}
-	}
-	tr {
-		border-bottom: 1px solid #eee;
-	}
-}
 .coll-alert{
 	padding: 20px;
 	text-align: center;
@@ -223,9 +200,6 @@ ul.comma-list {
 	border-bottom: 1px solid #ddd;
 }
 
-#myNavbar {
-	padding: 0;
-}
 
 a.dropdown-toggle.nav-user-dropdown {
 	padding-right: 0;
@@ -254,9 +228,6 @@ a.dropdown-toggle.nav-user-dropdown {
 		margin-right: 0;
 
 	}
-}
-.container {
-	box-sizing: border-box;
 }
 .nav > li > a:hover, .nav > li > a:focus {
 	background-color: #1fa99c;
@@ -474,26 +445,6 @@ tr.item-row-selected {
 	color: #fff;
 }
 
-.coll-hero-logo {
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-.hero {
-	color: #fff;
-	background-color: #333;
-	text-align: center;
-	box-shadow: inset 0 -30px 120px -30px rgba(0, 0, 0, 0.5);
-	overflow: hidden;
-	text-shadow: 0px 1px 3px rgba(0,0,0,0.5);
-	padding: 30px;
-
-	h1 {
-		margin: 30px;
-	}
-
-}
 
 /* Preprint forms -- copied over from ember-preprints repo*/
 .preprint-form-section {
@@ -867,164 +818,3 @@ span.sortable-bars:hover {
 }
 
 
-#schedule-header .form-control {
-	display: inline;
-	width: inherit;
-}
-
-
-
-/* filters */
-
-
-
-.filter-bar{
-	min-height: 50px;
-	line-height: 37px;
-	border-bottom: 1px solid #444;
-	padding: 16px;
-}
-
-i{
-	margin-left: 8px;
-	margin-right: 8px;
-}
-
-.filter-dropdown{
-	color: #444;
-	transition: color 0.2s ease;
-	cursor: pointer;
-	margin-right: 16px;
-}
-
-.filter-dropdown:hover{
-	color: #666;
-}
-
-.filter{
-	padding: 8px 8px 8px 16px;
-	background-color: #3A3A3A;
-	border-radius: 50px 0 0 50px;
-	color: #e8e4e4;
-	margin: 8px 0;
-	transition: all 0.2s ease;
-}
-
-.filter-remove{
-	padding: 8px 16px 8px 8px;
-	background-color: #3A3A3A;
-	border-radius: 0 50px 50px 0;
-	color: rgba(255,255,255,0.8);
-	transition: all 0.2s ease;
-}
-
-.filter:hover, .filter-remove:hover{
-	color: white;
-	background-color: #585858;
-}
-
-.operator{
-	color: rgba(255,255,255,0.5);
-}
-
-.filter-remove{
-	color: rgba(255,255,255,0.5);
-	cursor: pointer;
-}
-
-.remove:hover{
-	color: white;
-
-}
-
-.edit-filter-modal{
-	background-color: #F2F3F5;
-	width: 260px;
-	position: absolute;
-	border-radius: 0 0 4px 4px;
-	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.3);
-	transition: transform 0.1s ease, opacity 0.1s ease;
-	transform-origin: 0 0;
-	padding: 16px;
-	z-index: 10;
-}
-
-select{
-	width: 100%;
-	height: 32px;
-	background-color: white;
-	border: 1px solid rgba(0,0,0,0.125);
-	margin-bottom: 16px;
-}
-
-input{
-	width: 100%;
-	height: 32px;
-	border-radius: 3px;
-	border: none;
-	margin-bottom: 16px;
-	background-color: white;
-	border: 1px solid rgba(0,0,0,0.125);
-}
-
-button{
-	background-color: #80B636;
-	color: white;
-	padding: 8px 16px;
-	border:none;
-	border-radius: 3px;
-	float: right;
-}
-
-button:hover{
-	opacity: 0.8;
-}
-
-.text-button{
-	background-color: transparent;
-	color: #24272A;
-}
-
-.hidden{
-	transform:scale(0.5);
-	opacity: 0;
-
-}
-
-.filter-hidden{
-	display:none;
-}
-
-
-
-.selected-schedule{
-	background: #444;
-	color: white;
-}
-
-table {
-	border-collapse: collapse;
-}
-table tbody {
-	border-right: 20px solid transparent;
-	border-left: 20px solid transparent;
-
-}
-
-
-.search-bar{
-	width: 75% !important;
-	margin: auto;
-}
-
-
-.input-box{
-	text-align: center;
-	margin: auto;
-}
-
-
-.form-holder{
-	max-width: 800px;
-	margin: 0 auto
-}

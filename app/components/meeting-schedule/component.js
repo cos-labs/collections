@@ -12,6 +12,7 @@ export default Ember.Component.extend({
     roomFilter: '',
     filters: [],
     selectedItemId: 0,
+    classNames: ["schedule-explorer"],
     data: Ember.computed('layout', function () {
         const dataSource = this.get('layout.data');
         return this.get('model.settings').data[dataSource];
@@ -87,7 +88,7 @@ export default Ember.Component.extend({
         });
     }),
     selectedItem: Ember.computed('selectedItemId', 'model', function() {
-        $('tbody').removeClass('selected-schedule')
+        $('.event').removeClass('selected-schedule')
         const id = parseInt(this.get('selectedItemId'), 10);
         $('#'+id).addClass('selected-schedule')
         if (id >= 0) {
