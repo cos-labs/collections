@@ -4,6 +4,7 @@ export default Ember.Component.extend({
     session: Ember.inject.service(),
     tagName: 'section',
     attributeBindings: ['style'],
+    classNames: ["landing-title"],
     style: Ember.computed('layout', 'branding', function() {
         // if image is specified for background, use that
         // otherwise, check if a background color has been specified.

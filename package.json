@@ -72,7 +72,7 @@
     "loader.js": "^4.0.1",
     "lodash": "^4.17.4",
     "lodash.omit": "^4.5.0",
-    "pagination-pager": "2.4.2",
+    "pagination-pager": "^3.1.0",
     "regenerator": "^0.8.46"
   },
   "devDependencies": {

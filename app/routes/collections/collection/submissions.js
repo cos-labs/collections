@@ -3,8 +3,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    caxe: Ember.inject.service(),
-
     title: "Submissions",
     crumb: {},
 

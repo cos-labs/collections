@@ -2,6 +2,7 @@
 #osf-nav {
     position: absolute;
     top: 0px;
+    z-index: 1000;
 }
 #osf-nav > .global-nav > a.service-link {
     font-size: 2.4rem !important;

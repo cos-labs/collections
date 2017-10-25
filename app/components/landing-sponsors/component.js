@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'section',
     attributeBindings: ['style'],
+    classNames: ["sponsors"],
     style: Ember.computed('layout', function() {
         const bg = this.get('layout.background-color') ? this.get('layout.background-color') : this.get('branding.colors.background');
         const txt = this.get('layout.text-color') ? this.get('layout.text-color') : this.get('branding.colors.text');

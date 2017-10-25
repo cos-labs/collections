@@ -7,6 +7,7 @@ export default Ember.Component.extend({
     filterString: '',
     eventFilter: '',
     searchResults: null,
+    classNames: ["layer-items"],
     pageNumber: 1,
     totalPages: 1,
     searchInput: '',

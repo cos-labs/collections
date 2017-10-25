@@ -1,41 +1,40 @@
-<div id="{{get-section-id layout.title}}" class="contributor-list-container p-t-xl p-b-xl"
-     style="{{containerStyle}}">
-    <div class="container">
-        {{#if layout.title}}
-            <div class="row text-center section-title">
-                <h2>
-                    {{layout.title}}
-                </h2>
-            </div>
-        {{/if}}
-        <div class="contributor-flex-container">
-            {{#if data}}
-                {{#each data as |speaker|}}
-                    <div class="contributor-card">
-                        <div class="contributor-detail">
-                            <img class="contributor-pic-thumbnail" src="{{contributor.img_url}}"/>
-                            <p class="contributor-name"><a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.first_name}} {{contributor.last_name}}</a>
-                                <br>
-                                <span class="affiliation">{{contributor.affiliation}}</span>
-                            </p>
-                        </div>
-                    </div>
-                {{/each}}
-            {{else if users}}
-                {{#each users as |contributor|}}
-                    <div class="contributor-detail">
-                        <div class="img-wrapper">
-                        {{#if contributor.gravatar}}
-                        <a href='https://staging.osf.io/{{contributor.username}}'><img class="contributor-pic-thumbnail" alt="User gravatar"
-                                                                                   src="{{contributor.gravatar}}"/></a>
-                        {{else}}
-                            <a href='https://staging.osf.io/{{contributor.username}}'><img class="contributor-pic-thumbnail" alt="User gravatar"
-                                                                                       src="https://udayton.edu/0/img/generic-profile.png"/></a>
-                        {{/if}}</div>
-                        <p class="contributor-name p-t-xs text-center"><a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.computedFullName}}</a></p>
-                    </div>
-                {{/each}}
-            {{/if}}
+{{#if layout.title}}
+    <h2>{{layout.title}}</h2>
+{{/if}}
+
+{{#if data}}
+
+    {{#each data as |speaker|}}
+        <div class="contributor-detail">
+            <a class="gravatar" src="{{contributor.img_url}}"/>
+            <a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.first_name}} {{contributor.last_name}}</a>
+            <a class="affiliation">{{contributor.affiliation}}</a>
         </div>
-    </div>
-</div>
+    {{/each}}
+
+{{else if users}}
+
+    {{#each users as |contributor|}}
+
+        <div class="contributor-detail">
+            {{#if contributor.gravatar}}
+                <a  href='https://staging.osf.io/{{contributor.username}}'
+                    class="gravatar"
+                    style="background-image: url('{{contributor.gravatar}}');"></a>
+            {{else}}
+                <a href='https://staging.osf.io/{{contributor.username}}'>
+                    <img
+                        class="contributor-pic-thumbnail"
+                        alt="User gravatar"
+                        src="https://udayton.edu/0/img/generic-profile.png"/>
+                </a>
+            {{/if}}
+            <p class="contributor-name p-t-xs text-center">
+                <a href='https://staging.osf.io/{{contributor.username}}'>
+                    {{contributor.computedFullName}}
+                </a>
+            </p>
+        </div>
+
+    {{/each}}
+{{/if}}

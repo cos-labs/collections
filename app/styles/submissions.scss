@@ -1,0 +1,62 @@
+@import "mixins";
+
+.instructions {
+    @include narrow-panel;
+}
+
+
+
+.active-cases {
+    @include narrow-panel;
+    position: relative;
+    padding: 0;
+    background: #fff;
+	border: 1px solid #eee;
+	border-bottom: none;
+    overflow: hidden;
+
+    .table-heading {
+        display: flex;
+        flex-direction: row;
+        background-color: #444;
+        color: #fff;
+    }
+
+    .case-no {
+        @include table-cell;
+        flex: 1.5 0 auto;
+        width: 100px;
+    }
+
+    .form-type {
+        @include table-cell;
+        flex: 1 2 auto;
+        width: 500px;
+    }
+
+    .continue-button {
+        @include table-cell;
+        flex: 1 1 auto;
+        width: 200px;
+    }
+
+    .case-details {
+        display: flex;
+        flex-direction: row;
+		border-bottom: 1px solid rgba(0,0,0,0.05);
+        align-items: center;
+    }
+
+}
+
+.info {
+	background-color:#daf5ff;
+}
+
+.case-detail {
+	@include floating;
+	@include panel;
+	background: #ffffff;
+	margin: 15px 15px;
+	padding: 20px;
+}
