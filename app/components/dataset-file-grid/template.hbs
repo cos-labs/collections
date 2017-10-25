@@ -1,27 +1,21 @@
 <!-- dataset-file-grid -->
 
 {{#if model.items}}
-<div class="file-grid-container container">
-    <h2>Browse files</h2>
-    {{#each pagedContent as |item|}}
-        <div class="item-detail">
-            <a  style="background-image: url('/img/placeholder.png');"
-                {{action "transition" "collections.collection.item" model.id item.id}}></a>
-            <div class="panel-body">
-                {{#link-to 'collections.collection.item' model.id item.id class="clamp"}}{{item.title}}{{/link-to}}
-                <a href="https://staging.osf.io/{{await item.createdBy.username}}">
-                <p><small>{{await item.createdBy.firstName}} {{await item.createdBy.lastName}}</small></p></a>
+        <h2>Browse files</h2>
+        {{#each pagedContent as |item|}}
+            <div class="item-detail">
+                <a  style="background-image: url('/img/placeholder.png');"
+                    {{action "transition" "collections.collection.item" model.id item.id}}></a>
+                <div class="panel-body">
+                    {{#link-to 'collections.collection.item' model.id item.id class="clamp"}}{{item.title}}{{/link-to}}
+                    <a href="https://staging.osf.io/{{await item.createdBy.username}}">
+                    <p><small>{{await item.createdBy.firstName}} {{await item.createdBy.lastName}}</small></p></a>
+                </div>
             </div>
-        </div>
-    {{/each}}  
-    {{#if (not-eq totalPages 1)}}
-    <div class="row text-center">
-        <div class="col-xs-12">
+        {{/each}}  
+        {{#if (not-eq totalPages 1)}}
             {{page-numbers content=pagedContent}}
-        </div>
-    </div>
-    {{/if}}
-</div>
+        {{/if}}
 {{else}}
     <p class="p-lg text-center"><em>The file grid cannot be displayed. To display the grid, add some items to this collection.</em></p>
 {{/if}}
