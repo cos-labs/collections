@@ -1,5 +1,6 @@
 .schedule-explorer {
 
+    background-color: #444;
     flex-direction: row;
 
     h2 {
@@ -7,15 +8,38 @@
         margin: 30px auto;
     }
 
-    .filters {
-        border-bottom: 1px solid rgba(0,0,0,0.1);
+    .error-message {
+        text-align: center;
         width: 100%;
+        font-style: italic;
+    }
+
+    .filters {
+        width: 100%;
+        margin-bottom: 0px;
         line-height: 37px;
         padding: 0 0;
+        .filter-dropdown {
+            color: #fff;
+        }
+    }
+
+    .item-detail {
+        margin-left: 0;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 0 3px 3px 0;
+        width: calc(50% - 30px);
+        flex: 1 0 auto;
     }
 
     .schedule {
-        width: calc(40% - 30px);
+        width: calc(50% - 30px);
+        margin-right: 0;
+        background-color: #444;
+        border-radius: 3px 0 0 3px;
+        padding-left: 0;
+        color: #eee;
 
         .title {
             width: calc(60% - 10px);
@@ -35,24 +59,30 @@
         .end-time {
             width: calc(40% - 10px);
             margin: 5px;
+            text-align: right;
         }
 
         .time-slot-header {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 3px;
+            border-bottom: 1px solid rgba(255, 2555, 255, 0.2);
+            margin-right: 15px;
+            padding: 10px 0;
+            margin-left: 5px;
+            margin-top:10px;
         }
 
         .time-slot {
             width: 100%;
 
             .event {
+                padding: 5px;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
 
                 &.selected-schedule{
-                    background: #444;
-                    color: white;
+                    background: #fff;
+                    color: #000;
+                    border-radius: 3px 0 0 3px;
                 }
 
             }
