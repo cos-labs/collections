@@ -2,8 +2,9 @@
 <h2>Browse files</h2>
 {{#each pagedContent as |item|}}
     <div class="item-detail">
-        <a  style="background-image: url('/img/placeholder.png');"
-            {{action "transition" "collections.collection.item" model.id item.id}}></a>
+        <a style="background-image: url('/img/placeholder.png');"{{action "transition" "collections.collection.item" model.id item.id}}>
+            <div class="item-thumbnail">{{item.fileName}}</div>
+        </a>
         <div class="panel-body">
             {{#link-to 'collections.collection.item' model.id item.id class="clamp"}}{{item.title}}{{/link-to}}
             <a href="https://staging.osf.io/{{await item.createdBy.username}}">
