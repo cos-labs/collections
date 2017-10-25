@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     session: Ember.inject.service(),
     router: Ember.inject.service('-routing'),
 
-    classNames: ["item-details"],
+    classNames: ["layer-file-grid"],
     tagName: "section",
 
     // Everything below is part of ember-cli-pagination setup for client-side-only pagination
