@@ -22,13 +22,6 @@ export default Ember.Component.extend({
     // binding the property on the paged array
     // to a property on the controller
     totalPages: Ember.computed.oneWay("pagedContent.totalPages"),
-    didRender(){
-         let file = document.getElementsByClassName("item-thumbnail");
-        for(var i = 0; i < file.length; i++){
-
-           //file[i].innerText =  file[i].innerText.split(".")[1];
-        }
-    },
     actions: {
         transition(route, ...models) {
             this.get("routing").transitionTo(route, ...models);
