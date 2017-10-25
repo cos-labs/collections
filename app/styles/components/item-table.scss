@@ -1,0 +1,39 @@
+.items {
+
+    .item-list {
+        display: flex;
+        flex-direction: column;
+
+        .table-heading {
+            display: flex;
+            flex-direction: row;
+            background-color: #444;
+            color: #fff;
+        }
+
+        .item-row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .title {
+            margin: 5px;
+            padding: 5px;
+            width: calc(45% - 10px);
+        }
+
+        .author {
+            margin: 5px;
+            padding: 5px;
+            width: calc(30% - 10px);
+        }
+
+        .type {
+            margin: 5px;
+            padding: 5px;
+            width: calc(25% - 10px);
+        }
+
+    }
+
+}

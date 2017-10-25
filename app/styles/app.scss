@@ -1,5 +1,6 @@
 @import 'validated-input';
 @import 'components/subject-picker';
+@import 'components/item-table';
 @import 'components/landing-sponsors';
 @import 'components/meetings-schedule';
 @import 'components/contributor-list';
@@ -24,8 +25,8 @@
 
 
 
-$section-width: 960px;
-$padding: 30px;
+$section-width: 1000px;
+$padding: 40px;
 $half-padding: ($padding/2);
 
 body > .ember-view {
