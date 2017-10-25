@@ -25,7 +25,7 @@ export default Ember.Component.extend({
 
     actions: {
         transition(route, ...models) {
-            this.get("routing").transitionTo(route, ...models);
+            this.get("router").transitionTo(route, ...models);
         }
     }
 

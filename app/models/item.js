@@ -28,8 +28,13 @@ export default Model.extend({
     category: attr('string'),
     fileName: attr('string'),
     fileFormat: Ember.computed('fileName', function() {
-        let arr = this.get('fileName').split('.')
-       return arr[arr.length-1];
+        let name =  this.get('fileName');
+        if (name) {
+            let arr = this.get('fileName').split('.')
+            return arr[arr.length-1];
+        } else {
+            return "";
+        }
     }),
     startTimeFormatted: Ember.computed('startTime', function () {
         const st = moment(this.get('startTime'));
