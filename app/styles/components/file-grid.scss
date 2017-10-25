@@ -1,4 +1,5 @@
 @import '../mixins';
+@import '../variables';
 
 .file-grid-container {
 
@@ -32,3 +33,40 @@
     }
   }
 }
+
+
+.item-details {
+    flex-direction: row;
+    align-items: stretch;
+    h2 {
+        text-align: center;
+        width: 100%;
+        margin: 30px auto;
+    }
+
+    .item-detail {
+        @include panel;
+        @include floating;
+        padding: 0;
+        width: calc(25% - 30px);
+        margin: $half-padding;
+
+        > a {
+            display: block;
+            background-size: cover;
+            background-position: 50% 50%;
+            height: 150px;
+        }
+    }
+
+    .items-pagination {
+        width: 100%;
+        display: flex;
+        .pagination-centered {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+    }
+}
+

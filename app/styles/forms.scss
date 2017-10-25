@@ -79,21 +79,18 @@ $color2: #3197EE;
     padding: 20px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+h1.submission {
+    margin-top: 0;
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 80px 30px 50px 30px;
+    background: url('/img/submit.jpg') top center no-repeat;
+    border-bottom: 1px solid #f0f0f0;
+    background-size: cover;
+    text-align: center;
+}
 
-    h1 {
-        margin-top: 0;
-        margin-bottom: 15px;
-        width: 100%;
-        padding: 80px 30px 50px 30px;
-        background: url('/img/submit.jpg') top center no-repeat;
-        border-bottom: 1px solid #f0f0f0;
-        background-size: cover;
-        text-align: center;
-    }
+section {
 
     .description {
         @include form-section;
@@ -114,8 +111,6 @@ form {
     > fieldset {
         @include form-section;
         background-color: #fff;
-        width: 800px;
-        max-width: calc(100% - 60px);
 
         h2 {
             font-size: 1.8rem;
