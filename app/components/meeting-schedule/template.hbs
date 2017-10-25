@@ -80,5 +80,7 @@
     <p><a href="#">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
 </div>
 {{else}}
-    <p class="p-lg text-center"><em>The schedule cannot be displayed. To display the schedule, add times to some of the items.</em></p>
+    <p class="error-message">
+        The schedule cannot be displayed. To display the schedule, add times to some of the items.
+    </p>
 {{/if}}
