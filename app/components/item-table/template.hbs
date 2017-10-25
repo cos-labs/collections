@@ -1,32 +1,46 @@
 <div class="container">
-    <div class="row m-b-md">
-        {{input value=filterString placeholder="Filter"}}
-        | Filter by:
-        <select onchange={{action (mut eventFilter) value="target.value"}}>
-            <option value="" selected={{eq "" eventFilter}}>Event type</option>
-            {{#each (await eventTypes) as |event|}}
-                <option value={{event}} selected={{eq event eventFilter}}>{{event}}</option>
+    <form class="form-inline m-b-md" style='text-align: center;'>
+        {{input class="form-control search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+        <div {{action 'search'}} class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></div>
+    </form>
+    <table class="coll-table m-b-md">
+        <thead style="{{theadStyle}}">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each searchResults.data as |r|}}
+            <tr>
+                <td>
+                    {{#link-to "collections.collection.item" model.id r.id}}
+                    {{r.attributes.title}}
+                    {{/link-to}}
+                </td>
+                <td>{{r.attributes.created-by}}</td>
+                <td>{{r.attributes.category}}</td>
+            </tr>
             {{/each}}
-        </select>
-    </div>
-    <div class="row m-b-lg">
-        <table class="coll-table">
-            <thead style="{{theadStyle}}">
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each model.list as |item|}}
-                    {{#if (and (or (contains-substring item.title filterString)
-                        (contains-substring (await item.createdBy.computedFullName) filterString))
-                            (contains-substring item.type eventFilter))}}
-                        {{collection-item item=item cardView=cardView tagName='tr' toggleSelectedList=toggleSelectedList organizeMode=organizeMode}}
-                    {{/if}}
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+    <div class="pagination-wrapper text-center m-b-md">
+
+
+        <ul class="pagination">
+          <li class="arrow prev prevPage" >
+            <a class="btn btn-default " {{action 'prevPage'}}>«</a>
+        </li>
+        {{#each pageNumberButtons as |item|}}
+        <li class="page-number"{{action 'loadPage' item}} data-id="{{item}}"><a>{{item}}</a></li>
+        {{/each}}
+        <li class="arrow next nextPage">
+            <a class="btn btn-default " {{action 'nextPage'}}>»</a>
+        </li>
+    </ul>
+
+
 </div>
+</div>
+

@@ -2,6 +2,7 @@
 
 [![Join the chat at https://gitter.im/cos-labs/collections](https://badges.gitter.im/cos-labs/collections.svg)](https://gitter.im/cos-labs/collections?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+
 Collections is a prototype project at the Center for Open Science. This project is experimental, scope, technologies, code and functionality may change. This app has two main parts. The service stores data about the collection, and the client lets users interact with their collections.
 
 
@@ -69,3 +70,110 @@ Visit your app at [http://localhost:4200](http://localhost:4200).
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
+
+# How to edit your meeting's landing page
+
+Editing a landing page involves editing a nested settings document. It's not as hard as it sounds, we promise! There are three important sections in the settings: `branding`, `layout`, and `data`.
+
+### Branding
+
+Branding mostly determines the colors that your landing page will default to, and should generally be a riff on colors of your organization, or whichever colors you typically use for your meeting's website. Colors are specified in hexadecimal, e.g. `#942ae8`. If the color is all the same character (i.e. `#777777`), the shorthand `#777` is also accepted. You can use w3school's [color picker](https://www.w3schools.com/colors/colors_picker.asp) to find the hexadecimal code for a color you like.
+```
+"branding": {
+    "colors": {
+        "primary": "#444",
+        "secondary": "#fff",
+        "background": "#000",
+        "text": "#fff"
+    }
+}
+```
+`primary` designates the color of the background for the meeting's navbar. `secondary` designates the text color for the same. `background` and `text` designate the respective colors for the title layer.
+
+### Layout
+
+#### General
+
+The two following parameters can be specified for any of the following layers.
+
+* `background-color`: A hex value that specifies the color of the background.
+* `text-color`: A hex value that specifies the color of the text.
+
+#### Title Layer
+
+_Shows the title of the conference, along with a tagline or description for the conference._
+
+* `title` (optional): Overrides the title of the collection, to be displayed in the title layer.
+* `tagline` (optional): Overrides the description of the collection, to be displayed in the title layer.
+
+#### Paragraph Layer
+
+_Shows a paragraph filled with custom text from the meeting, with an optional title._
+
+* `title` (optional): The title that will be displayed in the layer above the paragraph text.
+* `body`: The main text of the paragraph.
+
+#### Image Layer
+
+_Displays a full-width image on the meeting page. This image can be used_
+
+* `img-url`: The URL of the image you want to load for this layer. Make sure it's high enough
+definition to span the width of your landing page, but not so large that it will take a long
+time to load!
+
+* `TODO`: Make the height adjustable up to a certain height.
+
+#### Schedule Layer
+
+* no additional parameters
+
+#### Speakers Layer
+
+* no additional parameters 
+
+#### Presentation Table Layer
+
+* NOTE: changing the `background-color` for this layer will only affect the color of the header row.
+
+#### Sponsors Layer
+
+* `data`: the name of the key in the `data` segment that you want to be loaded. If you wanted to use the following example date, this line in the settings would look like `"data": "sponsor_categories"`.
+
+Example:
+```
+"sponsor-categories": [
+    {
+        "category": "Gold",
+        "sponsors": [
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        },
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        },
+        ...
+        {
+            "name": "CompanyName",
+            "website_url": "http://example.com",
+            "img_url": "http://example.com/presskit/company_logo.jpg"
+        }
+    },
+    {
+        "category": "Silver",
+        "sponsors": [
+        {
+            ...
+        },
+        {
+            ...
+        },
+        ...
+        {
+            ...
+        }
+]
+```

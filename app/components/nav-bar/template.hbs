@@ -1,0 +1,11 @@
+<div class="nav-item-group breadcrumbs">
+    {{#each nav.crumbs as |crumb|}}
+        <a class="nav-item" {{action "transition" crumb}}>{{crumb.label}}</a>
+    {{/each}}
+</div>
+
+<div class="nav-item-group" id="myNavbar">
+    {{#each nav.links as |link|}}
+        <a class="nav-item" {{action "transition" link}}>{{link.label}}</a>
+    {{/each}}
+</div>

@@ -1,6 +1,12 @@
-{{osf-navbar loginAction=(action 'login') hideSearch=true}}
-{{#unless session.isAuthenticated}}
-    <div class="coll-alert"> Collections demo requires signing in to an osf account. Sign in or sign up above. </div>
-{{/unless}}
+{{new-osf-navbar loginAction=(action 'login')}}
+
+{{#if (not true)}}
+    {{!--
+        SEARCH DROPDOWN (FOR HOME SERVICE) - redirects to /search/?q=search_query
+    --}}
+    {{search-dropdown action='toggleSearch'}}
+{{/if}}
 
 {{outlet}}
+
+{{osf-footer}}

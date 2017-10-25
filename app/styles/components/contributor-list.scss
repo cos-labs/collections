@@ -1,0 +1,46 @@
+.contributor-list-container {
+
+  .contributor-pic-thumbnail {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #CDCDCD;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+  }
+
+  .contributor-detail {
+    a {
+      text-decoration: none;
+      :hover {
+        color: #eee;
+      }
+      color: #222;
+    }
+    width: 30%;
+
+    @media (max-width: 599px ) { width: calc(50% - 30px); } // XS
+    @media (min-width: 600px ) { width: calc(33.33333333% - 30px); } // SM
+    @media (min-width: 980px ) { width: calc(25% - 30px); } // LG
+    @media (min-width: 1234px) { width: calc(16.6666666% - 30px); } // MD
+  }
+
+  .section-title {
+    margin-bottom: 45px;
+  }
+
+  .affiliation {
+    font-weight: lighter;
+  }
+
+  .contributor-name {
+    font-weight: 600;
+  }
+
+  .contributor-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+
+}

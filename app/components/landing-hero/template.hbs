@@ -1,4 +1,4 @@
-<div class="landing-hero-container p-xl" style="{{containerStyle}}">
+<div class="landing-hero-container p-xl">
     <div class="container">
        <div class="row">
            <div class="text-center m-t-lg col-xs-12">
@@ -17,7 +17,7 @@
                    </span>
                </div>
               {{#if session.isAuthenticated}}
-                {{#link-to "collection.add" class="btn btn-success btn-lg"}}Add to Collection {{/link-to}}
+                {{#link-to "collections.collection.add" collection class="btn btn-success btn-lg"}}Add to Collection {{/link-to}}
               {{/if}}
            </div>
        </div>

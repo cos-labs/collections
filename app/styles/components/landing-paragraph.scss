@@ -1,7 +1,12 @@
 .landing-paragraph-container {
   p {
+    text-align: justify;
+    text-justify: inter-word;
+    word-break: break-all;
+
     max-width: 1250px;
     margin-left: auto;
     margin-right: auto;
   }
+  padding: 30px;
 }

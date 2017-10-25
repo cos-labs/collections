@@ -8,21 +8,43 @@ const Router = Ember.Router.extend({
 
 // eslint-disable-next-line array-callback-return
 Router.map(function() {
-    this.route('index', { path: '/' });
-    this.route('meetings'); // home page
-    this.route('collection', { path: 'collection/:collection_id' }, function() {
-        this.route('item', { path: 'item/:item_id' });
-        this.route('group', { path: 'group/:group_id' }, function() {
-            this.route('item', { path: 'item/:group_item_id' });
+    this.route('index', {
+        path: ''
+    });
+    this.route('explore', {
+        path: "explore"
+    });
+    this.route('workflows', {
+        path:'workflows'
+    }, function() {
+        this.route('workflow', {
+            path: ":workflow_id"
         });
-        this.route('add');
+    });
+    this.route('collections', {
+        path: 'collections'
+    }, function() {
+        this.route('my-collection', {
+            path: "my-collection"
+        });
+        this.route("collection", {
+            path: ":collection_id"
+        }, function() {
+            this.route('item', {
+                path: 'item/:item_id'
+            });
+            this.route('submissions');
+            this.route('browse');
+            this.route('edit');
+            this.route('add');
+        });
         this.route('search');
         this.route('browse');
-        this.route('edit');
     });
     this.route('create');
-    this.route('not-found', { path: '/*path' });
-    this.route('create_meeting');
+    this.route('not-found', {
+        path: '/*path'
+    });
 });
 
 export default Router;

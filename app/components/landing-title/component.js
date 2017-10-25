@@ -2,7 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     session: Ember.inject.service(),
-    containerStyle: Ember.computed('layout', 'branding', function() {
+    tagName: 'section',
+    attributeBindings: ['style'],
+    style: Ember.computed('layout', 'branding', function() {
         // if image is specified for background, use that
         // otherwise, check if a background color has been specified.
         // if so, use that. if not, use the branding background color

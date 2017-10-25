@@ -93,26 +93,41 @@ export default Ember.Component.extend(NodeActionsMixin, {
     }),
     init() {
         this._super(...arguments);
-        this.get('store').findRecord('node', ENV.NODE_GUID)
-            .then(result => this.set('node', result));
+        this.set('node', this.get('store').createRecord('node'));
     },
 
     actions: {
         // Adds contributor then redraws view - addition of contributor
         // may change which update/remove contributor requests are permitted
         addContributorLocal(user) {
-            this.get('actions.addContributor').call(this, user.id, 'write', true, false, undefined,
-                undefined, true)
-                .then((res) => {
-                    this.toggleAuthorModification();
-                    this.get('contributors').pushObject(res);
-                    this.get('toast').success(this.get('i18n').t('submit.preprint_author_added'));
-                    this.highlightSuccessOrFailure(res.id, this, 'success');
-                }, () => {
-                    this.get('toast').error(this.get('i18n').t('submit.error_adding_author'));
-                    this.highlightSuccessOrFailure(user.id, this, 'error');
-                    user.rollbackAttributes();
-                });
+            const node = this.get('node')
+            if (node) {
+
+
+                const contributor = this.get('store').createRecord('contributor');
+                contributor.set('users', user); 
+
+                node.get('contributors').pushObject(contributor);
+                window.nod = node;
+
+
+                //this.get('actions.addContributor').call(this, user.id, 'write', true, false, undefined,
+                //    undefined, true)
+                //    .then((res) => {
+                //        this.toggleAuthorModification();
+                //        this.get('contributors').pushObject(res);
+                //        this.get('toast').success(this.get('i18n').t('submit.preprint_author_added'));
+                //        this.highlightSuccessOrFailure(res.id, this, 'success');
+                //    }, () => {
+                //        this.get('toast').error(this.get('i18n').t('submit.error_adding_author'));
+                //        this.highlightSuccessOrFailure(user.id, this, 'error');
+                //        user.rollbackAttributes();
+                //    });
+            } else {
+
+                this.get('toast').error('No node selected');
+
+            }
         },
         // Adds all contributors from parent project to current
         // component as long as they are not current contributors
@@ -277,7 +292,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
      * @return {User[]} Returns specified page of user records matching query
      */
     findContributors(query, page) {
-        return this.get('store').query('user', {
+        return this.get('store').query('osf-user', {
             filter: {
                 'full_name,given_name,middle_names,family_name': query,
             },
@@ -290,7 +305,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
             this.highlightSuccessOrFailure('author-search-box', this, 'error');
         });
     },
-    /**
+    /*
      * highlightSuccessOrFailure method. Element with specified ID flashes green or red
      * depending on response success.
      *

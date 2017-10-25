@@ -1,0 +1,128 @@
+<div class="nav-item-group global-nav">
+
+    {{!--
+        OSF Branding
+    --}}
+    {{#link-to "index"}}
+        <span class="navbar-logo"></span>
+    {{/link-to}}
+    {{!--
+        NAME OF CURRENT SERVICE - HOME, PREPRINTS, REGISTRIES, or MEETINGS
+    --}}
+    {{#link-to "index" class="service-link"}}
+        <span class="osf">OSF</span><span class="service-name">COLLECTIONS</span>
+    {{/link-to}}
+
+    {{!--
+        Primary Navigation - Toggles between Home, Preprints, Registries, and Meetings
+    --}}
+    <div class="dropdown">
+        <button
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+            aria-label={{t 'eosf.navbar.togglePrimary'}}
+            {{action 'closeSecondaryAndSearch'}}
+            {{action 'click' 'button' 'Navbar - Dropdown Arrow'}}>
+                <span class="caret"></span>
+        </button>
+        <div class="dropdown-content" role="menu">
+            <a  href="https://staging.osf.io"
+                onclick={{action 'click' 'link' (concat 'Navbar - HOME')}}>
+                    OSF<b>HOME</b>
+            </a>
+            <a  href="https://staging.osf.io"
+                onclick={{action 'click' 'link' (concat 'Navbar - PREPRINTS')}}>
+                    OSF<b>PREPRINTS</b>
+            </a>
+            <a  href="https://staging.osf.io"
+                onclick={{action 'click' 'link' (concat 'Navbar - REGISTRIES')}}>
+                    OSF<b>REGISTRIES</b>
+            </a>
+            <a  href="https://staging.osf.io"
+                onclick={{action 'click' 'link' (concat 'Navbar - MEETINGS')}}>
+                    OSF<b>MEETINGS</b>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{{!--
+    <input type="text" placeholder="Search...">
+--}}
+
+{{!--
+    Secondary Navigation - Displays corresponding links for selected service
+--}}
+<div class="nav-item-group local-nav dropdown">
+    {{!--
+        Toggle navigation button on xs screen
+    --}}
+    <a  type="button"
+        role="button"
+        class="hamburger dropdown-button"
+        data-toggle="collapse"
+        data-target="#secondary-navigation"
+        onclick={{action 'closeSearch'}}
+        aria-label={{t 'eosf.navbar.toggleSecondary'}}>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+    </a>
+
+    <div class="dropdown-content">
+
+        {{#each navLinks as |navLink|}}
+            {{#if (and (eq currentService 'HOME') (eq navLink.type "search"))}}
+
+                {{!TOGGLE SEARCH BUTTON FOR HOME SERVICE}}
+                <a  role="button"
+                    class="btn-link search-toggle"
+                    {{action 'toggleSearch'}}
+                    {{action 'click' 'button' (concat 'Navbar - ' currentService navLink.name)}}>
+                        {{navLink.name}}
+                </a>
+
+            {{else}}
+
+                {{!--
+                    SERVICE LINK
+                --}}
+                {{#if (eq navLink.type 'donateToCOS')}}
+                    <a  href="{{navLink.href}}"
+                        onclick={{action 'click' 'link' (concat 'Navbar - ' navLink.name)}}>
+                            {{navLink.name}}
+                    </a>
+                {{else if (eq navLink.type "link-to")}}
+                    {{#link-to navLink.route}}
+                        {{navLink.name}}
+                    {{/link-to}}
+                {{else}}
+                    <a  href="{{navLink.href}}"
+                        onclick={{action 'click' 'link' (concat 'Navbar - ' navlink.name)}}>
+                            {{#if (eq navLink.type 'addAPreprint')}}
+                                <span class="hidden-xs hidden-sm">{{t navLink.name}}</span>
+                                <span class="hidden-md hidden-lg hidden-xl">{{t 'eosf.navbar.add'}}</span>
+                            {{else}}
+                                {{navLink.name}}
+                            {{/if}}
+                    </a>
+                {{/if}}
+
+            {{/if}}
+        {{/each}}
+
+        {{!--
+            Auth dropdown
+        --}}
+        {{new-navbar-auth-dropdown
+            signupUrl=signupUrl
+            loginAction=loginAction
+            closeOtherNavigation=(action 'closeSearch')
+        }}
+
+    </div>
+
+</div>

@@ -5,15 +5,18 @@ import moment from 'moment';
 export default Ember.Component.extend({
     session: Ember.inject.service(),
     store: Ember.inject.service(),
+    tagName: 'section',
+    attributeBindings: ['style'],
     filterString: '',
     trackFilter: '',
     roomFilter: '',
+    filters: [],
     selectedItemId: 0,
     data: Ember.computed('layout', function () {
         const dataSource = this.get('layout.data');
         return this.get('model.settings').data[dataSource];
     }),
-    containerStyle: Ember.computed('layout', function() {
+    style: Ember.computed('layout', function() {
         const bg = this.get('layout.background_color') ? `background-color:${this.get('layout.background_color')};` : '';
         const txt = this.get('layout.text_color') ? `color: ${this.get('layout.text_color')};` : '';
         return Ember.String.htmlSafe(bg + txt);
@@ -49,7 +52,7 @@ export default Ember.Component.extend({
             tempItems.forEach(function (i) {
                 if (retList.length === 0) {
                     retList.push([i]);
-                } else if (retList[retList.length - 1][0].get('startTime').toISOString() === i.get('startTime').toISOString()) {
+                } else if (retList[retList.length - 1][0].get('startTime') === i.get('startTime')) {
                     retList[retList.length - 1].push(i);
                 } else {
                     retList.push([i]);
@@ -82,11 +85,39 @@ export default Ember.Component.extend({
         });
     }),
     selectedItem: Ember.computed('selectedItemId', 'model', function() {
+        $('tbody').removeClass('selected-schedule')
         const id = parseInt(this.get('selectedItemId'), 10);
+        $('#'+id).addClass('selected-schedule')
         if (id >= 0) {
             return this.get('store').findRecord('item', id).then((i) => {
                 return i;
             });
         }
-    })
+    }),
+    actions: {
+        toggleFilterOptions(){
+            $(".edit-filter-modal").toggleClass("hidden");
+        },
+        applyFilter(){
+            $(".edit-filter-modal").toggleClass("hidden");
+            $(".filter, .filter-remove, .fa-plus, .fa-filter").removeClass("filter-hidden");
+
+        },
+        addFilter(){
+            let filter = this.get('filters');
+            filter.pushObject({id:(filter.length), name: $(`#${event.target.id} :selected`).text() });
+            this.set('filters', filter);
+        },
+        removeFilter(){
+            $(event.target).parent().remove();
+        },
+        getInput(e){
+            let filter = this.get('filters');
+            if(filter.some(function(o){return o["name"] === e;}) || e.replace(/ /g,'') === ""){
+                return false;
+            }
+            filter.pushObject({id:(filter.length), name: e });
+            this.set('filters', filter);
+        }
+    }
 });

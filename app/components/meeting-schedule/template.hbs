@@ -1,57 +1,80 @@
-<div class="meetings-schedule-container p-lg" style="{{containerStyle}}">
+<div class="meetings-schedule-container p-lg">
     <div class="container">
         <div class="row">
+
+            <div class="filter-bar">
+                <a class="filter-dropdown" {{action 'toggleFilterOptions'}}>
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                    <span class="filter-dropdown-text">Filter dataset</span> 
+                </a>
+               {{#each filters as |filter|}}
+                <span style="white-space: nowrap;" data-id= {{filter.id}}>
+                    <a class="filter-plaque  filter "> {{filter.name}} </a>
+                    <a class="filter-plaque  filter-remove"{{action 'removeFilter' }}>&times;</a>
+                </span>
+                {{/each}}
+
+            </div>
+
+            <div class="edit-filter-modal hidden">
+
+                <select onchange={{action 'addFilter'}} class="form-control" id="trackSelect">
+                    <option value="cvvvv" >All Tracks</option>
+                    {{#each (await tracks) as |track|}}
+                    <option value={{track}} >{{track}}</option>
+                    {{/each}}
+                </select>
+                
+                <select onchange={{action 'addFilter'}} class="form-control" id="roomSelect">
+                    <option value="">All Rooms</option>
+                    {{#each (await rooms) as |room|}}
+                    <option value={{room}}>{{room}}</option>
+                    {{/each}}
+                </select>
+
+                <input onblur={{action 'getInput' value="target.value"}} placeholder="Filter schedule" style="color:black;" class="form-control">
+
+                <button class="apply-button" {{action 'applyFilter'}}>Apply</button><button class="text-button" {{action 'toggleFilterOptions'}} >Cancel</button>
+            </div>
+
+
+
+
+
+
+
             <div class="col-sm-6">
-                <div id="schedule-header">
-                    {{input value=filterString placeholder="Filter schedule" style="color:black;"}} | Filter by:
-                    <select onchange={{action (mut trackFilter) value="target.value"}}>
-                        <option value="" selected={{eq "" trackFilter}}>All Tracks</option>
-                        {{#each (await tracks) as |track|}}
-                            <option value={{track}} selected={{eq track trackFilter}}>{{track}}</option>
-                        {{/each}}
-                    </select>
-                    <select onchange={{action (mut roomFilter) value="target.value"}}>
-                        <option value="" selected={{eq "" roomFilter}}>All Rooms</option>
-                        {{#each (await rooms) as |room|}}
-                            <option value={{room}} selected={{eq room roomFilter}}>{{room}}</option>
-                        {{/each}}
-                    </select>
-                </div>
                 <div id="schedule-window">
                     {{#each (await items) as |itemlist|}}
-                        <h4 class="time-slot-header">{{itemlist.[0].startTimeFormatted}}</h4>
-                        <table class="time-slot">
-                            {{#each itemlist as |item|}}
-                                {{#if (and (or (contains-substring item.scheduleFilterText filterString)
-                                        (contains-substring (await item.createdBy.computedFullName) filterString))
-                                              (contains-substring item.location roomFilter))}}
-                                    <tbody onclick={{action (mut selectedItemId) item.id}}>
-                                    <tr>
-                                        <td class="top-row left-cell event-title"><strong>{{item.title}}</strong></td>
-                                        <td class="top-row right-cell event-location">{{item.location}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bottom-row left-cell event-presenter">{{await
-                                                item.createdBy.computedFullName}}</td>
-                                        <td class="bottom-row right-cell event-end-time">Ends
-                                            at {{item.endTimeFormatted}}</td>
-                                    </tr>
-                                    </tbody>
-                                {{/if}}
-                            {{/each}}
-                        </table>
-                        <br>
+                    <h4 class="time-slot-header">{{itemlist.[0].startTimeFormatted}}</h4>
+                    <table class="time-slot">
+                        {{#each itemlist as |item|}}
+                        <tbody id={{item.id}} onclick={{action (mut selectedItemId) item.id}}>
+                            <tr>
+                                <td class="top-row left-cell event-title"><strong>{{item.title}}</strong></td>
+                                <td class="top-row right-cell event-location">{{item.location}}</td>
+                            </tr>
+                            <tr>
+                                <td class="bottom-row left-cell event-presenter">{{await
+                                item.createdBy.computedFullName}}</td>
+                                <td class="bottom-row right-cell event-end-time">Ends
+                                at {{item.endTimeFormatted}}</td>
+                            </tr>
+                        </tbody>
+                        {{/each}}
+                    </table>
+                    <br>
                     {{/each}}
                     <br><br>
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="item-detail">
-                    <h2>{{get (await selectedItem) 'title'}}<br>
+                <div class="">
+                    <h3>{{get (await selectedItem) 'title'}}<br>
                         <small>{{get (await selectedItem) 'createdBy.computedFullName'}}</small>
-                    </h2>
+                    </h3>
                     <p>{{get (await selectedItem) 'description'}}</p>
-                    <p><a href="#">Link to author</a> | <a href="#">Link to presentation</a></p>
+                    <p><a href="#">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
                 </div>
             </div>
         </div>

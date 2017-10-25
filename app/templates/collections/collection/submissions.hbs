@@ -1,0 +1,41 @@
+<div class="hero">
+    <h1>{{collection.title}} Submissions</h1>
+    <a class="btn btn-success btn-lg" {{action "newCase" collection}}>
+        Start a new submission
+    </a>
+</div>
+
+
+<div class="info form-holder" style="background-color:#daf5ff; border-color:#b2dcff; margin-top: 15px; margin-bottom: 15px;" >
+    In progress submissions to the {{collection.title}}. Any of the submissions may be continued by pressing the continue button.
+</div>
+
+
+<table class="coll-table m-b-md form-holder">
+    <thead style="background-color: #444; color: #fff;">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#each cases as |case|}}
+
+    <tr>
+        <td>{{case.id}}</td>
+        <td>{{case.workflow.title}}</td>
+        <td>        <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a></td>
+    </tr>
+    
+
+    {{else}}
+        <tr>
+            <td>You have not started any submissions to {{collection.title}}</td>
+        </tr>
+{{/each}}
+
+</tbody>
+</table>
+
