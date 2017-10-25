@@ -29,11 +29,11 @@ export default Model.extend({
     fileName: attr('string'),
     fileFormat: Ember.computed('fileName', function() {
         let name =  this.get('fileName');
-        if(name){
+        if (name) {
             let arr = this.get('fileName').split('.')
             return arr[arr.length-1];
-        }else{
-            return ""
+        } else {
+            return "";
         }
     }),
     startTimeFormatted: Ember.computed('startTime', function () {
@@ -46,6 +46,6 @@ export default Model.extend({
     }),
     scheduleFilterText: Ember.computed('title', 'location', 'startTimeFormatted', function () {
         return this.get('title') +
-        this.get('location') + this.get('startTimeFormatted') + this.get('userName');
+            this.get('location') + this.get('startTimeFormatted') + this.get('userName');
     })
 });
