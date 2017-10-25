@@ -17,23 +17,18 @@
     {{#each users as |contributor|}}
 
         <div class="contributor-detail">
-            <div class="img-wrapper">
-                {{#if contributor.gravatar}}
-                    <a href='https://staging.osf.io/{{contributor.username}}'>
-                        <img
-                            class="contributor-pic-thumbnail"
-                            alt="User gravatar"
-                            src="{{contributor.gravatar}}"/>
-                    </a>
-                {{else}}
-                    <a href='https://staging.osf.io/{{contributor.username}}'>
-                        <img
-                            class="contributor-pic-thumbnail"
-                            alt="User gravatar"
-                            src="https://udayton.edu/0/img/generic-profile.png"/>
-                    </a>
-                {{/if}}
-            </div>
+            {{#if contributor.gravatar}}
+                <a  href='https://staging.osf.io/{{contributor.username}}'
+                    class="gravatar"
+                    style="background-image: url('{{contributor.gravatar}}');"></a>
+            {{else}}
+                <a href='https://staging.osf.io/{{contributor.username}}'>
+                    <img
+                        class="contributor-pic-thumbnail"
+                        alt="User gravatar"
+                        src="https://udayton.edu/0/img/generic-profile.png"/>
+                </a>
+            {{/if}}
             <p class="contributor-name p-t-xs text-center">
                 <a href='https://staging.osf.io/{{contributor.username}}'>
                     {{contributor.computedFullName}}

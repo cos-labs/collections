@@ -1,46 +1,39 @@
-<div class="container">
-    <form class="form-inline m-b-md" style='text-align: center;'>
-        {{input class="form-control search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
-        <div {{action 'search'}} class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></div>
-    </form>
-    <table class="coll-table m-b-md">
-        <thead style="{{theadStyle}}">
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each searchResults.data as |r|}}
-            <tr>
-                <td>
-                    {{#link-to "collections.collection.item" model.id r.id}}
+<form>
+    {{input class="form-control search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+    <div {{action 'search'}} class="btn btn-primary">
+        <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+</form>
+
+<div class="item-list">
+    <div class="table-heading">
+        <div class="title">Title</div>
+        <div class="author">Author</div>
+        <div class="type">Type</div>
+    </div>
+    {{#each searchResults.data as |r|}}
+        <div class="item-row">
+            <div>
+                {{#link-to "collections.collection.item" model.id r.id}}
                     {{r.attributes.title}}
-                    {{/link-to}}
-                </td>
-                <td>{{r.attributes.created-by}}</td>
-                <td>{{r.attributes.category}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-    <div class="pagination-wrapper text-center m-b-md">
+                {{/link-to}}
+            </div>
+            <div>{{r.attributes.created-by}}</div>
+            <div>{{r.attributes.category}}</div>
+        </div>
+    {{/each}}
+</div>
 
-
-        <ul class="pagination">
-          <li class="arrow prev prevPage" >
+<div class="pagination-wrapper text-center m-b-md">
+    <ul class="pagination">
+        <li class="arrow prev prevPage" >
             <a class="btn btn-default " {{action 'prevPage'}}>«</a>
         </li>
         {{#each pageNumberButtons as |item|}}
-        <li class="page-number"{{action 'loadPage' item}} data-id="{{item}}"><a>{{item}}</a></li>
+            <li class="page-number"{{action 'loadPage' item}} data-id="{{item}}"><a>{{item}}</a></li>
         {{/each}}
         <li class="arrow next nextPage">
             <a class="btn btn-default " {{action 'nextPage'}}>»</a>
         </li>
     </ul>
-
-
 </div>
-</div>
-

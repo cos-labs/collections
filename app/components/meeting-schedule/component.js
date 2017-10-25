@@ -86,7 +86,7 @@ export default Ember.Component.extend({
         });
     }),
     selectedItem: Ember.computed('selectedItemId', 'model', function() {
-        $('tbody').removeClass('selected-schedule')
+        $('.event').removeClass('selected-schedule')
         const id = parseInt(this.get('selectedItemId'), 10);
         $('#'+id).addClass('selected-schedule')
         if (id >= 0) {
