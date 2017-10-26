@@ -106,7 +106,7 @@ export default Ember.Component.extend({
             // The base64 data needs to be converted to binary. We followed this stackoverflow answer:
             // https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
             const b64Data = this.get('parameters.fileData.value').split(',')[1];
-            const contentType = window.file.split(',')[0];
+            const contentType = this.get('parameters.fileData.value').split(',')[0];
             const binaryData = atob(b64Data);
             const byteNumbers = new Array(binaryData.length);
             for (let i = 0; i < binaryData.length; i++) {
