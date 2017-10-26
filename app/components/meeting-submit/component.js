@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import ENV from '../../config/environment';
-// var b64toBlob = require('b64-to-blob');
 
 function getToken() {
     let token;
@@ -24,13 +23,6 @@ export default Ember.Component.extend({
     description: 'Submit',
 
     parameters: {},
-
-    url: Ember.computed('node', function(){
-        return this.get('node.files').then(files => {
-            return files.findBy('name', 'osfstorage').get('links.upload')  + '?';
-        });
-
-    }),
 
     init() {
         this.set('parameters.type', {
@@ -60,8 +52,6 @@ export default Ember.Component.extend({
             let node = this.get('parameters.node.value');
             await node.save();
             item.set('sourceId', node.get('id'));
-            // Cam speaking: can I build the url based off the node?
-            // ex: https://github.com/cos-labs/osfpages/blob/develop/app/components/layer-settings/component.js#L32
             const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + this.get('parameters.fileName.value') + "&direct=true";
 
             const xhr = new XMLHttpRequest();
