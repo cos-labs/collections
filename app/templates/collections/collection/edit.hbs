@@ -111,7 +111,11 @@
         <p>Start Date: {{collection.startDate}}</p>
         <p>End Date: {{collection.endDate}}</p>
     {{/if}}
-    <pre>Settings:{{settingsString}}</pre>
+
+    <pre style="height:{{jsonBodyHeight}}">
+        Settings:{{settingsString}}
+    </pre>
+    <button class="btn btn-default jsonBtn" {{action 'toggleJsonView'}}>{{jsonBtnText}}</button>
 
     {{#if session.isAuthenticated}}
         <div class="">
@@ -141,13 +145,8 @@
                         are not deleted.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" {{action toggleProperty
-                                                                           'showDeleteConfirmation'}}>
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-danger" {{action 'deleteCollection'}}>
-                        Delete
-                    </button>
+                    <button type="button" class="btn btn-default" {{action toggleProperty 'showDeleteConfirmation'}}>Close</button>
+                    <button type="button" class="btn btn-danger" {{action 'deleteCollection'}}>Delete</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
