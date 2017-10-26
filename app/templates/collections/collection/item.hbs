@@ -1,32 +1,36 @@
 <div class="hero">
     <h1>{{item.title}}</h1>
 </div>
-<div class="col-xs-12 col-sm-10">
-    <h5 class="view-authors">
-        {{item.createdBy.firstName}} {{item.createdBy.lastName}}
-    </h5>
-    <p>Added on: {{moment-format model.item.datePublished "MMMM DD, YYYY"}} | Last
-        edited: {{moment-format model.item.dateModified "MMMM DD, YYYY"}} </p>
-</div>
-<div style="height: 300px;">
-    {{file-renderer download=item.fileLink width="100%" height="100%"
-                    allowfullscreen=true}}
-</div>
-<div class="col-sm-4 col-sm-12">
-    <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
-    <p>{{item.location}}<br>{{item.startTimeFormatted}}
-        - {{model.item.endTimeFormatted}}</p>
-    <h4 class="p-v-md f-w-md"><strong>Description</strong></h4>
-    <p>{{item.description}}</p>
 
-    <h4 class="p-v-md f-w-md"><strong>Status</strong></h4>
-    <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
+<section>
+    <fieldset>
+        <h5 class="view-authors">
+            {{item.createdBy.firstName}} {{item.createdBy.lastName}}
+        </h5>
+        <p>Added on: {{moment-format model.item.datePublished "MMMM DD, YYYY"}} | Last
+            edited: {{moment-format model.item.dateModified "MMMM DD, YYYY"}} </p>
+    </fieldset>
 
-    <h4 class="p-v-md f-w-md"><strong>Tags</strong></h4>
-    <span class="coll-item-tag">{{item.tags}}</span>
+    <fieldset>
+        {{file-renderer download=item.fileLink width="100%" height="1000" allowfullscreen=true}}
 
-    <div class="m-t-md">
-        <a href="https://staging.osf.io/{{item.sourceId}}"
-           class="btn btn-default btn-block"> Go to Source</a>
-    </div>
-</div>
+    
+    </fieldset>
+    <fieldset>
+        <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
+        <p>{{item.location}}<br>{{item.startTimeFormatted}}
+            - {{model.item.endTimeFormatted}}</p>
+        <h4 class="p-v-md f-w-md"><strong>Description</strong></h4>
+        <p>{{item.description}}</p>
+
+        <h4 class="p-v-md f-w-md"><strong>Status</strong></h4>
+        <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
+
+        {{#if item.tags}}
+        <h4 class="p-v-md f-w-md"><strong>Tags</strong></h4>
+        <span class="coll-item-tag">{{item.tags}}</span>
+        {{/if}}
+        <hr />
+        <a href="https://osf.io/{{item.sourceId}}" class="btn btn-default btn-block"> Go to Source</a>
+    </fieldset>
+</section>
