@@ -101,16 +101,19 @@
             <span class="coll-item-tag">{{tag}}</span>
         {{/each}}
     </div>
-    <p>Type: {{collection.collectionType}}</p>
-    <p>Created by: {{collection.createdBy.firstName}} {{collection.createdBy.lastName}}</p>
-    <p>Date created: {{collection.dateCreated}} </p>
-    <p>Date updated : {{collection.dateUpdated}}</p>
-    {{#if (eq collection.settings.collection_type 'Meeting')}}
-        <p>Location: {{collection.location}}</p>
-        <p>Address: {{collection.address}}</p>
-        <p>Start Date: {{collection.startDate}}</p>
-        <p>End Date: {{collection.endDate}}</p>
-    {{/if}}
+    <p>
+        Type: {{collection.collectionType}}<br>
+        Created by: {{collection.createdBy.firstName}} {{collection.createdBy.lastName}}<br>
+        Date created: {{collection.dateCreated}}<br>
+        Date updated : {{collection.dateUpdated}}<br>
+        {{#if (eq collection.settings.collection_type 'Meeting')}}
+            Location: {{collection.location}}<br>
+            Address: {{collection.address}}<br>
+            Start Date: {{collection.startDate}}<br>
+            End Date: {{collection.endDate}}<br>
+        {{/if}}
+    </p>
+
 
     <pre style="height:{{jsonBodyHeight}}">
         Settings:{{settingsString}}
