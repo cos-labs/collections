@@ -52,7 +52,6 @@ export default Ember.Component.extend({
             let node = this.get('parameters.node.value');
             await node.save();
             item.set('sourceId', node.get('id'));
-
             const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + this.get('parameters.fileName.value') + "&direct=true";
 
             const xhr = new XMLHttpRequest();
@@ -93,8 +92,8 @@ export default Ember.Component.extend({
 
                                     itemParameter.set('value', item.id);
                                     itemParameter.save().then(itemParameter =>
-                                        this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
-
+                                        this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id)
+                                    );
                                 });
                             });
 
@@ -104,8 +103,18 @@ export default Ember.Component.extend({
                     }, err => console.log(err));
                 }
             };
-
-            xhr.send(this.get('parameters.fileData.value'));
+            // The base64 data needs to be converted to binary. We followed this stackoverflow answer:
+            // https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
+            const b64Data = this.get('parameters.fileData.value').split(',')[1];
+            const contentType = this.get('parameters.fileData.value').split(',')[0];
+            const binaryData = atob(b64Data);
+            const byteNumbers = new Array(binaryData.length);
+            for (let i = 0; i < binaryData.length; i++) {
+                byteNumbers[i] = binaryData.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: contentType });
+            xhr.send(blob);
         },
     },
 
