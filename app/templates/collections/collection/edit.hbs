@@ -17,7 +17,7 @@
             {{input class="form-control" value=modelCache.tags
                     placeholder="Enter comma separated tags" id="collectionTags"}}
         </div>
-        {{#if (eq model.collectionType 'meeting')}}
+        {{#if (eq collection.collectionType 'meeting')}}
             <div class="form-group">
                 <label for="location">Location</label>
                 {{input class="form-control" value=modelCache.location
@@ -88,10 +88,10 @@
     </div>
 
 {{else}}
-    <h2>{{model.title}}</h2>
+    <h2>{{collection.title}}</h2>
     <div class="m-b-md">
-        {{#if model.description}}
-            {{model.description}}
+        {{#if collection.description}}
+            {{collection.description}}
         {{else}}
             <span class="text-muted" {{action 'showEdit'}}>Add description </span>
         {{/if}}
@@ -101,15 +101,15 @@
             <span class="coll-item-tag">{{tag}}</span>
         {{/each}}
     </div>
-    <p>Type: {{model.collectionType}}</p>
-    <p>Created by: {{model.createdBy.firstName}} {{model.createdBy.lastName}}</p>
-    <p>Date created: {{model.dateCreated}} </p>
-    <p>Date updated : {{model.dateUpdated}}</p>
-    {{#if (eq model.settings.collection_type 'Meeting')}}
-        <p>Location: {{model.location}}</p>
-        <p>Address: {{model.address}}</p>
-        <p>Start Date: {{model.startDate}}</p>
-        <p>End Date: {{model.endDate}}</p>
+    <p>Type: {{collection.collectionType}}</p>
+    <p>Created by: {{collection.createdBy.firstName}} {{collection.createdBy.lastName}}</p>
+    <p>Date created: {{collection.dateCreated}} </p>
+    <p>Date updated : {{collection.dateUpdated}}</p>
+    {{#if (eq collection.settings.collection_type 'Meeting')}}
+        <p>Location: {{collection.location}}</p>
+        <p>Address: {{collection.address}}</p>
+        <p>Start Date: {{collection.startDate}}</p>
+        <p>End Date: {{collection.endDate}}</p>
     {{/if}}
     <pre>Settings:{{settingsString}}</pre>
 
