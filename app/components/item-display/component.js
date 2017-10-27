@@ -3,12 +3,21 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-    editing: true,
+    store: Ember.inject.service(),
 
+    editing: true,
     description: 'Enter a title for the preprint.',
+
+    item: undefined,
 
     didReceiveAttrs() {
         this.set('description', this.attrs.description);
+        this.get("store")
+            .findRecord("item", this.get("parameters.value.value"))
+            .then(item => {
+                debugger;
+                this.set("item", item)
+            });
     },
 
 });

@@ -7,10 +7,9 @@ export default Ember.Route.extend({
 
     crumb: {},
 
-    model() {
-        const caxe = this.get('caxe.activeCase');
+    model(params) {
         return Ember.RSVP.hash({
-            caxe: this.get('store').findRecord('case', caxe.get('id'), {
+            caxe: this.get('store').findRecord('case', params.case_id, {
                 reload: true
             }),
             collection: this.modelFor('collections.collection')
@@ -35,7 +34,7 @@ export default Ember.Route.extend({
             models: [model.collection]
         }]);
 
-
+        this.set("caxe.activeCase", model.caxe);
     },
 
     setupController(controller, model) {

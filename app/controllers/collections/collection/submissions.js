@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
 
     caxe: Ember.inject.service(),
 
+
     actions: {
 
         newCase(collection) {
@@ -12,17 +13,17 @@ export default Ember.Controller.extend({
             const wf = collection.get('workflow');
             caxe.set('workflow', wf);
             caxe.set('collection', collection);
-            const case_saved_Promise = caxe.save()
-            case_saved_Promise.then((caxe) => {
+            caxe.save().then((caxe) => {
+                debugger;
                 this.set('caxe.activeCase', caxe);
-                this.transitionToRoute("collections.collection.add", collection)
+                this.transitionToRoute("collections.collection.add", collection, caxe.id)
             })
         },
 
         continueCase(caxe, collection) {
 
             this.set('caxe.activeCase', caxe);
-            this.transitionToRoute('collections.collection.add', collection)
+            this.transitionToRoute('collections.collection.add', collection, caxe.id)
 
         }
 

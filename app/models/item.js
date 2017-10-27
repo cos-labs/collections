@@ -12,7 +12,6 @@ export default Model.extend({
     sourceId: attr('string'),
     title: attr('string'),
     description: attr('string'),
-    type: attr('string'),
     status: attr('string'),
     url: attr('string'),
     metadata: attr('string'),
@@ -25,7 +24,7 @@ export default Model.extend({
     group: belongsTo('group'),
     createdBy: belongsTo('user'),
     fileLink: attr('string'),
-    category: attr('string'),
+    kind: attr('string'),
     fileName: attr('string'),
     fileFormat: Ember.computed('fileName', function() {
         let arr = this.get('fileName').split('.')
