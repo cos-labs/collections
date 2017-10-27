@@ -824,3 +824,7 @@ span.sortable-bars:hover {
     margin-top: -17px;
     z-index: 1;
 }
+
+iframe {
+    height: calc(100vh - 60px); 
+}
