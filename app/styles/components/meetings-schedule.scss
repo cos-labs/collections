@@ -44,6 +44,8 @@
         border-radius: 3px 0 0 3px;
         padding-left: 0;
         color: #eee;
+        max-height: 500px;
+        overflow: scroll;
 
         .title {
             width: calc(60% - 10px);
