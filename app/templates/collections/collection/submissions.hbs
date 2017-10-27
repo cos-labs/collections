@@ -18,13 +18,7 @@
     </div>
     {{#each cases as |case|}}
 
-        <div class="case-details">
-            <div class="case-no">{{case.id}}</div>
-            <div class="form-type">{{case.workflow.title}}</div>
-            <div class="continue-button">
-                <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a>
-            </div>
-        </div>
+        {{case-list-item case=case collection=collection}}
 
     {{else}}
 

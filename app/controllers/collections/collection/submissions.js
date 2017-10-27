@@ -20,12 +20,6 @@ export default Ember.Controller.extend({
 
         },
 
-        continueCase(caxe, collection) {
-
-            this.set('caxe.activeCase', caxe);
-            this.transitionToRoute('collections.collection.add', collection, caxe.id)
-
-        }
 
     }
 

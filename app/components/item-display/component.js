@@ -8,6 +8,8 @@ export default Ember.Component.extend({
     editing: true,
     description: 'Enter a title for the preprint.',
 
+    classNames: ["item-display"],
+
     item: undefined,
 
     didReceiveAttrs() {

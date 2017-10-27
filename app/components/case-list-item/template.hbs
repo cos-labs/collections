@@ -1,0 +1,5 @@
+<div class="case-no">{{case.id}}</div>
+<div class="form-type">{{partial (await caseDescriptionTemplate)}}</div>
+<div class="continue-button">
+    <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a>
+</div>

@@ -13,6 +13,7 @@ export default Model.extend({
         inverse: 'workflow'
     }),
     description: attr('string'),
+    caseDescription: attr("string"),
     sortedSections: Ember.computed('sections.@each.index', "sections.@each", "sections", function() {
         return this.get('sections').sortBy('index');
     }),
