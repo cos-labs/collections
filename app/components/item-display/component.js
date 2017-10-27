@@ -15,7 +15,6 @@ export default Ember.Component.extend({
         this.get("store")
             .findRecord("item", this.get("parameters.value.value"))
             .then(item => {
-                debugger;
                 this.set("item", item)
             });
     },
