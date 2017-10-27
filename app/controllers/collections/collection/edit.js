@@ -54,15 +54,16 @@ export default Ember.Controller.extend({
             this.get('collection').destroyRecord().then(() => this.transitionToRoute('/'));
         },
         toggleJsonView(){
-            if(this.get('jsonBodyHeight') == '100%'){
-                this.set('jsonBodyHeight', '400px');
-                 this.set('jsonBtnText', 'Show More ▼');
 
- 
-            }else{
+            if (this.get('jsonBodyHeight') == '100%') {
+
+                this.set('jsonBodyHeight', '400px');
+                this.set('jsonBtnText', 'Show More ▼');
+
+            } else {
+                
                 this.set('jsonBodyHeight', '100%');
                 this.set('jsonBtnText', 'Show Less ▲');
-
             }
 
         },
