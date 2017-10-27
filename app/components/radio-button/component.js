@@ -25,4 +25,14 @@ export default Ember.Component.extend({
         Ember.run.once(this, '_setCheckedProp');
     }),
 
+    /*Used temporally till we make all radio buttons work*/
+    didRender(){
+        if ( this.get('value') == "meeting" ||  this.get('value') == "dataset" ) {
+            this.set('disabled' , false)
+
+        }else{
+            this.set('disabled' , true)
+        }
+    },
+
 });
