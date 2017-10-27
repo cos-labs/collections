@@ -27,12 +27,9 @@ export default Ember.Component.extend({
 
     /*Used temporally till we make all radio buttons work*/
     didRender(){
-        if ( this.get('value') == "meeting" ||  this.get('value') == "dataset" ) {
-            this.set('disabled' , false)
-
-        }else{
+        if ( this.get('value') == "appendix" ||  this.get('value') == "preprints" || this.get('value') == "registrations" ||  this.get('value') == "bookmarks" ||  this.get('value') == "proposals" ) {
             this.set('disabled' , true)
         }
-    },
+    }
 
 });
