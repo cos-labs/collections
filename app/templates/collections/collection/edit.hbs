@@ -82,7 +82,7 @@
         </div>
 
         <div class="text-right">
-            <button class="btn btn-default" {{action 'cancelEdit'}}>Cancel</button>
+            <button class="btn btn-default" style="margin-left:5px!important" {{action 'cancelEdit'}}>Cancel</button>
             <button class="btn btn-success" {{action 'saveEdit'}}>Save</button>
         </div>
     </div>
@@ -119,8 +119,8 @@
     <button class="btn btn-default jsonBtn" {{action 'toggleJsonView'}}>{{jsonBtnText}}</button>
 
     {{#if session.isAuthenticated}}
-        <div class="">
-            <button class="btn btn-danger " style="margin-left:5px!important"{{action toggleProperty 'showDeleteConfirmation'}}>
+        <div>
+            <button class="btn btn-danger" style="margin-left:5px!important" {{action toggleProperty 'showDeleteConfirmation'}}>
                 <i class="fa fa-times"></i> Delete
             </button>
             <button class="btn btn-info " {{action 'showEdit'}}><i
