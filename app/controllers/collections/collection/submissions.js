@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
 
     caxe: Ember.inject.service(),
 
-
     actions: {
 
         newCase(collection) {
