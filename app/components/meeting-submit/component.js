@@ -36,7 +36,7 @@ export default Ember.Component.extend({
             this.set('disabled' , true)
             const item = this.get('store').createRecord('item');
 
-            item.set('type', 'meeting');
+            item.set('kind', this.get("parameters.kind.value"));
             item.set('title', this.get('parameters.title.value'));
             item.set('status', 'pending');
             item.set('collection', this.get('collection'));
