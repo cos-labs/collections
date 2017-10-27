@@ -14,18 +14,11 @@ export default Ember.Controller.extend({
             caxe.set('workflow', wf);
             caxe.set('collection', collection);
             caxe.save().then((caxe) => {
-                debugger;
                 this.set('caxe.activeCase', caxe);
                 this.transitionToRoute("collections.collection.add", collection, caxe.id)
             })
         },
 
-        continueCase(caxe, collection) {
-
-            this.set('caxe.activeCase', caxe);
-            this.transitionToRoute('collections.collection.add', collection, caxe.id)
-
-        }
 
     }
 

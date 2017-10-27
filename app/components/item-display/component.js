@@ -8,6 +8,8 @@ export default Ember.Component.extend({
     editing: true,
     description: 'Enter a title for the preprint.',
 
+    classNames: ["item-display"],
+
     item: undefined,
 
     didReceiveAttrs() {
@@ -15,7 +17,6 @@ export default Ember.Component.extend({
         this.get("store")
             .findRecord("item", this.get("parameters.value.value"))
             .then(item => {
-                debugger;
                 this.set("item", item)
             });
     },
