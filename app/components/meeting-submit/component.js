@@ -51,7 +51,6 @@ export default Ember.Component.extend({
             item.set('metadata', '{}');
 
             let node = this.get('parameters.node.value');
-            console.log(node)
             if(node === null){this.set('disabled' , false)}
             await node.save();
             item.set('sourceId', node.get('id'));
