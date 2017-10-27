@@ -27,12 +27,13 @@ export default Ember.Component.extend({
     init() {
         this.set('parameters.type', {
             value: 'meeting'}
-        );
+            );
         return this._super(...arguments);
     },
 
     actions: {
         async pressButton() {
+            this.set('disabled' , true)
             const item = this.get('store').createRecord('item');
 
             item.set('kind', this.get("parameters.kind.value"));
@@ -50,6 +51,7 @@ export default Ember.Component.extend({
             item.set('metadata', '{}');
 
             let node = this.get('parameters.node.value');
+            if(node === null){this.set('disabled' , false)}
             await node.save();
             item.set('sourceId', node.get('id'));
             const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + this.get('parameters.fileName.value') + "&direct=true";
@@ -62,7 +64,7 @@ export default Ember.Component.extend({
             let deferred = Ember.RSVP.defer();
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
-                    
+
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then(item => {
@@ -71,36 +73,40 @@ export default Ember.Component.extend({
                             'workflow',
                             this.get('parameters.nextWorkflow.value'),
                             {reload: true}
-                        ).then(wf => {
-                            let caxe = this.get('store').createRecord('case');
-                            caxe.set('collection', this.get('collection'));
-                            caxe.set('workflow', wf);
-                            caxe.save().then(caxe => {
+                            ).then(wf => {
+                                let caxe = this.get('store').createRecord('case');
+                                caxe.set('collection', this.get('collection'));
+                                caxe.set('workflow', wf);
+                                caxe.save().then(caxe => {
 
-                                this.get('store').queryRecord('parameter', {
-                                    name: "item",
-                                    case: caxe.id
-                                }).then(itemParameter => {
+                                    this.get('store').queryRecord('parameter', {
+                                        name: "item",
+                                        case: caxe.id
+                                    }).then(itemParameter => {
 
-                                    if (!itemParameter) {
-                                        itemParameter = this.get('store').createRecord('parameter');
-                                        itemParameter.disableAutosave = true;
-                                        itemParameter.set('workflow', wf);
-                                        itemParameter.set('name', "item");
-                                        itemParameter.get('cases').then(cases => cases.addObject(caxe));
-                                    }
+                                        if (!itemParameter) {
+                                            itemParameter = this.get('store').createRecord('parameter');
+                                            itemParameter.disableAutosave = true;
+                                            itemParameter.set('workflow', wf);
+                                            itemParameter.set('name', "item");
+                                            itemParameter.get('cases').then(cases => cases.addObject(caxe));
+                                        }
 
-                                    itemParameter.set('value', item.id);
-                                    itemParameter.save().then(itemParameter =>
-                                        this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id)
-                                    );
+                                        itemParameter.set('value', item.id);
+                                        itemParameter.save().then(itemParameter =>
+                                            this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
+                                            this.set('disabled' , false)
+
+                                    });
                                 });
+
+
                             });
 
-
+                        }, err => {
+                            console.log(err)        
+                            this.set('disabled' , false)
                         });
-
-                    }, err => console.log(err));
                 }
             };
             // The base64 data needs to be converted to binary. We followed this stackoverflow answer:

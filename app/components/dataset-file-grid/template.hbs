@@ -14,7 +14,9 @@
             </div>
         {{/each}}  
         {{#if (not-eq totalPages 1)}}
-            {{page-numbers content=pagedContent}}
+            <div style="width:100%; text-align: center;">
+                {{page-numbers content=pagedContent}}
+            </div>
         {{/if}}
 {{else}}
     <p class="p-lg text-center"><em>The file grid cannot be displayed. To display the grid, add some items to this collection.</em></p>
