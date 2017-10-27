@@ -62,7 +62,7 @@
 
             {{#if session.isAuthenticated}}
                 <div class="">
-                    <button class="btn btn-danger " style="margin-left:5px!important"{{action toggleProperty 'showDeleteConfirmation'}}>
+                    <button class="btn btn-danger btn-space" {{action toggleProperty 'showDeleteConfirmation'}}>
                         <i class="fa fa-times"></i> Delete
                     </button>
                     <button class="btn btn-info " {{action 'showEdit'}}><i
@@ -82,7 +82,7 @@
         </div>
 
         <div class="text-right">
-            <button class="btn btn-default" style="margin-left:5px!important" {{action 'cancelEdit'}}>Cancel</button>
+            <button class="btn btn-default btn-space" {{action 'cancelEdit'}}>Cancel</button>
             <button class="btn btn-success" {{action 'saveEdit'}}>Save</button>
         </div>
     </div>
@@ -120,7 +120,7 @@
 
     {{#if session.isAuthenticated}}
         <div>
-            <button class="btn btn-danger" style="margin-left:5px!important" {{action toggleProperty 'showDeleteConfirmation'}}>
+            <button class="btn btn-danger btn-space" {{action toggleProperty 'showDeleteConfirmation'}}>
                 <i class="fa fa-times"></i> Delete
             </button>
             <button class="btn btn-info " {{action 'showEdit'}}><i
