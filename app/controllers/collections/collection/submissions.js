@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+
 export default Ember.Controller.extend({
 
     caxe: Ember.inject.service(),
@@ -15,7 +16,8 @@ export default Ember.Controller.extend({
             caxe.save().then((caxe) => {
                 this.set('caxe.activeCase', caxe);
                 this.transitionToRoute("collections.collection.add", collection, caxe.id)
-            })
+            });
+
         },
 
         continueCase(caxe, collection) {
