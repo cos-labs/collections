@@ -28,6 +28,32 @@
     display: flex;
 }
 
+@media (max-width: 658px) {
+   .nav-item-group.breadcrumbs {
+        position: absolute;
+        top: 100px;
+        left: 29px;
+    }
+     a.crumb {
+        color:#c7c7c7 !important;
+        margin: 5px;
+    }
+
+    .secondary-nav {
+        width: 100%;
+        justify-content: left;
+        padding: 12px; 
+        padding-left:0px;
+    }
+
+    nav#collections-nav {
+        flex-direction: column-reverse;
+    }
+
+    a.crumb {
+        padding-bottom:2px;
+    }
+}
 
 @media (max-width: 954px) {
     #osf-nav .service-link {
@@ -126,7 +152,7 @@ nav .hamburger:hover {
 }
 
 #collections-nav > .nav-item-group > a {
-    margin: 0 12px;
+    margin: 0 4px;
 }
 
 #collections-nav > .nav-item-group > a:last-child {
@@ -154,6 +180,7 @@ nav {
     border-bottom: 1px solid rgba(8, 8, 8, 0.5);
     border-top: 1px solid rgba(250, 250, 250, 0.15);
     box-shadow: 0 0 5px 0 rgba(8, 8, 8, 0.8);
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -229,7 +256,7 @@ img + .caret {
 .nav-item-group > a {
     display: block;
     flex: 0 0 auto;
-    line-height: 1.0;
+    line-height: 1.2;
     color: #f8f8f8;
     cursor: pointer;
     font-size: 1.6rem;
@@ -240,6 +267,10 @@ img + .caret {
     }
 }
 
+
+.nav-item-group > a.crumb {
+    color:#f1f1f1;
+}
 
 .local-nav > a:active {
     background-color: #263947;
@@ -403,9 +434,9 @@ nav input[type="text"] {
     background-image: url("/img/bg-web.png");
     background-color: #197492;
     background-blend-mode: color-dodge;
-    //background-image: url("/img/swirl.png");
+/*    //background-image: url("/img/swirl.png");
     //background-color: #cbba63a1;
-    //background-blend-mode: screen;
+    //background-blend-mode: screen;*/
     background-position: 50% 63%;
     z-index: 150;
     .platter {
@@ -432,15 +463,21 @@ body {
     :first-child {
         font-weight: 600;
     }
-    :after {
-        content:"/";
-        padding-left: 25px;
+    :before {
+        content:">";
+        padding-right: 12px;
         font-weight: 600;
     }
-    :last-child:after {
+    :first-child:before {
         content: "";
         padding: 0;
     }
 
 }
 
+a.crumb {
+    max-width: 200px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
