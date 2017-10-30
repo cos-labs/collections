@@ -16,13 +16,13 @@
     </div>
     {{#each searchResults.data as |r|}}
         <div class="item-row">
-            <div>
+            <div class="title">
                 {{#link-to "collections.collection.item" model.id r.id}}
                     {{r.attributes.title}}
                 {{/link-to}}
             </div>
-            <div>{{r.attributes.created-by}}</div>
-            <div>{{r.attributes.category}}</div>
+            <div class="author">{{r.attributes.created-by}}</div>
+            <div class="type">{{r.attributes.category}}</div>
         </div>
     {{/each}}
 </div>
