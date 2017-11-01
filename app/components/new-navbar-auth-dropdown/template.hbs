@@ -7,12 +7,11 @@
     --}}
 
     <button
-        id="auth-dropdown"
-        data-toggle="dropdown"
         role="button"
+        id="auth-dropdown"
         ria-expanded="false"
         aria-label={{t 'eosf.authDropdown.toggleAuthDropdown'}}
-        onclick={{action closeOtherNavigation}}>
+        onclick={{action 'toggleSubMenu'}}>
             <img
                 class="user-gravatar"
                 src="{{session.session.content.authenticated.user.gravatar}}?s=25"
@@ -21,7 +20,8 @@
             <span class="caret"></span>
     </button>
 
-    <div class="dropdown-content" role="menu">
+    <div class="dropdown-menu osf-dropdown-content" data-open="{{subMenuOpenState}}">
+        
         {{#if headline}}
             <li style="margin-left:10%;">{{headline}}</li>
         {{/if}}
