@@ -14,10 +14,8 @@ export default Ember.Route.extend({
         this.set("crumb.route", this.routeName)
         this.set("crumb.models", [model])
 
-        this.set("nav.links", [{
-            label: "",
-            route: "explore",
-        }, {
+        this.set("nav.links", [
+        {
             label: "Settings",
             route: "collections.collection.edit",
             models: [model]
