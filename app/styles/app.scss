@@ -20,6 +20,7 @@
 @import "mixins";
 @import "variables";
 @import "hero";
+@import "browse";
 
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -833,7 +834,6 @@ iframe {
 .btn-space {
 	margin-left:5px!important;
 }
-
 
 .feature-6 #logo {
     transform: scale(1.3);

@@ -5,6 +5,12 @@ export default Ember.Route.extend({
     title: "Collections",
     crumb: {},
 
+    queryParams: {
+        kind: {
+            refreshModel: true
+        }
+    },
+
     beforeModel() {
         this.set("crumb.label", this.title);
         this.set("crumb.route", this.routeName);
@@ -17,9 +23,13 @@ export default Ember.Route.extend({
         }]);
     },
 
-    model(params) {
+    model(params, transition) {
         return Ember.RSVP.hash({
-            collections: this.store.findAll('collection'),
+            collections: this.store.query('collection', {
+                filter: {
+                    kind: transition.queryParams.kind
+                }
+            }),
         });
     },
 
