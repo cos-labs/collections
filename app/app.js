@@ -15,7 +15,7 @@ Ember.Route.reopen({
     },
 
     activate() {
-        console.log("activate");
+        window.scrollTo(0,0);
         let crumb = this.get("crumb");
         if (crumb) this.get("nav.crumbs").pushObject(crumb)
         console.log(this.get("nav.crumbs"));
