@@ -7,8 +7,8 @@
     --}}
 
     <button
-        role="button"
         id="auth-dropdown"
+        role="button"
         ria-expanded="false"
         aria-label={{t 'eosf.authDropdown.toggleAuthDropdown'}}
         onclick={{action 'toggleSubMenu'}}>
@@ -21,7 +21,7 @@
     </button>
 
     <div class="dropdown-menu osf-dropdown-content" data-open="{{subMenuOpenState}}">
-        
+
         {{#if headline}}
             <li style="margin-left:10%;">{{headline}}</li>
         {{/if}}
