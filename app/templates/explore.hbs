@@ -20,27 +20,7 @@
 <h2 class="text-center">Newest collections</h2>
 <div class="cards">
     {{#each collections as |collection|}}
-        <div class="card coll-single">
-            <div class="card-content">
-                <h3>
-                    {{#link-to "collections.collection" collection.id
-                               class="btn btn-info pull-right"}}
-                        <span {{action 'clearFilter'}}>View</span>{{/link-to}}
-                    {{#link-to "collections.collection" collection.id}}
-                        <span {{action 'clearFilter'}}>{{collection.title}}</span>{{/link-to}}
-                </h3>
-                <p>{{truncate-text collection.description limit=250 omission="..."}}</p>
-
-                {{#if collection.tags}}
-                    <div class="coll-tags">Tags: {{truncate-text collection.tags limit=50 omission="..."}}</div>
-                {{/if}}
-            </div>
-            <footer>
-                <h6 class="text-muted">
-                    {{collection.titleCaseCollectionType}} | Created on {{moment-format collection.dateCreated "MMMM DD, YYYY"}}
-                </h6>
-            </footer>
-        </div>
+        {{collection-detail collection=collection}}
     {{/each}}
 </div>
 
