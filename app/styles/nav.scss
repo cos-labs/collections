@@ -445,38 +445,40 @@ a.crumb {
     margin-right: -25px;
 }
 
-@media (max-width: 658px) {
- .nav-item-group.breadcrumbs {
-    position: absolute;
-    top: 100px;
-    left: 29px;
-}
-a.crumb {
-    color:#c7c7c7 !important;
-    margin: 5px;
-}
-
-.secondary-nav {
-    width: 100%;
-    justify-content: left;
-    padding: 12px; 
-    padding-left:0px;
-}
-
-nav#collections-nav {
-    flex-direction: column-reverse;
-}
-
-a.crumb {
-    padding-bottom:2px;
-}
-}
-
 #osf-nav .dropdown-osf-service > .dropdown-content {
     background-color: #2E6A74;
     right: -2px;
     top:50px;
 }
+
+@media (max-width: 658px) {
+    .nav-item-group.breadcrumbs {
+        position: absolute;
+        top: 100px;
+        left: 29px;
+    }
+    a.crumb {
+        color:#c7c7c7 !important;
+        margin: 5px;
+    }
+
+    .secondary-nav {
+        width: 100%;
+        justify-content: left;
+        padding: 12px; 
+        padding-left:0px;
+    }
+
+    nav#collections-nav {
+        flex-direction: column-reverse;
+    }
+
+    a.crumb {
+        padding-bottom:2px;
+    }
+}
+
+
 
 @media (max-width: 954px) {
     #osf-nav .service-name {
