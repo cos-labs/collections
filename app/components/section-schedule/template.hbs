@@ -1,4 +1,3 @@
-
 {{#if (await items)}}
 
 <div class="filters">
@@ -32,7 +31,7 @@
 
     <input onblur={{action 'getInput' value="target.value"}} placeholder="Filter schedule" style="color:black;" class="form-control">
 
-    <button class="apply-button" {{action 'applyFilter'}}>Apply</button><button class="text-button" {{action 'toggleFilterOptions'}} >Cancel</button>
+    <button class="apply-button button-filter" {{action 'applyFilter'}}>Apply</button><button class="text-button button-filter" {{action 'toggleFilterOptions'}} >Cancel</button>
 
 </div>
 
