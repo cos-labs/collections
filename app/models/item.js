@@ -37,7 +37,7 @@ export default Model.extend({
     }),
     startTimeFormatted: Ember.computed('startTime', function () {
         const st = moment(this.get('startTime'));
-        return st.format('h:mmA');
+        return st.format('MMM Do, YYYY @ h:mmA');
     }),
     endTimeFormatted: Ember.computed('startTime', function () {
         const st = moment(this.get('endTime'));

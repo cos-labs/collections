@@ -52,11 +52,11 @@
                     <div class="title">
                         <strong>{{item.title}}</strong>
                     </div>
-                    <div class="location">
-                        {{item.location}}
-                    </div>
                     <div class="presenters">
                         {{await item.createdBy.computedFullName}}
+                    </div>
+                    <div class="location">
+                        {{item.location}}
                     </div>
                     <div class="end-time">
                         Ends at {{item.endTimeFormatted}}

@@ -48,31 +48,27 @@
         overflow: scroll;
 
         .title {
-            width: calc(60% - 10px);
-            margin: 5px;
+            width: calc(100%);
+            font-size: 1.4rem;
         }
 
         .location {
-            width: calc(40% - 10px);
-            margin: 5px;
+            width: calc(50%);
         }
 
         .presenters {
-            width: calc(60% - 10px);
-            margin: 5px;
+            width: calc(100%);
+            font-size: 1.2rem;
         }
 
         .end-time {
-            width: calc(40% - 10px);
-            margin: 5px;
+            width: calc(50%);
             text-align: right;
         }
 
         .time-slot-header {
             border-bottom: 1px solid rgba(255, 2555, 255, 0.2);
-            margin-right: 15px;
             padding: 10px 0;
-            margin-left: 5px;
             margin-top:10px;
         }
 
@@ -80,15 +76,17 @@
             width: 100%;
 
             .event {
-                padding: 5px;
+                padding: 8px 15px 8px 0px;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
                 &.selected-schedule{
                     background: #fff;
                     color: #000;
                     border-radius: 3px 0 0 3px;
+                    padding-left: 15px;
                 }
 
             }
