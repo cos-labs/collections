@@ -2,9 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+
     model(params) {
         return Ember.RSVP.hash({
-            "collections": this.modelFor('collections')
+            "collections": this.modelFor('collections').collections
         });
     },
 

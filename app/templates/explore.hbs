@@ -7,6 +7,15 @@
         {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
     {{/if}}
 </section>
+
+<h2 class="text-center">Collection Types</h2>
+
+<div class="cards">
+
+    {{#link-to "collections" (query-params kind="meeting") class="card"}}<h3>Meetings</h3>{{/link-to}}
+    {{#link-to "collections" (query-params kind="dataset") class="card"}}<h3>Datasets</h3>{{/link-to}}
+
+</div>
 <div>
 <h2 class="text-center">Newest collections</h2>
 <div class="cards">
