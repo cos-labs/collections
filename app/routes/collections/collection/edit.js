@@ -17,10 +17,8 @@ export default Ember.Route.extend({
 
     afterModel(model, transition) {
 
-        this.set("nav.links", [{
-            label: "",
-            route: "explore"
-        }, {
+        this.set("nav.links", [
+        {
             label: "Settings",
             route: "collections.collection.edit",
             models: [model.collection]

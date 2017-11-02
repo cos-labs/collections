@@ -9,6 +9,10 @@ export default Ember.Component.extend({
 
     classNames: ["section-file-grid"],
     tagName: "section",
+    attributeBindings: ["id"],
+    id: Ember.computed("layout.title", function() {
+        return "section-" + this.get("index");
+    }),
 
     // Everything below is part of ember-cli-pagination setup for client-side-only pagination
     queryParams: ["page", "perPage"],

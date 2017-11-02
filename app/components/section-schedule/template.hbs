@@ -1,4 +1,3 @@
-
 {{#if (await items)}}
 
 <div class="filters">
@@ -32,14 +31,14 @@
 
     <input onblur={{action 'getInput' value="target.value"}} placeholder="Filter schedule" style="color:black;" class="form-control">
 
-    <button class="apply-button" {{action 'applyFilter'}}>Apply</button><button class="text-button" {{action 'toggleFilterOptions'}} >Cancel</button>
+    <button class="apply-button button-filter" {{action 'applyFilter'}}>Apply</button><button class="text-button button-filter" {{action 'toggleFilterOptions'}} >Cancel</button>
 
 </div>
 
 <div class="schedule">
     {{#each (await items) as |itemlist|}}
 
-        <h3 class="time-slot-header">{{itemlist.[0].startTimeFormatted}}</h3>
+        <h3 class="time-slot-header">{{itemlist.[0].startDateTimeFormatted}}</h3>
 
         <div class="time-slot">
 
@@ -53,14 +52,14 @@
                     <div class="title">
                         <strong>{{item.title}}</strong>
                     </div>
-                    <div class="location">
-                        {{item.location}}
-                    </div>
                     <div class="presenters">
                         {{await item.createdBy.computedFullName}}
                     </div>
+                    <div class="location">
+                        {{item.location}}
+                    </div>
                     <div class="end-time">
-                        Ends at {{item.endTimeFormatted}}
+                        {{item.startTimeFormatted}} till {{item.endTimeFormatted}}
                     </div>
                  
                 </div>

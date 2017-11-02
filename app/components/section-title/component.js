@@ -3,7 +3,10 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     session: Ember.inject.service(),
     tagName: 'section',
-    attributeBindings: ['style'],
+    attributeBindings: ['style', "id"],
+    id: Ember.computed("layout.title", function() {
+        return "section-" + this.get("index");
+    }),
     classNames: ["landing-title"],
     style: Ember.computed('layout', 'branding', function() {
         // if image is specified for background, use that

@@ -6,9 +6,7 @@ export default Ember.Component.extend({
     attributeBindings: ['style', "id"],
     classNames: ["landing-paragraph-container"],
     id: Ember.computed("layout.title", function() {
-        const layout = this.get("layout");
-        if (!layout.title) return "";
-        return layout.title.replace(/[.,/#!$%^&*;:{}=`~()]/g, '').replace(/\s/g, '_')
+        return "section-" + this.get("index");
     }),
     style: Ember.computed('layout', function() {
         return Ember.String.htmlSafe(`background-color: ${this.get('layout.background-color')}; color: ${this.get('layout.text-color')}`);

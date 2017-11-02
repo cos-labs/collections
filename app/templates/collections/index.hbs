@@ -5,6 +5,26 @@
         {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
     {{/if}}
 </section>
-<section>
-    <h2 class="text-center">Placeholder Section</h2>
-</section>
+
+<div class="results">
+    <nav class="results-nav">
+        <a>Kind</a>
+        <a>Creator</a>
+        <a>Date Created</a>
+    </nav>
+
+    <div class="result-items">
+
+        {{#each collections as |collection|}}
+            <div class="result-item">
+
+                <h2>{{collection.title}}</h2>
+                <div class="description">{{collection.description}}</div>
+
+            </div>
+        {{/each}}
+
+    </div>
+
+
+</div>

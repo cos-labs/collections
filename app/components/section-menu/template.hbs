@@ -1,0 +1,5 @@
+{{#each menuItems as |menuItem|}}
+    <a {{action "scrollTo" menuItem.id}}>{{menuItem.label}}</a>
+{{/each}}
+
+{{yield}}
