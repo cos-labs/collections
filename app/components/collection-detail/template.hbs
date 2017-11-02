@@ -1,0 +1,26 @@
+<div class="card-content">
+    <h3>
+        {{#link-to "collections.collection" collection.id
+                   class="btn btn-info pull-right"}}
+            <span {{action 'clearFilter'}}>
+                View
+            </span>
+        {{/link-to}}
+        {{#link-to "collections.collection" collection.id}}
+            <span>
+                {{collection.title}}
+            </span>
+        {{/link-to}}
+    </h3>
+    <p>{{truncate-text collection.description limit=250 omission="..."}}</p>
+
+    {{#each tags as |tag|}}
+        <a class="tag">{{tag}}</a>
+    {{/each}}
+</div>
+<footer>
+    <h6 class="text-muted">
+        {{collection.titleCaseCollectionType}} | Updated on {{moment-format collection.dateUpdated "MMMM DD, YYYY"}}
+    </h6>
+</footer>
+

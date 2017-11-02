@@ -1,0 +1,27 @@
+<!-- dataset-file-grid -->
+{{#if model.items}}
+        {{#each pagedContent as |item|}}
+            <div class="item-detail">
+                <a  class="item-thumbnail" style="background-image: url('/img/placeholder.png');" {{action "transition" "collections.collection.item" model.id item.id}}>
+                  {{item.fileFormat}}
+                </a>
+                <div class="panel-body">
+                    <span class="line-clamp line-clamp-2">{{#link-to 'collections.collection.item' model.id item.id class="clamp"}}{{item.title}}{{/link-to}}</span>
+                    <a href="https://osf.io/{{await item.createdBy.username}}">
+                        <p class="text-muted line-clamp line-clamp-1">
+                            <small>
+                                {{await item.createdBy.firstName}} {{await item.createdBy.lastName}}
+                            </small>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+        {{#if (not-eq totalPages 1)}}
+            <div style="width:100%; text-align: center;">
+                {{page-numbers content=pagedContent}}
+            </div>
+        {{/if}}
+{{else}}
+    <p class="p-lg text-center"><em>The file grid cannot be displayed. To display the grid, add some items to this collection.</em></p>
+{{/if}}

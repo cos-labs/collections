@@ -595,7 +595,6 @@ input {
     top: 100%;
     left: 0;
     z-index: 1000;
-    display: none;
     float: left;
     min-width: 160px;
     padding: 5px 0;
@@ -692,12 +691,8 @@ input {
 }
 
 .dropdown-backdrop {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 990;
+    position: relative;
+
 }
 
 .pull-right > .dropdown-menu {

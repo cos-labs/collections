@@ -11,6 +11,7 @@
 @import 'components/footer';
 @import "components/item-display";
 @import 'submissions';
+@import "components/section-menu";
 
 @import 'osf-style';
 @import "nav";
@@ -20,10 +21,14 @@
 @import "mixins";
 @import "variables";
 @import "hero";
+@import "browse";
 
 
 // /////////////////////////////////////////////////////////////////////////////
 // frozen
+
+
+
 
 
 
@@ -834,7 +839,6 @@ iframe {
 	margin-left:5px!important;
 }
 
-
 /* CSS for line clamping */
 .line-clamp {
 	display            : block;
@@ -884,3 +888,8 @@ iframe {
 	height             : calc(1em * 1.2 * 5);
 }
 /* End required CSS. */
+
+.feature-6 #logo {
+    transform: scale(1.3);
+    overflow: hidden;
+}

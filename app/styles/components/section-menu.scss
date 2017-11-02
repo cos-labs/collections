@@ -1,0 +1,23 @@
+.page-menu {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: no-wrap;
+    
+    a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 8px 12px;
+        margin: 0;
+        border-radius: 3px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(255,255,255,0.08)
+        }
+    }
+    background-color: #333;
+
+}
+
