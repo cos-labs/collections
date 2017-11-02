@@ -6,12 +6,15 @@ export default Ember.Component.extend({
     session: Ember.inject.service(),
     store: Ember.inject.service(),
     tagName: 'section',
-    attributeBindings: ['style'],
+    attributeBindings: ['style', "id"],
     filterString: '',
     trackFilter: '',
     roomFilter: '',
     filters: [],
     selectedItemId: 0,
+    id: Ember.computed("layout.title", function() {
+        return "section-" + this.get("index");
+    }),
     classNames: ["schedule-explorer"],
     data: Ember.computed('layout', function () {
         const dataSource = this.get('layout.data');
