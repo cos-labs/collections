@@ -7,6 +7,14 @@
 </section>
 
 <div class="results">
+
+    <div class="search">
+    
+        {{input class="searchbox" placeholder="Search..." value=q}}
+        <button class="btn btn-success" {{action "doQuery" q}}>Search</button>
+    
+    </div>
+
     <nav class="results-nav">
         <a>Kind</a>
         <a>Creator</a>
