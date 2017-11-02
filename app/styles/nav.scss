@@ -451,6 +451,12 @@ a.crumb {
     top:50px;
 }
 
+.btn-top-signup, .btn-top-login {
+    margin-top:5px;
+}
+
+
+/*Media Queries*/
 @media (max-width: 658px) {
     .nav-item-group.breadcrumbs {
         position: absolute;

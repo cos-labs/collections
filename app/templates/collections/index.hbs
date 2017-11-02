@@ -18,7 +18,13 @@
         {{#each collections as |collection|}}
             <div class="result-item">
 
-                <h2>{{collection.title}}</h2>
+                <h2>
+                    {{#link-to "collections.collection" collection.id}}
+                        <span>
+                            {{collection.title}}
+                        </span>
+                    {{/link-to}}
+                </h2>
                 <div class="description">{{collection.description}}</div>
 
             </div>

@@ -2,7 +2,7 @@
 {{nav-bar}}
 <section class="coll-banner text-center">
     <h1 class="f-w-lg"> OSF Collections </h1>
-    <p class="lead f-w-md">Organize your research interests in a way that makes sense</p>
+    <p class="lead f-w-md">Organize your research interests in a way that makes sense to you.</p>
     {{#if session.isAuthenticated}}
         {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
     {{/if}}
@@ -12,8 +12,8 @@
 
 <div class="cards">
 
-    {{#link-to "collections" (query-params kind="meeting") class="card"}}<h3>Meetings</h3>{{/link-to}}
-    {{#link-to "collections" (query-params kind="dataset") class="card"}}<h3>Datasets</h3>{{/link-to}}
+    {{#link-to "collections" (query-params kind="meeting") class="card"}}<h3 class="container-fluid">Meetings</h3>{{/link-to}}
+    {{#link-to "collections" (query-params kind="dataset") class="card"}}<h3 class="container-fluid">Datasets</h3>{{/link-to}}
 
 </div>
 <div>
