@@ -9,7 +9,6 @@ export default Ember.Component.extend({
 
     didReceiveAttrs() {
         this.set('description', this.attrs.description);
-        this.set('dtFieldValue', this.get('widget.parameters.date'));
     },
 
 });
