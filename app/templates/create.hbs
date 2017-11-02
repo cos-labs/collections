@@ -10,7 +10,7 @@
         <h2>Select collection type</h2>
         {{#each typeList as |type|}}
         <div class="radio">
-            {{radio-button id=type.value value=type.value name="radio-collection-type" checked=collectionType}}
+            {{element-radio-button id=type.value value=type.value name="radio-collection-type" checked=collectionType}}
             <label for="{{type.value}}">{{type.label}}<p>{{type.description}}</p></label>
         </div>
         {{/each}}
