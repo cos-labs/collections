@@ -1,10 +1,8 @@
-<section class="coll-banner text-center">
-    <h1 class="f-w-lg"> Browse Collections </h1>
-    <p class="lead f-w-md">Organize your research interests in a way that makes sense</p>
-    {{#if session.isAuthenticated}}
+{{#if session.isAuthenticated}}
+    <section class="coll-banner text-center">
         {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
-    {{/if}}
-</section>
+    </section>
+{{/if}}
 
 <div class="results">
 
