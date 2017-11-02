@@ -38,7 +38,7 @@
 <div class="schedule">
     {{#each (await items) as |itemlist|}}
 
-        <h3 class="time-slot-header">{{itemlist.[0].startTimeFormatted}}</h3>
+        <h3 class="time-slot-header">{{itemlist.[0].startDateTimeFormatted}}</h3>
 
         <div class="time-slot">
 
@@ -59,7 +59,7 @@
                         {{item.location}}
                     </div>
                     <div class="end-time">
-                        Ends at {{item.endTimeFormatted}}
+                        {{item.startTimeFormatted}} till {{item.endTimeFormatted}}
                     </div>
                  
                 </div>
