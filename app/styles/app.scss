@@ -71,7 +71,9 @@ h2:hover >.headerlink {
 }
 
 
-
+section > pre {
+    width: calc(100% - 30px)
+}
 
 
 /* Global */
