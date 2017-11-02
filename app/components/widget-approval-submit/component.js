@@ -34,6 +34,9 @@ export default Ember.Component.extend({
     actions: {
         async pressButton() {
             let item = await this.get("store").findRecord("item", this.get('parameters.item.value'))
+            item.set("location", this.get("parameters.eventRoom.value"))
+            item.set("startTime", this.get("parameters.startDate.value"))
+            item.set("endTime", this.get("parameters.endDate.value"))
             if (this.get("parameters.approve.value")) item.set("status", "approved");
             if (this.get("parameters.deny.value")) item.set("status", "denied");
             await item.save();
