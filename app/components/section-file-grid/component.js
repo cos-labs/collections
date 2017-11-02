@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     session: Ember.inject.service(),
     router: Ember.inject.service('-routing'),
 
-    classNames: ["layer-file-grid"],
+    classNames: ["section-file-grid"],
     tagName: "section",
     attributeBindings: ["id"],
     id: Ember.computed("layout.title", function() {

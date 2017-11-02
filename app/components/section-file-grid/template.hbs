@@ -6,12 +6,17 @@
                   {{item.fileFormat}}
                 </a>
                 <div class="panel-body">
-                    {{#link-to 'collections.collection.item' model.id item.id class="clamp"}}{{item.title}}{{/link-to}}
+                    <span class="line-clamp line-clamp-2">{{#link-to 'collections.collection.item' model.id item.id class="clamp"}}{{item.title}}{{/link-to}}</span>
                     <a href="https://osf.io/{{await item.createdBy.username}}">
-                    <p><small>{{await item.createdBy.firstName}} {{await item.createdBy.lastName}}</small></p></a>
+                        <p class="text-muted line-clamp line-clamp-1">
+                            <small>
+                                {{await item.createdBy.firstName}} {{await item.createdBy.lastName}}
+                            </small>
+                        </p>
+                    </a>
                 </div>
             </div>
-        {{/each}}  
+        {{/each}}
         {{#if (not-eq totalPages 1)}}
             <div style="width:100%; text-align: center;">
                 {{page-numbers content=pagedContent}}
