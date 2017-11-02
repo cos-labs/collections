@@ -11,7 +11,9 @@
     <div class="search">
     
         {{input class="searchbox" placeholder="Search..." value=q}}
-        <button class="btn btn-success" {{action "doQuery" q}}>Search</button>
+        <button class="btn btn-primary" {{action "doQuery" q}}>
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
     
     </div>
 
@@ -36,6 +38,11 @@
                 <div class="description">{{collection.description}}</div>
 
             </div>
+
+        {{else}}
+
+            Searching...
+
         {{/each}}
 
     </div>

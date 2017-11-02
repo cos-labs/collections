@@ -12,25 +12,32 @@
 
 <div class="cards">
 
-    {{#link-to "collections" (query-params kind="meeting" q="") class="card"}}<h3 class="container-fluid">Meetings</h3>{{/link-to}}
-    {{#link-to "collections" (query-params kind="dataset" q="") class="card"}}<h3 class="container-fluid">Datasets</h3>{{/link-to}}
+    {{#link-to "collections.index" (query-params kind="meeting") class="card"}}
+        <h3 class="container-fluid">Meetings</h3>
+    {{/link-to}}
+    {{#link-to "collections" (query-params kind="dataset") class="card"}}
+        <h3 class="container-fluid">Datasets</h3>
+    {{/link-to}}
 
 </div>
+
 <div>
-<h2 class="text-center">Newest collections</h2>
-<div class="cards">
-    {{#each collections as |collection|}}
-        {{collection-detail collection=collection}}
-    {{/each}}
-</div>
 
-<div class="text-center">
-    {{#if showLoadMore}}
-        {{#if loadingMore}}
-            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw text-muted m-t-md"></i>
-        {{else}}
-            <button class="btn btn-default" {{action 'loadMore'}}> Load more</button>
+    <h2 class="text-center">Newest collections</h2>
+    <div class="cards">
+        {{#each collections as |collection|}}
+            {{collection-detail collection=collection}}
+        {{/each}}
+    </div>
+
+    <div class="text-center">
+        {{#if showLoadMore}}
+            {{#if loadingMore}}
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw text-muted m-t-md"></i>
+            {{else}}
+                <button class="btn btn-default" {{action 'loadMore'}}> Load more</button>
+            {{/if}}
         {{/if}}
-    {{/if}}
-</div>
+    </div>
+
 </div>
