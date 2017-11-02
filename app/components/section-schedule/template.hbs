@@ -76,7 +76,7 @@
         <small>{{get (await selectedItem) 'createdBy.computedFullName'}}</small>
     </h3>
     <p>{{get (await selectedItem) 'description'}}</p>
-    <p><a href="#">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
+    <p><a href="https://osf.io/{{selectedUUID}}">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
 </div>
 {{else}}
     <p class="error-message white">
