@@ -11,6 +11,10 @@ export default Ember.Component.extend({
     pageNumber: 1,
     totalPages: 1,
     searchInput: '',
+    attributeBindings: ["id"],
+    id: Ember.computed("layout.title", function() {
+        return "section-" + this.get("index");
+    }),
     pageNumberButtons:'',
     tagName: 'section',
     theadStyle: Ember.computed('layout', function () {

@@ -2,7 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'section',
-    attributeBindings: ['style'],
+    id: Ember.computed("layout.title", function() {
+        return "section-" + this.get("index");
+    }),
+    attributeBindings: ['style', "id"],
     listColumns: Ember.computed('layout', function() {
         const dataSource = this.get('layout.data');
         const list = this.get('model.settings').data[dataSource];

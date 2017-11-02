@@ -1,6 +1,5 @@
 <!-- dataset-file-grid -->
 {{#if model.items}}
-        <h2>Browse files</h2>
         {{#each pagedContent as |item|}}
             <div class="item-detail">
                 <a  class="item-thumbnail" style="background-image: url('/img/placeholder.png');" {{action "transition" "collections.collection.item" model.id item.id}}>

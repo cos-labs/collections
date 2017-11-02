@@ -1,0 +1,18 @@
+.page-menu {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    a {
+        color: #fff;
+        display: block;
+        padding: 8px;
+        &:hover {
+            background-color: rgba(255,255,255,0.05)
+        }
+    }
+    background-color: #333;
+
+}
+
