@@ -6,12 +6,4 @@ export default Ember.Controller.extend({
     kind: null,
     q: null,
 
-    actions: {
-    
-        doQuery(query) {
-            debugger;
-        }
-    
-    }
-
 })
