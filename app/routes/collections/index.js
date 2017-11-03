@@ -12,7 +12,6 @@ export default Ember.Route.extend({
     },
 
     model(params, transition) {
-        console.log('model hook')
         return Ember.RSVP.hash({
             collections: this.store.query('collection', {
                 q: transition.queryParams.q,
