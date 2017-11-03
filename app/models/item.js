@@ -32,7 +32,7 @@ export default Model.extend({
             let arr = this.get('fileName').split('.')
             return arr[arr.length-1];
         } else {
-            return "";
+            return "Unavailable";
         }
     }),
     startDateTimeFormatted: Ember.computed('startTime', function () {

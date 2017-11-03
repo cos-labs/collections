@@ -1,25 +1,22 @@
 <div class="hero">
     <h1>{{item.title}}</h1>
+
+    <h5 class="view-authors">
+        {{item.createdBy.firstName}} {{item.createdBy.lastName}}
+    </h5>
+    <p>Added on: {{moment-format model.item.datePublished "MMMM DD, YYYY"}} | Last
+    edited: {{moment-format model.item.dateModified "MMMM DD, YYYY"}} </p>
 </div>
 
-<section>
-    <fieldset>
-        <h5 class="view-authors">
-            {{item.createdBy.firstName}} {{item.createdBy.lastName}}
-        </h5>
-        <p>Added on: {{moment-format model.item.datePublished "MMMM DD, YYYY"}} | Last
-            edited: {{moment-format model.item.dateModified "MMMM DD, YYYY"}} </p>
-    </fieldset>
-
-    <fieldset>
+<section style="flex-direction: row;  flex-wrap: unset; ">
+    <fieldset class="item-view-horizontal" style="min-width: 600px;">
         {{file-renderer download=item.fileLink width="100%" allowfullscreen=true}}
 
-    
     </fieldset>
-    <fieldset>
+    <fieldset class="item-view-horizontal">
         <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
         <p>{{item.location}}<br>{{item.startTimeFormatted}}
-            - {{model.item.endTimeFormatted}}</p>
+        - {{model.item.endTimeFormatted}}</p>
         <h4 class="p-v-md f-w-md"><strong>Description</strong></h4>
         <p>{{item.description}}</p>
 
@@ -31,6 +28,6 @@
         <span class="coll-item-tag">{{item.tags}}</span>
         {{/if}}
         <hr />
-        <a href="https://osf.io/{{item.sourceId}}" class="btn btn-default btn-block"> Go to Source</a>
+        <a href="https://osf.io/{{item.sourceId}}" class="btn btn-default btn-block"> View on OSF</a>
     </fieldset>
 </section>

@@ -12,6 +12,9 @@ export default Ember.Component.extend({
     roomFilter: '',
     filters: [],
     selectedItemId: 0,
+    selectedUUID: null,
+    noResultsFound: false,
+    loadingResults: true,
     id: Ember.computed("layout.title", function() {
         return "section-" + this.get("index");
     }),
@@ -96,6 +99,7 @@ export default Ember.Component.extend({
         $('#'+id).addClass('selected-schedule')
         if (id >= 0) {
             return this.get('store').findRecord('item', id).then((i) => {
+                this.set('selectedUUID', i.get('data').sourceId)
                 return i;
             });
         }
