@@ -4,8 +4,9 @@ import ENV from '../../config/environment';
 
 
 export default Ember.Component.extend({
-    filterString: '',
     eventFilter: '',
+    noResultsFound: false,
+    loadingResults: true,
     searchResults: null,
     classNames: ["layer-items"],
     pageNumber: 1,
@@ -87,6 +88,13 @@ export default Ember.Component.extend({
             return Ember.$.get(query, (data) => {
                 this.set('searchResults', data);
                 this.set('totalPages', data.meta.pagination.pages);
+                            
+                if(this.get('searchResults.data')[0] === undefined ){
+                    this.set('noResultsFound', true)
+                } else {
+                    this.set('noResultsFound', false)
+
+                }
                 let totalPages = this.get('totalPages');
                 let buttonHTML=[];
                 for(let i = 1; i <= totalPages; i++){
