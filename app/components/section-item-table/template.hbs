@@ -43,6 +43,22 @@
 {{/if}}
 
 {{else}}
-    <p class="p-lg text-center"><em>The table cannot be displayed. To display the schedule, add items to this collection and make sure they're indexed.</em></p>
+    {{#if noResultsFound}}
+        <form onsubmit="return false">
+            {{input class="form-control search-bar" id="item-search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+            <div {{action 'search'}} class="btn btn-primary fa fa-search" aria-hidden="true"></div>
+        </form>
+            <div class="text-center">
+                No Results Found
+            </div>
+    {{else}}
+        {{#if loadingResults}}
+            <div class="text-center">
+                Loading...
+            </div>
+        {{else}}
+        <p class="p-lg text-center"><em>The table cannot be displayed. To display the schedule, add items to this collection and make sure they're indexed.</em></p>
+        {{/if}}
+    {{/if}}
 {{/if}}
 
