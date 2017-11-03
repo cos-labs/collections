@@ -13,6 +13,8 @@ export default Ember.Component.extend({
     filters: [],
     selectedItemId: 0,
     selectedUUID: null,
+    noResultsFound: false,
+    loadingResults: true,
     id: Ember.computed("layout.title", function() {
         return "section-" + this.get("index");
     }),

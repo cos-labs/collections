@@ -91,7 +91,25 @@
     <p><a href="https://osf.io/{{selectedUUID}}">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
 </div>
 {{else}}
-    <p class="error-message white">
-        The schedule cannot be displayed. To display the schedule, add times to some of the items.
-    </p>
+
+    {{#if noResultsFound}}
+            <p class="text-center white error-message">
+                No Results Found
+            </p>
+    {{else}}
+        {{#if loadingResults}}
+            <p class="text-center white error-message">
+                Loading...
+            </p>
+        {{else}}
+        <p class="error-message white">
+            The schedule cannot be displayed. To display the schedule, add times to some of the items.
+        </p>
+        {{/if}}
+    {{/if}}
+
+ 
+
+
+
 {{/if}}
