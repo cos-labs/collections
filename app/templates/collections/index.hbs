@@ -9,16 +9,24 @@
     <div class="search">
     
         {{input class="searchbox" placeholder="Search..." value=q}}
-        <button class="btn btn-primary" {{action "doQuery" q}}>
+        <button class="btn btn-success">
             <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     
     </div>
 
     <nav class="results-nav">
-        <a>Kind</a>
-        <a>Creator</a>
-        <a>Date Created</a>
+        <h2>By kind</h2>
+        <a {{action "addFilter" "kind" "meeting"}}>Meetings</a>
+        <a {{action "addFilter" "kind" "datasets"}}>Datasets</a>
+        <a {{action "addFilter" "kind" "preprints"}}>Preprints</a>
+        <a {{action "addFilter" "kind" "registrations"}}>Registrations</a>
+        <h2>By creator</h2>
+        {{input placeholder="Creator" value=creator}}
+        <h2>By date</h2>
+        <h3>Date created</h3>
+        <h3>Date updated</h3>
+
     </nav>
 
     <div class="result-items">

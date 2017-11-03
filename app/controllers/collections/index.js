@@ -8,8 +8,8 @@ export default Ember.Controller.extend({
 
     actions: {
     
-        doQuery(query) {
-            debugger;
+        addFilter(name, value) {
+            this.set(name, value)
         }
     
     }
