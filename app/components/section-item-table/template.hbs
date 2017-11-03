@@ -1,11 +1,9 @@
 
 {{#if searchResults.data}}
     
-<form>
-    {{input class="form-control search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
-    <div {{action 'search'}} class="btn btn-primary">
-        <i class="fa fa-search" aria-hidden="true"></i>
-    </div>
+<form onsubmit="return false">
+    {{input class="form-control search-bar" id="item-search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+    <div {{action 'search'}} class="btn btn-primary fa fa-search" aria-hidden="true"></div>
 </form>
 
 <div class="item-list">
