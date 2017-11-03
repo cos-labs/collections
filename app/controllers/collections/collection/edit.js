@@ -18,9 +18,6 @@ export default Ember.Controller.extend({
         }
         return [];
     }),
-    settingsString: Ember.computed('collection.settings', function() {
-        return JSON.stringify(this.get('collection.settings'), null, 2);
-    }),
     actions: {
         showEdit () {
             this.set('editMode', true);
@@ -52,20 +49,6 @@ export default Ember.Controller.extend({
         },
         deleteCollection() {
             this.get('collection').destroyRecord().then(() => this.transitionToRoute('/'));
-        },
-        toggleJsonView(){
-
-            if (this.get('jsonBodyHeight') == '100%') {
-
-                this.set('jsonBodyHeight', '400px');
-                this.set('jsonBtnText', 'Show More ▼');
-
-            } else {
-                
-                this.set('jsonBodyHeight', '100%');
-                this.set('jsonBtnText', 'Show Less ▲');
-            }
-
         },
     },
     resetModelCache() {
