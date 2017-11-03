@@ -90,14 +90,11 @@ export default Ember.Component.extend({
                 this.set('totalPages', data.meta.pagination.pages);
                             
                 if(this.get('searchResults.data')[0] === undefined ){
-                    console.log('fvfvvf')
                     this.set('noResultsFound', true)
                 } else {
                     this.set('noResultsFound', false)
 
                 }
-                console.log(this.get('searchResults.data')[0], this.get('noResultsFound'))
-
                 let totalPages = this.get('totalPages');
                 let buttonHTML=[];
                 for(let i = 1; i <= totalPages; i++){
