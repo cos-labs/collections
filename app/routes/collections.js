@@ -5,11 +5,6 @@ export default Ember.Route.extend({
     title: "Collections",
     crumb: {},
 
-    queryParams: {
-        kind: {
-            refreshModel: true
-        }
-    },
 
     beforeModel() {
         this.set("crumb.label", this.title);
