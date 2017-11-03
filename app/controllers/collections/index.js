@@ -6,4 +6,12 @@ export default Ember.Controller.extend({
     kind: null,
     q: null,
 
+    actions: {
+    
+        addFilter(name, value) {
+            this.set(name, value)
+        }
+    
+    }
+
 })
