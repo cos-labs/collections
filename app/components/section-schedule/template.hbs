@@ -43,26 +43,38 @@
         <div class="time-slot">
 
             {{#each itemlist as |item|}}
-
-                <div
-                    class="event"
-                    id={{item.id}}
-                    onclick={{action (mut selectedItemId) item.id}}
-                >
-                    <div class="title">
-                        <strong>{{item.title}}</strong>
+                
+                {{#if (eq item itemlist.firstObject) }}
+                     <div class="event selected-schedule" id={{item.id}} onclick={{action (mut selectedItemId) item.id}}>  
+                        <div class="title">
+                            <strong>{{item.title}}</strong>
+                        </div>
+                        <div class="presenters">
+                            {{await item.createdBy.computedFullName}}
+                        </div>
+                        <div class="location">
+                            {{item.location}}
+                        </div>
+                        <div class="end-time">
+                            {{item.startTimeFormatted}} till {{item.endTimeFormatted}}
+                        </div>
+                    </div>          
+                {{else}}
+                    <div class="event selected-schedule" id={{item.id}} onclick={{action (mut selectedItemId) item.id}}>  
+                        <div class="title">
+                            <strong>{{item.title}}</strong>
+                        </div>
+                        <div class="presenters">
+                            {{await item.createdBy.computedFullName}}
+                        </div>
+                        <div class="location">
+                            {{item.location}}
+                        </div>
+                        <div class="end-time">
+                            {{item.startTimeFormatted}} till {{item.endTimeFormatted}}
+                        </div>
                     </div>
-                    <div class="presenters">
-                        {{await item.createdBy.computedFullName}}
-                    </div>
-                    <div class="location">
-                        {{item.location}}
-                    </div>
-                    <div class="end-time">
-                        {{item.startTimeFormatted}} till {{item.endTimeFormatted}}
-                    </div>
-                 
-                </div>
+                {{/if}}
 
             {{/each}}
 
