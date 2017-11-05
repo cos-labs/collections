@@ -3,7 +3,7 @@
     <h1 class="f-w-lg"> My Collection </h1>
     <p class="lead f-w-md">Where all of your personal items go!</p>
     {{#if session.isAuthenticated}}
-        {{#link-to class="btn btn-success btn-lg m-t-lg"}}Add a new item{{/link-to}}
+        {{#link-to "create" class="btn btn-success btn-lg m-t-lg"}}Add a new item{{/link-to}}
     {{/if}}
 </section>
 <div>
