@@ -1,6 +1,8 @@
-<h1 class="submission">{{caxe.workflow.title}}                       
+
+<div class="hero">
+    <h1>{{caxe.workflow.title}} </h1>
     <h3>{{caxe.workflow.description}}</h3>
-</h1>
+</div>
 
 
 <section>
@@ -21,7 +23,7 @@
                 <p>{{section.description}}</p>
                 {{#each section.sortedWidgets as |widget|}}
                 {{widget.widgetType}}
-                
+
                     {{component widget.widgetType
                         widget=widget
                         collection=collection
