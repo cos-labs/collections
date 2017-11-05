@@ -3,6 +3,7 @@
     position: absolute;
     top: 0px;
     z-index: 1000;
+    background-image: linear-gradient(to bottom,rgba(60,60,60,.5)0%,rgba(34,34,34,.5)100%);
 }
 #osf-nav > .global-nav > a.service-link {
     font-size: 2.4rem !important;
@@ -22,6 +23,12 @@
     span.service-name {
         font-weight: 600;
     }
+}
+
+
+#collections-nav {
+    border-top: none;
+    background-color: #3c515b;
 }
 
 #osf-nav > .local-nav > a.hamburger {
@@ -125,10 +132,9 @@ nav {
     top: 0;
     width: 100%;
     background-color: #263947;
-    background-image: linear-gradient(to bottom,rgba(60,60,60,.5)0%,rgba(34,34,34,.5)100%);
-    border-bottom: 1px solid rgba(8, 8, 8, 0.5);
+    border-bottom: .5px solid rgba(8, 8, 8, 0.5);
     border-top: 1px solid rgba(250, 250, 250, 0.15);
-    box-shadow: 0 1 2px 1px rgba(8, 8, 8, 0.8);
+    box-shadow: 0 -1px 1px 1px rgba(8, 8, 8, 0.3);
     flex-wrap: wrap;
 }
 
