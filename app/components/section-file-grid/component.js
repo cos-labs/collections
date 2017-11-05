@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import pagedArray from 'ember-cli-pagination/computed/paged-array';
+import ENV from '../../config/environment';
 
 export default Ember.Component.extend({
 
@@ -30,7 +31,19 @@ export default Ember.Component.extend({
     actions: {
         transition(route, ...models) {
             this.get("router").transitionTo(route, ...models);
-        }
+        },
+        search() {
+            const input = this.get('searchInput');
+            const modelId = this.get('model.id');
+            // make a call to the collections endpoint
+            this.set('pagedContent' , this.get('store').query("item", {q:input, filter:{"collection":modelId }}) , {
+                page: this.get('page'),
+                perPage: this.get('perPage')
+            })
+            console.log(this.get("pagedContent") , this.get('page'))
+
+            this.set('totalPages', this.get("pagedContent.totalPages"))
+        },
     }
 
 });

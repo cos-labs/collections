@@ -1,5 +1,9 @@
 <!-- dataset-file-grid -->
 {{#if model.items}}
+    <div style="width:100%; text-align: center;">
+        {{input class="form-control search-bar" id="item-search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+        <span {{action 'search'}} class="btn btn-primary fa fa-search" aria-hidden="true"></span>
+    </div>
         {{#each pagedContent as |item|}}
             <div class="item-detail">
                 <a  class="item-thumbnail" style="background-image: url('/img/placeholder.png');" {{action "transition" "collections.collection.item" model.id item.id}}>
