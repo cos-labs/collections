@@ -114,10 +114,6 @@
         {{/if}}
     </p>
 
-
-    <pre style="height:{{jsonBodyHeight}}">Settings:{{settingsString}}</pre>
-    <button class="btn btn-default jsonBtn" {{action 'toggleJsonView'}}>{{jsonBtnText}}</button>
-
     {{#if session.isAuthenticated}}
         <div>
             <button class="btn btn-danger btn-space" {{action toggleProperty 'showDeleteConfirmation'}}>
