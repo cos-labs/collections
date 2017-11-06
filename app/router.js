@@ -11,6 +11,9 @@ Router.map(function() {
     this.route('index', {
         path: ''
     });
+    this.route('tasks', {
+        path: "tasks"
+    });
     this.route('explore', {
         path: "explore"
     });
