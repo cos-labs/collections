@@ -12,8 +12,8 @@
         </div>
         </div>
         <div class="col-sm-2" style="margin:0;">
-            <div class="input-group">
-        <button class="btn btn-default" type="button" {{action (mut showAsCards) false}} disabled={{if showAsList "disabled"}}>
+            <div class="input-group pull-right">
+                <button class="btn btn-default" type="button" {{action (mut showAsCards) false}} disabled={{if showAsList "disabled"}}>
                     <i class=" fa fa-list" aria-hidden="true"></i>
                 </button>
                 <button class="btn btn-default" type="button" {{action (mut showAsCards) true}} disabled={{if showAsCards "disabled"}}>
