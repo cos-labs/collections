@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import _ from 'lodash';
+import ENV from '../../config/environment';
 
 export default Ember.Component.extend({
     store: Ember.inject.service(),
