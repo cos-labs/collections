@@ -15,9 +15,6 @@ export default Ember.Component.extend({
         if (!pColor) pColor = "#3c515b";
         return "background-color:" + pColor;
     }),
-    didRender(){
-        console.log('ffff', this.get("nav.crumbs"))
-    },
     actions: {
         transition(link) {
             const models = link.models || [];
