@@ -22,8 +22,6 @@
                 <h2>{{section.label}}</h2>
                 <p>{{section.description}}</p>
                 {{#each section.sortedWidgets as |widget|}}
-                {{widget.widgetType}}
-
                     {{component widget.widgetType
                         widget=widget
                         collection=collection
