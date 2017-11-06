@@ -5,6 +5,12 @@
 .section-file-grid {
     flex-direction: row;
     align-items: stretch;
+
+    table {
+        margin-right: inherit;
+        margin-left: inherit;
+    }
+
     h2 {
         text-align: center;
         width: 100%;
@@ -55,7 +61,7 @@
         color: inherit;
         text-decoration: inherit;
     }
-    
+
     a.plain-link:hover {
         text-decoration: underline;
     }
