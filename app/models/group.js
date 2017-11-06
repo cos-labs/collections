@@ -15,6 +15,9 @@ export default Model.extend({
     dateCreated: attr('date'),
     dateUpdated: attr('date'),
     collection: belongsTo('collection'),
+    authorizedCollectionWorkflows: hasMany("collection-workflow", {
+        inverse: "authorizedGroups"
+    }),
     createdBy: belongsTo('user'),
     items: hasMany('item'),
     list: Ember.computed.alias('items')
