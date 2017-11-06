@@ -49,9 +49,9 @@ export default Ember.Component.extend({
                     section: section,
                     label: section["section-header"],
                     id: "section-" + index
-                }
+                };
             })
-            .filter((menuItem, index) => index > this.get("index"));
+            .filter((menuItem) => !menuItem.section['settings']['hide-from-nav']);
     }),
 
     actions: {
