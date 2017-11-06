@@ -1,24 +1,20 @@
-<h1 class="submission">{{caxe.workflow.title}}</h1>
+
+<div class="hero">
+    <h1>{{caxe.workflow.title}} </h1>
+    <h3>{{caxe.workflow.description}}</h3>
+</div>
 
 
 <section>
-
 
     {{#if (eq caxe.workflow.submissionFormType 'Website')}}
 
         {{add-website model=model transition=(action "transition")}}
 
     {{else}}
-
-        <div class="description">
-
-            {{caxe.workflow.description}}
-
-        </div>
-
-        <div class="instructions">
+        <p class="text-center">
             Any changes you make here are automatically saved. You can use the reference code <span class="emphasis" style="background-color:#ddd; color:#333;">{{caxe.id}}</span> to load this submission again.
-        </div>
+        </p>
 
         {{#each caxe.workflow.sortedSections as |section|}}
 
@@ -26,10 +22,14 @@
                 <h2>{{section.label}}</h2>
                 <p>{{section.description}}</p>
                 {{#each section.sortedWidgets as |widget|}}
+                {{widget.widgetType}}
+
                     {{component widget.widgetType
                         widget=widget
                         collection=collection
                         parameters=widget.caseParameters}}
+                
+                
                 {{/each}}
             </fieldset>
 

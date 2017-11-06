@@ -24,7 +24,7 @@
 }
 
 .explore-hero {
-    background-color: #444;
+    background-color: #f1f3f9;
     padding: 15px 0;
 
     h1 {
@@ -53,15 +53,16 @@
     box-sizing: border-box;
     //padding-top: 90px;
     position: relative;
-    box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 1px -.5px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     //border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 2px;
-    transition: transform 0.3s;
+    border-radius: 3px/1px;
+    transition: transform 0.3s, box-shadow 0.3s;
     transition-timing-function: ease-in-out;
 
     &:hover {
         transform: scale(1.01, 1.01);
+        box-shadow: 0 3px 5px -4px rgba(0, 0, 0, 1);
     }
 }
 

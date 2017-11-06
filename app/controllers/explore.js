@@ -23,6 +23,7 @@ export default Ember.Controller.extend({
         },
         clearFilter() {
             this.set('filterText', '');
+            return false;
         },
         loadMore() {
             this.set('loadingMore', true);
