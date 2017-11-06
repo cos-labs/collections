@@ -9,8 +9,11 @@ export default Ember.Controller.extend({
 
         newCase(collection) {
 
-            const caxe = this.store.createRecord('case');
-            const wf = collection.get('workflow');
+            const caxe = this.store.createRecord("case");
+            const wf = collection
+                .get("collectionWorkflows")
+                .find(cw => cw.get("role") === "submission")
+                .get("workflow");
             caxe.set('workflow', wf);
             caxe.set('collection', collection);
             caxe.save().then((caxe) => {

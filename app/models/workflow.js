@@ -23,6 +23,9 @@ export default Model.extend({
     actions: hasMany('action', {
         inverse: null,
     }),
+    collectionWorkflows: hasMany("collection-workflow", {
+        inverse: "workflow",
+    }),
     initialParameters: hasMany('parameter', {
         inverse: null,
     }),
