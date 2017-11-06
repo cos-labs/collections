@@ -18,11 +18,11 @@
 
         <div class="contributor-detail">
             {{#if contributor.gravatar}}
-                <a  href='https://staging.osf.io/{{contributor.username}}'
+                <a  href='https://osf.io/{{contributor.username}}'
                     class="gravatar"
                     style="background-image: url('{{contributor.gravatar}}');"></a>
             {{else}}
-                <a href='https://staging.osf.io/{{contributor.username}}'>
+                <a href='https://osf.io/{{contributor.username}}'>
                     <img
                         class="contributor-pic-thumbnail"
                         alt="User gravatar"
@@ -30,7 +30,7 @@
                 </a>
             {{/if}}
             <p class="contributor-name p-t-xs text-center">
-                <a href='https://staging.osf.io/{{contributor.username}}'>
+                <a href='https://osf.io/{{contributor.username}}'>
                     {{contributor.computedFullName}}
                 </a>
             </p>
