@@ -48,10 +48,11 @@ export default Ember.Component.extend({
                 return {
                     section: section,
                     label: section["section-header"],
-                    id: "section-" + index
-                }
+                    id: "section-" + index,
+                    nav: section["settings.show-on-nav"]
+                };
             })
-            .filter((menuItem, index) => index > this.get("index"));
+            .filter((menuItem) => menuItem.section['settings']['show-in-nav']);
     }),
 
     actions: {
