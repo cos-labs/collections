@@ -14,8 +14,15 @@
 
     </fieldset>
     <fieldset class="item-view-horizontal">
-        <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
-        <p>{{item.location}}</p>
+        {{#if (or item.location (and item.startTime item.endTime))}}
+            <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
+            {{#if item.location}}
+                <p>{{item.location}}</p>
+            {{/if}}
+            {{#if (and item.startTime item.endTime)}}
+                <p>{{item.startTime}} - {{item.endTime}}</p>
+            {{/if}}
+        {{/if}}
         <h4 class="p-v-md f-w-md"><strong>Description</strong></h4>
         <p>{{item.description}}</p>
 

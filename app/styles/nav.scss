@@ -34,6 +34,9 @@
 #osf-nav > .local-nav > a.hamburger {
     display: flex;
 }
+#osf-nav > .local-nav > a.hamburger:visited {
+    margin-right: 23px;
+}
 
 
 #auth-dropdown {
@@ -449,9 +452,10 @@ a.crumb {
 }
 
 
-#dropdown-hamburger.open {
+#dropdown-hamburger.open  .dropdown-content{
     margin-right: -25px;
 }
+
 
 #osf-nav .dropdown-osf-service > .dropdown-content {
     background-color: #2E6A74;

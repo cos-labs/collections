@@ -13,9 +13,9 @@ export default Ember.Controller.extend({
             value: "meeting",
             description: "A meeting is a collection of talks and posters. Each talk or poster should have title and description."
         }, {
-            label: 'Dataset',
-            value: "dataset",
-            description: "A dataset is a collection of items with the same data fields attached to each ofthem."
+            label: 'Repository',
+            value: "repository",
+            description: "A repository is a collection of items with the same data fields attached to each ofthem."
         }, {
             label: 'Appendix',
             value: "appendix",
