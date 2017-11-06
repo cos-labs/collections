@@ -46,15 +46,17 @@
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
+                    <th>Date Uploaded</th>
                     <th>Download</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each pagedContent as |item|}}
                     <tr>
-                        <td>{{#link-to 'collections.collection.item' model.id item.id class="plain-link"}}{{item.title}}{{/link-to}}</td>
+                        <td>{{#link-to 'collections.collection.item' model.id item.id class="plain-link"}}{{truncate-text item.title limit=75 ommission="..."}}{{/link-to}}</td>
                         <td><a class="plain-link" href="https://osf.io/{{await item.createdBy.username}}">{{await item.createdBy.firstName}} {{await item.createdBy.lastName}}</a></td>
-                        <td><i class="fa fa-download" aria-hidden="true" style="color:gray"></i> 158</td>
+                        <td>{{moment-format collection.dateAdded "MMMM DD, YYYY"}}</td>
+                        <td>{{#link-to 'index'}}<i class="fa fa-download" aria-hidden="true" style="color:gray"></i>{{/link-to}} 158</td>
                     </tr>
                 {{/each}}
             </tbody>
