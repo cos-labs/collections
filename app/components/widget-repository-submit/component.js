@@ -38,7 +38,7 @@ export default Ember.Component.extend({
 
             item.set('kind', "repository");
             item.set('title', this.get('parameters.title.value'));
-            item.set('status', 'pending');
+            item.set('status', this.get("parameters.submissionSuccesStatus.value"));
             item.set('collection', this.get('collection'));
             item.set('description', this.get('parameters.description.value'));
             item.set('fileName', this.get('parameters.fileName.value'));
