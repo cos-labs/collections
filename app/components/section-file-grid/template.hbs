@@ -1,5 +1,5 @@
 <!-- section-file-grid -->
-{{#if model.items}}
+{{#if model.item:wqs}}
     <div class="row" style="margin:0;">
         <div class="col-sm-10">
         <div class="input-group">
@@ -24,6 +24,7 @@
     </div>
     {{#if showAsCards}}
     {{#each pagedContent as |item|}}
+        
         <div class="item-detail">
             <a  class="item-thumbnail" style="background-image: url('/img/placeholder.png');" {{action "transition" "collections.collection.item" model.id item.id}}>
               {{item.fileFormat}}
