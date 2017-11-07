@@ -693,15 +693,15 @@ span.sortable-bars:hover {
 }
 
 .loading{
-	position: fixed;
-	top: 50%;
-	left: 46%;
-	z-index: 9999;
-	display:none;
+	width: 100%;
+		text-align: center;
+
 }
 
 .loading i{
-	color:#6988c3;
+	color:#608193;
+
+
 }
 
 @keyframes greenHighlight {
