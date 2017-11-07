@@ -697,9 +697,12 @@ span.sortable-bars:hover {
 	top: 50%;
 	left: 46%;
 	z-index: 9999;
-	display:block;
+	display:none;
 }
 
+.loading i{
+	color:#6988c3;
+}
 
 @keyframes greenHighlight {
 	0% {
