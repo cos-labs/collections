@@ -1,13 +1,28 @@
 <!-- section-file-grid -->
 {{#if model.items}}
-    <div class="input-group">
-        {{input class="form-control " id="item-search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
-        <span class="input-group-btn">
-            <button class="btn btn-primary" type="button" {{action 'search'}}>
-                <i class=" fa fa-search" aria-hidden="true"></i>
-            </button>
-      </span>
+    <div class="row" style="margin:0;">
+        <div class="col-sm-10">
+        <div class="input-group">
+            {{input class="form-control " id="item-search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" {{action 'search'}}>
+                    <i class=" fa fa-search" aria-hidden="true"></i>
+                </button>
+          </span>
+        </div>
+        </div>
+        <div class="col-sm-2" style="margin:0;">
+            <div class="input-group pull-right">
+                <button class="btn btn-default" type="button" {{action (mut showAsCards) false}} disabled={{if showAsList "disabled"}}>
+                    <i class=" fa fa-list" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-default" type="button" {{action (mut showAsCards) true}} disabled={{if showAsCards "disabled"}}>
+                    <i class=" fa fa-window-maximize" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
     </div>
+    {{#if showAsCards}}
     {{#each pagedContent as |item|}}
         <div class="item-detail">
             <a  class="item-thumbnail" style="background-image: url('/img/placeholder.png');" {{action "transition" "collections.collection.item" model.id item.id}}>
@@ -25,6 +40,28 @@
             </div>
         </div>
     {{/each}}
+    {{else}}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date Uploaded</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each pagedContent as |item|}}
+                    <tr>
+                        <td>{{#link-to 'collections.collection.item' model.id item.id class="plain-link"}}{{truncate-text item.title limit=75 ommission="..."}}{{/link-to}}</td>
+                        <td><a class="plain-link" href="https://osf.io/{{await item.createdBy.username}}">{{await item.createdBy.firstName}} {{await item.createdBy.lastName}}</a></td>
+                        <td>{{moment-format collection.dateAdded "MMMM DD, YYYY"}}</td>
+                        <td>{{#link-to 'index'}}<i class="fa fa-download" aria-hidden="true" style="color:gray"></i>{{/link-to}} 158</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{/if}}
     {{#if (not-eq totalPages 1)}}
         <div style="width:100%; text-align: center;">
             {{page-numbers content=pagedContent}}

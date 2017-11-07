@@ -14,7 +14,10 @@ export default Ember.Component.extend({
     id: Ember.computed("layout.title", function() {
         return "section-" + this.get("index");
     }),
-
+    showAsCards: true,
+    showAsList: Ember.computed('showAsCards', function() {
+       return !(this.get('showAsCards'));
+    }),
 
     // Everything below is part of ember-cli-pagination setup for client-side-only pagination
     queryParams: ["page", "perPage"],

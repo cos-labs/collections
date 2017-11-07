@@ -15,7 +15,6 @@ export default Ember.Component.extend({
         if (!pColor) pColor = "#3c515b";
         return "background-color:" + pColor;
     }),
-
     actions: {
         transition(link) {
             const models = link.models || [];

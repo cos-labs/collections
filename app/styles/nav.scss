@@ -109,7 +109,7 @@ nav .hamburger:hover {
 
 
 #collections-nav > .nav-item-group > a {
-    margin: 0 15px;
+    margin: 0 7px;
 }
 
 #collections-nav > .nav-item-group > a:last-child {
@@ -215,7 +215,6 @@ img + .caret {
     display: block;
     flex: 0 0 auto;
     line-height: 1.2;
-    color: #f8f8f8;
     cursor: pointer;
     font-size: 1.6rem;
 
@@ -225,10 +224,6 @@ img + .caret {
     }
 }
 
-
-.nav-item-group > a.crumb {
-    color:#f1f1f1;
-}
 
 .local-nav > a:active {
     background-color: #263947;
@@ -420,8 +415,12 @@ body {
     margin-top: 46px;
 }
 
-.breadcrumbs {
+.nav-item-group > a.crumb {
+    color:rgba(233,233,233, .8);
+}
 
+.breadcrumbs {
+    font-style: italic;
     line-height: 1.0;
 
     :first-child {
@@ -429,12 +428,8 @@ body {
     }
     :before {
         content:">";
-        padding-right: 24px;
+        padding-right: 14px;
         font-weight: 600;
-    }
-    :first-child:before {
-        content: "";
-        padding: 0;
     }
 
 }
@@ -469,7 +464,7 @@ a.crumb {
 
 
 /*Media Queries*/
-@media (max-width: 658px) {
+@media (max-width: 747px) {
     .nav-item-group.breadcrumbs {
         position: absolute;
         top: 100px;

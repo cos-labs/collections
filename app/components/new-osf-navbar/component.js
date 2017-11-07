@@ -38,6 +38,11 @@ export default Ember.Component.extend(AnalyticsMixin, {
             route: "collections.my-collection"
         },
         {
+            name: "My Tasks",
+            type: "link-to",
+            route: "tasks"
+        },
+        {
             name: "Support",
             type: "link",
             href: "https://osf.io/support/"
