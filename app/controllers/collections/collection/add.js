@@ -11,8 +11,10 @@ export default Ember.Controller.extend({
         console.log('fffffgfdkjbdfbkj')
         this.toggleProperty('loading');
     },
+    didRender() {
+        this.set('loading', false)
+    },
     actions: {
-
         updateProperty(oldValue, newValue) {
             this.set(oldValue, newValue);
             this.set('methodSelected', true); // Change view to show the methods
