@@ -25,9 +25,7 @@ export default Ember.Component.extend({
     parameters: {},
 
     init() {
-        this.set('parameters.type', {
-            value: 'meeting'}
-            );
+        this.set('parameters.type', {value: 'meeting'});
         return this._super(...arguments);
     },
 
@@ -36,10 +34,9 @@ export default Ember.Component.extend({
             this.attrs.toggleLoading();
             this.set('disabled' , true);
             const item = this.get('store').createRecord('item');
-
             item.set('kind', "repository");
             item.set('title', this.get('parameters.title.value'));
-            item.set('status', 'pending');
+            item.set('status', this.get("parameters.submissionSuccessStatus.value"));
             item.set('collection', this.get('collection'));
             item.set('description', this.get('parameters.description.value'));
             item.set('fileName', this.get('parameters.fileName.value'));

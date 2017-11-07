@@ -39,7 +39,7 @@ export default Ember.Component.extend({
 
             item.set('kind', this.get("parameters.kind.value"));
             item.set('title', this.get('parameters.title.value'));
-            item.set('status', 'pending');
+            item.set('status', this.get("parameters.submissionSuccessStatus"));
             item.set('collection', this.get('collection'));
             item.set('category', this.get('parameters.category.value'));
             item.set('location', this.get('parameters.location.value'));
