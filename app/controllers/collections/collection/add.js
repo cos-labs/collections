@@ -6,7 +6,11 @@ import ENV from '../../../config/environment';
 export default Ember.Controller.extend({
 
     editMode: false,
-
+    loading: false,
+    toggleLoading() {
+        console.log('fffffgfdkjbdfbkj')
+        this.toggleProperty('loading');
+    },
     actions: {
 
         updateProperty(oldValue, newValue) {
@@ -16,9 +20,7 @@ export default Ember.Controller.extend({
 
         transition(name, id) {
             this.transitionToRoute(name, id);
-        },
-
-
+        }
     }
 
 });

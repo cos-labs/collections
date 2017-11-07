@@ -33,6 +33,7 @@ export default Ember.Component.extend({
 
     actions: {
         async pressButton() {
+            this.attrs.toggleLoading();
             this.set('disabled' , true)
             const item = this.get('store').createRecord('item');
 
@@ -51,7 +52,12 @@ export default Ember.Component.extend({
             item.set('metadata', '{}');
 
             let node = this.get('parameters.node.value');
-            if(node === null){this.set('disabled' , false)}
+            if(node == undefined || node === undefined ){
+                this.set('disabled' , false)
+                this.attrs.toggleLoading();
+                this.toast.error('Some fields are missing!');
+                return false;
+            }
             await node.save();
             item.set('sourceId', node.get('id'));
             const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + this.get('parameters.fileName.value') + "&direct=true";
@@ -63,7 +69,7 @@ export default Ember.Component.extend({
 
             let deferred = Ember.RSVP.defer();
             xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+                if ( xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300 ) {
 
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
@@ -96,6 +102,7 @@ export default Ember.Component.extend({
                                         itemParameter.save().then(itemParameter =>
                                             this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
                                             this.set('disabled' , false)
+                                            this.attrs.toggleLoading();
 
                                     });
                                 });
@@ -106,7 +113,13 @@ export default Ember.Component.extend({
                         }, err => {
                             console.log(err)        
                             this.set('disabled' , false)
+                            this.attrs.toggleLoading();
                         });
+                }else if(xhr.readyState === 4 && xhr.status >= 409){
+                    this.attrs.toggleLoading();
+                    this.toast.error('Duplicate file!');
+                    this.set('disabled' , false)
+
                 }
             };
             // The base64 data needs to be converted to binary. We followed this stackoverflow answer:

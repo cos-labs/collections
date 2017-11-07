@@ -3421,13 +3421,7 @@ ember-test-helpers@^0.5.32:
   dependencies:
     klassy "^0.1.3"
 
-ember-toastr@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/ember-toastr/-/ember-toastr-1.4.1.tgz#80f49345a0e1ca47e4cfb6c813ada47c691012bc"
-  dependencies:
-    ember-cli-babel "^5.0.0"
-
-ember-toastr@1.7.0:
+ember-toastr@1.7.0, ember-toastr@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/ember-toastr/-/ember-toastr-1.7.0.tgz#74097611fe38c596b7ed6db4a2d00d47122cc8c7"
   dependencies:
@@ -4909,14 +4903,14 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@3.8.4:
+js-yaml@3.8.4, js-yaml@^3.6.1:
   version "3.8.4"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.8.4.tgz#520b4564f86573ba96662af85a8cafa7b4b5a6f6"
   dependencies:
     argparse "^1.0.7"
     esprima "^3.1.1"
 
-js-yaml@^3.2.5, js-yaml@^3.2.7, js-yaml@^3.6.1, js-yaml@^3.9.1:
+js-yaml@^3.2.5, js-yaml@^3.2.7, js-yaml@^3.9.1:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.10.0.tgz#2e78441646bd4682e963f22b6e92823c309c62dc"
   dependencies:
@@ -7098,11 +7092,7 @@ spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
 
-sprintf-js@^1.0.3:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
-
-sprintf-js@~1.0.2:
+sprintf-js@^1.0.3, sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
