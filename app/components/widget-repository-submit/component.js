@@ -33,7 +33,6 @@ export default Ember.Component.extend({
         async pressButton() {
             this.set('disabled' , true);
             const item = this.get('store').createRecord('item');
-            debugger;
             item.set('kind', "repository");
             item.set('title', this.get('parameters.title.value'));
             item.set('status', this.get("parameters.submissionSuccessStatus.value"));
