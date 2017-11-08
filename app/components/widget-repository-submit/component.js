@@ -111,6 +111,9 @@ export default Ember.Component.extend({
                     this.toast.error('Duplicate file!');
                     this.set('disabled' , false)
 
+                }else if(xhr.readyState === 4 && xhr.status >= 400){
+                    this.toast.error('Some fields are missing!');
+
                 }
 
             };
