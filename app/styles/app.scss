@@ -424,7 +424,10 @@ tr.item-row-selected {
 		background-color: #FFC107;
 	}
 	&.approved {
-		background-color: #8BC34A;
+		background-color: #dff0d8;
+	}
+	&.rejected {
+		background-color: #f2dede;
 	}
 }
 .ball-pulse-dark>div {
