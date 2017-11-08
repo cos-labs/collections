@@ -4,9 +4,21 @@
     h1 {
         text-align: center;
         margin: 30px auto 30px auto;
+        position: relative;
+        float: left;
     }
     p {
         text-align: center;
+    }
+    img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        margin-right: 5px;
+    }
+    .title-wrapper {
+        width: auto;
+        margin: 0 auto 0 auto;
     }
 }
 

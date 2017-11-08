@@ -1,15 +1,19 @@
-{{#if layout.settings.useLogo}}
-    <div
-        class="coll-hero-logo"
-        style="{{logoStyle}}"
-        aria-role="img"
-        aria-label="{{branding.logo.label}}"
-    ></div>
-{{else if layout.title}}
-    <h1 style="{{titleColor}}">{{layout.title}}</h1>
-{{else}}
-    <h1>{{model.title}}</h1>
-{{/if}}
+<div class="title-wrapper">
+
+    {{#if layout.logo}}
+            <img class="title-logo" src='{{layout.logo}}' alt="logo"/>
+    {{/if}}
+
+    {{#if layout.title}}
+            <h1 class="title-header" style="{{titleColor}}">
+                {{layout.title}}
+            </h1>
+    {{else}}
+        <h1>{{model.title}}</h1>
+    {{/if}}
+
+</div>
+
 
 {{#if layout.tagline}}
     <p class="lead" style="{{taglineColor}}">{{layout.tagline}}</p>
