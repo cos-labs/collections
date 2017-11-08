@@ -33,7 +33,16 @@
         <h4 class="p-v-md f-w-md"><strong>Tags</strong></h4>
         <span class="coll-item-tag">{{item.tags}}</span>
         {{/if}}
-        <hr />
+        <hr>
+        {{#if item.metadata}}
+            <h4 class="p-v-md f-w-md">Metadata</h4>
+            <ul>
+                {{#each-in item.parsedMetadata as |key value|}}
+                    <li><strong>{{key}}</strong> - {{value}}</li>
+                {{/each-in}}
+            </ul>
+            <hr>
+        {{/if}}
         <a href="https://osf.io/{{item.sourceId}}" class="btn btn-default btn-block"> View on OSF</a>
     </fieldset>
 </section>
