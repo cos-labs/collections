@@ -423,6 +423,12 @@ tr.item-row-selected {
 	&.pending {
 		background-color: #FFC107;
 	}
+	&.pending-hidden {
+		background-color: #FFC107;
+	}
+	&.pending-visible {
+		background-color: #FFC107;
+	}
 	&.approved {
 		background-color: #dff0d8;
 	}
