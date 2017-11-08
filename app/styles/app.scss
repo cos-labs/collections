@@ -692,6 +692,21 @@ span.sortable-bars:hover {
 	padding:0px;
 }
 
+.loading {
+	width: 100%;
+	text-align: center;
+
+}
+
+.loading i {
+	color:#608193;
+}
+
+.full-page {
+	position: fixed;
+	top:50%;
+}
+
 @keyframes greenHighlight {
 	0% {
 		background: #DFF0D8;
