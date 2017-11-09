@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     crumb: {},
 
     model(params) {
-        return this.store.findRecord("collection", params.collection_id)
+        return this.store.findRecord("collection",  params.collection_id, {reload: true})
     },
 
     afterModel(model, transition) {

@@ -75,9 +75,11 @@ export default Ember.Component.extend({
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then(item => {
 
+                        const workflow_id = this.get("collection.collectionWorkflows").find(collectionWorkflow => collectionWorkflow.role === "approval")
+
                         this.get('store').findRecord(
                             'workflow',
-                            this.get('parameters.nextWorkflow.value'),
+                            workflow_id,
                             {reload: true}
                             ).then(wf => {
                                 let caxe = this.get('store').createRecord('case');
