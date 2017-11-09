@@ -1,13 +1,16 @@
 {{#if collection.settings.layers}}
     {{#each collection.settings.layers as |view index|}}
-        {{component view.component
-                    model=collection
-                    collection=collection
-                    layout=view.settings
-                    branding=collection.settings.branding
-                    changeRoute=(action 'changeRoute')
-                    editMode=editMode
-                    index=index}}
+
+            {{component view.component
+                model=collection
+                collection=collection
+                layout=view.settings
+                branding=collection.settings.branding
+                changeRoute=(action 'changeRoute')
+                editMode=editMode
+                index=index
+            }}
+
     {{/each}}
 {{else}}
 

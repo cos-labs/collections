@@ -3,7 +3,9 @@
     <h1>{{caxe.workflow.title}} </h1>
     <h3>{{caxe.workflow.description}}</h3>
 </div>
-
+{{#if loading}}
+    {{loading-spinner}}
+{{/if}}
 
 <section>
 
@@ -16,6 +18,7 @@
             Any changes you make here are automatically saved. You can use the reference code <span class="emphasis" style="background-color:#ddd; color:#333;">{{caxe.id}}</span> to load this submission again.
         </p>
 
+
         {{#each caxe.workflow.sortedSections as |section|}}
 
             <fieldset>
@@ -25,7 +28,8 @@
                     {{component widget.widgetType
                         widget=widget
                         collection=collection
-                        parameters=widget.caseParameters}}
+                        parameters=widget.caseParameters
+                        toggleLoading=(action toggleLoading)}}
                 
                 
                 {{/each}}

@@ -14,7 +14,7 @@ export default Model.extend({
     description: attr('string'),
     status: attr('string'),
     url: attr('string'),
-    metadata: attr('string'),
+    metadata: attr(),
     dateAdded: attr('date'),
     dateUpdated: attr('date'),
     location: attr('string'),
@@ -50,5 +50,8 @@ export default Model.extend({
     scheduleFilterText: Ember.computed('title', 'location', 'startTimeFormatted', function () {
         return this.get('title') +
             this.get('location') + this.get('startTimeFormatted') + this.get('userName');
+    }),
+    parsedMetadata: Ember.computed('metadata', function () {
+        return JSON.parse(this.get('metadata'));
     })
 });
