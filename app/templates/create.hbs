@@ -37,6 +37,7 @@
     </fieldset>
 
     {{/if}}
+<section>
 
     <fieldset>
         <h2>Collection Workflows</h2>
@@ -71,42 +72,49 @@
                 </p>
                 <p>
                     <label>Authorized Groups:</label>
-                    <ul>
-                        {{#each collectionWorkflow.authorizedGroups as |group|}}
-                            <li><label>Group Name:&nbsp;</label>{{group.name}}</li>
-                            <button onclick={{action "removeCollectionWorkflowGroup" collectionWorkflow group}}>
-                                Remove Group
-                            </button>
-                        {{/each}}
-                    </ul>
-                    <label>Type</label>
-                    <select class="form-control" onchange={{action 'setGroupForCollectionWorkflow' collectionWorkflow}}>
-                        <option disabled selected> -- Select a group to add as authorized for the workflow -- </option>
-                        {{#each groups as |group|}}
-                            <option
-                                value={{group.id}}
-                                selected={{eq group.id collectionWorkflow.group.id}}>
-                                {{group.name}}
-                            </option>
-                        {{/each}}
-                    </select>
-                    <button onclick={{action "addGroupToCollectionWorkflow" collectionWorkflow}}>
-                        Add Group
-                    </button>
+                <ul>
+                    {{#each collectionWorkflow.authorizedGroups as |group|}}
+                        <li><label>Group Name:&nbsp;</label>{{group.name}}
+                        <a onclick={{action "removeCollectionWorkflowGroup" collectionWorkflow group}}>
+                            <i class="fa fa-minus-square-o pull-right" style="color: red; font-size: 1.5em; cursor: pointer;" title="De-authorize group" ></i>
+                        </a>
+                        </li>
+                    {{/each}}
+                </ul>
+
+                    <div class="input-group">
+                        <select class="form-control" onchange={{action 'setGroupForCollectionWorkflow' collectionWorkflow}}>
+                            <option disabled selected> -- Select a group to add as authorized for the workflow -- </option>
+                            {{#each groups as |group|}}
+                                <option
+                                    value={{group.id}}
+                                    selected={{eq group.id collectionWorkflow.group.id}}>
+                                    {{group.name}}
+                                </option>
+                            {{/each}}
+                        </select>
+                        <span class="input-group-btn">
+                            <a class="btn btn-default" onclick={{action "addGroupToCollectionWorkflow" collectionWorkflow}}>
+                                Authorize Group
+                            </a>
+                        </span>
+                    </div>
                 </p>
 
-                <button class="btn btn-inverse btn-danger" onclick={{action "removeWorkflow" collectionWorkflow}}>
-                    Remove
-                </button>
+         
+            <button class="btn btn-inverse btn-danger" onclick={{action "removeWorkflow" collectionWorkflow}}>
+                Remove Workflow
+            </button>
+
             </div>
 
         {{/each}}
-
-        <button class="button-add-workflow btn btn-primary" onclick={{action "addWorkflow"}}>
+        <button class="button-add-workflow btn btn-primary pull-right" onclick={{action "addWorkflow"}}>
             Add a workflow
         </button>
 
     </fieldset>
+</section>
 
     <fieldset>
         {{#link-to 'explore' class="btn btn-default"}} Cancel {{/link-to}}
@@ -115,4 +123,9 @@
         </button>
     </fieldset>
 
+
+
+
 </section>
+
+
