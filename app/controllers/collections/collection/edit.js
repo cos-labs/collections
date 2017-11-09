@@ -57,11 +57,15 @@ export default Ember.Controller.extend({
             this.get('collection').destroyRecord().then(() => this.transitionToRoute('/'));
         },
         removeWorkflow(collectionWorkflow) {
+            const collection = this.get("collection");
+            collection.get("collectionWorkflows").removeObject(collectionWorkflow);
+            collection.get("workflows").removeObject(collectionWorkflow.workflow)
+            collection.save();
             collectionWorkflow.destroyRecord();
         },
         addWorkflow() {
             const collectionWorkflow = this.get("store").createRecord("collectionWorkflow");
-
+            collectionWorkflow.set("collection", this.get("collection"));
             collectionWorkflow.save().then(collectionWorkflow => {
                 const collection = this.get("collection");
                 collection.get("collectionWorkflows").addObject(collectionWorkflow);
@@ -71,9 +75,10 @@ export default Ember.Controller.extend({
         setCollectionType(ev) {
             this.set('collection.type', ev.target.value);
         },
-        setWorkflowTypeForWorkflowCollection(collectionWorkflow, ev) {
+        setWorkflowTypeForCollectionWorkflow(collectionWorkflow, ev) {
             collectionWorkflow.set("workflow", this.get("workflows")
                     .find(workflow => workflow.id === ev.target.value));
+            collectionWorkflow.save();
         },
         saveChanges() { 
             this.get("collection").save()
