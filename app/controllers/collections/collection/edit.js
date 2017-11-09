@@ -6,7 +6,13 @@ export default Ember.Controller.extend({
     jsonBodyHeight: '400px',
     jsonBtnText: 'Show More ▼',
     editMode: false,
+    store: Ember.inject.service(),
     collectionSettings: {},
+
+    types: [
+        "Repository",
+        "Meeting"
+    ],
 
     modelCache: Ember.computed('collection', function() {
         return this.resetModelCache();
@@ -45,11 +51,48 @@ export default Ember.Controller.extend({
             this.set('editMode', false);
         },
         updateCacheSettings (jsonSettings) {
-            this.set('modelCache.settings', JSON.stringify(jsonSettings, null, 2));
+            this.set('collection.settings', jsonSettings);
         },
         deleteCollection() {
             this.get('collection').destroyRecord().then(() => this.transitionToRoute('/'));
         },
+        removeWorkflow(collectionWorkflow) {
+            collectionWorkflow.destroyRecord();
+        },
+        addWorkflow() {
+            const collectionWorkflow = this.get("store").createRecord("collectionWorkflow");
+
+            collectionWorkflow.save().then(collectionWorkflow => {
+                const collection = this.get("collection");
+                collection.get("collectionWorkflows").addObject(collectionWorkflow);
+                collection.save();
+            })
+        },
+        setCollectionType(ev) {
+            this.set('collection.type', ev.target.value);
+        },
+        setWorkflowTypeForWorkflowCollection(collectionWorkflow, ev) {
+            collectionWorkflow.set("workflow", this.get("workflows")
+                    .find(workflow => workflow.id === ev.target.value));
+        },
+        saveChanges() { 
+            this.get("collection").save()
+        },
+        setGroupForCollectionWorkflow(collectionWorkflow, ev) {
+            collectionWorkflow.set("selectedGroup", this.get("groups")
+                    .find(group => group.id === ev.target.value));
+        },
+        addGroupToCollectionWorkflow(collectionWorkflow) {
+            collectionWorkflow.get("authorizedGroups").addObject(collectionWorkflow.get("selectedGroup"));
+            collectionWorkflow.save()
+        },
+        removeCollectionWorkflowGroup(collectionWorkflow, group) {
+            collectionWorkflow.get("authorizedGroups").removeObject(group);
+            collectionWorkflow.save()
+        }
+
+
+
     },
     resetModelCache() {
         const collection = this.get('collection');

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     title: '',
-    selectedWorkflow: undefined,
+    collectionWorkflows: [],
     description: '',
     workflows: undefined,
     collectionType: undefined,
@@ -40,6 +40,7 @@ export default Ember.Controller.extend({
     ],
 
     actions: {
+
         addCollection () {
             const collection = this.store.createRecord('collection', {
                 title: this.get('title'),
@@ -49,18 +50,46 @@ export default Ember.Controller.extend({
                 settings: {},
                 collectionType: this.get('collectionType'),
                 description: this.get('description'),
-                location: this.get('location'),
-                address: this.get('address')
             });
-            collection.set('workflow', this.get('selectedWorkflow'));
-            collection.save().then((record) => {
+            collection.save().then(record => {
                 this.set('newCollectionTitle', '');
-                this.transitionToRoute('collections.collection', record);
+                collection.save().then(collection => {
+                    Ember.RSVP.all(this.get("collectionWorkflows").map(cw => {
+                        cw.set("collection", collection);
+                        cw.save().then(cw => {
+                            collection.get("collectionWorkflows").addObject(cw);
+                        });
+                    })).then(cws => this.transitionToRoute('collections.collection', record.id));
+                })
             });
         },
-        setWorkflow(ev) {
-            let workflows = this.get('workflows');
-            this.set('selectedWorkflow', workflows.find(wf => wf.id === ev.target.value));
+
+        removeWorkflow(collectionWorkflow) {
+            this.get("collectionWorkflows").removeObject(collectionWorkflow);
+            collectionWorkflow.destroyRecord();
+        },
+        addWorkflow() {
+            const collectionWorkflow = this.get("store").createRecord("collectionWorkflow");
+            this.get("collectionWorkflows").addObject(collectionWorkflow)
+        },
+        setCollectionType(ev) {
+            this.set('collection.type', ev.target.value);
+        },
+        setWorkflowTypeForWorkflowCollection(collectionWorkflow, ev) {
+            collectionWorkflow.set("workflow", this.get("workflows")
+                    .find(workflow => workflow.id === ev.target.value));
+        },
+        setGroupForCollectionWorkflow(collectionWorkflow, ev) {
+            collectionWorkflow.set("selectedGroup", this.get("groups")
+                    .find(group => group.id === ev.target.value));
+        },
+        addGroupToCollectionWorkflow(collectionWorkflow) {
+            collectionWorkflow.get("authorizedGroups")
+                .addObject(collectionWorkflow.get("selectedGroup"));
+        },
+        removeCollectionWorkflowGroup(collectionWorkflow, group) {
+            collectionWorkflow.get("authorizedGroups").removeObject(group);
+            collectionWorkflow.save()
         }
     },
 });

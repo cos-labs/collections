@@ -9,12 +9,7 @@ const {
 } = DS;
 
 export default Model.extend({
-    title: attr('string'),
-    description: attr('string'),
-    tags: attr('string'),
-    dateCreated: attr('date'),
-    dateUpdated: attr('date'),
-    collection: belongsTo('collection'),
+    name: attr("string"),
     authorizedCollectionWorkflows: hasMany("collection-workflow", {
         inverse: "authorizedGroups"
     }),
