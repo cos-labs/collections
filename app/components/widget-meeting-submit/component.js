@@ -70,7 +70,6 @@ export default Ember.Component.extend({
                     item.save().then(item => {
 
                         const workflow_id = this.get("collection.collectionWorkflows").find(collectionWorkflow => collectionWorkflow.role === "approval")
-                        debugger;
 
                         this.get('store').findRecord(
                             'workflow',
