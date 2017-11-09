@@ -11,7 +11,9 @@ export default Ember.Route.extend({
             cases: this.store.query("case", {
                 collection: collection.id
             }),
-            collection: collection
+            collection: collection,
+            groups: this.store.findAll("group"),
+            workflows: this.store.findAll("workflow")
         });
     },
 
@@ -32,6 +34,8 @@ export default Ember.Route.extend({
 
     setupController(controller, data) {
         controller.set("collection", data.collection);
+        controller.set("groups", data.groups);
+        controller.set("workflows", data.workflows);
     }
 
 });

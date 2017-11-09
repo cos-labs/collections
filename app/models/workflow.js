@@ -36,7 +36,7 @@ export default Model.extend({
         inverse: 'workflow'
     }),
     collections: hasMany('collection', {
-        inverse: 'workflow',
+        inverse: 'workflows',
     }),
     cases: hasMany('case', {
         inverse: 'workflow',

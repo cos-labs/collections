@@ -149,3 +149,41 @@ section {
     margin: 0 auto;
     color: #666;
 }
+
+.edit-workflow {
+    overflow: hidden;
+    button {
+        float: right;
+    }
+}
+
+.btn-inverse {
+    color: #933;
+    background-color: #fff;
+    border-color: #933;
+}
+
+.btn-progress {
+    float: right;
+}
+
+.collection-workflows {
+
+    overflow: hidden;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+
+    .button-add-workflow {
+        float: right;
+        align-self: flex-end;
+    }
+
+    .edit-workflow {
+        padding: 20px;
+        border: 1px solid rgba(0,0,0,0.02);
+        background-color: #fff;
+    }
+
+    
+
+}
