@@ -15,7 +15,6 @@ export default Ember.Route.extend({
             collection: collection
         });
     },
-
     afterModel(model, transition) {
 
         this.set("crumb.label", this.title);

@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     parameters: {},
     store: Ember.inject.service(),
     router: Ember.inject.service('-routing'),
-
+    loading: true,
     caseDescriptionTemplate: Ember.computed(async function() {
         let refreshParameters = () => {
             this.get("store").findRecord("case", this.get("case.id"), {reload: true}).then(caxe => {
@@ -22,6 +22,7 @@ export default Ember.Component.extend({
         let wf = await this.get("store").findRecord("workflow", this.get("case.workflow.id"), {reload: true});
         let templateName = "case-description-" + this.get("case.id");
         Ember.TEMPLATES[templateName] = Compiler.compile(wf.get("caseDescription"));
+        this.set('loading' , false)
         return templateName
     }),
 
