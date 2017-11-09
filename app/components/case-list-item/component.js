@@ -13,9 +13,6 @@ export default Ember.Component.extend({
             this.get("store").findRecord("case", this.get("case.id"), {reload: true}).then(caxe => {
                 this.set("parameters", this.get("case.parameters").reduce((parameters, parameter) => {
                     parameters[parameter.get("name")] = parameter.get("value");
-                    
-
-
                     return parameters;
                 }, {}));
             });
