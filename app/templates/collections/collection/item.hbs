@@ -28,6 +28,9 @@
 
         <h4 class="p-v-md f-w-md"><strong>Submission Status</strong></h4>
         <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
+        <button onclick={{action "continueWorkflow" "approve"}}>
+            Approve
+        </button>
 
         {{#if item.tags}}
         <h4 class="p-v-md f-w-md"><strong>Tags</strong></h4>
