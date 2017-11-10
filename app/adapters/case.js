@@ -11,9 +11,7 @@ export default JSONAPIAdapter.extend({
     queryRecord(store, type, query) {
 
         var url = this.buildURL(type.modelName, null, null, 'queryRecord', query) + '/';
-
-        console.log(url)
-
+        
         if (this.sortQueryParams) {
             query = this.sortQueryParams(query);
         }
