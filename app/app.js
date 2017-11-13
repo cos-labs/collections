@@ -9,22 +9,22 @@ Ember.Route.reopen({
     nav: Ember.inject.service(),
 
     beforeModel() {
-        if (!this.get("crumb")) return;
-        this.set("crumb.label", this.title);
-        this.set("crumb.route", this.routeName);
+        if (!this.get('crumb')) return;
+        this.set('crumb.label', this.title);
+        this.set('crumb.route', this.routeName);
     },
 
     activate() {
-        window.scrollTo(0,0);
-        let crumb = this.get("crumb");
-        if (crumb) this.get("nav.crumbs").pushObject(crumb)
-        console.log(this.get("nav.crumbs"));
+        window.scrollTo(0, 0);
+        const crumb = this.get('crumb');
+        if (crumb) this.get('nav.crumbs').pushObject(crumb);
+        console.log(this.get('nav.crumbs'));
     },
 
     deactivate() {
-        console.log("deactivate");
-        let crumb = this.get("crumb");
-        if (crumb) this.get("nav.crumbs").removeObject(crumb)
+        console.log('deactivate');
+        const crumb = this.get('crumb');
+        if (crumb) this.get('nav.crumbs').removeObject(crumb);
     }
 
 });

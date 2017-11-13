@@ -18,11 +18,11 @@ export default JSONAPIAdapter.extend({
 
     buildURL(type, id, snapshot, requestType, query) {
         const base = this._super(...arguments);
-        let url = [];
-        url.push(ENV.APP.apiURL)
+        const url = [];
+        url.push(ENV.APP.apiURL);
         url.push(base);
-        let builtUrl = url.join('');
+        const builtUrl = url.join('');
         return builtUrl;
     }
 
-    });
+});

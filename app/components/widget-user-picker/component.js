@@ -45,7 +45,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
     contributors: Ember.computed('node', function () {
         const contribs = this.get('node.contributors');
         this.set('widget.parameter', {
-            contribs: contribs,
+            contribs,
             state: ['defined']
         });
         return contribs;
@@ -100,18 +100,16 @@ export default Ember.Component.extend(NodeActionsMixin, {
         // Adds contributor then redraws view - addition of contributor
         // may change which update/remove contributor requests are permitted
         addContributorLocal(user) {
-            const node = this.get('node')
+            const node = this.get('node');
             if (node) {
-
-
                 const contributor = this.get('store').createRecord('contributor');
-                contributor.set('users', user); 
+                contributor.set('users', user);
 
                 node.get('contributors').pushObject(contributor);
                 window.nod = node;
 
 
-                //this.get('actions.addContributor').call(this, user.id, 'write', true, false, undefined,
+                // this.get('actions.addContributor').call(this, user.id, 'write', true, false, undefined,
                 //    undefined, true)
                 //    .then((res) => {
                 //        this.toggleAuthorModification();
@@ -124,9 +122,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
                 //        user.rollbackAttributes();
                 //    });
             } else {
-
                 this.get('toast').error('No node selected');
-
             }
         },
         // Adds all contributors from parent project to current

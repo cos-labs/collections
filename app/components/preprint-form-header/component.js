@@ -20,7 +20,7 @@ import CpPanelToggleComponent from 'ember-collapsible-panel/components/cp-panel-
  * }}
  * ```
  * @class preprint-form-header
- **/
+ * */
 export default CpPanelToggleComponent.extend({
     tagName: 'header',
     // Variables to pass in

@@ -17,24 +17,24 @@ export default Ember.Route.extend({
     },
 
     afterModel(model, transition) {
-        this.set("crumb.label", "Submission " + model.caxe.id);
-        this.set("crumb.route", this.routeName);
-        this.set("crumb.models", [
+        this.set('crumb.label', `Submission ${model.caxe.id}`);
+        this.set('crumb.route', this.routeName);
+        this.set('crumb.models', [
             model.collection,
             model.caxe
         ]);
 
-        this.set("nav.links", [{
-            label: "Settings",
-            route: "collections.collection.edit",
+        this.set('nav.links', [{
+            label: 'Settings',
+            route: 'collections.collection.edit',
             models: [model.collection]
         }, {
-            label: "Submissions",
-            route: "collections.collection.submissions",
+            label: 'Submissions',
+            route: 'collections.collection.submissions',
             models: [model.collection]
         }]);
 
-        this.set("caxe.activeCase", model.caxe);
+        this.set('caxe.activeCase', model.caxe);
     },
 
     setupController(controller, model) {

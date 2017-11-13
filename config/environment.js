@@ -126,7 +126,6 @@ module.exports = function(environment) {
     ENV.headerAuth = process.env.HEADER_AUTH;
 
     if (environment === 'development') {
-
         ENV.osfHostUrl = 'https://staging-api.osf.io';
         ENV['ember-cli-mirage'] = {
             enabled: false,
@@ -157,9 +156,9 @@ module.exports = function(environment) {
     if (environment === 'production') {
         ENV.osfHostUrl = 'https://api.osf.io';
         ENV.apiBaseUrl = 'https://dev-labs-2.cos.io';
-        ENV.APP.apiURL = ENV.apiBaseUrl + "/api";
+        ENV.APP.apiURL = `${ENV.apiBaseUrl}/api`;
         ENV.locationType = 'auto';
-        csrfCookie: 'csrftoken',
+        'csrftoken',
         ENV.NODE_GUID = 'h8d72';
         ENV.workflowUrl = ENV.apiBaseUrl;
     }

@@ -25,8 +25,8 @@ export default Model.extend({
         inverse: 'collections',
         async: false
     }),
-    collectionWorkflows: hasMany("collection-workflow", {
-        inverse: "collection",
+    collectionWorkflows: hasMany('collection-workflow', {
+        inverse: 'collection',
         async: false
     }),
     titleCaseCollectionType: Ember.computed('collectionType', function() {

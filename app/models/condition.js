@@ -8,9 +8,9 @@ const {
 } = DS;
 
 export default Model.extend({
-    all: hasMany('condition', {inverse: null}),
-    any: hasMany('condition', {inverse: null}),
-    none: hasMany('condition', {inverse: null}),
+    all: hasMany('condition', { inverse: null }),
+    any: hasMany('condition', { inverse: null }),
+    none: hasMany('condition', { inverse: null }),
     parameter: belongsTo('parameter'),
     value: attr('string'),
     properties: attr(),

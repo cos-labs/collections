@@ -7,7 +7,6 @@ function getToken() {
     if (session) {
         token = JSON.parse(session).authenticated;
         if ('attributes' in token) {
-
             return token.attributes.accessToken;
         }
         return token;
@@ -26,7 +25,7 @@ export default Ember.Component.extend({
 
     typeObserver: Ember.observer('widget.parameters', 'widget.parameters.type.value', function() {
         this.set('parameters.type', {
-            value: 'meeting'}
+            value: 'meeting' }
         );
     }),
     titleObserver: Ember.observer('widget.parameters', 'widget.parameters.title.value', function() {
@@ -64,7 +63,7 @@ export default Ember.Component.extend({
 
     init() {
         this.set('parameters.type', {
-            value: 'meeting'}
+            value: 'meeting' }
         );
         this.set('parameters.title', this.get('widget.parameters.title'));
         this.set('parameters.status', this.get('widget.parameters.status'));
@@ -86,7 +85,7 @@ export default Ember.Component.extend({
             const item = this.get('store').createRecord('item');
             item.set('type', 'meeting');
             item.set('title', this.get('parameters.eventTitle.value'));
-//             item.set('type', 'event');
+            //             item.set('type', 'event');
             item.set('status', 'none');
             item.set('collection', this.get('collection'));
             item.set('category', this.get('parameters.category.value'));
@@ -100,20 +99,20 @@ export default Ember.Component.extend({
             item.set('sourceId', '3hgm5');
             item.set('url', 'http://example.com');
 
-            let node = this.get('widget.parameters.node.value');
-            //const node = this.get('store').createRecord('node');
-            //node.set('title', this.get('widget.parameters.title.value'));
-            //node.set('category', 'communication');
+            const node = this.get('widget.parameters.node.value');
+            // const node = this.get('store').createRecord('node');
+            // node.set('title', this.get('widget.parameters.title.value'));
+            // node.set('category', 'communication');
             await node.save();
 
-            const uri = ENV.OSF.waterbutlerUrl + "v1/resources/" + node.get('id') + "/providers/osfstorage/?kind=file&name=" + item.get('title') + "&direct=true";
+            const uri = `${ENV.OSF.waterbutlerUrl}v1/resources/${node.get('id')}/providers/osfstorage/?kind=file&name=${item.get('title')}&direct=true`;
 
             const xhr = new XMLHttpRequest();
-            xhr.open("PUT", uri, true);
+            xhr.open('PUT', uri, true);
             xhr.withCredentials = false;
-            xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+            xhr.setRequestHeader('Authorization', `Bearer ${getToken()}`);
 
-            let deferred = Ember.RSVP.defer();
+            const deferred = Ember.RSVP.defer();
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);

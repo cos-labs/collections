@@ -36,7 +36,7 @@ export default Model.extend({
             this.get('currentState.isDirty') &&
             !this.disableAutosave &&
             this.save();
-        }, 1000)
+        }, 1000);
     })
 
 });

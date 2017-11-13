@@ -3,9 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     session: Ember.inject.service(),
     tagName: 'section',
-    attributeBindings: ['style', "id"],
-    id: Ember.computed("layout.title", function() {
-        return "section-" + this.get("index");
+    attributeBindings: ['style', 'id'],
+    id: Ember.computed('layout.title', function() {
+        return `section-${this.get('index')}`;
     }),
     style: Ember.computed('layout', function () {
         const url = this.get('layout.img-url') ? `url(${this.get('layout.img-url')})` : 'url(\'/img/splash-default.jpg\')';

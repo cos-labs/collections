@@ -61,13 +61,13 @@ export default BaseAuthenticator.extend({
     },
 
     getUserInfo() {
-        let that = this
+        const that = this;
         return Ember.$.ajax({
             url: `${ENV.APP.apiURL}/users/me`,
             crossDomain: true,
             xhrFields: { withCredentials: true },
-        }).then(function(results){
-            that.get('session').set('fullName', results['data']['attributes']['full-name'])
+        }).then(function(results) {
+            that.get('session').set('fullName', results.data.attributes['full-name']);
             return results;
         });
     },

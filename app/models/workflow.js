@@ -13,8 +13,8 @@ export default Model.extend({
         inverse: 'workflow'
     }),
     description: attr('string'),
-    caseDescription: attr("string"),
-    sortedSections: Ember.computed('sections.@each.index', "sections.@each", "sections", function() {
+    caseDescription: attr('string'),
+    sortedSections: Ember.computed('sections.@each.index', 'sections.@each', 'sections', function() {
         return this.get('sections').sortBy('index');
     }),
     sections: hasMany('section', {
@@ -23,8 +23,8 @@ export default Model.extend({
     actions: hasMany('action', {
         inverse: null,
     }),
-    collectionWorkflows: hasMany("collection-workflow", {
-        inverse: "workflow",
+    collectionWorkflows: hasMany('collection-workflow', {
+        inverse: 'workflow',
     }),
     initialParameters: hasMany('parameter', {
         inverse: null,

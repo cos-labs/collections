@@ -18,7 +18,7 @@ import permissions from 'ember-osf/const/permissions';
  * admins and bibliographic contributors?
  */
 
-export function conditionsForContribRemoval(params/* , hash*/) {
+export function conditionsForContribRemoval(params/* , hash */) {
     const [contributorToRemove, contributors] = params;
     let minRegisteredAdmins = false;
     let minBibliographic = false;
