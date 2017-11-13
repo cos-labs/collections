@@ -25,8 +25,8 @@ export default Ember.Component.extend({
 
     init() {
         this.set('parameters.type', {
-            value: 'meeting' }
-        );
+            value: 'meeting' 
+        });
         return this._super(...arguments);
     },
 
