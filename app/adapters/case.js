@@ -7,6 +7,34 @@ export default JSONAPIAdapter.extend({
 
     session: Ember.inject.service(),
 
+    // Polyfill queryRecord
+    queryRecord(store, type, query) {
+
+        var url = this.buildURL(type.modelName, null, null, 'queryRecord', query) + '/';
+        
+        if (this.sortQueryParams) {
+            query = this.sortQueryParams(query);
+        }
+
+        return this.ajax(url, 'GET', { data: query })
+            .then(function(result) {
+                result = result.data;
+                // hack to fix https://github.com/emberjs/data/issues/3790
+                // and https://github.com/emberjs/data/pull/3866
+                try {
+                    store.push({data: null});
+                    return {data: result || null};
+                } catch(e) {
+                    return {data: result || []};
+                }
+            }, function(result) {
+                return {
+                    data: null
+                }
+            });
+
+    },
+
     ajax(url, method, hash) {
         hash = hash || {};
         hash.crossOrigin = true;
