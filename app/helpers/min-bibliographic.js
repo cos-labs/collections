@@ -15,7 +15,7 @@ import Ember from 'ember';
  * @return {Boolean} Does updating this contributor leave minimum number of
  *     bibliographic contributors?
  */
-export function minBibliographic(params/* , hash*/) {
+export function minBibliographic(params/* , hash */) {
     const [contrib, contributors] = params;
     let numBib = 0;
     contributors.forEach(function(contributor) {

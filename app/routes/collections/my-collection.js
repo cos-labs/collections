@@ -2,18 +2,18 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    title: "My Collection",
+    title: 'My Collection',
     crumb: {},
 
     beforeModel() {
-        this.set("crumb.label", this.title);
-        this.set("crumb.route", this.routeName);
-        this.set("nav.links", [{
-            label: "Showcase",
-            route: "explore"
+        this.set('crumb.label', this.title);
+        this.set('crumb.route', this.routeName);
+        this.set('nav.links', [{
+            label: 'Showcase',
+            route: 'explore'
         }, {
-            label: "Trending",
-            route: "explore"
+            label: 'Trending',
+            route: 'explore'
         }]);
     },
 

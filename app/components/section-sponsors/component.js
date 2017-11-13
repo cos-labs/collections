@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'section',
-    attributeBindings: ['style', "id"],
-    classNames: ["sponsors"],
-    id: Ember.computed("layout.title", function() {
-        return "section-" + this.get("index");
+    attributeBindings: ['style', 'id'],
+    classNames: ['sponsors'],
+    id: Ember.computed('layout.title', function() {
+        return `section-${this.get('index')}`;
     }),
     style: Ember.computed('layout', function() {
         const bg = this.get('layout.background-color') ? this.get('layout.background-color') : this.get('branding.colors.background');

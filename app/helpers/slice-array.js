@@ -13,7 +13,7 @@ import Ember from 'ember';
  * @param {Integer} stopIndex
  * @return {Array} sliced array
  */
-export function sliceArray(params/* , hash*/) {
+export function sliceArray(params/* , hash */) {
     const [array, start, finish] = params;
     return array.slice(start, finish);
 }

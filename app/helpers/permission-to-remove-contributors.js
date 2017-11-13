@@ -16,7 +16,7 @@ import Ember from 'ember';
  * @param {Object} node The preprint itself.
  * @return {Boolean} Does current user have permission to remove this particular contributor?
  */
-export function permissionToRemoveContributor(params/* , hash*/) {
+export function permissionToRemoveContributor(params/* , hash */) {
     const [contributor, currentUser, isAdmin, node] = params;
     const currentUserId = currentUser.get('currentUserId') || currentUser.get('id');
     const removeSelf = contributor.get('userId') === currentUserId;

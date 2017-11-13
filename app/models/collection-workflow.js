@@ -9,14 +9,14 @@ const {
 } = DS;
 
 export default Model.extend({
-    role: DS.attr("string"),
-    collection: belongsTo("collection", {
-        inverse: "collectionWorkflows"
+    role: DS.attr('string'),
+    collection: belongsTo('collection', {
+        inverse: 'collectionWorkflows'
     }),
     workflow: belongsTo('workflow', {
         inverse: 'collectionWorkflows'
     }),
-    authorizedGroups: hasMany("group", {
-        inverse: "authorizedCollectionWorkflows"
+    authorizedGroups: hasMany('group', {
+        inverse: 'authorizedCollectionWorkflows'
     })
 });

@@ -23,7 +23,7 @@ export default Ember.Route.extend({
     },
 
     setupController(controller, model) {
-        controller.set("collections", model.collections);
+        controller.set('collections', model.collections);
     }
 
 });

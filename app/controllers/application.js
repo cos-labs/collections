@@ -6,16 +6,16 @@ export default Ember.Controller.extend({
 
     init() {
         this._super();
-        window.addEventListener("scroll", function() {
-            let nav = document.getElementById("osf-nav");
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('osf-nav');
             if (window.pageYOffset > 0) {
-                nav.style.position = "fixed";
-                nav.style.top = "-1px";
+                nav.style.position = 'fixed';
+                nav.style.top = '-1px';
             } else {
-                nav.style.position = "absolute";
-                nav.style.top = "0px";
+                nav.style.position = 'absolute';
+                nav.style.top = '0px';
             }
-        })
+        });
     },
 
     actions: {

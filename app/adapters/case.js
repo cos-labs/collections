@@ -9,9 +9,8 @@ export default JSONAPIAdapter.extend({
 
     // Polyfill queryRecord
     queryRecord(store, type, query) {
+        const url = `${this.buildURL(type.modelName, null, null, 'queryRecord', query)}/`;
 
-        var url = this.buildURL(type.modelName, null, null, 'queryRecord', query) + '/';
-        
         if (this.sortQueryParams) {
             query = this.sortQueryParams(query);
         }
@@ -22,17 +21,16 @@ export default JSONAPIAdapter.extend({
                 // hack to fix https://github.com/emberjs/data/issues/3790
                 // and https://github.com/emberjs/data/pull/3866
                 try {
-                    store.push({data: null});
-                    return {data: result || null};
-                } catch(e) {
-                    return {data: result || []};
+                    store.push({ data: null });
+                    return { data: result || null };
+                } catch (e) {
+                    return { data: result || [] };
                 }
             }, function(result) {
                 return {
                     data: null
-                }
+                };
             });
-
     },
 
     ajax(url, method, hash) {
