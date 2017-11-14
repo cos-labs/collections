@@ -8,10 +8,7 @@
 
     <div class="search">
     
-        {{input class="searchbox" placeholder="Search..." value=q}}
-        <button class="btn btn-success">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
+        {{input class="searchbox" placeholder="Type to search..." value=q}}
     
     </div>
 
@@ -30,27 +27,32 @@
     </nav>
 
     <div class="result-items">
-
+        {{#if loading}}
+            <br>
+            {{loading-spinner fullPage=false style="fa-4x"}}
+        {{else}}
+  
         {{#each collections as |collection|}}
             <div class="result-item">
 
                 <h2>
-                    {{#link-to "collections.collection" collection.id}}
+                    {{#link-to "collections.collection.item"  collection.collection.id collection.id }}
                         <span>
-                            {{collection.title}}
+                            {{collection.title}} 
                         </span>
                     {{/link-to}}
                 </h2>
+                <div><b>Found in: {{ collection.collection.title}}</b></div>
+                <br>
+ 
                 <div class="description">{{collection.description}}</div>
 
             </div>
 
         {{else}}
-
-            Searching...
-
+           <h2 class="text-center"> No results found...</h2>
         {{/each}}
-
+      {{/if}}
     </div>
 
 
