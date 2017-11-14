@@ -3,9 +3,9 @@ import moment from 'moment';
 
 export default Ember.Component.extend({
     tagName: 'section',
-    attributeBindings: ["id"],
-    id: Ember.computed("layout.title", function() {
-        return "section-" + this.get("index");
+    attributeBindings: ['id'],
+    id: Ember.computed('layout.title', function() {
+        return `section-${this.get('index')}`;
     }),
     meetingDates: Ember.computed('model.startDate', function() {
         const startDate = this.get('model.startDate');

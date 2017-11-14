@@ -27,12 +27,12 @@ export default Model.extend({
     kind: attr('string'),
     fileName: attr('string'),
     fileFormat: Ember.computed('fileName', function() {
-        let name =  this.get('fileName');
+        const name = this.get('fileName');
         if (name) {
-            let arr = this.get('fileName').split('.')
-            return arr[arr.length-1];
+            const arr = this.get('fileName').split('.');
+            return arr[arr.length - 1];
         } else {
-            return "Unavailable";
+            return 'Unavailable';
         }
     }),
     startDateTimeFormatted: Ember.computed('startTime', function () {

@@ -8,11 +8,11 @@ export default Ember.Controller.extend({
     editMode: false,
     loading: false,
     toggleLoading() {
-        console.log('fffffgfdkjbdfbkj')
+        console.log('fffffgfdkjbdfbkj');
         this.toggleProperty('loading');
     },
     didRender() {
-        this.set('loading', false)
+        this.set('loading', false);
     },
     actions: {
         updateProperty(oldValue, newValue) {

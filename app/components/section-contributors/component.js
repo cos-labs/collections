@@ -9,12 +9,12 @@ export default Ember.Component.extend({
         const dataSource = this.get('layout.data');
         return this.get('model.settings').data[dataSource];
     }),
-    id: Ember.computed("layout.title", function() {
-        return "section-" + this.get("index");
+    id: Ember.computed('layout.title', function() {
+        return `section-${this.get('index')}`;
     }),
-    tagName: "section",
-    attributeBindings: ["style", "id"],
-    classNames: ["users", "narrow"],
+    tagName: 'section',
+    attributeBindings: ['style', 'id'],
+    classNames: ['users', 'narrow'],
     style: Ember.computed('layout', function() {
         return Ember.String.htmlSafe(`background-color: ${this.get('layout.background_color')}; color: ${this.get('layout.text_color')};`);
     }),

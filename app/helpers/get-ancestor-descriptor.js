@@ -23,7 +23,7 @@ function fetchTitle(node, relationship) {
     return title;
 }
 
-export function getAncestorDescriptor(params/* , hash*/) {
+export function getAncestorDescriptor(params/* , hash */) {
     // Formats titles similar to the way they're displayed in the dashboard.
     // For example, Root Name / ... / Parent Name / Node Name.
     const node = params[0];

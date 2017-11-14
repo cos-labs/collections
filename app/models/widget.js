@@ -37,13 +37,13 @@ export default Model.extend({
     }),
 
     caseParameters: Ember.computed('caxe.activeCase.parameters.@each', function() {
-        let activeCase = this.get('caxe.activeCase');
+        const activeCase = this.get('caxe.activeCase');
         if (activeCase) {
-            let aliases = this.get('parameterAliases');
-            let caseParams = aliases.reduce((case_parameters, alias) => {
-                let key = alias.get('alias')
-                let value = activeCase.get('parameters').find(p => p.get('stub.id') === alias.get('parameterStub.id'))
-                return Object.assign({ [key]: value }, case_parameters)
+            const aliases = this.get('parameterAliases');
+            const caseParams = aliases.reduce((case_parameters, alias) => {
+                const key = alias.get('alias');
+                const value = activeCase.get('parameters').find(p => p.get('stub.id') === alias.get('parameterStub.id'));
+                return Object.assign({ [key]: value }, case_parameters);
             }, {});
             return caseParams;
         }

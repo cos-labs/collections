@@ -9,9 +9,9 @@ const {
 } = DS;
 
 export default Model.extend({
-    name: attr("string"),
-    authorizedCollectionWorkflows: hasMany("collection-workflow", {
-        inverse: "authorizedGroups"
+    name: attr('string'),
+    authorizedCollectionWorkflows: hasMany('collection-workflow', {
+        inverse: 'authorizedGroups'
     }),
     createdBy: belongsTo('user'),
     items: hasMany('item'),

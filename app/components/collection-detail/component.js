@@ -1,10 +1,10 @@
-import Ember from "ember";
+import Ember from 'ember';
 
 export default Ember.Component.extend({
-    classNames: ["card", "coll-single"],
+    classNames: ['card', 'coll-single'],
 
     tags: Ember.computed(function() {
-        return this.get("collection.tags").split(",").filter(tag => tag !== "");
+        return this.get('collection.tags').split(',').filter(tag => tag !== '');
     })
 
 });

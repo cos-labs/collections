@@ -5,9 +5,8 @@ export default Ember.Route.extend({
     model() {
         return Ember.RSVP.hash({
             workflows: this.get('store').findAll('workflow'),
-            groups: this.get("store").findAll("group")
+            groups: this.get('store').findAll('group')
         });
-
     },
 
     setupController(controller, model) {

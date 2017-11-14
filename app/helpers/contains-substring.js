@@ -8,7 +8,7 @@ import Ember from 'ember';
  * @param {String} target The string being looked for
  * @return {Boolean} Does the target string exist inside the specified string?
  */
-export function containsSubstring(params/* , hash*/) {
+export function containsSubstring(params/* , hash */) {
     const [string, target] = params;
     const stringLower = string.toLowerCase();
     const targetLower = target.toLowerCase();

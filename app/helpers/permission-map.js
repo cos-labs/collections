@@ -13,7 +13,7 @@ import { permissionSelector } from 'ember-osf/const/permissions';
  * @param {String} permission Short form of permission
  * @return {String} permission Long form of permission
  */
-export function permissionMap(params/* , hash*/) {
+export function permissionMap(params/* , hash */) {
     const map = {};
     for (let i = 0; i < permissionSelector.length; i++) {
         map[permissionSelector[i].value] = permissionSelector[i].text;

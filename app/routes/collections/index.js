@@ -28,11 +28,9 @@ export default Ember.Route.extend({
         });
     },
 
-    setupController(controller, model) {
+    setupController(controller, model) { 
         controller.set("loading", false);
-
         controller.set("collections", model.collections);
-
     }
 
 });

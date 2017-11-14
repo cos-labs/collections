@@ -16,8 +16,7 @@ export default Ember.Component.extend({
             const filename = filenameParts[filenameParts.length - 1];
 
             reader.onloadend = (ev) => {
-
-                this.set('parameters.fileName.value',  filename);
+                this.set('parameters.fileName.value', filename);
                 this.set('fileChosen', true);
                 const result = ev.target.result;
                 this.set('parameters.fileData.value', result);
