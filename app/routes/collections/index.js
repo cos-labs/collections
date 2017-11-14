@@ -13,7 +13,7 @@ export default Ember.Route.extend({
 
     model(params, transition) {
         return Ember.RSVP.hash({
-            collections: this.store.query('collection', {
+            collections: this.store.query('item', {
                 q: transition.queryParams.q,
                 filter: {
                     kind: transition.queryParams.kind

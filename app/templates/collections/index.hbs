@@ -35,20 +35,22 @@
             <div class="result-item">
 
                 <h2>
-                    {{#link-to "collections.collection" collection.id}}
+                    {{#link-to "collections.collection.item"  collection.collection.id collection.id }}
                         <span>
-                            {{collection.title}}
+                            {{collection.title}} 
                         </span>
                     {{/link-to}}
                 </h2>
+                <div>found in Collection: {{ collection.collection.title}}</div>
+                <br>
+
                 <div class="description">{{collection.description}}</div>
 
             </div>
 
         {{else}}
-
-            Searching...
-
+            <br >
+            {{loading-spinner fullPage=false style="fa-4x"}}
         {{/each}}
 
     </div>
