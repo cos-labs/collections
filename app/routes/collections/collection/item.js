@@ -30,8 +30,8 @@ export default Ember.Route.extend({
             label: 'Edit',
             route: 'collections.collection.submissions',
             models: [
-                model.collection,
-                model.item
+                // model.collection,
+                // model.item
             ]
         }]);
     },

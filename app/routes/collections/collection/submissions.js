@@ -21,20 +21,30 @@ export default Ember.Route.extend({
         this.set('crumb.models', [model.collection]);
 
         this.set('nav.links', [
-            {
-                label: 'Settings',
-                route: 'collections.collection.edit',
-                models: [model.collection]
-            }, {
-                label: 'Submissions',
-                route: 'collections.collection.submissions',
-                models: [model.collection]
-            }]);
+        {
+            label: 'Settings',
+            route: 'collections.collection.edit',
+            models: [model.collection]
+        }, {
+            label: 'Submissions',
+            route: 'collections.collection.submissions',
+            models: [model.collection]
+        }]);
     },
 
     setupController(controller, data) {
         controller.set('collection', data.collection);
         controller.set('cases', data.cases);
+
+        this.get('store').queryRecord('case', {for_item: 401, role: "submission"}).then((result)=>{
+           console.log("the collection item" , result);
+       });
+
+        // data.collection.get('items').then((results)=>{
+        //     results.forEach((item)=>{
+        //         console.log(item.get('group'))
+        //     })
+        // })
     }
 
 });
