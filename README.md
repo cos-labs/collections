@@ -113,33 +113,44 @@ The two following parameters can be specified for any of the following layers.
 * `text-color`: A hex value that specifies the color of the text.
 * `hide-from-nav`: Set to `true` to not include this layer in the internal nav menu.
 
-#### Title Layer
+#### Title Section
 
 _Shows the title of the conference, along with a tagline or description for the conference._
 * `component: section-title`
 * `title` (optional): Overrides the title of the collection, to be displayed in the title layer.
 * `tagline` (optional): Overrides the description of the collection, to be displayed in the title layer.
 
-#### Paragraph Layer
+![Title Section](https://photos-2.dropbox.com/t/2/AAALmxp2BK-j4XpKL0rmsBg6ekElDcNPsBVRK7wjBtDdeQ/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.35.17.png/ENL75iYY8MQJIAIoAg/mDVsgIfcwEaJVQaSNngf1GY6rAB2J_LwjcHM83eaR6g?dl=0&size=2048x1536&size_mode=3)
+
+#### Paragraph Section
 
 _Shows a paragraph filled with custom text from the meeting, with an optional title._
 * `component: section-paragraph`
 * `title` (optional): The title that will be displayed in the layer above the paragraph text.
 * `body`: The main text of the paragraph.
 
+Paragraph section with title:
+![Paragraph Section With Title](https://photos-2.dropbox.com/t/2/AAAPiH70E6tUKDOO-MYrUMVIz4apa-bAX12JKfe6gpQBkg/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.39.47.png/ENL75iYY8cQJIAIoAg/sB9r3z7WY0TN1uS-B_Y3W211nKsuHSemmxBVuibE2EE?dl=0&size=2048x1536&size_mode=3)
+
+Paragraph section without title:
+![Paragraph section without title](https://photos-2.dropbox.com/t/2/AABh1Xj6XZ_hqWxFF7EgtackG50oRCvhkdyIVG0ZylrwOQ/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.41.01.png/ENL75iYY88QJIAIoAg/Ry5pajhCuGMoIgs4UPe9IkyNi3s50rRyQVuCqYhQ8XY?dl=0&size=2048x1536&size_mode=3)
+
 #### Image Layer
 
-_Displays a full-width image on the meeting page. This image can be used_
+_Displays a full-width image on the meeting page._
 * `component: section-image`
 * `img-url`: The URL of the image you want to load for this layer. Make sure it's high enough
 definition to span the width of your landing page, but not so large that it will take a long
 time to load!
+![Image section](https://photos-2.dropbox.com/t/2/AACAngAiq8ZXjnOyZd2IuqreTM6YZf0JpMH-VeIvMP5FUA/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.41.57.png/ENL75iYY9MQJIAIoAg/fN6dCXcv1F3I9hyPXHCj1gYdRdam3OL9sHeqHCBCze4?dl=0&size=2048x1536&size_mode=3)
 
 * `TODO`: Make the height adjustable up to a certain height.
 
 #### Schedule Section
 * `component: section-schedule`
 * no additional parameters
+![Schedule Section](https://photos-5.dropbox.com/t/2/AAC4DuU2YmAZVdOS_HACkA6aE3pe5dN7SuvpZfDBklm6ZA/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.52.30.png/ENL75iYY-MQJIAIoAg/OwtpQdixqZMvc-VW7d63u4CW4zJ55zJlX2bPExFUXko?dl=0&size=800x600&size_mode=3)
+
 
 #### Speakers Section
 * `component: section-contributors`
@@ -147,12 +158,19 @@ time to load!
 
 #### Item List
 * `component: section-file-grid`
-* NOTE: changing the `background-color` for this layer will only affect the color of the header row.
+* NOTE: changing the `background-color` and `text-color` does not affect anything currently.
+* The item list has two separate views: the list view and the grid view.
+List view:
+![List View for Items](https://photos-6.dropbox.com/t/2/AAAUFtHKqSpdnL-djmVODARSk5oN-yDVWFo1c__FMgs00g/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.48.10.png/ENL75iYY9cQJIAIoAg/c2b7-QjSl5fcvuKY-gEM3DgcrtfXFQuEO0ujBeQMAHM?dl=0&size=800x600&size_mode=3)
+
+Grid view:
+![Grid View for Items](https://photos-6.dropbox.com/t/2/AABI6wjVYm6bE-3dXYq2z55zX-ZfFmvdByuEPAfHgoIyvw/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.49.48.png/ENL75iYY9sQJIAIoAg/znEz2n0LyeIyy7CA7mz9uu4qM0LqUqPjPp7VnaS6dms?dl=0&size=2048x1536&size_mode=3)
+
 
 #### Sponsors Section
 * `component: section-sponsors`
 * `data`: the name of the key in the `data` segment that you want to be loaded. If you wanted to use the following example date, this line in the settings would look like `"data": "sponsor_categories"`.
-
+![Sponsors Section](https://photos-3.dropbox.com/t/2/AADaaIWvqigzqLKjwmskPEyJz95PCfXrktXGaPfYfQWO8A/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.51.00.png/ENL75iYY98QJIAIoAg/y_fHSF0s2RDnwzh3ONsDvaThGNS4EUFT23oNP7Iw6Q4?dl=0&size=2048x1536&size_mode=3)
 Example:
 ```
 "sponsor-categories": [
