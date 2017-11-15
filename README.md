@@ -160,6 +160,7 @@ time to load!
 * `component: section-file-grid`
 * NOTE: changing the `background-color` and `text-color` does not affect anything currently.
 * The item list has two separate views: the list view and the grid view.
+
 List view:
 ![List View for Items](https://photos-6.dropbox.com/t/2/AAAUFtHKqSpdnL-djmVODARSk5oN-yDVWFo1c__FMgs00g/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.48.10.png/ENL75iYY9cQJIAIoAg/c2b7-QjSl5fcvuKY-gEM3DgcrtfXFQuEO0ujBeQMAHM?dl=0&size=800x600&size_mode=3)
 
@@ -170,8 +171,10 @@ Grid view:
 #### Sponsors Section
 * `component: section-sponsors`
 * `data`: the name of the key in the `data` segment that you want to be loaded. If you wanted to use the following example date, this line in the settings would look like `"data": "sponsor_categories"`.
+
+Visual Example:
 ![Sponsors Section](https://photos-3.dropbox.com/t/2/AADaaIWvqigzqLKjwmskPEyJz95PCfXrktXGaPfYfQWO8A/12/50460222/png/32x32/3/1510783200/0/2/Screenshot%202017-11-15%2012.51.00.png/ENL75iYY98QJIAIoAg/y_fHSF0s2RDnwzh3ONsDvaThGNS4EUFT23oNP7Iw6Q4?dl=0&size=2048x1536&size_mode=3)
-Example:
+Example of Data Structuring:
 ```
 "sponsor-categories": [
     {
