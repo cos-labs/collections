@@ -12,7 +12,7 @@ export default Ember.Component.extend({
         const refreshParameters = () => {
             this.get('store').findRecord('case', this.get('case.id'), { reload: true }).then((caxe) => {
                 this.set('parameters', this.get('case.parameters').reduce((parameters, parameter) => {
-                    parameters[parameter.get('name')] = parameter.get('value');
+                    parameters[parameter.get('name').replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); })] = parameter.get('value');
                     return parameters;
                 }, {}));
             });
