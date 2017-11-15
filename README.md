@@ -92,51 +92,65 @@ Branding mostly determines the colors that your landing page will default to, an
 
 ### Layout
 
+The layout is a list of sections, defined in the same format as this example:
+```
+{
+    component: section-paragraph,
+    settings: {
+        background-color: #333,
+        text-color: #eee,
+        title: This Is My Title,
+        body: This is the body of my paragraph. It can be however long.
+    }
+}
+```
+
 #### General
 
 The two following parameters can be specified for any of the following layers.
 
 * `background-color`: A hex value that specifies the color of the background.
 * `text-color`: A hex value that specifies the color of the text.
+* `hide-from-nav`: Set to `true` to not include this layer in the internal nav menu.
 
 #### Title Layer
 
 _Shows the title of the conference, along with a tagline or description for the conference._
-
+* `component: section-title`
 * `title` (optional): Overrides the title of the collection, to be displayed in the title layer.
 * `tagline` (optional): Overrides the description of the collection, to be displayed in the title layer.
 
 #### Paragraph Layer
 
 _Shows a paragraph filled with custom text from the meeting, with an optional title._
-
+* `component: section-paragraph`
 * `title` (optional): The title that will be displayed in the layer above the paragraph text.
 * `body`: The main text of the paragraph.
 
 #### Image Layer
 
 _Displays a full-width image on the meeting page. This image can be used_
-
+* `component: section-image`
 * `img-url`: The URL of the image you want to load for this layer. Make sure it's high enough
 definition to span the width of your landing page, but not so large that it will take a long
 time to load!
 
 * `TODO`: Make the height adjustable up to a certain height.
 
-#### Schedule Layer
-
+#### Schedule Section
+* `component: section-schedule`
 * no additional parameters
 
-#### Speakers Layer
-
+#### Speakers Section
+* `component: section-contributors`
 * no additional parameters 
 
-#### Presentation Table Layer
-
+#### Item List
+* `component: section-file-grid`
 * NOTE: changing the `background-color` for this layer will only affect the color of the header row.
 
-#### Sponsors Layer
-
+#### Sponsors Section
+* `component: section-sponsors`
 * `data`: the name of the key in the `data` segment that you want to be loaded. If you wanted to use the following example date, this line in the settings would look like `"data": "sponsor_categories"`.
 
 Example:
