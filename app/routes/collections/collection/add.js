@@ -22,7 +22,7 @@ export default Ember.Route.extend({
         this.set('crumb.models', [
             model.collection,
             model.caxe
-        ]);
+            ]);
 
         this.set('nav.links', [{
             label: 'Settings',
@@ -35,11 +35,25 @@ export default Ember.Route.extend({
         }]);
 
         this.set('caxe.activeCase', model.caxe);
+
+
+
+
     },
 
     setupController(controller, model) {
         controller.set('caxe', model.caxe);
         controller.set('collection', model.collection);
+
+
+        console.log("the collection item" , model.collection.get('items'));
+
+        model.collection.get('items').then((results)=>{
+            results.forEach((item)=>{
+                console.log(item.id)
+            })
+        })
+
     },
 
 });

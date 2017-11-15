@@ -31,8 +31,15 @@ export default Ember.Component.extend({
     actions: {
         async pressButton() {
             this.attrs.toggleLoading();
-            this.set('disabled', true);
-            const item = this.get('store').createRecord('item');
+            this.set('disabled', true); 
+            let item;           
+
+            if(Number(this.get('parameters.item.value')) === NaN || Number(this.get('parameters.item.value')) === 0){
+                item = this.get('store').createRecord('item');
+            }else {
+                item = await this.get('store').findRecord('item', this.get('parameters.item.value') )
+            }
+
             item.set('kind', 'repository');
             item.set('title', this.get('parameters.title.value'));
             item.set('status', this.get('parameters.submissionSuccessStatus.value'));
@@ -40,6 +47,8 @@ export default Ember.Component.extend({
             item.set('description', this.get('parameters.description.value'));
             item.set('fileName', this.get('parameters.fileName.value'));
             item.set('metadata', this.get('parameters.metadata.value'));
+
+
 
             const node = this.get('parameters.node.value');
             if (node == undefined || node === undefined) {
@@ -63,6 +72,18 @@ export default Ember.Component.extend({
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then((item) => {
+
+
+                        if(Number(this.get('parameters.item.value')) === NaN || Number(this.get('parameters.item.value')) === 0){
+                            console.log('DKbsbnfgsngsnngn setting CASE is NOT a number')
+                            this.set('parameters.item.value' , item.id)
+
+                        }else{
+                            console.log('CASE is a number' , this.get('parameters.item.value'))
+                        }
+
+
+
                         this.get('store').findRecord(
                             'workflow',
                             this.get('parameters.nextWorkflow.value'),
