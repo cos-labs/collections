@@ -1,24 +1,30 @@
 .landing-title {
     padding-top: 60px;
     padding-bottom: 40px;
-    h1 {
-        text-align: center;
-        margin: 30px auto 30px auto;
-        position: relative;
-        float: left;
+    flex-direction: row;
+    .primary-title {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        margin: 0 auto 0 auto;
+        h1 {
+            text-align: center;
+            position: relative;
+            margin: 15px;
+            font-size: 36px;
+        }
+        .title-logo {
+            width: auto;
+            height: 52px;
+            margin: 15px;
+        }
     }
     p {
         text-align: center;
-    }
-    .title-logo {
-        float: left;
-        width: auto;
-        height: 100px;
-        margin-right: 5px;
+        width: 100%;
     }
     .title-wrapper {
-        width: auto;
-        margin: 0 auto 0 auto;
     }
 }
 

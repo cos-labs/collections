@@ -9,9 +9,10 @@ export default Ember.Component.extend({
     }),
     style: Ember.computed('layout', function () {
         const url = this.get('layout.img-url') ? `url(${this.get('layout.img-url')})` : 'url(\'/img/splash-default.jpg\')';
-        const height = this.get('layout.height') ? `${this.get('layout.height')}px` : '300px';
+        const height = this.get('layout.height') ? this.get('layout.height') : '300px';
         return `background: ${url} no-repeat left center; ` +
             'background-size: cover; ' +
-            `height: ${height};`;
+            `height: ${height};` + 
+            `background-position: ${this.get('layout.position')};`;
     })
 });
