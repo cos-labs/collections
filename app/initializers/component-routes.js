@@ -6,4 +6,4 @@ export function initialize(app) {
 export default {
     name: 'component-routes',
     initialize
-}
+};

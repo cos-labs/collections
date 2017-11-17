@@ -1,0 +1,40 @@
+{{#if layout.title}}
+    <h2>{{layout.title}}</h2>
+{{/if}}
+
+{{#if data}}
+
+    {{#each data as |speaker|}}
+        <div class="contributor-detail">
+            <a class="gravatar" src="{{contributor.img_url}}"/>
+            <a href='https://staging.osf.io/{{contributor.username}}'>{{contributor.first_name}} {{contributor.last_name}}</a>
+            <a class="affiliation">{{contributor.affiliation}}</a>
+        </div>
+    {{/each}}
+
+{{else if users}}
+
+    {{#each users as |contributor|}}
+
+        <div class="contributor-detail">
+            {{#if contributor.gravatar}}
+                <a  href='https://osf.io/{{contributor.username}}'
+                    class="gravatar"
+                    style="background-image: url('{{contributor.gravatar}}');"></a>
+            {{else}}
+                <a href='https://osf.io/{{contributor.username}}'>
+                    <img
+                        class="contributor-pic-thumbnail"
+                        alt="User gravatar"
+                        src="https://udayton.edu/0/img/generic-profile.png"/>
+                </a>
+            {{/if}}
+            <p class="contributor-name p-t-xs text-center">
+                <a href='https://osf.io/{{contributor.username}}'>
+                    {{contributor.computedFullName}}
+                </a>
+            </p>
+        </div>
+
+    {{/each}}
+{{/if}}

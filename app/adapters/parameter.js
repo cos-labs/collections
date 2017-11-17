@@ -6,7 +6,6 @@ const { JSONAPIAdapter } = DS;
 export default JSONAPIAdapter.extend({
 
     session: Ember.inject.service(),
-    caxe: Ember.inject.service(),
 
     ajax(url, method, hash) {
         hash = hash || {};
@@ -19,10 +18,9 @@ export default JSONAPIAdapter.extend({
 
     // Polyfill queryRecord
     queryRecord(store, type, query) {
+        const url = `${this.buildURL(type.modelName, null, null, 'queryRecord', query)}/`;
 
-        var url = this.buildURL(type.modelName, null, null, 'queryRecord', query) + '/';
-
-        console.log(url)
+        console.log(url);
 
         if (this.sortQueryParams) {
             query = this.sortQueryParams(query);
@@ -34,25 +32,24 @@ export default JSONAPIAdapter.extend({
                 // hack to fix https://github.com/emberjs/data/issues/3790
                 // and https://github.com/emberjs/data/pull/3866
                 try {
-                    store.push({data: null});
-                    return {data: result || null};
-                } catch(e) {
-                    return {data: result || []};
+                    store.push({ data: null });
+                    return { data: result || null };
+                } catch (e) {
+                    return { data: result || [] };
                 }
             }, function(result) {
                 return {
                     data: null
-                }
+                };
             });
-
     },
 
     buildURL(type, id, snapshot, requestType, query) {
         const base = this._super(...arguments);
-        let url = [];
-        url.push(ENV.APP.apiURL)
+        const url = [];
+        url.push(ENV.APP.apiURL);
         url.push(base);
-        let builtUrl = url.join('');
+        const builtUrl = url.join('');
         return builtUrl;
     }
 

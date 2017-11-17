@@ -12,10 +12,9 @@ export default Model.extend({
     sourceId: attr('string'),
     title: attr('string'),
     description: attr('string'),
-    type: attr('string'),
     status: attr('string'),
     url: attr('string'),
-    metadata: attr('string'),
+    metadata: attr(),
     dateAdded: attr('date'),
     dateUpdated: attr('date'),
     location: attr('string'),
@@ -25,13 +24,22 @@ export default Model.extend({
     group: belongsTo('group'),
     createdBy: belongsTo('user'),
     fileLink: attr('string'),
-    category: attr('string'),
+    kind: attr('string'),
     fileName: attr('string'),
     fileFormat: Ember.computed('fileName', function() {
-        let arr = this.get('fileName').split('.')
-       return arr[arr.length-1];
+        const name = this.get('fileName');
+        if (name) {
+            const arr = this.get('fileName').split('.');
+            return arr[arr.length - 1];
+        } else {
+            return 'Unavailable';
+        }
     }),
-    startTimeFormatted: Ember.computed('startTime', function () {
+    startDateTimeFormatted: Ember.computed('startTime', function () {
+        const st = moment(this.get('startTime'));
+        return st.format('MMM Do, YYYY @ h:mmA');
+    }),
+    startTimeFormatted: Ember.computed('endTime', function() {
         const st = moment(this.get('startTime'));
         return st.format('h:mmA');
     }),
@@ -42,5 +50,8 @@ export default Model.extend({
     scheduleFilterText: Ember.computed('title', 'location', 'startTimeFormatted', function () {
         return this.get('title') +
             this.get('location') + this.get('startTimeFormatted') + this.get('userName');
+    }),
+    parsedMetadata: Ember.computed('metadata', function () {
+        return JSON.parse(this.get('metadata'));
     })
 });

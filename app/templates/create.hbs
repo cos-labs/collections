@@ -1,62 +1,131 @@
-<div class="hero">
-    <h2>Create a collection</h2>
-</div>
-<div class="form-holder">
+<h1 class="submission">Create a collection</h1>
+<section>
 
-    <section class="form-section">
-        <h4>Add title </h4>
+    <fieldset>
+        <h2>Add title </h2>
         {{input class="form-control" value=title placeholder="Enter collection name"}}
-    </section>
+    </fieldset>
 
-    <section class="form-section">
-        <h4>Select collection type</h4>
+    <fieldset>
+        <h2>Select collection type</h2>
         {{#each typeList as |type|}}
         <div class="radio">
-            {{radio-button id=type.value value=type.value name="radio-collection-type" checked=collectionType}}
-            <label for="{{type.value}}" >{{type.label}}<p>{{type.description}}</p></label>
+            {{element-radio-button id=type.value value=type.value name="radio-collection-type" checked=collectionType}}
+            <label for="{{type.value}}">{{type.label}}<p>{{type.description}}</p></label>
         </div>
         {{/each}}
-    </section>
+    </fieldset>
 
-    <section class="form-section">
-        <h4>Add description <span class="text-muted">Optional </span></h4>
+    <fieldset>
+        <h2>Add description <span class="text-muted">Optional </span></h2>
         {{textarea class="form-control" value=description rows="6"}}
-    </section>
+    </fieldset>
 
     {{#if (eq collectionType 'meeting')}}
 
-    <section class="form-section">
-        <h4> Add Location </h4>
+    <fieldset>
+        <h2>Logistics</h2>
+        <h3> Add Location </h3>
         {{input class="form-control" value=location placeholder="Enter meeting location"}}
-    </section>
-
-    <section class="form-section">
-        <h4> Add Address </h4>
+        <h3> Add Address </h3>
         {{input class="form-control" value=address placeholder="Enter meeting address"}}
-    </section>
-
-    <section class="form-section">
-        <h4> Add Meeting Dates </h4>
+        <h3> Add Meeting Dates </h3>
         Start Date:
         {{bs-datetimepicker date=startDate}}
         End Date:
         {{bs-datetimepicker date=endDate}}
-    </section>
+    </fieldset>
 
     {{/if}}
+<section>
 
-    <section class="form-section">
-        <h4>Submission Form Type </h4>
-        <select class="form-control" onchange={{action 'setWorkflow'}}>
-            <option disabled selected> -- Select a submission workflow for the service -- </option>
-            {{#each workflows as |workflowChoice|}}
-            <option value={{workflowChoice.id}} selected={{eq selectedWorkflow.id workflowChoice.id}}>{{workflowChoice.title}}</option>
-            {{/each}}
-        </select>
-        <br />    
+    <fieldset>
+        <h2>Collection Workflows</h2>
+
+        {{#each collectionWorkflows as |collectionWorkflow|}}
+
+            <div class="edit-workflow">
+                <h3 class="workflow">
+                    {{collectionWorkflow.role}} Workflow
+                </h3>
+                <p>
+                    <label>Workflow Role</label>
+                    {{input value=collectionWorkflow.role class="form-control"}}
+                </p>
+                <p>
+                    <label>Workflow Type:</label>
+                    <select
+                        class="form-control"
+                        onchange={{action 'setWorkflowTypeForWorkflowCollection' collectionWorkflow}}
+                        >
+                        <option disabled selected>
+                            -- Select a workflow type --
+                        </option>
+                        {{#each workflows as |workflow|}}
+                            <option
+                                value={{workflow.id}}
+                                selected={{eq workflow.id collectionWorkflow.workflow.id}}>
+                                {{workflow.title}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </p>
+                <p>
+                    <label>Authorized Groups:</label>
+                <ul>
+                    {{#each collectionWorkflow.authorizedGroups as |group|}}
+                        <li><label>Group Name:&nbsp;</label>{{group.name}}
+                        <a onclick={{action "removeCollectionWorkflowGroup" collectionWorkflow group}}>
+                            <i class="fa fa-minus-square-o pull-right" style="color: red; font-size: 1.5em; cursor: pointer;" title="De-authorize group" ></i>
+                        </a>
+                        </li>
+                    {{/each}}
+                </ul>
+
+                    <div class="input-group">
+                        <select class="form-control" onchange={{action 'setGroupForCollectionWorkflow' collectionWorkflow}}>
+                            <option disabled selected> -- Select a group to add as authorized for the workflow -- </option>
+                            {{#each groups as |group|}}
+                                <option
+                                    value={{group.id}}
+                                    selected={{eq group.id collectionWorkflow.group.id}}>
+                                    {{group.name}}
+                                </option>
+                            {{/each}}
+                        </select>
+                        <span class="input-group-btn">
+                            <a class="btn btn-default" onclick={{action "addGroupToCollectionWorkflow" collectionWorkflow}}>
+                                Authorize Group
+                            </a>
+                        </span>
+                    </div>
+                </p>
+
+         
+            <button class="btn btn-inverse btn-danger" onclick={{action "removeWorkflow" collectionWorkflow}}>
+                Remove Workflow
+            </button>
+
+            </div>
+
+        {{/each}}
+        <button class="button-add-workflow btn btn-primary pull-right" onclick={{action "addWorkflow"}}>
+            Add a workflow
+        </button>
+
+    </fieldset>
+</section>
+
+    <fieldset>
         {{#link-to 'explore' class="btn btn-default"}} Cancel {{/link-to}}
         <button class="btn btn-primary {{unless title 'disabled'}}" {{action 'addCollection'}}>
             Continue
         </button>
-    </section>
-</div>
+    </fieldset>
+
+
+
+
+</section>
+
+

@@ -14,7 +14,7 @@ import Ember from 'ember';
  * @param {Object} currentUser Current logged in user.
  * @return {Boolean} Is this contributor the current user?
  */
-export function contributorIsCurrentUser(params/* , hash*/) {
+export function contributorIsCurrentUser(params/* , hash */) {
     const [contributor, currentUser] = params;
     const currentUserId = currentUser.get('currentUserId') || currentUser.get('id');
     return contributor.get('userId') === currentUserId;

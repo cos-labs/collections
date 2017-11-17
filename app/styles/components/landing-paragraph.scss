@@ -1,12 +1,14 @@
-.landing-paragraph-container {
-  p {
-    text-align: justify;
-    text-justify: inter-word;
-    word-break: break-all;
+@import "../variables";
 
-    max-width: 1250px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  padding: 30px;
+.landing-paragraph-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    > h2 {
+    }
+
+    > p {
+        font-size:1.6rem;
+    }
 }

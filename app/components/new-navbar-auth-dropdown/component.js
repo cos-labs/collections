@@ -24,11 +24,12 @@ export default Ember.Component.extend(AnalyticsMixin, {
     currentUser: Ember.inject.service(),
     i18n: Ember.inject.service(),
     tagName: 'div',
-    classNames: ['dropdown'],
+    classNames: ['dropdown-submenu'],
     redirectUrl: null,
+    subMenuOpenState: false,
     notAuthenticated: Ember.computed.not('session.isAuthenticated'),
     fullName: Ember.computed('session', function() {
-       return this.get('session.session.content.authenticated.user.first-name') + ' ' + this.get('session.session.content.authenticated.user.last-name');
+        return `${this.get('session.session.content.authenticated.user.first-name')} ${this.get('session.session.content.authenticated.user.last-name')}`;
     }),
 
     /**
@@ -37,10 +38,10 @@ export default Ember.Component.extend(AnalyticsMixin, {
      * @property signupUrl
      * @type {String}
      */
-    signupUrl: config.OSF.url + 'register',
+    signupUrl: `${config.OSF.url}register`,
 
     gravatarUrl: Ember.computed('user', function() {
-        let imgLink = this.get('user.links.profile_image');
+        const imgLink = this.get('user.links.profile_image');
 
         return imgLink ? `${imgLink}&s=25` : '';
     }),
@@ -62,9 +63,14 @@ export default Ember.Component.extend(AnalyticsMixin, {
     allowLogin: true,
     enableInstitutions: true,
     actions: {
+        toggleSubMenu(e) {
+            this.toggleProperty('subMenuOpenState');
+            e.stopPropagation();
+            e.preventDefault();
+        },
         logout() {
             const redirectUrl = this.get('redirectUrl');
-            const query = redirectUrl ? '?' + Ember.$.param({ next_url: redirectUrl }) : '';
+            const query = redirectUrl ? `?${Ember.$.param({ next_url: redirectUrl })}` : '';
             // TODO: May not work well if logging out from page that requires login- check?
             this.get('session').invalidate()
                 .then(() => window.location.href = `${config.OSF.url}logout/${query}`);

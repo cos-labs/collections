@@ -28,19 +28,24 @@ export default Ember.Component.extend(AnalyticsMixin, {
 
     navLinks: [
         {
-            name: "Explore",
-            type: "link-to",
-            route: "explore"
+            name: 'Explore',
+            type: 'link-to',
+            route: 'explore'
         },
         {
-            name: "My Collection",
-            type: "link-to",
-            route: "collections.my-collection"
+            name: 'My Collection',
+            type: 'link-to',
+            route: 'collections.my-collection'
         },
         {
-            name: "Support",
-            type: "link",
-            href: "https://osf.io/support/"
+            name: 'My Tasks',
+            type: 'link-to',
+            route: 'tasks'
+        },
+        {
+            name: 'Support',
+            type: 'link',
+            href: 'https://osf.io/support/'
         },
     ],
 

@@ -21,8 +21,13 @@ export default Model.extend({
     createdBy: belongsTo('user'),
     groups: hasMany('group'),
     items: hasMany('item'),
-    workflow: belongsTo('workflow', {
-        inverse: 'collections'
+    workflows: hasMany('workflow', {
+        inverse: 'collections',
+        async: false
+    }),
+    collectionWorkflows: hasMany('collection-workflow', {
+        inverse: 'collection',
+        async: false
     }),
     titleCaseCollectionType: Ember.computed('collectionType', function() {
         const t = this.get('collectionType');

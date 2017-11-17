@@ -1,0 +1,111 @@
+{{#if (await items)}}
+
+<div class="filters">
+    <a class="filter-dropdown" {{action 'toggleFilterOptions'}}>
+        <i class="fa fa-filter" aria-hidden="true"></i>
+        <span class="filter-dropdown-text">Filter Schedule</span> 
+    </a>
+    {{#each filters as |filter|}}
+        <span style="white-space: nowrap;" data-id= {{filter.id}}>
+            <a class="filter-plaque  filter "> {{filter.name}} </a>
+            <a class="filter-plaque  filter-remove"{{action 'removeFilter' }}>&times;</a>
+        </span>
+    {{/each}}
+</div>
+
+<div class="edit-filter-modal hidden">
+
+    <select onchange={{action 'addFilter'}} class="form-control" id="trackSelect">
+        <option value="cvvvv" >All Tracks</option>
+        {{#each (await tracks) as |track|}}
+            <option value={{track}} >{{track}}</option>
+        {{/each}}
+    </select>
+
+    <select onchange={{action 'addFilter'}} class="form-control" id="roomSelect">
+        <option value="">All Rooms</option>
+        {{#each (await rooms) as |room|}}
+            <option value={{room}}>{{room}}</option>
+        {{/each}}
+    </select>
+
+    <input onblur={{action 'getInput' value="target.value"}} placeholder="Filter schedule" style="color:black;" class="form-control">
+
+    <button class="apply-button button-filter" {{action 'applyFilter'}}>Apply</button><button class="text-button button-filter" {{action 'toggleFilterOptions'}} >Cancel</button>
+
+</div>
+
+<div class="schedule">
+    {{#each (await items) as |itemlist|}}
+
+        <h3 class="time-slot-header">{{itemlist.[0].startDateTimeFormatted}}</h3>
+
+        <div class="time-slot">
+
+            {{#each itemlist as |item|}}
+                
+                {{#if (eq item itemlist.firstObject) }}
+                     <div class="event selected-schedule" id={{item.id}} onclick={{action (mut selectedItemId) item.id}}>  
+                        <div class="title">
+                            <strong>{{item.title}}</strong>
+                        </div>
+                        <div class="presenters">
+                            {{await item.createdBy.computedFullName}}
+                        </div>
+                        <div class="location">
+                            {{item.location}}
+                        </div>
+                        <div class="end-time">
+                            {{item.startTimeFormatted}} till {{item.endTimeFormatted}}
+                        </div>
+                    </div>          
+                {{else}}
+                    <div class="event" id={{item.id}} onclick={{action (mut selectedItemId) item.id}}>  
+                        <div class="title">
+                            <strong>{{item.title}}</strong>
+                        </div>
+                        <div class="presenters">
+                            {{await item.createdBy.computedFullName}}
+                        </div>
+                        <div class="location">
+                            {{item.location}}
+                        </div>
+                        <div class="end-time">
+                            {{item.startTimeFormatted}} till {{item.endTimeFormatted}}
+                        </div>
+                    </div>
+                {{/if}}
+
+            {{/each}}
+
+        </div>
+
+    {{/each}}
+</div>
+
+<div class="item-detail">
+    <h3>{{get (await selectedItem) 'title'}}<br>
+        <small>{{get (await selectedItem) 'createdBy.computedFullName'}}</small>
+    </h3>
+    <p>{{get (await selectedItem) 'description'}}</p>
+    <p><a href="https://osf.io/{{selectedUUID}}">Link to author</a> | {{#link-to 'collections.collection.item' model.id selectedItemId}}Link to presentation{{/link-to}}</p>
+</div>
+{{else}}
+
+    {{#if noResultsFound}}
+            <p class="text-center white error-message">
+                No Results Found
+            </p>
+    {{else}}
+        {{#if loadingResults}}
+            <p class="text-center white error-message">
+                {{loading-spinner style="fa-4x" fullpage='false'}}
+            </p>
+        {{else}}
+        <p class="error-message white">
+            The schedule cannot be displayed. To display the schedule, add times to some of the items.
+        </p>
+        {{/if}}
+    {{/if}}
+
+{{/if}}

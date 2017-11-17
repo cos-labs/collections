@@ -11,24 +11,27 @@ Router.map(function() {
     this.route('index', {
         path: ''
     });
+    this.route('tasks', {
+        path: 'tasks'
+    });
     this.route('explore', {
-        path: "explore"
+        path: 'explore'
     });
     this.route('workflows', {
-        path:'workflows'
+        path: 'workflows'
     }, function() {
         this.route('workflow', {
-            path: ":workflow_id"
+            path: ':workflow_id'
         });
     });
     this.route('collections', {
         path: 'collections'
     }, function() {
         this.route('my-collection', {
-            path: "my-collection"
+            path: 'my-collection'
         });
-        this.route("collection", {
-            path: ":collection_id"
+        this.route('collection', {
+            path: ':collection_id'
         }, function() {
             this.route('item', {
                 path: 'item/:item_id'
@@ -36,7 +39,9 @@ Router.map(function() {
             this.route('submissions');
             this.route('browse');
             this.route('edit');
-            this.route('add');
+            this.route('add', {
+                path: 'add/:case_id'
+            });
         });
         this.route('search');
         this.route('browse');

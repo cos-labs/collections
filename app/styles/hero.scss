@@ -1,0 +1,35 @@
+
+.coll-hero-logo {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.hero {
+	color: black;
+	background: url("/img/submit.jpg") top center no-repeat;
+	text-align: center;
+	//box-shadow: inset 0 -30px 120px -30px rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+	padding: 30px;
+
+	h1 {
+		margin: 30px;
+	}
+
+}
+
+.explore-hero {
+
+    box-shadow: inset 0 -100px 1000px -100px rgba(0,0,0,0.3);
+
+}
+
+.coll-banner {
+
+    .btn {
+        flex: 0 0 auto;
+        align-self: center;
+    }
+
+}

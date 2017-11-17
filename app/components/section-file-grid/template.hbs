@@ -1,0 +1,166 @@
+<!-- section-file-grid -->
+
+
+        <div class="row" style="margin:0; width: 100%;">
+            <div class="col-sm-10">
+                <div class="input-group">
+                    {{input class="form-control"
+                        id="item-search-bar"
+                        value=q
+                        placeholder=layout.placeholder
+                    }}
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">
+                            <i class=" fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-2" style="margin:0;">
+                <div class="input-group pull-right">
+                    <button
+                        class="btn btn-default"
+                        type="button" {{action (mut showAsCards) false}}
+                        disabled={{if showAsList "disabled"}}
+                    >
+                        <i class=" fa fa-list" aria-hidden="true"></i>
+                    </button>
+                    <button
+                        class="btn btn-default"
+                        type="button"
+                        {{action (mut showAsCards) true}}
+                        disabled={{if showAsCards "disabled"}}
+                    >
+                        <i class=" fa fa-window-maximize" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+{{#if loading}}
+    {{loading-spinner  style="fa-4x"}}
+{{else}}
+        {{#if showAsCards}}
+            {{#each items as |item|}}
+                <div class="item-detail">
+                    <a
+                        class="item-thumbnail"
+                        style="background-image: url('/img/placeholder.png');"
+                        {{action "transition" "collections.collection.item" model.id item.id}}
+                    >
+                        {{item.fileFormat}}
+                    </a>
+                    <div class="panel-body">
+                        <span class="line-clamp line-clamp-2">
+                            {{#link-to
+                                'collections.collection.item'
+                                model.id
+                                item.id
+                                class="clamp"
+                            }}
+                                {{item.title}}
+                            {{/link-to}}
+                        </span>
+                        <a href="https://osf.io/{{await item.createdBy.username}}">
+                            <p class="text-muted line-clamp line-clamp-1">
+                                <small>
+                                    {{await item.createdBy.firstName}}
+                                    {{await item.createdBy.lastName}}
+                                </small>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date Uploaded</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items as |item|}}
+                        <tr>
+                            <td>
+                                {{#link-to
+                                    'collections.collection.item'
+                                    model.id
+                                    item.id
+                                    class="plain-link"
+                                }}
+                                    {{truncate-text item.title limit=75 ommission="..."}}
+                                {{/link-to}}
+                            </td>
+                            <td>
+                                <a
+                                    class="plain-link"
+                                    href="https://osf.io/{{await item.createdBy.username}}"
+                                >
+                                    {{await item.createdBy.firstName}}
+                                    {{await item.createdBy.lastName}}
+                                </a>
+                            </td>
+                            <td>{{moment-format collection.dateAdded "MMMM DD, YYYY"}}</td>
+                            <td>
+                                <a href={{item.fileLink}}>
+                                    <i
+                                        class="fa fa-download"
+                                        aria-hidden="true"
+                                        style="color:gray"
+                                    ></i>
+                                </a>
+                                158
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        {{/if}}
+{{/if}}
+        {{#if (not-eq totalPages 1)}}
+            <div class="pagination-centered" style="width: 100%; text-align: center;">
+              <ul class="pagination"i style="margin: 0 auto; position: relative;">
+                {{#if canStepBackward}}
+                  <li class="arrow prev enabled-arrow">
+                    <a href="#" {{action "prevPage"}}>&laquo;</a>
+                  </li>
+                {{else}}
+                  <li class="arrow prev disabled">
+                    <a href="#" {{action "prevPage"}}>&laquo;</a>
+                  </li>
+                {{/if}}
+
+                {{#each pageItems as |item|}}
+                  {{#if item.dots}}
+                    <li class="dots disabled">
+                      <span>...</span>
+                    </li>
+                  {{/if}}
+                  {{#if (eq item.pageNumber page)}}
+                    <li class="active page-number">
+                      <a>{{item.pageNumber}}</a>
+                    </li>
+                  {{else}}
+                    <li class="page-number">
+                      <a href="#" {{action "jumpToPage" item.pageNumber}}>{{item.pageNumber}}</a>
+                    </li>
+                  {{/if}}
+                {{/each}}
+
+                {{#if canStepForward}}
+                  <li class="arrow next enabled-arrow">
+                    <a href="#" {{action "nextPage"}}>&raquo;</a>
+                  </li>
+                {{else}}
+                  <li class="arrow next disabled">
+                    <a href="#" {{action "nextPage"}}>&raquo;</a>
+                  </li>
+                {{/if}}
+              </ul>
+            </div>
+        {{/if}}
+
+

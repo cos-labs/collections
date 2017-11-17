@@ -1,0 +1,16 @@
+<h2 class="p-b-lg">
+    {{layout.title}}
+</h2>
+{{#each data as |categorySponsors|}}
+    <div class="category">
+        {{#if categorySponsors.category}}
+            <h3 class="text-center">{{categorySponsors.category}}</h3>
+        {{/if}}
+        {{#each categorySponsors.sponsors as |sponsor|}}
+            <a  href="{{sponsor.website-url}}"
+                style="background-image: url('{{sponsor.img-url}}');"
+                class="sponsor-logo"
+            ></a>
+        {{/each}}
+    </div>
+{{/each}}

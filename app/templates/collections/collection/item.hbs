@@ -1,32 +1,51 @@
 <div class="hero">
     <h1>{{item.title}}</h1>
-</div>
-<div class="col-xs-12 col-sm-10">
+
     <h5 class="view-authors">
         {{item.createdBy.firstName}} {{item.createdBy.lastName}}
     </h5>
     <p>Added on: {{moment-format model.item.datePublished "MMMM DD, YYYY"}} | Last
-        edited: {{moment-format model.item.dateModified "MMMM DD, YYYY"}} </p>
+    edited: {{moment-format model.item.dateModified "MMMM DD, YYYY"}} </p>
 </div>
-<div style="height: 300px;">
-    {{file-renderer download=item.fileLink width="100%" height="100%"
-                    allowfullscreen=true}}
-</div>
-<div class="col-sm-4 col-sm-12">
-    <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
-    <p>{{item.location}}<br>{{item.startTimeFormatted}}
-        - {{model.item.endTimeFormatted}}</p>
-    <h4 class="p-v-md f-w-md"><strong>Description</strong></h4>
-    <p>{{item.description}}</p>
 
-    <h4 class="p-v-md f-w-md"><strong>Status</strong></h4>
-    <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
+<section style="flex-direction: row;  flex-wrap: unset; ">
+    <fieldset class="item-view-horizontal" style="min-width: 600px;">
+        {{file-renderer download=item.fileLink width="100%" allowfullscreen=true}}
 
-    <h4 class="p-v-md f-w-md"><strong>Tags</strong></h4>
-    <span class="coll-item-tag">{{item.tags}}</span>
+    </fieldset>
+    <fieldset class="item-view-horizontal">
+        {{#if (or item.location (and item.startTime item.endTime))}}
+            <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
+            {{#if item.location}}
+                <p>{{item.location}}</p>
+            {{/if}}
+            {{#if (and item.startTime item.endTime)}}
+                <p>{{item.startTime}} - {{item.endTime}}</p>
+            {{/if}}
+        {{/if}}
+        <h4 class="p-v-md f-w-md"><strong>Description</strong></h4>
+        <p>{{item.description}}</p>
 
-    <div class="m-t-md">
-        <a href="https://staging.osf.io/{{item.sourceId}}"
-           class="btn btn-default btn-block"> Go to Source</a>
-    </div>
-</div>
+        <h4 class="p-v-md f-w-md"><strong>Submission Status</strong></h4>
+        <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
+        <button onclick={{action "continueWorkflow" "approve"}}>
+            Approve
+        </button>
+
+        {{#if item.tags}}
+        <h4 class="p-v-md f-w-md"><strong>Tags</strong></h4>
+        <span class="coll-item-tag">{{item.tags}}</span>
+        {{/if}}
+        <hr>
+        {{#if item.metadata}}
+            <h4 class="p-v-md f-w-md">Metadata</h4>
+            <ul>
+                {{#each-in item.parsedMetadata as |key value|}}
+                    <li><strong>{{key}}</strong> - {{value}}</li>
+                {{/each-in}}
+            </ul>
+            <hr>
+        {{/if}}
+        <a href="https://osf.io/{{item.sourceId}}" class="btn btn-default btn-block"> View on OSF</a>
+    </fieldset>
+</section>

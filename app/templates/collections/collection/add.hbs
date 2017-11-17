@@ -1,45 +1,42 @@
-<h1 class="form-banner">{{caxe.workflow.title}}</h1>
 
-<div class="form-holder">
+<div class="hero">
+    <h1>{{caxe.workflow.title}} </h1>
+    <h3>{{caxe.workflow.description}}</h3>
+</div>
+{{#if loading}}
+    {{loading-spinner fullPage=true style="fa-4x"}}
+{{/if}}
+
+<section>
 
     {{#if (eq caxe.workflow.submissionFormType 'Website')}}
 
         {{add-website model=model transition=(action "transition")}}
 
     {{else}}
+        <p class="text-center">
+            Any changes you make here are automatically saved. You can use the reference code <span class="emphasis" style="background-color:#ddd; color:#333;">{{caxe.id}}</span> to load this submission again.
+        </p>
 
-        <div class="form-section" style="background-color:#daf5ff; border-color:#b2dcff">
-
-            {{caxe.workflow.description}}
-
-        </div>
-
-        <div class="form-section" style="background-color:#fff5da; border-color:#ffdcb2">
-            Any changes you make here are automatically saved. You can use the reference code <span style="background-color:#ddd; color:#333;">{{caxe.id}}</span> to load this submission again.
-        </div>
 
         {{#each caxe.workflow.sortedSections as |section|}}
 
-            <div class="form-section">    
-                <div class="label">
-                    {{section.label}}
-                </div>
-                <p>
-                    {{section.description}}
-                </p>
-                <div >
-
-                    {{#each section.sortedWidgets as |widget|}}
-                        {{component widget.widgetType
-                            widget=widget
-                            collection=collection
-                            parameters=widget.caseParameters}}
-                    {{/each}}
-                </div>
-            </div>
+            <fieldset>
+                <h2>{{section.label}}</h2>
+                <p>{{section.description}}</p>
+                {{#each section.sortedWidgets as |widget|}}
+                    {{component widget.widgetType
+                        widget=widget
+                        collection=collection
+                        parameters=widget.caseParameters
+                        toggleLoading=(action toggleLoading)}}
+                
+                
+                {{/each}}
+            </fieldset>
 
         {{/each}}
 
     {{/if}}
 
-</div>
+</section>

@@ -1,0 +1,64 @@
+
+{{#if searchResults.data}}
+    
+<form onsubmit="return false">
+    {{input class="form-control search-bar" id="item-search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+    <div {{action 'search'}} class="btn btn-primary fa fa-search" aria-hidden="true"></div>
+</form>
+
+<div class="item-list">
+    <div class="table-heading">
+        <div class="title">Title</div>
+        <div class="author">Author</div>
+        <div class="type">Type</div>
+    </div>
+    {{#each searchResults.data as |r|}}
+        <div class="item-row">
+            <div class="title">
+                {{#link-to "collections.collection.item" model.id r.id}}
+                    {{r.attributes.title}}
+                {{/link-to}}
+            </div>
+            <div class="author">{{r.attributes.created-by}}</div>
+            <div class="type">{{r.attributes.category}}</div>
+        </div>
+    {{/each}}
+</div>
+
+{{#if (not-eq totalPages 1) }}
+    <div class="pagination-wrapper text-center m-b-md">
+        <ul class="pagination">
+            <li class="arrow prev prevPage" >
+                <a class="btn btn-default " {{action 'prevPage'}}>«</a>
+            </li>
+            {{#each pageNumberButtons as |item|}}
+                <li class="page-number"{{action 'loadPage' item}} data-id="{{item}}"><a>{{item}}</a></li>
+            {{/each}}
+            <li class="arrow next nextPage">
+                <a class="btn btn-default " {{action 'nextPage'}}>»</a>
+            </li>
+
+        </ul>
+    </div>
+{{/if}}
+
+{{else}}
+    {{#if noResultsFound}}
+        <form onsubmit="return false">
+            {{input class="form-control search-bar" id="item-search-bar" value=searchInput placeholder="Ex: \"Lorem\""}}
+            <div {{action 'search'}} class="btn btn-primary fa fa-search" aria-hidden="true"></div>
+        </form>
+            <div class="text-center">
+                No Results Found
+            </div>
+    {{else}}
+        {{#if loadingResults}}
+            <div class="text-center">
+                Loading...
+            </div>
+        {{else}}
+            <p class="text-center"><em>The table cannot be displayed. To display the schedule, add items to this collection and make sure they're indexed.</em></p>
+        {{/if}}
+    {{/if}}
+{{/if}}
+

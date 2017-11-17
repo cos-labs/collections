@@ -19,7 +19,7 @@ import CpPanelComponent from 'ember-collapsible-panel/components/cp-panel';
  * {{/preprint-form-section}}
  * ```
  * @class preprint-form-section
- **/
+ * */
 
 export default CpPanelComponent.extend({
     tagName: 'section',

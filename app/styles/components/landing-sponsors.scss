@@ -2,8 +2,39 @@
   height: 80px;
 }
 
-.sponsors-logo {
-  max-width: 150px;
-  max-height: 60px;
-  mix-blend-mode: luminosity;
+.sponsors {
+    h2 {
+        text-align: center;
+        padding: 15px;
+    }
 }
+
+.category {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+
+    h3 {
+        width: 100%;
+        padding: 15px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .sponsor-logo {
+        display: block;
+        height: 50px;
+        background-repeat: no-repeat;
+        background-blend-mode: luminosity;
+        background-color: #fff;
+        width: calc(25% - 60px);
+        min-width:70px;
+        margin: 30px;
+        background-size: contain;
+        background-position: 50% 50%;
+    }
+}
+

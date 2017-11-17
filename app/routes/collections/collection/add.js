@@ -7,10 +7,9 @@ export default Ember.Route.extend({
 
     crumb: {},
 
-    model() {
-        const caxe = this.get('caxe.activeCase');
+    model(params) {
         return Ember.RSVP.hash({
-            caxe: this.get('store').findRecord('case', caxe.get('id'), {
+            caxe: this.get('store').findRecord('case', params.case_id, {
                 reload: true
             }),
             collection: this.modelFor('collections.collection')
@@ -18,22 +17,26 @@ export default Ember.Route.extend({
     },
 
     afterModel(model, transition) {
-        this.set("crumb.label", "Submission " + model.caxe.id);
-        this.set("crumb.route", this.routeName);
-        this.set("crumb.models", [
+        this.set('crumb.label', `Submission ${model.caxe.id}`);
+        this.set('crumb.route', this.routeName);
+        this.set('crumb.models', [
             model.collection,
             model.caxe
-        ]);
+            ]);
 
-        this.set("nav.links", [{
-            label: "Settings",
-            route: "collections.collection.edit",
+        this.set('nav.links', [{
+            label: 'Settings',
+            route: 'collections.collection.edit',
             models: [model.collection]
         }, {
-            label: "Submissions",
-            route: "collections.collection.submissions",
+            label: 'Submissions',
+            route: 'collections.collection.submissions',
             models: [model.collection]
         }]);
+
+        this.set('caxe.activeCase', model.caxe);
+
+
 
 
     },
@@ -41,6 +44,16 @@ export default Ember.Route.extend({
     setupController(controller, model) {
         controller.set('caxe', model.caxe);
         controller.set('collection', model.collection);
+
+
+        console.log("the collection item" , model.collection.get('items'));
+
+        model.collection.get('items').then((results)=>{
+            results.forEach((item)=>{
+                console.log(item.id)
+            })
+        })
+
     },
 
 });

@@ -6,7 +6,6 @@ const { JSONAPIAdapter } = DS;
 export default JSONAPIAdapter.extend({
 
     session: Ember.inject.service(),
-    caxe: Ember.inject.service(),
 
     ajax(url, method, hash) {
         hash = hash || {};
@@ -19,15 +18,11 @@ export default JSONAPIAdapter.extend({
 
     buildURL(type, id, snapshot, requestType, query) {
         const base = this._super(...arguments);
-        let url = [];
-        url.push(ENV.APP.apiURL)
-        let caxe = this.get('caxe.activeCase.id');
-        if (caxe) {
-            url.push(`/cases/${caxe}`);
-        }
+        const url = [];
+        url.push(ENV.APP.apiURL);
         url.push(base);
-        let builtUrl = url.join('');
+        const builtUrl = url.join('');
         return builtUrl;
     }
 
-    });
+});

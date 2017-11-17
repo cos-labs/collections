@@ -29,7 +29,7 @@ module.exports = function(defaults) {
     // please specify an object with the list of modules as keys
     // along with the exports of each module as its value.
 
-
+    app.import('vendor/ember/ember-template-compiler.js');
     app.import('bower_components/osf-style/css/base.css');
     app.import('bower_components/loaders.css/loaders.min.css');
     app.import('bower_components/hint.css/hint.min.css');

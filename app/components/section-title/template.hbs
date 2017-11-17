@@ -1,0 +1,21 @@
+<div class="primary-title">
+    {{#if layout.logo}}
+        <img class="title-logo" src='{{layout.logo}}' alt="logo"/>
+    {{/if}}
+
+    <h1 class="title-header" style="{{titleColor}}">
+        {{#if layout.title}}
+            {{layout.title}}
+        {{else}}
+            {{model.title}}
+        {{/if}}
+    </h1>
+</div>
+
+<p class="lead" style="{{taglineColor}}">
+    {{#if layout.tagline}}
+        {{layout.tagline}}
+    {{else}}
+        {{model.description}}
+    {{/if}}
+</p>

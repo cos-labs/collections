@@ -7,10 +7,10 @@ import Ember from 'ember';
  * @returns {*} Title with spaces replaced by underscores, and all punctuation removed
  */
 
-export function getSectionId(params/* , hash*/) {
+export function getSectionId(params/* , hash */) {
     const sectionHeader = params[0];
     if (sectionHeader) {
-        return sectionHeader.replace(/[.,/#!$%^&*;:{}=`~()]/g, '').replace(/\s/g, '_');
+        return sectionHeader;
     }
 }
 
