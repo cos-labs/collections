@@ -39,20 +39,25 @@ body > .ember-view {
     width: 100%;
 }
 
+
 @mixin fluid($width, $min-padding) {
-    padding: $min-padding calc((100% - #{$width}) / 2);
+    padding-left: calc((100% - #{$width}) / 2);
+    padding-right: calc((100% - #{$width}) / 2);
     @media (max-width: ($width + (2 * $min-padding))) {
-        padding: $min-padding;
+        padding-left: $min-padding;
+        padding-right: $min-padding;
     }
 }
 
 section {
+    @include fluid(($section-width - $padding), $half-padding);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     border-top: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(0,0,0,0.05);
-    @include fluid(($section-width - $padding), $half-padding);
+    padding-top: $padding;
+    padding-bottom: $padding;
 
     & > * {
         margin: $half-padding;

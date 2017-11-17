@@ -1,22 +1,21 @@
-<div class="title-wrapper">
-
+<div class="primary-title">
     {{#if layout.logo}}
-            <img class="title-logo" src='{{layout.logo}}' alt="logo"/>
+        <img class="title-logo" src='{{layout.logo}}' alt="logo"/>
     {{/if}}
 
-    {{#if layout.title}}
-            <h1 class="title-header" style="{{titleColor}}">
-                {{layout.title}}
-            </h1>
-    {{else}}
-        <h1>{{model.title}}</h1>
-    {{/if}}
-
+    <h1 class="title-header" style="{{titleColor}}">
+        {{#if layout.title}}
+            {{layout.title}}
+        {{else}}
+            {{model.title}}
+        {{/if}}
+    </h1>
 </div>
 
-
-{{#if layout.tagline}}
-    <p class="lead" style="{{taglineColor}}">{{layout.tagline}}</p>
-{{else}}
-    <p class="lead" style="{{taglineColor}}">{{model.description}}</p>
-{{/if}}
+<p class="lead" style="{{taglineColor}}">
+    {{#if layout.tagline}}
+        {{layout.tagline}}
+    {{else}}
+        {{model.description}}
+    {{/if}}
+</p>
