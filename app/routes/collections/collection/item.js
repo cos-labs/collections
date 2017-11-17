@@ -2,12 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    crumb: {},
-
+    crumb: {}, 
+    item:'',
+    collection:'',
     model(params) {
-        const collection = this.modelFor('collections.collection');
-        const item = this.store.findRecord('item', params.item_id);
-        const node = item.then((_item) => {
+        let collection = this.modelFor('collections.collection');
+        this.set('collection', collection)
+        let item = this.store.findRecord('item', params.item_id);
+        this.set('item', item)
+        let node = item.then((_item) => {
             return this.store.findRecord('node', _item.get('sourceId'));
         });
 
@@ -19,26 +22,23 @@ export default Ember.Route.extend({
     },
 
     afterModel(model, transition) {
-        this.set('crumb.label', model.item.get('title'));
+        this.set('crumb.label', this.get('item.title'));
         this.set('crumb.route', this.routeName);
         this.set('crumb.models', [
-            model.collection,
-            model.item
+            this.get('collection'),
+            this.get('item')
         ]);
 
         this.set('nav.links', [{
             label: 'Edit',
             route: 'collections.collection.submissions',
-            models: [
-                // model.collection,
-                // model.item
-            ]
+            models: []
         }]);
     },
 
     setupController(controller, data) {
         controller.set('collection', data.collection);
-        controller.set('item', data.item);
+        controller.set('item', this.get('item'));
         controller.set('node', data.node);
     }
 
