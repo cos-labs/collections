@@ -17,14 +17,10 @@
 
     <div class="input-item">
         <label for="collectionDescription">Description</label>
-        {{#if collection.description}}
-            {{textarea
-                class="form-control"
-                value=collection.description
-                id="collectionDescription"}}
-        {{else}}
-            <span class="text-muted" {{action 'showEdit'}}>Add description</span>
-        {{/if}}
+        {{textarea
+            class="form-control"
+            value=collection.description
+            id="collectionDescription"}}
     </div>
 
     <div class="input-item">
