@@ -1,9 +1,9 @@
 <div class="hero">
     <h1>{{item.title}}</h1>
 
-    <h5 class="view-authors">
+    <h2 class="view-authors">
         {{item.createdBy.firstName}} {{item.createdBy.lastName}}
-    </h5>
+    </h2>
     <p>Added on: {{moment-format model.item.datePublished "MMMM DD, YYYY"}} | Last
     edited: {{moment-format model.item.dateModified "MMMM DD, YYYY"}} </p>
 </div>
@@ -15,7 +15,7 @@
     </fieldset>
     <fieldset class="item-view-horizontal">
         {{#if (or item.location (and item.startTime item.endTime))}}
-            <h4 class="p-v-md f-w-md"><strong>Presentation Details</strong></h4>
+            <h2>Presentation Details</h2>
             {{#if item.location}}
                 <p>{{item.location}}</p>
             {{/if}}
@@ -23,22 +23,26 @@
                 <p>{{item.startTime}} - {{item.endTime}}</p>
             {{/if}}
         {{/if}}
-        <h4 class="p-v-md f-w-md"><strong>Description</strong></h4>
+        <h2>Description</h2>
         <p>{{item.description}}</p>
 
-        <h4 class="p-v-md f-w-md"><strong>Submission Status</strong></h4>
+        <h2>Submission Status</h2>
         <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
-        <button onclick={{action "continueWorkflow" "approve"}}>
+
+        <h2>Moderator Actions</h2>
+        <button
+            class="btn btn-primary"
+            onclick={{action "continueWorkflow" "approve"}}>
             Approve
         </button>
 
         {{#if item.tags}}
-        <h4 class="p-v-md f-w-md"><strong>Tags</strong></h4>
+        <h2>Tags</h2>
         <span class="coll-item-tag">{{item.tags}}</span>
         {{/if}}
         <hr>
         {{#if item.metadata}}
-            <h4 class="p-v-md f-w-md">Metadata</h4>
+            <h2>Metadata</h2>
             <ul>
                 {{#each-in item.parsedMetadata as |key value|}}
                     <li><strong>{{key}}</strong> - {{value}}</li>
