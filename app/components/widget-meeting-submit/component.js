@@ -57,7 +57,7 @@ export default Ember.Component.extend({
             item.set('metadata', '{}');
 
             const node = this.get('parameters.node.value');
-            if (node === undefined || node === undefined) {
+            if (node === undefined) {
                 this.set('disabled', false);
                 this.attrs.toggleLoading();
                 this.toast.error('Some fields are missing!');
