@@ -15,13 +15,12 @@ export default Ember.Route.extend({
             collection
         });
     },
-    afterModel(model, transition) {
+    afterModel(model) {
         this.set('crumb.label', this.title);
         this.set('crumb.route', this.routeName);
         this.set('crumb.models', [model.collection]);
 
-        this.set('nav.links', [
-        {
+        this.set('nav.links', [{
             label: 'Settings',
             route: 'collections.collection.edit',
             models: [model.collection]
@@ -35,16 +34,6 @@ export default Ember.Route.extend({
     setupController(controller, data) {
         controller.set('collection', data.collection);
         controller.set('cases', data.cases);
-
-        this.get('store').queryRecord('case', {for_item: 401, role: "submission"}).then((result)=>{
-           console.log("the collection item" , result);
-       });
-
-        // data.collection.get('items').then((results)=>{
-        //     results.forEach((item)=>{
-        //         console.log(item.get('group'))
-        //     })
-        // })
     }
 
 });

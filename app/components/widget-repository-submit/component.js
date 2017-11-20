@@ -31,13 +31,15 @@ export default Ember.Component.extend({
     actions: {
         async pressButton() {
             this.attrs.toggleLoading();
-            this.set('disabled', true); 
-            let item;           
+            this.set('disabled', true);
+            let item;
 
-            if(Number(this.get('parameters.item.value')) === NaN || Number(this.get('parameters.item.value')) === 0){
+            if (isNaN(this.get('parameters.item.value')) ||
+                Number(this.get('parameters.item.value')) <= 0
+            ) {
                 item = this.get('store').createRecord('item');
-            }else {
-                item = await this.get('store').findRecord('item', this.get('parameters.item.value') )
+            } else {
+                item = await this.get('store').findRecord('item', this.get('parameters.item.value'));
             }
 
             item.set('kind', 'repository');
@@ -48,10 +50,8 @@ export default Ember.Component.extend({
             item.set('fileName', this.get('parameters.fileName.value'));
             item.set('metadata', this.get('parameters.metadata.value'));
 
-
-
             const node = this.get('parameters.node.value');
-            if (node == undefined || node === undefined) {
+            if (node === undefined || node === undefined) {
                 this.set('disabled', false);
                 this.attrs.toggleLoading();
                 this.toast.error('Some fields are missing!');
@@ -72,21 +72,11 @@ export default Ember.Component.extend({
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then((item) => {
-
-
-                        if(Number(this.get('parameters.item.value')) === NaN || Number(this.get('parameters.item.value')) === 0){
-                            console.log('DKbsbnfgsngsnngn setting CASE is NOT a number')
-                            this.set('parameters.item.value' , item.id)
-
-                        }else{
-                            console.log('CASE is a number' , this.get('parameters.item.value'))
-                        }
-
-
-
+                        this.set('parameters.item.value', item.id);
+                        const workflowId = this.get('collection.collectionWorkflows').find(collectionWorkflow => collectionWorkflow.get('role') === 'approval').get('workflow.id');
                         this.get('store').findRecord(
                             'workflow',
-                            this.get('parameters.nextWorkflow.value'),
+                            workflowId,
                             { reload: true }
                         ).then((wf) => {
                             const caxe = this.get('store').createRecord('case');
@@ -106,7 +96,7 @@ export default Ember.Component.extend({
                                     }
 
                                     itemParameter.set('value', item.id);
-                                    itemParameter.save().then(itemParameter =>
+                                    itemParameter.save().then(() =>
                                         this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
                                     this.set('disabled', false);
                                     this.attrs.toggleLoading();
@@ -126,7 +116,8 @@ export default Ember.Component.extend({
                     this.toast.error('Some fields are missing!');
                 }
             };
-            // The base64 data needs to be converted to binary. We followed this stackoverflow answer:
+            // The base64 data needs to be converted to binary.
+            // We followed this stackoverflow answer:
             // https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
             if (this.get('parameters.fileData.value') === null) {
                 this.set('disabled', false);

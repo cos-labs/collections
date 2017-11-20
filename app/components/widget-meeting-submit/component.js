@@ -25,7 +25,7 @@ export default Ember.Component.extend({
 
     init() {
         this.set('parameters.type', {
-            value: 'meeting' 
+            value: 'meeting'
         });
         return this._super(...arguments);
     },
@@ -34,8 +34,14 @@ export default Ember.Component.extend({
         async pressButton() {
             this.attrs.toggleLoading();
             this.set('disabled', true);
-            const item = this.get('store').createRecord('item');
-
+            let item = this.get('store').createRecord('item');
+            if (Number(this.get('parameters.item.value')).isNaN() ||
+                Number(this.get('parameters.item.value')) <= 0
+            ) {
+                item = this.get('store').createRecord('item');
+            } else {
+                item = await this.get('store').findRecord('item', this.get('parameters.item.value'));
+            }
             item.set('kind', this.get('parameters.kind.value'));
             item.set('title', this.get('parameters.title.value'));
             item.set('status', this.get('parameters.submissionSuccessStatus'));
@@ -51,7 +57,7 @@ export default Ember.Component.extend({
             item.set('metadata', '{}');
 
             const node = this.get('parameters.node.value');
-            if (node == undefined || node === undefined) {
+            if (node === undefined) {
                 this.set('disabled', false);
                 this.attrs.toggleLoading();
                 this.toast.error('Some fields are missing!');
@@ -72,11 +78,11 @@ export default Ember.Component.extend({
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then((item) => {
-                        const workflow_id = this.get('collection.collectionWorkflows').find(collectionWorkflow => collectionWorkflow.role === 'approval');
-
+                        this.set('parameters.item.value', item.id);
+                        const workflowId = this.get('collection.collectionWorkflows').find(collectionWorkflow => collectionWorkflow.role === 'approval').get('workflow.id');
                         this.get('store').findRecord(
                             'workflow',
-                            workflow_id,
+                            workflowId,
                             { reload: true }
                         ).then((wf) => {
                             const caxe = this.get('store').createRecord('case');
@@ -96,7 +102,7 @@ export default Ember.Component.extend({
                                     }
 
                                     itemParameter.set('value', item.id);
-                                    itemParameter.save().then(itemParameter =>
+                                    itemParameter.save().then(() =>
                                         this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
                                     this.set('disabled', false);
                                     this.attrs.toggleLoading();
@@ -116,7 +122,8 @@ export default Ember.Component.extend({
                     this.toast.error('Some fields are missing!');
                 }
             };
-            // The base64 data needs to be converted to binary. We followed this stackoverflow answer:
+            // The base64 data needs to be converted to binary.
+            // We followed this stackoverflow answer:
             // https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
             if (this.get('parameters.fileData.value') === null) {
                 this.set('disabled', false);
