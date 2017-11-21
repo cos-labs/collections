@@ -111,7 +111,6 @@ export default Ember.Controller.extend({
             if (isValid) {
                 this.get('collection').save();
                 this.toast.success('You\'re good to go!', 'Changes Saved');
-            } else {
             }
         },
         setGroupForCollectionWorkflow(collectionWorkflow, ev) {

@@ -1,0 +1,28 @@
+<div class="hero">
+    <h1>My Activities</h1>
+</div>
+
+
+<div class="text-center" style=" margin-top: 15px; margin-bottom: 15px;" >
+    In progress submissions to the {{collection.title}}. Any of the submissions may be continued by pressing the continue button.
+</div>
+
+<div class="active-cases">
+    <div class="table-heading" style="background-color: #444; color: #fff;">
+        <div class="case-no">Case No.</div>
+        <div class="form-type">Form Type</div>
+        <div class="continue-button"></div>
+    </div>
+    {{#each cases as |case|}}
+
+        {{case-list-item case=case collection=collection}}
+
+    {{else}}
+
+        <div class="empty-state">
+            You have no active tasks
+        </div>
+
+    {{/each}}
+</div>
+

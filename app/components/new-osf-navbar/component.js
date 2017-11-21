@@ -38,9 +38,9 @@ export default Ember.Component.extend(AnalyticsMixin, {
             route: 'collections.my-collection'
         },
         {
-            name: 'My Tasks',
+            name: 'My Activities',
             type: 'link-to',
-            route: 'tasks'
+            route: 'activities'
         },
         {
             name: 'Support',

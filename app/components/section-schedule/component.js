@@ -104,29 +104,38 @@ export default Ember.Component.extend({
             });
         }
     }),
-    actions: {
-        toggleFilterOptions() {
-            $('.edit-filter-modal').toggleClass('hidden');
-        },
-        applyFilter() {
-            $('.edit-filter-modal').toggleClass('hidden');
-            $('.filter, .filter-remove, .fa-plus, .fa-filter').removeClass('filter-hidden');
-        },
-        addFilter() {
-            const filter = this.get('filters');
-            filter.pushObject({ id: (filter.length), name: $(`#${event.target.id} :selected`).text() });
-            this.set('filters', filter);
-        },
-        removeFilter() {
-            $(event.target).parent().remove();
-        },
-        getInput(e) {
-            const filter = this.get('filters');
-            if (filter.some(function(o) { return o.name === e; }) || e.replace(/ /g, '') === '') {
-                return false;
+    didRender(){
+
+        $('.selected-schedule').each(function(i, obj) {
+            if(i !== 0){
+                $(obj).removeClass('selected-schedule')
             }
-            filter.pushObject({ id: (filter.length), name: e });
-            this.set('filters', filter);
+       });
+
+   },
+   actions: {
+    toggleFilterOptions() {
+        $('.edit-filter-modal').toggleClass('hidden');
+    },
+    applyFilter() {
+        $('.edit-filter-modal').toggleClass('hidden');
+        $('.filter, .filter-remove, .fa-plus, .fa-filter').removeClass('filter-hidden');
+    },
+    addFilter() {
+        const filter = this.get('filters');
+        filter.pushObject({ id: (filter.length), name: $(`#${event.target.id} :selected`).text() });
+        this.set('filters', filter);
+    },
+    removeFilter() {
+        $(event.target).parent().remove();
+    },
+    getInput(e) {
+        const filter = this.get('filters');
+        if (filter.some(function(o) { return o.name === e; }) || e.replace(/ /g, '') === '') {
+            return false;
         }
+        filter.pushObject({ id: (filter.length), name: e });
+        this.set('filters', filter);
     }
+}
 });
