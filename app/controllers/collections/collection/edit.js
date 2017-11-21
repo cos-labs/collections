@@ -99,8 +99,6 @@ export default Ember.Controller.extend({
             if (isValid) {
                 this.get('collection').save();
                 this.toast.success('You\'re good to go!', 'Changes Saved');
-            } else {
-                // this.toast.error('Your JSON settings are invalid :(', 'Invalid JSON', { timeOut: 5000 });
             }
         },
         setGroupForCollectionWorkflow(collectionWorkflow, ev) {
