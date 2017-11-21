@@ -81,26 +81,37 @@ export default Ember.Controller.extend({
             collectionWorkflow.save();
         },
         saveChanges() {
+            // TODO: remove componentNames validation when we start supporting dynamically loaded components
+            const componentNames = ['section-contributors','section-copyright','section-file-grid','section-hero',
+                'section-item-table', 'section-landing-board', 'section-landing-default', 'section-landing-info',
+                'section-landing-list', 'section-menu', 'section-paragraph', 'section-schedule', 'section-splash-image',
+                'section-sponsors', 'section-title'];
             const jsonSettings = this.get('collection.settings');
             let isValid = true;
             isValid = (jsonSettings.layers !== undefined) && (jsonSettings.branding !== undefined);
             if (!isValid) {
-                this.toast.error('your settings are improperly configured. Please make sure you ' +
+                this.toast.error('Your collection settings are improperly configured. Please make sure you ' +
                     'have a "layers" array and a "branding" object in your settings.', 'Invalid JSON', { timeOut: 20000 });
             }
-            for (let l of jsonSettings.layers) {
+            for (const l of jsonSettings.layers) {
                 if (l.settings === undefined || l.component === undefined || l['section-header'] === undefined) {
                     isValid = false;
                     this.toast.error('one of your layers is improperly configured. ' +
                         'Please make sure there is a "settings" object,' +
                         ' a "component" field, and a "section-header" field in each layer.', 'Invalid JSON', { timeOut: 20000 });
+                    continue;
+                }
+                // TODO: remove componentNames validation when we start supporting dynamically loaded components
+                if (!(componentNames.includes(l.component))) {
+                    this.toast.error(`Component "${l.component}" is not a valid component. Check documentation for valid` +
+                        ' component names.', 'Invalid Component Name');
+                    isValid = false;
                 }
             }
             if (isValid) {
                 this.get('collection').save();
                 this.toast.success('You\'re good to go!', 'Changes Saved');
             } else {
-                // this.toast.error('Your JSON settings are invalid :(', 'Invalid JSON', { timeOut: 5000 });
             }
         },
         setGroupForCollectionWorkflow(collectionWorkflow, ev) {
