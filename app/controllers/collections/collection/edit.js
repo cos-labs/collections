@@ -81,7 +81,27 @@ export default Ember.Controller.extend({
             collectionWorkflow.save();
         },
         saveChanges() {
-            this.get('collection').save();
+            const jsonSettings = this.get('collection.settings');
+            let isValid = true;
+            isValid = (jsonSettings.layers !== undefined) && (jsonSettings.branding !== undefined);
+            if (!isValid) {
+                this.toast.error('your settings are improperly configured. Please make sure you ' +
+                    'have a "layers" array and a "branding" object in your settings.', 'Invalid JSON', { timeOut: 20000 });
+            }
+            for (let l of jsonSettings.layers) {
+                if (l.settings === undefined || l.component === undefined || l['section-header'] === undefined) {
+                    isValid = false;
+                    this.toast.error('one of your layers is improperly configured. ' +
+                        'Please make sure there is a "settings" object,' +
+                        ' a "component" field, and a "section-header" field in each layer.', 'Invalid JSON', { timeOut: 20000 });
+                }
+            }
+            if (isValid) {
+                this.get('collection').save();
+                this.toast.success('You\'re good to go!', 'Changes Saved');
+            } else {
+                // this.toast.error('Your JSON settings are invalid :(', 'Invalid JSON', { timeOut: 5000 });
+            }
         },
         setGroupForCollectionWorkflow(collectionWorkflow, ev) {
             collectionWorkflow.set('selectedGroup', this.get('groups')
