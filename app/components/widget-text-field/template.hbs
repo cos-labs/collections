@@ -16,7 +16,13 @@
 {{#if editing}}
     <div class='submission-text-field'>
         <label>{{widget.description}}</label>
-        {{input value=parameters.value.value class='form-control'}}
+        {{#if metadata}}
+            {{json-editor json=parameters.value.value onChange=(action "updateCacheSettings") }}
+        {{else}}
+            {{input value=parameters.value.value class='form-control'}}
+        {{/if}}
+
+
     </div>
 {{/if}}
 {{yield}}
