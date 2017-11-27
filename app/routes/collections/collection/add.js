@@ -44,15 +44,6 @@ export default Ember.Route.extend({
     setupController(controller, model) {
         controller.set('caxe', model.caxe);
         controller.set('collection', model.collection);
-
-
-        //Code that does nothing should remove....
-        //console.log("the collection item" , model.collection.get('items'));
-        // model.collection.get('items').then((results)=>{
-        //     results.forEach((item)=>{
-        //     })
-        // })
-
     },
 
 });
