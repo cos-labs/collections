@@ -1,21 +1,24 @@
 
 .coll-hero-logo {
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero {
-	color: black;
-	background: url("/img/submit.jpg") top center no-repeat;
-	text-align: center;
-	//box-shadow: inset 0 -30px 120px -30px rgba(0, 0, 0, 0.5);
-	overflow: hidden;
-	padding: 30px;
+    color: black;
+    background-image: url("/img/submit.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    text-align: center;
+    //box-shadow: inset 0 -30px 120px -30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    padding: 30px;
 
-	h1 {
-		margin: 30px;
-	}
+    h1 {
+        margin: 30px;
+    }
 
 }
 
