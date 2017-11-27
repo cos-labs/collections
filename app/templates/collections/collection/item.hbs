@@ -44,7 +44,7 @@
         {{#if item.metadata}}
             <h2>Metadata</h2>
             <ul>
-                {{#each-in item.parsedMetadata as |key value|}}
+                {{#each-in item.metadata as |key value|}}
                     <li><strong>{{key}}</strong> - {{value}}</li>
                 {{/each-in}}
             </ul>
