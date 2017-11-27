@@ -46,13 +46,12 @@ export default Ember.Route.extend({
         controller.set('collection', model.collection);
 
 
-        console.log("the collection item" , model.collection.get('items'));
-
-        model.collection.get('items').then((results)=>{
-            results.forEach((item)=>{
-                console.log(item.id)
-            })
-        })
+        //Code that does nothing should remove....
+        //console.log("the collection item" , model.collection.get('items'));
+        // model.collection.get('items').then((results)=>{
+        //     results.forEach((item)=>{
+        //     })
+        // })
 
     },
 
