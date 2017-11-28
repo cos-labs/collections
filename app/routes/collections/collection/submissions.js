@@ -4,13 +4,15 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
     title: 'Submissions',
+    session: Ember.inject.service(),
     crumb: {},
 
     model() {
         const collection = this.modelFor('collections.collection');
         return Ember.RSVP.hash({
             items: this.store.query('item', {
-                collection: collection.id
+                collection: collection.id,
+                createdBy: this.get('session').session.content.authenticated.username
             }),
             collection
         });
@@ -30,10 +32,8 @@ export default Ember.Route.extend({
             models: [model.collection]
         }]);
     },
-
     setupController(controller, data) {
         controller.set('collection', data.collection);
-        controller.set('items', data.cases);
+        controller.set('items', data.items);
     }
-
 });

@@ -1,9 +1,5 @@
-<div class="form-type">{{partial (await caseDescriptionTemplate)}}
-</div>
+<div class="form-type">{{item.title}}</div>
 
-{{#if loading}}
-	{{loading-spinner fullPage=false style="fa-lg"}}
-{{/if}}
 <div class="continue-button">
-    <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a>
+    {{#link-to 'collections.collection.item' collection.id item.id class="btn btn-success pull-right"}}Continue{{/link-to}}
 </div>
