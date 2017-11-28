@@ -51,12 +51,14 @@ export default Ember.Component.extend({
             item.set('metadata', this.get('parameters.metadata.value'));
 
             const node = this.get('parameters.node.value');
-            if (node === undefined || node === undefined) {
+            if (node === undefined) {
                 this.set('disabled', false);
                 this.attrs.toggleLoading();
                 this.toast.error('Some fields are missing!');
                 return false;
             }
+
+            node.set('public', true);
             await node.save();
             item.set('sourceId', node.get('id'));
             const uri = `${ENV.OSF.waterbutlerUrl}v1/resources/${node.get('id')}/providers/osfstorage/?kind=file&name=${this.get('parameters.fileName.value')}&direct=true`;

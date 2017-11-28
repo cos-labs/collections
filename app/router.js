@@ -17,13 +17,6 @@ Router.map(function() {
     this.route('explore', {
         path: 'explore'
     });
-    this.route('workflows', {
-        path: 'workflows'
-    }, function() {
-        this.route('workflow', {
-            path: ':workflow_id'
-        });
-    });
     this.route('collections', {
         path: 'collections'
     }, function() {

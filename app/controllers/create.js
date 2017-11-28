@@ -51,45 +51,9 @@ export default Ember.Controller.extend({
                 collectionType: this.get('collectionType'),
                 description: this.get('description'),
             });
-            collection.save().then((record) => {
-                this.set('newCollectionTitle', '');
-                collection.save().then((collection) => {
-                    Ember.RSVP.all(this.get('collectionWorkflows').map((cw) => {
-                        cw.set('collection', collection);
-                        cw.save().then((cw) => {
-                            collection.get('collectionWorkflows').addObject(cw);
-                        });
-                    })).then(cws => this.transitionToRoute('collections.collection', record.id));
-                });
+            collection.save().then(() => {
+                console.log('saved?');
             });
         },
-
-        removeWorkflow(collectionWorkflow) {
-            this.get('collectionWorkflows').removeObject(collectionWorkflow);
-            collectionWorkflow.destroyRecord();
-        },
-        addWorkflow() {
-            const collectionWorkflow = this.get('store').createRecord('collectionWorkflow');
-            this.get('collectionWorkflows').addObject(collectionWorkflow);
-        },
-        setCollectionType(ev) {
-            this.set('collection.type', ev.target.value);
-        },
-        setWorkflowTypeForWorkflowCollection(collectionWorkflow, ev) {
-            collectionWorkflow.set('workflow', this.get('workflows')
-                .find(workflow => workflow.id === ev.target.value));
-        },
-        setGroupForCollectionWorkflow(collectionWorkflow, ev) {
-            collectionWorkflow.set('selectedGroup', this.get('groups')
-                .find(group => group.id === ev.target.value));
-        },
-        addGroupToCollectionWorkflow(collectionWorkflow) {
-            collectionWorkflow.get('authorizedGroups')
-                .addObject(collectionWorkflow.get('selectedGroup'));
-        },
-        removeCollectionWorkflowGroup(collectionWorkflow, group) {
-            collectionWorkflow.get('authorizedGroups').removeObject(group);
-            collectionWorkflow.save();
-        }
     },
 });

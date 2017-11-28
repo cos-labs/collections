@@ -9,7 +9,7 @@ export default Ember.Route.extend({
     model() {
         const collection = this.modelFor('collections.collection');
         return Ember.RSVP.hash({
-            cases: this.store.query('case', {
+            items: this.store.query('item', {
                 collection: collection.id
             }),
             collection
@@ -33,7 +33,7 @@ export default Ember.Route.extend({
 
     setupController(controller, data) {
         controller.set('collection', data.collection);
-        controller.set('cases', data.cases);
+        controller.set('items', data.cases);
     }
 
 });

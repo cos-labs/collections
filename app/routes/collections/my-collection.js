@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
+    session: Ember.inject.service(),
     title: 'My Collection',
     crumb: {},
 
@@ -18,14 +18,19 @@ export default Ember.Route.extend({
     },
 
     model(params) {
-        return Ember.RSVP.hash({
-            collections: this.store.findAll('collection'),
+        return this.store.query('collection', {
+            filter: {
+                createdBy: this.get('session.session.content.authenticated.user.username')
+            }
+        }).then((myCollections) =>  {
+            debugger;
+            return Ember.RSVP.hash({
+                collections: myCollections
+            });
         });
     },
 
     setupController(collection, data) {
         collection.set('collections', data.collections);
     },
-
 });
-

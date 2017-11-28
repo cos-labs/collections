@@ -8,12 +8,7 @@ export default Ember.Route.extend({
     model() {
         const collection = this.modelFor('collections.collection');
         return Ember.RSVP.hash({
-            cases: this.store.query('case', {
-                collection: collection.id
-            }),
             collection,
-            groups: this.store.findAll('group'),
-            workflows: this.store.findAll('workflow')
         });
     },
 
@@ -32,8 +27,6 @@ export default Ember.Route.extend({
 
     setupController(controller, data) {
         controller.set('collection', data.collection);
-        controller.set('groups', data.groups);
-        controller.set('workflows', data.workflows);
     }
 
 });

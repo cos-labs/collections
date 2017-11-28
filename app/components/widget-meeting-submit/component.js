@@ -77,43 +77,7 @@ export default Ember.Component.extend({
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
-                    item.save().then((item) => {
-                        this.set('parameters.item.value', item.id);
-                        const workflowId = this.get('collection.collectionWorkflows').find(collectionWorkflow => collectionWorkflow.role === 'approval').get('workflow.id');
-                        this.get('store').findRecord(
-                            'workflow',
-                            workflowId,
-                            { reload: true }
-                        ).then((wf) => {
-                            const caxe = this.get('store').createRecord('case');
-                            caxe.set('collection', this.get('collection'));
-                            caxe.set('workflow', wf);
-                            caxe.save().then((caxe) => {
-                                this.get('store').queryRecord('parameter', {
-                                    name: 'item',
-                                    case: caxe.id
-                                }).then((itemParameter) => {
-                                    if (!itemParameter) {
-                                        itemParameter = this.get('store').createRecord('parameter');
-                                        itemParameter.disableAutosave = true;
-                                        itemParameter.set('workflow', wf);
-                                        itemParameter.set('name', 'item');
-                                        itemParameter.get('cases').then(cases => cases.addObject(caxe));
-                                    }
-
-                                    itemParameter.set('value', item.id);
-                                    itemParameter.save().then(() =>
-                                        this.get('router').transitionTo('collections.collection.item', this.get('collection').id, item.id));
-                                    this.set('disabled', false);
-                                    this.attrs.toggleLoading();
-                                });
-                            });
-                        });
-                    }, (err) => {
-                        console.log(err);
-                        this.set('disabled', false);
-                        this.attrs.toggleLoading();
-                    });
+                    item.save();
                 } else if (xhr.readyState === 4 && xhr.status >= 409) {
                     this.attrs.toggleLoading();
                     this.toast.error('Duplicate file!');

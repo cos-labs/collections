@@ -19,16 +19,7 @@ export default Model.extend({
     address: attr('string'),
     collectionType: attr('string'),
     createdBy: belongsTo('user'),
-    groups: hasMany('group'),
     items: hasMany('item'),
-    workflows: hasMany('workflow', {
-        inverse: 'collections',
-        async: false
-    }),
-    collectionWorkflows: hasMany('collection-workflow', {
-        inverse: 'collection',
-        async: false
-    }),
     titleCaseCollectionType: Ember.computed('collectionType', function() {
         const t = this.get('collectionType');
         return t.charAt(0).toUpperCase() + t.slice(1);

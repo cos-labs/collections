@@ -21,7 +21,6 @@ export default Model.extend({
     startTime: attr('string'),
     endTime: attr('string'),
     collection: belongsTo('collection'),
-    group: belongsTo('group'),
     createdBy: belongsTo('user'),
     fileLink: attr('string'),
     kind: attr('string'),
