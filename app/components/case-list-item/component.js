@@ -37,3 +37,6 @@ export default Ember.Component.extend({
     }
 
 });
+
+// TODO: flagged for deletion but keeping for now just in case some
+// of this logic is necessary, or a class name is

@@ -1,8 +1,8 @@
 <div class="hero">
     <h1>{{collection.title}} Submissions</h1>
-    <a class="btn btn-success btn-lg" {{action "newCase" collection}}>
+    {{#link-to 'collections.collection.add' collection.id class="btn btn-success btn-lg"}}
         Start a new submission
-    </a>
+    {{/link-to}}
 </div>
 <div class="text-center" style=" margin-top: 15px; margin-bottom: 15px;" >
     All of your submissions to the {{collection.title}}. In-progress submissions may be continued by pressing the continue button.
@@ -13,8 +13,10 @@
         <div class="continue-button"></div>
     </div>
     {{#each items as |item|}}
-        {{case-list-item item=item collection=collection}}
-
+        <div class="form-type">{{item.title}}</div>
+        <div class="continue-button">
+            {{#link-to 'collections.collection.item' collection.id item.id class="btn btn-success pull-right"}}Continue{{/link-to}}
+        </div>
     {{else}}
         <div class="empty-state">
             You have not started any submissions to {{collection.title}}
