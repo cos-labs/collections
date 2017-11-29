@@ -11,8 +11,8 @@ export default Ember.Route.extend({
         const collection = this.modelFor('collections.collection');
         return Ember.RSVP.hash({
             items: this.store.query('item', {
+                username: this.get('session.session.authenticated.user.username'),
                 collection: collection.id,
-                createdBy: this.get('session').session.content.authenticated.username
             }),
             collection
         });
