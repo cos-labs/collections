@@ -32,9 +32,7 @@ Router.map(function() {
             this.route('submissions');
             this.route('browse');
             this.route('edit');
-            this.route('add', {
-                path: 'add/:case_id'
-            });
+            this.route('add');
         });
         this.route('search');
         this.route('browse');
