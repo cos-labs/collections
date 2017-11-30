@@ -4,24 +4,36 @@
         Start a new submission
     {{/link-to}}
 </div>
-<div class="text-center" style=" margin-top: 15px; margin-bottom: 15px;" >
-    All of your submissions to the {{collection.title}}. In-progress submissions may be continued by pressing the continue button.
+<div class="text-center" style=" margin-top: 15px; margin-bottom: 15px;">
+    All of your submissions to the {{collection.title}}. In-progress submissions may be continued by
+    pressing the continue button.
 </div>
-<div class="active-cases">
-    <div class="table-heading" style="background-color: #444; color: #fff;">
-        <div class="form-type">Form Type</div>
-        <div class="continue-button"></div>
-    </div>
-    {{#each items as |item|}}
-        <div class="case-details">
-            <div class="form-type">{{item.title}}</div>
-            <div class="continue-button">
-                {{#link-to 'collections.collection.item' collection.id item.id class="btn btn-success pull-right"}}Continue{{/link-to}}
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <th>Submission Name</th>
+        <th>Status</th>
+        <th class="text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each items as |item|}}
+            <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.status}}</td>
+                <td class="text-right">
+                    {{#link-to 'collections.collection.item' collection.id item.id
+                               class="btn btn-default"}}View Item{{/link-to}}
+                    {{#link-to 'collections.collection.item.edit' collection.id item.id
+                               class="btn btn-default"}}Edit Item{{/link-to}}
+                </td>
+            </tr>
+        {{else}}
+            <div class="empty-state">
+                You have not started any submissions to {{collection.title}}
             </div>
-        </div>
-    {{else}}
-        <div class="empty-state">
-            You have not started any submissions to {{collection.title}}
-        </div>
-    {{/each}}
+        {{/each}}
+        </tbody>
+    </table>
 </div>
