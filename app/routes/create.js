@@ -3,8 +3,12 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
     model() {
-        // return Ember.RSVP.hash({
-        // });
+        return this.store.createRecord('collection');
     },
+    setupController(controller, model) {
+        controller.set('collection', model);
+    },
+    actions: {
+    }
 
 });

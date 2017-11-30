@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
     title: '',
     collectionWorkflows: [],
     description: '',
-    workflows: undefined,
     collectionType: undefined,
 
     typeList: [
@@ -40,20 +39,16 @@ export default Ember.Controller.extend({
     ],
 
     actions: {
-
-        addCollection () {
-            const collection = this.store.createRecord('collection', {
-                title: this.get('title'),
-                location: this.get('location'),
-                address: this.get('address'),
-                tags: '',
-                settings: {},
-                collectionType: this.get('collectionType'),
-                description: this.get('description'),
-            });
-            collection.save().then(() => {
-                console.log('saved?');
-            });
+        moderationToggled(choice) {
+            this.get('collection').set('moderationRequired', choice);
+        },
+        saveCollection () {
+            const collection = this.get('collection');
+            collection.collectionType = this.get('collectionType');
+            collection.tags = '';
+            this.get('collection').save().then(c =>
+                this.transitionToRoute('collections.collection', c.id)
+            );
         },
     },
 });

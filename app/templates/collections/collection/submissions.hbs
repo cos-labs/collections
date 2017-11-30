@@ -13,9 +13,11 @@
         <div class="continue-button"></div>
     </div>
     {{#each items as |item|}}
-        <div class="form-type">{{item.title}}</div>
-        <div class="continue-button">
-            {{#link-to 'collections.collection.item' collection.id item.id class="btn btn-success pull-right"}}Continue{{/link-to}}
+        <div class="case-details">
+            <div class="form-type">{{item.title}}</div>
+            <div class="continue-button">
+                {{#link-to 'collections.collection.item' collection.id item.id class="btn btn-success pull-right"}}Continue{{/link-to}}
+            </div>
         </div>
     {{else}}
         <div class="empty-state">

@@ -18,6 +18,7 @@ export default Model.extend({
     location: attr('string'),
     address: attr('string'),
     collectionType: attr('string'),
+    moderationRequired: attr('boolean'),
     createdBy: belongsTo('user'),
     items: hasMany('item'),
     titleCaseCollectionType: Ember.computed('collectionType', function() {

@@ -30,12 +30,14 @@
         <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
 
         <h2>Moderator Actions</h2>
-        <button
-            class="btn btn-primary"
-            onclick={{action "continueWorkflow" "approve"}}>
-            Approve
-        </button>
-
+        {{#if isModerator}}
+            {{#if (or (eq item.status 'pending') (eq item.status 'rejected'))}}
+                <button class="btn btn-success" {{action (mut item.status 'approved')}}>Approve</button>
+            {{/if}}
+            {{#if (or (eq item.status 'pending') (eq item.status 'approved'))}}
+                <button class="btn btn-danger" {{action (mut item.status 'rejected')}}>Reject</button>
+            {{/if}}
+        {{/if}}
         {{#if item.tags}}
         <h2>Tags</h2>
         <span class="coll-item-tag">{{item.tags}}</span>
