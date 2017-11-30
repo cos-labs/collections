@@ -32,10 +32,10 @@
         <h2>Moderator Actions</h2>
         {{#if isModerator}}
             {{#if (or (eq item.status 'pending') (eq item.status 'rejected'))}}
-                <button class="btn btn-success" {{action (mut item.status) 'approved'}}>Approve</button>
+                <button class="btn btn-success" {{action 'approveItem' item}}>Approve</button>
             {{/if}}
             {{#if (or (eq item.status 'pending') (eq item.status 'approved'))}}
-                <button class="btn btn-danger" {{action (mut item.status) 'rejected'}}>Reject</button>
+                <button class="btn btn-danger" {{action 'rejectItem' item}}>Reject</button>
             {{/if}}
         {{/if}}
         {{#if item.tags}}

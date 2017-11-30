@@ -4,15 +4,15 @@ export default Ember.Controller.extend({
     store: Ember.inject.service(),
     isModerator: true,
     actions: {
-        approveItem() {
-            this.get('item').set('status', 'approved');
-            debugger;
-            this.get('item').save();
+        approveItem(item) {
+            // const item = this.get('model.item');
+            item.set('status', 'approved');
+            item.content.save();
         },
-        rejectItem() {
-            this.get('item').set('status', 'rejected');
-            debugger;
-            this.get('item').save();
+        rejectItem(item) {
+            // const item = this.get('model.item');
+            item.set('status', 'rejected');
+            item.content.save();
         }
     }
 });
