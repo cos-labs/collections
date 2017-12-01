@@ -41,7 +41,7 @@ export default Ember.Component.extend({
             await item.save();
             this.get('router')
                 .transitionTo(
-                    'collections.collection.item',
+                    'collections.collection.items.item.index',
                     this.get('collection').id,
                     item.id
                 );
