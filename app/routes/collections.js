@@ -20,16 +20,12 @@ export default Ember.Route.extend({
 
     model(params, transition) {
         return Ember.RSVP.hash({
-            collections: this.store.query('collection', {
-                filter: {
-                    kind: transition.queryParams.kind
-                }
-            }),
+            collections: this.store.findAll('collection'),
         });
     },
 
-    setupController(collection, data) {
-        collection.set('collections', data.collections);
+    setupController(controller, model) {
+        controller.set('collections', model.collections);
     },
 
 });

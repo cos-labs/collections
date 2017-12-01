@@ -15,6 +15,10 @@ export default Ember.Route.extend({
             label: 'Submissions',
             route: 'collections.collection.submissions',
             models: [model]
+        },{
+            label: 'Moderation',
+            route: 'collections.collection.moderation',
+            models: [model]
         }]);
     },
 

@@ -26,10 +26,14 @@ Router.map(function () {
         this.route('collection', {
             path: ':collection_id'
         }, function () {
-            this.route('item', {
-                path: 'item/:item_id'
+            this.route('items', {
+                path: 'items'
             }, function () {
-                this.route('edit');
+                this.route('item', {
+                    path: ':item_id'
+                }, function() {
+                    this.route('edit');
+                })
             });
             this.route('submissions');
             this.route('browse');

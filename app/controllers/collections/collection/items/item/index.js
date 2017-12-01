@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     store: Ember.inject.service(),
     isModerator: true,
+    isOwner: true,
     actions: {
         approveItem(item) {
             // const item = this.get('model.item');
