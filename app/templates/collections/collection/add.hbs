@@ -22,38 +22,6 @@
 {{/if}}
 
 <section>
-
-{{!-- ON HOLD
-    {{#if (eq caxe.workflow.submissionFormType 'Website')}}
-
-        {{add-website model=model transition=(action "transition")}}
-
-    {{else}}
-        <p class="text-center">
-            Any changes you make here are automatically saved. You can use the reference code <span class="emphasis" style="background-color:#ddd; color:#333;">{{caxe.id}}</span> to load this submission again.
-        </p>
-
-
-        {{#each caxe.workflow.sortedSections as |section|}}
-
-            <fieldset>
-                <h2>{{section.label}}</h2>
-                <p>{{section.description}}</p>
-                {{#each section.sortedWidgets as |widget|}}
-                    {{component widget.widgetType
-                        widget=widget
-                        collection=collection
-                        parameters=widget.caseParameters
-                        toggleLoading=(action toggleLoading)}}
-                
-                
-                {{/each}}
-            </fieldset>
-
-        {{/each}}
-
-    {{/if}}
---}}
     <h3>Item Title</h3>
     {{input value=item.title}}
     <h3>Item Description</h3>
