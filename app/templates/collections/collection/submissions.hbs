@@ -12,9 +12,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-        <th>Submission Name</th>
-        <th>Status</th>
-        <th class="text-right">Actions</th>
+            <th>Submission Name</th>
+            <th>Status</th>
+            <th class="text-right">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -23,9 +23,9 @@
                 <td>{{item.title}}</td>
                 <td>{{item.status}}</td>
                 <td class="text-right">
-                    {{#link-to 'collections.collection.item' collection.id item.id
+                    {{#link-to 'collections.collection.items.item.index' collection.id item.id
                                class="btn btn-default"}}View Item{{/link-to}}
-                    {{#link-to 'collections.collection.item.edit' collection.id item.id
+                    {{#link-to 'collections.collection.items.item.edit' collection.id item.id
                                class="btn btn-default"}}Edit Item{{/link-to}}
                 </td>
             </tr>
