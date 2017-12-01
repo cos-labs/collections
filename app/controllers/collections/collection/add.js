@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then(() =>
-                        this.transitionToRoute('collections.collection.item', this.get('collection').id, item.id));
+                        this.transitionToRoute('collections.collection.items.item.index', this.get('collection').id, item.id));
                 } else if (xhr.readyState === 4 && xhr.status >= 409) {
                     this.attrs.toggleLoading();
                     this.toast.error('Duplicate file!');
