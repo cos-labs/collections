@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
             .then((user) => {
                 const currentUser = this.get('session.session.content.authenticated.user.username');
                 // console.log(user.get('username') == currentUser);
-                return user.get('username') == currentUser;
+                return user.get('username') === currentUser;
             });
     }),
     actions: {
