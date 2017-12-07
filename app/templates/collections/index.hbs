@@ -1,59 +1,37 @@
-{{#if session.isAuthenticated}}
-    <section class="coll-banner text-center">
-        {{#link-to 'create' class="btn btn-success btn-lg m-t-lg"}}Start a collection {{/link-to}}
-    </section>
-{{/if}}
+{{outlet}}
+<div class="explore-hero">
+    <div class="cards collection-types">
 
-<div class="results">
+        {{#link-to "collections.index" (query-params kind="meeting") class="card"}}
+            <span class="image" style="background-image: url('/img/meetings.jpg');"></span>
+            <h3>Meetings</h3>
+        {{/link-to}}
+        {{#link-to "collections" (query-params kind="repository") class="card"}}
+            <span class="image" style="background-image: url('/img/repositories.jpg');"></span>
+            <h3>Repositories</h3>
+        {{/link-to}}
 
-    <div class="search">
-    
-        {{input class="searchbox" placeholder="Type to search..." value=q}}
-    
     </div>
+</div>
 
-    <nav class="results-nav">
-        <h2>By kind</h2>
-        <a {{action "addFilter" "kind" "meeting"}}>Meetings</a>
-        <a {{action "addFilter" "kind" "repositories"}}>Repositories</a>
-        <a {{action "addFilter" "kind" "preprints"}}>Preprints</a>
-        <a {{action "addFilter" "kind" "registrations"}}>Registrations</a>
-        <h2>By creator</h2>
-        {{input placeholder="Creator" value=creator}}
-        <h2>By date</h2>
-        <h3>Date created</h3>
-        <h3>Date updated</h3>
 
-    </nav>
 
-    <div class="result-items">
-        {{#if loading}}
-            <br>
-            {{loading-spinner fullPage=false style="fa-4x"}}
-        {{else}}
-  
+<div class="explore-collection-list">
+
+    <div class="cards">
         {{#each collections as |collection|}}
-            <div class="result-item">
-
-                <h2>
-                    {{#link-to "collections.collection.items.item"  collection.collection.id collection.id }}
-                        <span>
-                            {{collection.title}} 
-                        </span>
-                    {{/link-to}}
-                </h2>
-                <div><b>Found in: {{ collection.collection.title}}</b></div>
-                <br>
- 
-                <div class="description">{{collection.description}}</div>
-
-            </div>
-
-        {{else}}
-           <h2 class="text-center"> No results found...</h2>
+            {{collection-detail collection=collection}}
         {{/each}}
-      {{/if}}
     </div>
 
+    <div class="text-center">
+        {{#if showLoadMore}}
+            {{#if loadingMore}}
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw text-muted m-t-md"></i>
+            {{else}}
+                <button class="btn btn-default" {{action 'loadMore'}}> Load more</button>
+            {{/if}}
+        {{/if}}
+    </div>
 
 </div>
