@@ -2,9 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    title: 'Settings',
-    crumb: {},
-
     model() {
         const collection = this.modelFor('collections.collection');
         return Ember.RSVP.hash({

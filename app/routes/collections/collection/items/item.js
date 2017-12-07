@@ -1,13 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
-    crumb: {},
-    item: '',
     model(params) {
         const collection = this.modelFor('collections.collection');
         const item = this.store.findRecord('item', params.item_id);
-        this.set('item', item);
+        // this.set('item', item);
         const node = item.then((_item) => {
             return this.store.findRecord('node', _item.get('sourceId'));
         });
@@ -20,13 +17,6 @@ export default Ember.Route.extend({
     },
 
     afterModel() {
-        this.set('crumb.label', this.get('item.title'));
-        this.set('crumb.route', this.routeName + '.index');
-        this.set('crumb.models', [
-            this.get('collection'),
-            this.get('item')
-        ]);
-
         this.set('nav.links', [{
             label: 'Edit',
             route: 'collections.collection.items.item.edit',

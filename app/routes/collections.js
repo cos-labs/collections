@@ -1,14 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
-    title: 'Collections',
-    crumb: {},
-
+    breadCrumb: {
+        title: 'Collections',
+        path: 'collections.index'
+    },
 
     beforeModel() {
-        this.set('crumb.label', this.title);
-        this.set('crumb.route', this.routeName);
         this.set('nav.links', [{
             label: 'Showcase',
             route: 'explore'

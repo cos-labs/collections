@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-    crumb: {},
     collection: '',
     item: '',
     model() {
@@ -10,16 +9,9 @@ export default Route.extend({
     },
 
     afterModel(model, transition) {
-        this.set('crumb.label', 'Edit');
-        this.set('crumb.route', this.routeName);
-        this.set('crumb.models', [
-            this.get('collection'),
-            this.get('item')
-        ]);
     },
     actions: {
         submit(item) {
-            debugger;
             item.save();
         }
     },

@@ -3,8 +3,13 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+    breadCrumb: 'Index',
+    breadCrumbPath: 'collections.collection.items.item.index',
+    breadCrumbModel: Ember.computed.alias('item'),
     isModerator: Ember.computed('session', 'collection', function() {
-        return this.store.findRecord('user', this.get('collection.createdBy.id'))
+        debugger;
+        const collectionOwnerId = this.get('collection.createdBy.id');
+        return this.store.findRecord('user', collectionOwnerId)
             .then((user) => {
                 const currentUser = this.get('session.session.content.authenticated.user.username');
                 console.log(user.get('username') === currentUser);

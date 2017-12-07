@@ -1,7 +1,5 @@
-<div class="nav-item-group breadcrumbs">
-    {{#each nav.crumbs as |crumb|}}
-        <a class="nav-item crumb" {{action "transition" crumb}}>{{crumb.label}}</a>
-    {{/each}}
+<div class="nav-item-group">
+    {{bread-crumbs}}
 </div>
 <div class="nav-item-group secondary-nav">
     {{#each nav.links as |link|}}

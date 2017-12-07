@@ -5,7 +5,6 @@ export default Ember.Route.extend({
 
     title: 'Submissions',
     session: Ember.inject.service(),
-    crumb: {},
 
     model() {
         const collection = this.modelFor('collections.collection');
@@ -18,9 +17,6 @@ export default Ember.Route.extend({
         });
     },
     afterModel(model) {
-        this.set('crumb.label', this.title);
-        this.set('crumb.route', this.routeName);
-        this.set('crumb.models', [model.collection]);
     },
     setupController(controller, data) {
         controller.set('collection', data.collection);
