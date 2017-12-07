@@ -18,7 +18,7 @@ export default Ember.Route.extend({
         }]);
     },
 
-    model(params, transition) {
+    model() {
         return Ember.RSVP.hash({
             collections: this.store.findAll('collection'),
         });

@@ -21,16 +21,6 @@ export default Ember.Route.extend({
         this.set('crumb.label', this.title);
         this.set('crumb.route', this.routeName);
         this.set('crumb.models', [model.collection]);
-
-        this.set('nav.links', [{
-            label: 'Settings',
-            route: 'collections.collection.edit',
-            models: [model.collection]
-        }, {
-            label: 'Submissions',
-            route: 'collections.collection.submissions',
-            models: [model.collection]
-        }]);
     },
     setupController(controller, data) {
         controller.set('collection', data.collection);

@@ -17,6 +17,9 @@ Router.map(function () {
     this.route('explore', {
         path: 'explore'
     });
+    this.route('search', {
+        path: 'search'
+    });
     this.route('collections', {
         path: 'collections'
     }, function () {

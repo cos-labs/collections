@@ -7,7 +7,6 @@ export default Ember.Controller.extend({
         return this.store.findRecord('user', this.get('collection.createdBy.id'))
             .then((user) => {
                 const currentUser = this.get('session.session.content.authenticated.user.username');
-                console.log(user.get('username') === currentUser);
                 return user.get('username') === currentUser;
             });
     }),
@@ -15,20 +14,17 @@ export default Ember.Controller.extend({
         return this.store.findRecord('user', this.get('item.createdBy.id'))
             .then((user) => {
                 const currentUser = this.get('session.session.content.authenticated.user.username');
-                console.log(user.get('username') === currentUser);
                 return user.get('username') === currentUser;
             });
     }),
     actions: {
         approveItem(item) {
-            // const item = this.get('model.item');
             item.set('status', 'approved');
-            item.content.save();
+            item.save();
         },
         rejectItem(item) {
-            // const item = this.get('model.item');
             item.set('status', 'rejected');
-            item.content.save();
+            item.save();
         }
     },
 

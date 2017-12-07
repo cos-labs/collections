@@ -12,17 +12,7 @@ export default Ember.Route.extend({
         });
     },
 
-    afterModel(model, transition) {
-        this.set('nav.links', [
-            {
-                label: 'Settings',
-                route: 'collections.collection.edit',
-                models: [model.collection]
-            }, {
-                label: 'Submissions',
-                route: 'collections.collection.submissions',
-                models: [model.collection]
-            }]);
+    afterModel() {
     },
 
     setupController(controller, data) {

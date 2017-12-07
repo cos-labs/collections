@@ -2,11 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    model(params) {
+    model() {
         return this.modelFor('collections.collection');
     },
 
-    afterModel(model, transition) {
+    afterModel(model) {
         this.set('nav.links', [{
             label: 'Settings',
             route: 'collections.collection.edit',

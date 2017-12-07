@@ -10,14 +10,8 @@ export default Ember.Route.extend({
         return this.modelFor('collections.collection.items.item');
     },
 
-    // afterModel(model, transition) {
-    //     this.set('crumb.label', this.get('item.title'));
-    //     this.set('crumb.route', this.routeName);
-    //     this.set('crumb.models', [
-    //         this.get('collection'),
-    //         this.get('item')
-    //     ]);
-    // },
+     afterModel(model, transition) {
+    },
 
     setupController(controller, model) {
         const parentModel = this.modelFor('collections.collection.items.item');

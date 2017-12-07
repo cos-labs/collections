@@ -30,7 +30,7 @@
         <p class="coll-item-status {{item.status}}"> {{item.status}} </p>
 
         <h2>Moderator Actions</h2>
-        {{#if isModerator}}
+        {{#if (await isModerator)}}
             {{#if (or (eq item.status 'pending') (eq item.status 'rejected'))}}
                 <button class="btn btn-success" {{action 'approveItem' item}}>Approve</button>
             {{/if}}
@@ -38,7 +38,7 @@
                 <button class="btn btn-danger" {{action 'rejectItem' item}}>Reject</button>
             {{/if}}
         {{/if}}
-        {{#if (or isOwner isModerator)}}
+        {{#if (or (await isOwner) (await isModerator))}}
             {{#link-to 'collections.collection.items.item.edit' collection.id item.id class="btn btn-warning"}}Edit{{/link-to}}
         {{/if}}
         {{#if item.tags}}

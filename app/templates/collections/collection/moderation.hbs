@@ -11,19 +11,24 @@
         <tr>
             <th>Submission Name</th>
             <th>Status</th>
+            <th></th>
             <th class="text-right">Actions</th>
         </tr>
         </thead>
         <tbody>
-        {{#each items as |item|}}
+        {{#each model.items as |item|}}
             <tr>
                 <td>{{item.title}}</td>
                 <td>{{item.status}}</td>
+                <td class="text-right">{{#link-to 'collections.collection.items.item.index' model.id item.id
+                                                   class="btn btn-default text-right"}}View Item{{/link-to}}</td>
                 <td class="text-right">
-                    {{#link-to 'collections.collection.items.item.index' collection.id item.id
-                               class="btn btn-default"}}View Item{{/link-to}}
-                    {{#link-to 'collection.collections.items.item.edit' collection.id item.id
-                               class="btn btn-default"}}Edit Item{{/link-to}}
+                    {{#if (or (eq item.status 'pending') (eq item.status 'rejected'))}}
+                        <button class="btn btn-success" {{action 'approveItem' item}}>Approve</button>
+                    {{/if}}
+                    {{#if (or (eq item.status 'pending') (eq item.status 'approved'))}}
+                        <button class="btn btn-danger" {{action 'rejectItem' item}}>Reject</button>
+                    {{/if}}
                 </td>
             </tr>
         {{else}}
