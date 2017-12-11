@@ -24,7 +24,7 @@ export default Ember.Route.extend({
         };
         let collectionTitle = model.item.get('collection.title');
         const collectionId = model.item.get('collection.id');
-        collectionTitle = collectionTitle ? collectionTitle : collectionId;
+        collectionTitle = collectionTitle ? collectionTitle : 'Collection ' + collectionId;
         const collectionCrumb = {
             title: collectionTitle,
             path: 'collections.collection',
