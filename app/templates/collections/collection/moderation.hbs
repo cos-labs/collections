@@ -20,7 +20,7 @@
             <tr>
                 <td>{{item.title}}</td>
                 <td>{{item.status}}</td>
-                <td class="text-right">{{#link-to 'collections.collection.items.item.index' model.id item.id
+                <td class="text-right">{{#link-to 'items.item.index' model.id item.id
                                                    class="btn btn-default text-right"}}View Item{{/link-to}}</td>
                 <td class="text-right">
                     {{#if (or (eq item.status 'pending') (eq item.status 'rejected'))}}

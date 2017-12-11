@@ -39,7 +39,7 @@
             {{/if}}
         {{/if}}
         {{#if (or (await isOwner) (await isModerator))}}
-            {{#link-to 'collections.collection.items.item.edit' collection.id item.id class="btn btn-warning"}}Edit{{/link-to}}
+            {{#link-to 'items.item.edit' item.id class="btn btn-warning"}}Edit{{/link-to}}
         {{/if}}
         {{#if item.tags}}
         <h2>Tags</h2>

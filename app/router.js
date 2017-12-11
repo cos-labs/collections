@@ -20,6 +20,15 @@ Router.map(function () {
     this.route('search', {
         path: 'search'
     });
+    this.route('items', {
+        path: 'items'
+    }, function () {
+        this.route('item', {
+            path: ':item_id'
+        }, function() {
+            this.route('edit');
+        });
+    });
     this.route('collections', {
         path: 'collections'
     }, function () {
@@ -29,15 +38,6 @@ Router.map(function () {
         this.route('collection', {
             path: ':collection_id'
         }, function () {
-            this.route('items', {
-                path: 'items'
-            }, function () {
-                this.route('item', {
-                    path: ':item_id'
-                }, function() {
-                    this.route('edit');
-                })
-            });
             this.route('submissions');
             this.route('browse');
             this.route('edit');

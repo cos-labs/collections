@@ -9,10 +9,10 @@ export default Ember.Route.extend({
     beforeModel() {
         this.set('nav.links', [{
             label: 'Showcase',
-            route: 'explore'
+            route: 'collections'
         }, {
             label: 'Trending',
-            route: 'explore'
+            route: 'collections'
         }]);
     },
 

@@ -99,7 +99,7 @@ export default Ember.Component.extend({
 
                                     itemParameter.set('value', item.id);
                                     itemParameter.save().then(() =>
-                                        this.get('router').transitionTo('collections.collection.items.item.index', this.get('collection').id, item.id));
+                                        this.get('router').transitionTo('items.item.index', this.get('collection').id, item.id));
                                     this.set('disabled', false);
                                     this.attrs.toggleLoading();
                                 });

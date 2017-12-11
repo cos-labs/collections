@@ -20,13 +20,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#develop#2017-09-29T20:14:40Z",
+    "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#develop",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "broccoli-asset-rev": "^2.4.2",
     "broccoli-debug": "^0.6.3",
     "ember-ajax": "^2.0.1",
     "ember-bootstrap": "0.7.2",
-    "ember-breadcrumbs": "0.1.9",
     "ember-browserify": "^1.2.0",
     "ember-cli": "^2.16.0",
     "ember-cli-app-version": "^1.0.0",
@@ -82,6 +81,7 @@
   "devDependencies": {
     "ember-cli-bootstrap-datetimepicker": "^0.5.0",
     "ember-cli-pagination": "^3.1.0",
+    "ember-crumbly": "^1.0.8",
     "ember-simple-auth": "^1.4.0",
     "eonasdan-bootstrap-datetimepicker-npm": "4.17.42",
     "moment": "^2.18.1",

@@ -4,11 +4,8 @@ export default Route.extend({
     collection: '',
     item: '',
     model() {
-        this.set('item', this.modelFor('collections.collection.items.item')['item']);
-        return this.modelFor('collections.collection.items.item');
-    },
-
-    afterModel(model, transition) {
+        this.set('item', this.modelFor('items.item')['item']);
+        return this.modelFor('items.item');
     },
     actions: {
         submit(item) {

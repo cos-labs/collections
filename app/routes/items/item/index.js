@@ -2,11 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     model() {
-        return this.modelFor('collections.collection.items.item');
+        return this.modelFor('items.item');
     },
 
     setupController(controller, model) {
-        controller.set('collection', model.collection);
+        debugger;
         controller.set('item', model.item);
         controller.set('node', model.node);
     }

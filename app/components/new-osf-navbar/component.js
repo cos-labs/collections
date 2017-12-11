@@ -30,12 +30,12 @@ export default Ember.Component.extend(AnalyticsMixin, {
         {
             name: 'Collections',
             type: 'link-to',
-            route: 'explore'
+            route: 'collections.index'
         },
         {
             name: 'Search',
             type: 'link-to',
-            route: 'collections.index'
+            route: 'search'
         },
         // {
         //     name: 'My Collection',

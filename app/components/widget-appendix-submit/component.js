@@ -98,7 +98,7 @@ export default Ember.Component.extend({
             item.set('metadata', '{}');
             item.set('sourceId', '3hgm5');
             item.set('url', 'http://example.com');
-            debugger;
+
             const node = this.get('widget.parameters.node.value');
             // const node = this.get('store').createRecord('node');
             // node.set('title', this.get('widget.parameters.title.value'));
