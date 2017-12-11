@@ -1,5 +1,44 @@
-<div class="nav-item-group">
-    {{! {{bread-crumbs}}
+<style>
+    .nav-item-group crumb {
+        color:rgba(233,233,233, .8);
+        text-shadow: 0px 1px #777;
+        margin:2px!important;
+    }
+
+    .breadcrumbs {
+        line-height: 1.0;
+    }
+
+    .breadcrumbs:first-child {
+        font-weight: 600;
+    }
+    crumb {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .breadcrumb {
+        padding: inherit;
+        margin-bottom: inherit;
+        list-style: inherit;
+        background-color: inherit;
+        border-radius: inherit;
+    }
+    li {
+        color: #ddd;
+    }
+    breadcrumbs a:hover {
+        color: #ddd;
+        text-decoration: none;
+    }
+    breadcrumbs a:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+<div class="nav-item-group breadcrumbs">
+    {{bread-crumbs class="breadcrumbs" tagName="div" outputStyle="bootstrap" linkable=true crumbClass="crumb" }}
 </div>
 <div class="nav-item-group secondary-nav">
     {{#each nav.links as |link|}}

@@ -9,6 +9,11 @@ export default Ember.Route.extend({
 
     afterModel(model) {
         if (model) {
+            const collectionTitle = model.get('title');
+            const crumb = {
+                title: collectionTitle
+            };
+            this.set('breadCrumb', crumb);
             this.set('nav.links', [
                 {
                     label: 'Settings',

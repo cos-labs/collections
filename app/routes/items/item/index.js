@@ -6,7 +6,6 @@ export default Ember.Route.extend({
     },
 
     setupController(controller, model) {
-        debugger;
         controller.set('item', model.item);
         controller.set('node', model.node);
     }
