@@ -25,6 +25,7 @@ export default Model.extend({
     fileLink: attr('string'),
     kind: attr('string'),
     fileName: attr('string'),
+    canEdit: attr('boolean'),
     fileFormat: Ember.computed('fileName', function() {
         const name = this.get('fileName');
         if (name) {
