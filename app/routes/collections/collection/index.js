@@ -7,19 +7,27 @@ export default Ember.Route.extend({
     },
 
     afterModel(model) {
-        this.set('nav.links', [{
-            label: 'Settings',
-            route: 'collections.collection.edit',
-            models: [model]
-        }, {
+        const links = [];
+        if (model.get('canEdit')) {
+            links.push({
+                label: 'Settings',
+                route: 'collections.collection.edit',
+                models: [model]
+            });
+        }
+        if (model.get('canModerate')) {
+            links.push({
+                label: 'Moderation',
+                route: 'collections.collection.moderation',
+                models: [model]
+            });
+        }
+        links.push({
             label: 'Submissions',
             route: 'collections.collection.submissions',
             models: [model]
-        },{
-            label: 'Moderation',
-            route: 'collections.collection.moderation',
-            models: [model]
-        }]);
+        });
+        this.set('nav.links', links);
     },
 
     setupController(controller, model) {
