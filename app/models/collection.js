@@ -23,6 +23,7 @@ export default Model.extend({
     canEdit: attr('boolean'),
     createdBy: belongsTo('user'),
     items: hasMany('item'),
+    moderators: hasMany('user'),
     titleCaseCollectionType: Ember.computed('collectionType', function() {
         const t = this.get('collectionType');
         return t.charAt(0).toUpperCase() + t.slice(1);

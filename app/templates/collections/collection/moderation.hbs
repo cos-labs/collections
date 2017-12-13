@@ -38,4 +38,27 @@
         {{/each}}
         </tbody>
     </table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model.moderators as |mod|}}
+            <tr>
+                <td>{{await mod.username}}</td>
+                <td>Moderator</td>
+                <td><div class="btn btn-default" {{action 'removeModerator' mod}}>Revoke Mod Privileges</div></td>
+            </tr>
+        {{/each}}
+        <tr>
+            <td>{{input value=newModeratorGuid}}</td>
+            <td></td>
+            <td><div class="btn btn-default" {{action 'addModerator' newModeratorGuid}}>Add Moderator</div></td>
+        </tr>
+        </tbody>
+    </table>
 </div>

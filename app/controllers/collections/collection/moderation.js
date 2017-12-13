@@ -25,6 +25,24 @@ export default Ember.Controller.extend({
         rejectItem(item) {
             item.set('status', 'rejected');
             item.save();
+        },
+        addModerator(guid) {
+            const collection = this.get('model');
+            this.store.query('user', {
+                'username': guid
+            }).then((users) => {
+                console.log('found users');
+                collection.get('moderators').pushObject(users.get('firstObject'));
+                this.set('newModeratorGuid', '');
+                collection.save();
+                console.log('saved and committed');
+            });
+        },
+        removeModerator(user) {
+            const collection = this.get('model');
+            collection.get('moderators').removeObject(user);
+            collection.save();
+            console.log('removed moderator');
         }
     },
 
