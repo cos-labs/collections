@@ -6,11 +6,11 @@ export default Ember.Controller.extend({
     actions: {
         approveItem(item) {
             item.set('status', 'approved');
-            item.content.save();
+            item.save();
         },
         rejectItem(item) {
             item.set('status', 'rejected');
-            item.content.save();
+            item.save();
         }
     },
 
