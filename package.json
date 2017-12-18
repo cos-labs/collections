@@ -21,6 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#develop",
+    "alpaca": "^1.5.23",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "broccoli-asset-rev": "^2.4.2",
     "broccoli-debug": "^0.6.3",
