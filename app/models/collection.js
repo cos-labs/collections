@@ -21,9 +21,11 @@ export default Model.extend({
     moderationRequired: attr('boolean'),
     canModerate: attr('boolean'),
     canEdit: attr('boolean'),
+    canAdmin: attr('boolean'),
     createdBy: belongsTo('user'),
     items: hasMany('item'),
     moderators: hasMany('user'),
+    admins: hasMany('user'),
     titleCaseCollectionType: Ember.computed('collectionType', function() {
         const t = this.get('collectionType');
         return t.charAt(0).toUpperCase() + t.slice(1);

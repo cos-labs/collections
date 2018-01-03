@@ -43,7 +43,24 @@ export default Ember.Controller.extend({
             collection.get('moderators').removeObject(user);
             collection.save();
             console.log('removed moderator');
-        }
+        },
+      addAdmin(guid) {
+        const collection = this.get('model');
+        this.store.query('user', {
+          'username': guid
+        }).then((users) => {
+          collection.get('admins').pushObject(users.get('firstObject'));
+          this.set('newAdminGuid', '');
+          collection.save();
+          console.log('saved and committed admin change');
+        });
+      },
+      removeAdmin(user) {
+        const collection = this.get('model');
+        collection.get('admins').removeObject(user);
+        collection.save();
+        console.log('removed admin');
+      }
     },
 
 });

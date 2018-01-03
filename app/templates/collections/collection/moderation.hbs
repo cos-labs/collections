@@ -59,6 +59,19 @@
             <td></td>
             <td><div class="btn btn-default" {{action 'addModerator' newModeratorGuid}}>Add Moderator</div></td>
         </tr>
+        {{#each model.admins as |administrator|}}
+          <tr>
+            <td>{{await administrator.username}}</td>
+            <td>Moderator</td>
+            <td><div class="btn btn-default" {{action 'removeAdmin' mod}}>Revoke Admin Privileges</div></td>
+          </tr>
+        {{/each}}
+        <tr>
+          <td>{{input value=newAdminGuid}}</td>
+          <td></td>
+          <td><div class="btn btn-default" {{action 'addAdmin' newAdminGuid}}>Add Admin</div></td>
+        </tr>
         </tbody>
+
     </table>
 </div>
