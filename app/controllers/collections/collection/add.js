@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
 
     editMode: false,
     loading: false,
+    metadata: {},
     toggleLoading() {
         this.toggleProperty('loading');
     },
@@ -70,12 +71,13 @@ export default Ember.Controller.extend({
             item.set('collection', this.get('collection'));
             item.set('kind', 'repository');
             item.set('status','pending');
+            item.set('metadata', this.get('metadata'));
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
                     item.set('url', 'http://example.com');
                     item.set('fileLink', JSON.parse(xhr.responseText).data.links.download);
                     item.save().then(() =>
-                        this.transitionToRoute('items.item.index', this.get('collection').id, item.id));
+                        this.transitionToRoute('items.item.index', item.id));
                 } else if (xhr.readyState === 4 && xhr.status >= 409) {
                     this.attrs.toggleLoading();
                     this.toast.error('Duplicate file!');
