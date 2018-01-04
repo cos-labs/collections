@@ -15,6 +15,7 @@ export default Model.extend({
     dateCreated: attr('date'),
     dateUpdated: attr('date'),
     settings: attr(),
+    submissionSettings: attr(),
     location: attr('string'),
     address: attr('string'),
     collectionType: attr('string'),

@@ -53,6 +53,9 @@ export default Ember.Controller.extend({
         updateCacheSettings (jsonSettings) {
             this.set('collection.settings', jsonSettings);
         },
+        updateFormSettings (jsonSettings) {
+          this.set('collection.submissionSettings', jsonSettings);
+        },
         setCollectionType(ev) {
             this.set('collection.type', ev.target.value);
         },

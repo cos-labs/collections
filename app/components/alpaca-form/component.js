@@ -4,7 +4,7 @@ import formTemplate from '../../utils/custom_form';
 export default Ember.Component.extend({
   session: Ember.inject.service(),
   store: Ember.inject.service(),
-  form: formTemplate,
+  // form: formTemplate,
   // output: {}, //TODO: define this in the parent route instead
   metaDataString: Ember.computed('output', function() {
     return JSON.stringify(this.get('output'));
@@ -14,11 +14,17 @@ export default Ember.Component.extend({
   },
   didRender() {
     const that = this;
-    let originalForm = this.get('form');
+    let originalForm = this.get('input');
+    if (!originalForm.options) {
+      originalForm['options'] = {};
+    }
+    if (!originalForm['view']) {
+      originalForm['view'] = 'web-edit';
+    }
     originalForm.options.form = {
       "buttons": {
         "submit": {
-          "label": "Save Metadata",
+          "label": "Save Changes to Metadata",
           "click": function() {
             var value = this.getValue();
             that.set('output', value);

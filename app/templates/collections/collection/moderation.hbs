@@ -1,77 +1,94 @@
 <div class="hero">
-    <h1>Moderation Home</h1>
+  <h1>Moderation Home</h1>
 </div>
 <div class="text-center" style=" margin-top: 15px; margin-bottom: 15px;">
-    All existing submissions {{collection.title}}. In-progress submissions may be continued by
-    pressing the continue button.
+  All existing submissions {{model.title}}. In-progress submissions may be continued by
+  pressing the continue button.
 </div>
 <div class="container">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Submission Name</th>
-            <th>Status</th>
-            <th></th>
-            <th class="text-right">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each model.items as |item|}}
-            <tr>
-                <td>{{item.title}}</td>
-                <td>{{item.status}}</td>
-                <td class="text-right">{{#link-to 'items.item.index' item.id
-                                                   class="btn btn-default text-right"}}View Item{{/link-to}}</td>
-                <td class="text-right">
-                    {{#if (or (eq item.status 'pending') (eq item.status 'rejected'))}}
-                        <button class="btn btn-success" {{action 'approveItem' item}}>Approve</button>
-                    {{/if}}
-                    {{#if (or (eq item.status 'pending') (eq item.status 'approved'))}}
-                        <button class="btn btn-danger" {{action 'rejectItem' item}}>Reject</button>
-                    {{/if}}
-                </td>
-            </tr>
-        {{else}}
-            <div class="empty-state">
-                You have not started any submissions to {{collection.title}}
-            </div>
-        {{/each}}
-        </tbody>
-    </table>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each model.moderators as |mod|}}
-            <tr>
-                <td>{{await mod.username}}</td>
-                <td>Moderator</td>
-                <td><div class="btn btn-default" {{action 'removeModerator' mod}}>Revoke Mod Privileges</div></td>
-            </tr>
-        {{/each}}
-        <tr>
-            <td>{{input value=newModeratorGuid}}</td>
-            <td></td>
-            <td><div class="btn btn-default" {{action 'addModerator' newModeratorGuid}}>Add Moderator</div></td>
-        </tr>
-        {{#each model.admins as |administrator|}}
-          <tr>
-            <td>{{await administrator.username}}</td>
-            <td>Moderator</td>
-            <td><div class="btn btn-default" {{action 'removeAdmin' mod}}>Revoke Admin Privileges</div></td>
-          </tr>
-        {{/each}}
-        <tr>
-          <td>{{input value=newAdminGuid}}</td>
-          <td></td>
-          <td><div class="btn btn-default" {{action 'addAdmin' newAdminGuid}}>Add Admin</div></td>
-        </tr>
-        </tbody>
-
-    </table>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Submission Name</th>
+      <th>Status</th>
+      <th></th>
+      <th class="text-right">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each model.items as |item|}}
+      <tr>
+        <td>{{item.title}}</td>
+        <td>{{item.status}}</td>
+        <td class="text-right">{{#link-to 'items.item.index' item.id
+                                          class="btn btn-default text-right"}}
+          View Item{{/link-to}}</td>
+        <td class="text-right">
+          {{#if (or (eq item.status 'pending') (eq item.status 'rejected'))}}
+            <button class="btn btn-success" {{action 'approveItem' item}}>Approve</button>
+          {{/if}}
+          {{#if (or (eq item.status 'pending') (eq item.status 'approved'))}}
+            <button class="btn btn-danger" {{action 'rejectItem' item}}>Reject</button>
+          {{/if}}
+        </td>
+      </tr>
+    {{else}}
+      <div class="empty-state">
+        You have not started any submissions to {{collection.title}}
+      </div>
+    {{/each}}
+    </tbody>
+  </table>
+  {{#if model.canAdmin}}
+  <h3 style="margin-top:50px;">Moderators</h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each model.moderators as |mod|}}
+      <tr>
+        <td>{{await mod.username}}</td>
+        <td>
+          <div class="btn btn-default" {{action 'removeModerator' mod}}>Revoke Mod Privileges</div>
+        </td>
+      </tr>
+    {{/each}}
+    <tr>
+      <td>{{input value=newModeratorGuid}}</td>
+      <td>
+        <div class="btn btn-default" {{action 'addModerator' newModeratorGuid}}>Add Moderator</div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>Admins</h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each model.admins as |administrator|}}
+      <tr>
+        <td>{{await administrator.username}}</td>
+        <td>
+          <div class="btn btn-default" {{action 'removeAdmin' mod}}>Revoke Admin Privileges</div>
+        </td>
+      </tr>
+    {{/each}}
+    <tr>
+      <td>{{input value=newAdminGuid}}</td>
+      <td>
+        <div class="btn btn-default" {{action 'addAdmin' newAdminGuid}}>Add Admin</div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  {{/if}}
 </div>
