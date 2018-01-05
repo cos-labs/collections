@@ -1,5 +1,5 @@
 <section class="hero">
-    <h1>{{collection.title}}</h1>
+    <h1>{{model.title}}</h1>
 </section>
 
 <section>
@@ -50,36 +50,6 @@
     <p><label>Date updated:</label> {{model.dateUpdated}}</p>
 </section>
 
-{{#if (eq collection.collectionType 'meeting')}}
-
-    <section>
-
-        <div class="form-group">
-            <label for="location">Location</label>
-            {{input class="form-control" value=collection.location
-                    placeholder="Enter location" id="location"}}
-        </div>
-        <div class="form-group">
-            <label for="address">Address</label>
-            {{input class="form-control" value=collection.address
-                    placeholder="Enter address" id="address"}}
-        </div>
-        <div class="form-group">
-            <label for="startDate">Start Date</label>
-            {{input class="form-control" value=collection.startDate
-                    placeholder="Enter start date" id="startDate"}}
-        </div>
-        <div class="form-group">
-            <label for="endDate">End Date</label>
-            {{input class="form-control" value=collection.endDate
-                    placeholder="Enter end date" id="endDate"}}
-        </div>
-
-    </section>
-
-{{/if}}
-
-
 <section>
 
     <h2>Collection Landing Page Settings</h2>
@@ -88,7 +58,7 @@
             Click here for settings documentation
         </a>
     </p>
-    {{json-editor json=collection.settings onChange=(action "updateCacheSettings")}}
+    {{json-editor json=model.settings onChange=(action "updateCacheSettings")}}
 
 </section>
 
@@ -99,7 +69,7 @@
       You can click here for more information about Alpaca.js.
     </a>
   </p>
-  {{json-editor json=collection.submissionSettings onChange=(action "updateFormSettings")}}
+  {{json-editor json=model.submissionSettings onChange=(action "updateFormSettings")}}
 
 </section>
 
@@ -187,7 +157,7 @@
                         <button type="button" class="close" aria-label="Close" {{action toggleProperty
                                                                                         'showDeleteConfirmation'}}>
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Delete collection "{{collection.title}}"?</h4>
+                        <h4 class="modal-title">Delete collection "{{model.title}}"?</h4>
                     </div>
                     <div class="modal-body">
                         <p>This will remove all groups and items inside collections. Original projects
