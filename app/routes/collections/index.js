@@ -4,11 +4,11 @@ export default Ember.Route.extend({
 
     beforeModel() {
         this.set('nav.links', [{
-            label: 'New Collection',
+            label: 'Create Collection',
             route: 'create'
         }, {
-            label: 'Placeholder',
-            route: 'collections.index'
+            label: 'Search',
+            route: 'search'
         }]);
     },
 
