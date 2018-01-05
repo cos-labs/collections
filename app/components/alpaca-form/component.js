@@ -13,13 +13,14 @@ export default Ember.Component.extend({
   didRender() {
     const that = this;
     let originalForm = this.get('input');
+    let newForm = JSON.parse(JSON.stringify(originalForm));
     if (!originalForm.options) {
-      originalForm['options'] = {};
+      newForm['options'] = {};
     }
     if (!originalForm['view']) {
-      originalForm['view'] = 'web-edit';
+      newForm['view'] = 'web-edit';
     }
-    originalForm.options.form = {
+    newForm.options.form = {
       "buttons": {
         "submit": {
           "label": "Save Changes to Metadata",
@@ -32,7 +33,7 @@ export default Ember.Component.extend({
     };
 
     $(document).ready(function() {
-      $("#myAlpacaForm").alpaca(originalForm);
+      $("#myAlpacaForm").alpaca(newForm);
     });
   }
 });
