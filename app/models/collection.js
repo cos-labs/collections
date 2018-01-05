@@ -16,6 +16,7 @@ export default Model.extend({
     dateUpdated: attr('date'),
     settings: attr(),
     submissionSettings: attr(),
+    detailViewSettings: attr(),
     anyoneCanSubmit: attr('boolean'),
     location: attr('string'),
     address: attr('string'),

@@ -14,13 +14,13 @@ export default Ember.Controller.extend({
         'Meeting'
     ],
 
-    modelCache: Ember.computed('collection', function() {
+    modelCache: Ember.computed('model', function() {
         return this.resetModelCache();
     }),
-    formattedTags: Ember.computed('collection.tags', function() {
-        const tags = this.get('collection.tags');
+    formattedTags: Ember.computed('model.tags', function() {
+        const tags = this.get('model.tags');
         if (tags) {
-            return this.get('collection.tags').split(',');
+            return this.get('model.tags').split(',');
         }
         return [];
     }),
@@ -81,13 +81,16 @@ export default Ember.Controller.extend({
             this.set('editMode', false);
         },
         updateCacheSettings (jsonSettings) {
-            this.set('collection.settings', jsonSettings);
+            this.set('model.settings', jsonSettings);
         },
         updateFormSettings (jsonSettings) {
-          this.set('collection.submissionSettings', jsonSettings);
+          this.set('model.submissionSettings', jsonSettings);
+        },
+        updateItemViewSettings (jsonSettings) {
+          this.set('model.detailViewSettings', jsonSettings);
         },
         setCollectionType(ev) {
-            this.set('collection.type', ev.target.value);
+            this.set('model.type', ev.target.value);
         },
         saveChanges() {
             // TODO: remove componentNames validation when we start supporting dynamically loaded components
@@ -95,7 +98,7 @@ export default Ember.Controller.extend({
                 'section-item-table', 'section-landing-board', 'section-landing-default', 'section-landing-info',
                 'section-landing-list', 'section-menu', 'section-paragraph', 'section-schedule', 'section-splash-image',
                 'section-sponsors', 'section-title'];
-            const jsonSettings = this.get('collection.settings');
+            const jsonSettings = this.get('model.settings');
             let isValid = true;
             isValid = (jsonSettings.layers !== undefined) && (jsonSettings.branding !== undefined);
             if (!isValid) {
@@ -118,14 +121,14 @@ export default Ember.Controller.extend({
                 }
             }
             if (isValid) {
-                this.get('collection').save().then(() => {
+                this.get('model').save().then(() => {
                     this.toast.success('You\'re good to go!', 'Changes Saved');
                 });
             }
         }
     },
     resetModelCache() {
-        const collection = this.get('collection');
+        const collection = this.get('model');
         return {
             title: collection.get('title'),
             description: collection.get('description'),

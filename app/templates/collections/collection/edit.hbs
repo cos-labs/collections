@@ -51,7 +51,6 @@
 </section>
 
 <section>
-
     <h2>Collection Landing Page Settings</h2>
     <p>
         <a target="_blank" href="https://github.com/cos-labs/collections/blob/develop/README.md#how-to-edit-your-meetings-landing-page">
@@ -59,7 +58,19 @@
         </a>
     </p>
     {{json-editor json=model.settings onChange=(action "updateCacheSettings")}}
+</section>
 
+<section>
+  <h2>Item Detail View Settings</h2>
+  <div class="alert alert-warning">
+    This feature is under construction and not currently functional.
+  </div>
+  <p>
+    <a target="_blank" href="https://github.com/cos-labs/collections/blob/develop/README.md#how-to-edit-your-meetings-landing-page">
+      Click here for settings documentation
+    </a>
+  </p>
+  {{json-editor json=model.detailViewSettings onChange=(action "updateItemViewSettings")}}
 </section>
 
 <section>
