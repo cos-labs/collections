@@ -25,6 +25,36 @@ export default Ember.Controller.extend({
         return [];
     }),
     actions: {
+      addModerator(guid) {
+        const collection = this.get('model');
+        this.store.query('user', {
+          'username': guid
+        }).then((users) => {
+          collection.get('moderators').pushObject(users.get('firstObject'));
+          this.set('newModeratorGuid', '');
+          collection.save();
+        });
+      },
+      removeModerator(user) {
+        const collection = this.get('model');
+        collection.get('moderators').removeObject(user);
+        collection.save();
+      },
+      addAdmin(guid) {
+        const collection = this.get('model');
+        this.store.query('user', {
+          'username': guid
+        }).then((users) => {
+          collection.get('admins').pushObject(users.get('firstObject'));
+          this.set('newAdminGuid', '');
+          collection.save();
+        });
+      },
+      removeAdmin(user) {
+        const collection = this.get('model');
+        collection.get('admins').removeObject(user);
+        collection.save();
+      },
         showEdit () {
             this.set('editMode', true);
         },

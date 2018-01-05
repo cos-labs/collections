@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    title: 'Submissions',
+    title: 'My Submissions',
     session: Ember.inject.service(),
 
     model() {

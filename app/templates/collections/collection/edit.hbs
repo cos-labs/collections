@@ -10,7 +10,7 @@
         <label for="collectionTitle">Title</label>
         {{input
             class="form-control"
-            value=collection.title
+            value=model.title
             placeholder="Enter title"
             id="collectionTitle"}}
     </div>
@@ -19,7 +19,7 @@
         <label for="collectionDescription">Description</label>
         {{textarea
             class="form-control"
-            value=collection.description
+            value=model.description
             id="collectionDescription"}}
     </div>
 
@@ -27,7 +27,7 @@
         <label for="collectionTags">Tags</label>
         {{input
             class="form-control"
-            value=collection.tags
+            value=model.tags
             placeholder="Enter comma separated tags"
             id="collectionTags"}}
     </div>
@@ -38,25 +38,16 @@
             {{#each types as |type|}}
                 <option
                     value={{type}}
-                    selected={{eq type collection.type}}>
+                    selected={{eq type model.type}}>
                     {{type}}
                 </option>
             {{/each}}
         </select>
     </div>
 
-    <p><label>Created by:</label> {{collection.createdBy.firstName}} {{collection.createdBy.lastName}}</p>
-    <p><label>Date created:</label> {{collection.dateCreated}} </p>
-    <p><label>Date updated:</label> {{collection.dateUpdated}}</p>
-
-    {{#if (eq collection.settings.collection_type 'Meeting')}}
-        <p><label>Location:</label> {{collection.location}}</p>
-        <p><label>Address:</label> {{collection.address}}</p>
-        <p><label>Start Date:</label> {{collection.startDate}}</p>
-        <p><label>End Date:</label> {{collection.endDate}}</p>
-    {{/if}}
-
-
+    <p><label>Created by:</label> {{model.createdBy.firstName}} {{model.createdBy.lastName}}</p>
+    <p><label>Date created:</label> {{model.dateCreated}} </p>
+    <p><label>Date updated:</label> {{model.dateUpdated}}</p>
 </section>
 
 {{#if (eq collection.collectionType 'meeting')}}
@@ -91,7 +82,7 @@
 
 <section>
 
-    <h2>Page Settings</h2>
+    <h2>Collection Landing Page Settings</h2>
     <p>
         <a target="_blank" href="https://github.com/cos-labs/collections/blob/develop/README.md#how-to-edit-your-meetings-landing-page">
             Click here for settings documentation
@@ -103,10 +94,69 @@
 
 <section>
   <h2>Form Settings</h2>
+  <p>OSF Collections uses Alpaca.js to let collection-owners create their own custom forms and web-hooks. It's not as scary as it sounds, we promise!
+    <a target="_blank" href="http://www.alpacajs.org/">
+      You can click here for more information about Alpaca.js.
+    </a>
+  </p>
   {{json-editor json=collection.submissionSettings onChange=(action "updateFormSettings")}}
 
 </section>
 
+<section>
+  {{#if model.canAdmin}}
+    <h3 style="margin-top:50px;">Moderators</h3>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each model.moderators as |mod|}}
+        <tr>
+          <td>{{await mod.username}}</td>
+          <td>
+            <div class="btn btn-default" {{action 'removeModerator' mod}}>Revoke Mod Privileges</div>
+          </td>
+        </tr>
+      {{/each}}
+      <tr>
+        <td>{{input value=newModeratorGuid}}</td>
+        <td>
+          <div class="btn btn-default" {{action 'addModerator' newModeratorGuid}}>Add Moderator by GUID</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h3>Admins</h3>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each model.admins as |administrator|}}
+        <tr>
+          <td>{{await administrator.username}}</td>
+          <td>
+            <div class="btn btn-default" {{action 'removeAdmin' mod}}>Revoke Admin Privileges</div>
+          </td>
+        </tr>
+      {{/each}}
+      <tr>
+        <td>{{input value=newAdminGuid}}</td>
+        <td>
+          <div class="btn btn-default" {{action 'addAdmin' newAdminGuid}}>Add Admin by GUID</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  {{/if}}
+</section>
 
 <section>
 

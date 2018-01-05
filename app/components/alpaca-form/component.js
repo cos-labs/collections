@@ -4,8 +4,6 @@ import formTemplate from '../../utils/custom_form';
 export default Ember.Component.extend({
   session: Ember.inject.service(),
   store: Ember.inject.service(),
-  // form: formTemplate,
-  // output: {}, //TODO: define this in the parent route instead
   metaDataString: Ember.computed('output', function() {
     return JSON.stringify(this.get('output'));
   }),

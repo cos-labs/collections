@@ -20,7 +20,7 @@ export default Ember.Route.extend({
                     route: 'collections.collection.edit',
                     models: [model]
                 }, {
-                    label: 'Submissions',
+                    label: 'My Submissions',
                     route: 'collections.collection.submissions',
                     models: [model]
                 }]);

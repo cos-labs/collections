@@ -8,7 +8,7 @@ export default Ember.Route.extend({
 
     afterModel(model) {
         const links = [];
-        if (model.get('canEdit')) {
+        if (model.get('canAdmin')) {
             links.push({
                 label: 'Settings',
                 route: 'collections.collection.edit',
@@ -23,7 +23,7 @@ export default Ember.Route.extend({
             });
         }
         links.push({
-            label: 'Submissions',
+            label: 'My Submissions',
             route: 'collections.collection.submissions',
             models: [model]
         });
