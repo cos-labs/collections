@@ -1,29 +1,14 @@
 {{outlet}}
-<div class="explore-hero">
-    <div class="cards collection-types">
 
-        {{#link-to "collections.index" (query-params kind="meeting") class="card"}}
-            <span class="image" style="background-image: url('/img/meetings.jpg');"></span>
-            <h3>Meetings</h3>
-        {{/link-to}}
-        {{#link-to "collections" (query-params kind="repository") class="card"}}
-            <span class="image" style="background-image: url('/img/repositories.jpg');"></span>
-            <h3>Repositories</h3>
-        {{/link-to}}
-
-    </div>
+<div class="jumbotron">
+  <h2 class="text-center">Recent Collections</h2>
 </div>
-
-
-
 <div class="explore-collection-list">
-
     <div class="cards">
         {{#each collections as |collection|}}
             {{collection-detail collection=collection}}
         {{/each}}
     </div>
-
     <div class="text-center">
         {{#if showLoadMore}}
             {{#if loadingMore}}
@@ -33,5 +18,4 @@
             {{/if}}
         {{/if}}
     </div>
-
 </div>
