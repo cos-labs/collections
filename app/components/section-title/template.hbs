@@ -19,3 +19,6 @@
         {{model.description}}
     {{/if}}
 </p>
+{{#if model.anyoneCanSubmit}}
+<p class="text-center">{{#link-to 'collections.collection.add' model class='btn btn-success'}}Submit{{/link-to}}</p>
+{{/if}}
