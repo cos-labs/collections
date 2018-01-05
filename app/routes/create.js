@@ -7,8 +7,8 @@ export default Ember.Route.extend({
     },
     setupController(controller, model) {
         controller.set('collection', model);
-    },
-    actions: {
+        controller.set('collection.anyoneCanSubmit', true);
+        controller.set('collection.collectionType', 'repository');
+        controller.set('collection.moderationRequired', false);
     }
-
 });

@@ -8,42 +8,41 @@
 
     <fieldset>
         <h2>Select collection type</h2>
-        {{#each typeList as |type|}}
-        <div class="radio">
-            {{element-radio-button id=type.value value=type.value name="radio-collection-type" checked=collectionType}}
-            <label for="{{type.value}}">{{type.label}}<p>{{type.description}}</p></label>
-        </div>
-        {{/each}}
+      {{#radio-button value="repository" groupValue=collectionType changed="typeToggled"}}
+        Repository
+      {{/radio-button}}
+      {{#radio-button value="meeting" groupValue=collectionType changed="typeToggled"}}
+        Meeting
+      {{/radio-button}}
     </fieldset>
 
     <fieldset>
-        <h2>Add description <span class="text-muted">Optional </span></h2>
+        <h2>Add description <span class="text-muted">Optional</span></h2>
         {{textarea class="form-control" value=collection.description rows="6"}}
     </fieldset>
 
     <fieldset>
-        <h2>Moderation Style</h2>
-        <input click={{action "moderationToggled" false}} checked=checked type="radio" name={{moderationRequired}}>
-                <strong>Pre-moderation</strong>. New submissions are hidden by default, pending moderator approval.
-
-        <input click={{action "moderationToggled" true}} checked=checked type="radio" name={{moderationRequired}}>
-                <strong>Post-moderation</strong>. New submissions are shown by default, but can be manually hidden.
+      <h2>Collection Settings</h2>
+      <br>
+      <h4>Moderation Style</h4>
+      {{#radio-button value=true groupValue=moderationStyle changed="moderationToggled"}}
+          Pre-moderation
+      {{/radio-button}}
+      {{#radio-button value=false groupValue=moderationStyle changed="moderationToggled"}}
+          Post-moderation
+      {{/radio-button}}
+      <hr>
+      <h4>Who can submit?</h4>
+      {{#radio-button value=true groupValue=submissionStyle changed="submissionStyleToggled"}}
+        Anyone
+      {{/radio-button}}
+      {{#radio-button value=false groupValue=submissionStyle changed="submissionStyleToggled"}}
+        Only people with an invitation
+      {{/radio-button}}
     </fieldset>
 
-    {{#if (eq collectionType 'meeting')}}
     <fieldset>
-        <h2>Logistics</h2>
-        <h3> Add Location </h3>
-        {{input class="form-control" value=collection.location placeholder="Enter meeting location"}}
-        <h3> Add Address </h3>
-        {{input class="form-control" value=collection.address placeholder="Enter meeting address"}}
-        <h3> Add Meeting Dates </h3>
-        Start Date:
-        {{bs-datetimepicker date=collection.startDate}}
-        End Date:
-        {{bs-datetimepicker date=collection.endDate}}
     </fieldset>
-    {{/if}}
 <section>
 
 </section>
