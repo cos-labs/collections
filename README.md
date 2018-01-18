@@ -89,6 +89,11 @@ Branding mostly determines the colors that your landing page will default to, an
 
 Layout is formatted in the following way:
 
+`component`: name of the ember component.
+`section-header`: an id applied to that layer for link anchoring (currently not fully implemented)
+`hide-from-nav`: if `true`, will not include the item in the navbar (`section-menu`) component
+
+
 ```
   "layers": [
     {
