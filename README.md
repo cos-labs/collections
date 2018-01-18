@@ -91,7 +91,6 @@ Layout is formatted in the following way:
 
 `component`: name of the ember component.
 `section-header`: an id applied to that layer for link anchoring (currently not fully implemented)
-`hide-from-nav`: if `true`, will not include the item in the navbar (`section-menu`) component
 
 
 ```
@@ -147,10 +146,11 @@ Layout is formatted in the following way:
 
 #### General
 
-The two following parameters can be specified for any of the following layers.
+The three following parameters can be specified for any of the following layers.
 
 * `background-color`: A hex value that specifies the color of the background.
 * `text-color`: A hex value that specifies the color of the text.
+* `hide-from-nav`: if `true`, will not include the item in the navbar (`section-menu`) component
 
 #### Title Layer
 
