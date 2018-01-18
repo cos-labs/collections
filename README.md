@@ -42,7 +42,7 @@ Visit the api at `http://localhost:8000/api/` or admin panel at `http://localhos
 
 Set up the client to use either OSF staging (`export BACKEND=stage`) or production `export BACKEND=prod`.
 
-    $ `export BACKEND=prod`
+    $ export BACKEND=prod
     $ ember serve
 
 Visit your app at [http://localhost:4200](http://localhost:4200).
