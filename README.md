@@ -40,9 +40,8 @@ Visit the api at `http://localhost:8000/api/` or admin panel at `http://localhos
 
 #### Run the client
 
-Set up the client to use either OSF staging (`export BACKEND=stage`) or production `export BACKEND=prod`.
+Set up the client to use either OSF staging (`export BACKEND=stage`) or production `export BACKEND=prod`. If you're having issues getting staging to work, try using production.
 
-    $ export BACKEND=prod
     $ ember serve
 
 Visit your app at [http://localhost:4200](http://localhost:4200).
@@ -91,7 +90,7 @@ Layout is formatted in the following way:
 
 `component`: name of the ember component.
 `section-header`: an id applied to that layer for link anchoring (currently not fully implemented)
-
+`settings`: where all information about the specific preferences / styling / content of that layer goes
 
 ```
   "layers": [
