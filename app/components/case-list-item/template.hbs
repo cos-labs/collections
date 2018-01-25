@@ -1,9 +1,0 @@
-<div class="form-type">{{partial (await caseDescriptionTemplate)}}
-</div>
-
-{{#if loading}}
-	{{loading-spinner fullPage=false style="fa-lg"}}
-{{/if}}
-<div class="continue-button">
-    <a class="btn btn-success pull-right" {{action "continueCase" case collection}}>Continue</a>
-</div>

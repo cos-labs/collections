@@ -64,9 +64,8 @@ export default Ember.Component.extend({
                 q,
                 page,
                 page_size,
-                filter: {
-                    collection
-                }
+                collection,
+                status: 'approved'
             }).then((items) => {
                 this.set('loading', false)
                 this.set('items', items);
@@ -85,9 +84,8 @@ export default Ember.Component.extend({
                 q,
                 page,
                 page_size,
-                filter: {
-                    collection
-                }
+                collection,
+                status: 'approved'
             }).then((items) => {
                 this.set('loading', false)
                 this.set('items', items);

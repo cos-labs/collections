@@ -1,35 +1,29 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
-    title: 'Collections',
-    crumb: {},
-
+    breadCrumb: {
+        title: 'Collections',
+        path: 'collections.index'
+    },
 
     beforeModel() {
-        this.set('crumb.label', this.title);
-        this.set('crumb.route', this.routeName);
         this.set('nav.links', [{
             label: 'Showcase',
-            route: 'explore'
+            route: 'collections'
         }, {
             label: 'Trending',
-            route: 'explore'
+            route: 'collections'
         }]);
     },
 
-    model(params, transition) {
+    model() {
         return Ember.RSVP.hash({
-            collections: this.store.query('collection', {
-                filter: {
-                    kind: transition.queryParams.kind
-                }
-            }),
+            collections: this.store.findAll('collection'),
         });
     },
 
-    setupController(collection, data) {
-        collection.set('collections', data.collections);
+    setupController(controller, model) {
+        controller.set('collections', model.collections);
     },
 
 });

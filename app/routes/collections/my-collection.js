@@ -1,13 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
-    title: 'My Collection',
-    crumb: {},
+    session: Ember.inject.service(),
 
     beforeModel() {
-        this.set('crumb.label', this.title);
-        this.set('crumb.route', this.routeName);
         this.set('nav.links', [{
             label: 'Showcase',
             route: 'explore'
@@ -18,14 +14,18 @@ export default Ember.Route.extend({
     },
 
     model(params) {
-        return Ember.RSVP.hash({
-            collections: this.store.findAll('collection'),
+        return this.store.query('collection', {
+            filter: {
+                createdBy: this.get('session.session.content.authenticated.user.username')
+            }
+        }).then((myCollections) =>  {
+            return Ember.RSVP.hash({
+                collections: myCollections
+            });
         });
     },
 
     setupController(collection, data) {
         collection.set('collections', data.collections);
     },
-
 });
-

@@ -3,7 +3,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     session: Ember.inject.service(),
-
+    breadCrumb: "Home",
+    breadCrumbPath: "index",
     init() {
         this._super();
         window.addEventListener('scroll', function() {

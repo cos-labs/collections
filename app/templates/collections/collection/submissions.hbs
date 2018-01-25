@@ -1,30 +1,39 @@
 <div class="hero">
-    <h1>{{collection.title}} Submissions</h1>
-    <a class="btn btn-success btn-lg" {{action "newCase" collection}}>
+    <h1>My Submissions for {{collection.title}}</h1>
+    {{#link-to 'collections.collection.add' collection.id class="btn btn-success btn-lg"}}
         Start a new submission
-    </a>
+    {{/link-to}}
 </div>
-
-
-<div class="text-center" style=" margin-top: 15px; margin-bottom: 15px;" >
-    In progress submissions to the {{collection.title}}. Any of the submissions may be continued by pressing the continue button.
+<div class="text-center" style=" margin-top: 15px; margin-bottom: 15px;">
+    All of your submissions to the {{collection.title}}. In-progress submissions may be continued by
+    pressing the continue button.
 </div>
-
-<div class="active-cases">
-    <div class="table-heading" style="background-color: #444; color: #fff;">
-        <div class="form-type">Form Type</div>
-        <div class="continue-button"></div>
-    </div>
-
-    {{#each cases as |case|}}
-
-        {{case-list-item case=case collection=collection}}
-
-    {{else}}
-
-        <div class="empty-state">
-            You have not started any submissions to {{collection.title}}
-        </div>
-
-    {{/each}}
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Submission Name</th>
+            <th>Status</th>
+            <th class="text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each items as |item|}}
+            <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.status}}</td>
+                <td class="text-right">
+                    {{#link-to 'items.item.index' item.id
+                               class="btn btn-default"}}View Item{{/link-to}}
+                    {{#link-to 'items.item.edit' item.id
+                               class="btn btn-default"}}Edit Item{{/link-to}}
+                </td>
+            </tr>
+        {{else}}
+            <div class="empty-state">
+                You have not started any submissions to {{collection.title}}
+            </div>
+        {{/each}}
+        </tbody>
+    </table>
 </div>

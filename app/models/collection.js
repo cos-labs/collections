@@ -15,20 +15,20 @@ export default Model.extend({
     dateCreated: attr('date'),
     dateUpdated: attr('date'),
     settings: attr(),
+    submissionSettings: attr(),
+    detailViewSettings: attr(),
+    anyoneCanSubmit: attr('boolean'),
     location: attr('string'),
     address: attr('string'),
     collectionType: attr('string'),
+    moderationRequired: attr('boolean'),
+    canModerate: attr('boolean'),
+    canEdit: attr('boolean'),
+    canAdmin: attr('boolean'),
     createdBy: belongsTo('user'),
-    groups: hasMany('group'),
     items: hasMany('item'),
-    workflows: hasMany('workflow', {
-        inverse: 'collections',
-        async: false
-    }),
-    collectionWorkflows: hasMany('collection-workflow', {
-        inverse: 'collection',
-        async: false
-    }),
+    moderators: hasMany('user'),
+    admins: hasMany('user'),
     titleCaseCollectionType: Ember.computed('collectionType', function() {
         const t = this.get('collectionType');
         return t.charAt(0).toUpperCase() + t.slice(1);

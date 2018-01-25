@@ -1,6 +1,5 @@
 <!-- section-file-grid -->
 
-
         <div class="row" style="margin:0; width: 100%;">
             <div class="col-sm-10">
                 <div class="input-group">
@@ -45,15 +44,14 @@
                     <a
                         class="item-thumbnail"
                         style="background-image: url('/img/placeholder.png');"
-                        {{action "transition" "collections.collection.item" model.id item.id}}
+                        {{action "transition" "items.item.index" item.id}}
                     >
                         {{item.fileFormat}}
                     </a>
                     <div class="panel-body">
                         <span class="line-clamp line-clamp-2">
                             {{#link-to
-                                'collections.collection.item'
-                                model.id
+                                'items.item.index'
                                 item.id
                                 class="clamp"
                             }}
@@ -86,8 +84,7 @@
                         <tr>
                             <td>
                                 {{#link-to
-                                    'collections.collection.item'
-                                    model.id
+                                    'items.item.index'
                                     item.id
                                     class="plain-link"
                                 }}

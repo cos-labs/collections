@@ -421,27 +421,27 @@ body {
     text-shadow: 0px 1px #777;
     margin:2px!important;
 }
-
-.breadcrumbs {
-    line-height: 1.0;
-
-    :first-child {
-        font-weight: 600;
-    }
-    :before {
-        content:"»";
-        padding-right: 7px;
-        font-weight: 600;
-    }
-
-}
-
-a.crumb {
-    max-width: 200px;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
-}
+//
+//.breadcrumbs {
+//    line-height: 1.0;
+//
+//    :first-child {
+//        font-weight: 600;
+//    }
+//    :before {
+//        content:"»";
+//        padding-right: 7px;
+//        font-weight: 600;
+//    }
+//
+//}
+//
+//a.crumb {
+//    max-width: 200px;
+//    white-space: nowrap;
+//    overflow: hidden;
+//    text-overflow: ellipsis;
+//}
 
 .dropdown-content a, dropdown-content a:active {
     color:white;

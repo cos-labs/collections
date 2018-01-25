@@ -41,17 +41,12 @@ Visit the api at `http://localhost:8000/api/` or admin panel at `http://localhos
 
 #### Run the client
 
-Set up the client to use either OSF staging (`export BACKEND=stage`) or production `export BACKEND=prod`.
+Set up the client to use either OSF staging (`export BACKEND=stage`) or production `export BACKEND=prod`. If you're having issues getting staging to work, try using production.
 
     $ ember serve
 
 Visit your app at [http://localhost:4200](http://localhost:4200).
 
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
 
 ### Building
 
@@ -92,26 +87,70 @@ Branding mostly determines the colors that your landing page will default to, an
 
 ### Layout
 
-The layout is a list of sections, defined in the same format as this example:
+Layout is formatted in the following way:
+
+`component`: name of the ember component.
+`section-header`: an id applied to that layer for link anchoring (currently not fully implemented)
+`settings`: where all information about the specific preferences / styling / content of that layer goes
+
 ```
-{
-    component: section-paragraph,
-    settings: {
-        background-color: #333,
-        text-color: #eee,
-        title: This Is My Title,
-        body: This is the body of my paragraph. It can be however long.
+  "layers": [
+    {
+      "settings": {
+        "tagline": "To customize the layout, color schemes, and other options for this page, as well as to remove this message, click Settings in the top-right-hand corner.",
+        "hide-from-nav": true
+      },
+      "component": "section-title",
+      "section-header": "Landing Title"
+    },
+    {
+      "settings": {
+        "hide-from-nav": true
+      },
+      "component": "section-menu",
+      "section-header": "menu"
+    },
+    {
+      "settings": {
+        "body": "Absorption unpredictable nuclear energy inertia exploration  unbelievable. Aven cycle fossil fuel mantle spectacular achieving. Potential unbelievable oxygen minerals spectrum geo-science. Probe centigrade data ratio marine relationships between. Environment black hole enzyme stage trade winds hemisphere."
+      },
+      "component": "section-paragraph",
+      "section-header": "Why We Exist"
+    },
+    {
+      "settings": {},
+      "component": "section-file-grid",
+      "section-header": "Files"
+    },
+    {
+      "settings": {
+        "img-url": "https://images.unsplash.com/photo-1505069148894-186e622d23a0",
+        "hide-from-nav": true
+      },
+      "component": "section-splash-image",
+      "section-header": "Splash Image"
+    },
+    {
+      "settings": {
+        "body": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis...",
+        "title": "About Our Organization",
+        "text-color": "#fff",
+        "background-color": "#c44b38"
+      },
+      "component": "section-paragraph",
+      "section-header": "About Our Organization"
     }
-}
+  ],
 ```
+
 
 #### General
 
-The two following parameters can be specified for any of the following layers.
+The three following parameters can be specified for any of the following layers.
 
 * `background-color`: A hex value that specifies the color of the background.
 * `text-color`: A hex value that specifies the color of the text.
-* `hide-from-nav`: Set to `true` to not include this layer in the internal nav menu.
+* `hide-from-nav`: if `true`, will not include the item in the navbar (`section-menu`) component
 
 #### Title Section
 
@@ -154,7 +193,7 @@ time to load!
 
 #### Speakers Section
 * `component: section-contributors`
-* no additional parameters 
+* no additional parameters
 
 #### Item List
 * `component: section-file-grid`

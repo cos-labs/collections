@@ -14,17 +14,47 @@ export default Ember.Controller.extend({
         'Meeting'
     ],
 
-    modelCache: Ember.computed('collection', function() {
+    modelCache: Ember.computed('model', function() {
         return this.resetModelCache();
     }),
-    formattedTags: Ember.computed('collection.tags', function() {
-        const tags = this.get('collection.tags');
+    formattedTags: Ember.computed('model.tags', function() {
+        const tags = this.get('model.tags');
         if (tags) {
-            return this.get('collection.tags').split(',');
+            return this.get('model.tags').split(',');
         }
         return [];
     }),
     actions: {
+      addModerator(guid) {
+        const collection = this.get('model');
+        this.store.query('user', {
+          'username': guid
+        }).then((users) => {
+          collection.get('moderators').pushObject(users.get('firstObject'));
+          this.set('newModeratorGuid', '');
+          collection.save();
+        });
+      },
+      removeModerator(user) {
+        const collection = this.get('model');
+        collection.get('moderators').removeObject(user);
+        collection.save();
+      },
+      addAdmin(guid) {
+        const collection = this.get('model');
+        this.store.query('user', {
+          'username': guid
+        }).then((users) => {
+          collection.get('admins').pushObject(users.get('firstObject'));
+          this.set('newAdminGuid', '');
+          collection.save();
+        });
+      },
+      removeAdmin(user) {
+        const collection = this.get('model');
+        collection.get('admins').removeObject(user);
+        collection.save();
+      },
         showEdit () {
             this.set('editMode', true);
         },
@@ -51,34 +81,16 @@ export default Ember.Controller.extend({
             this.set('editMode', false);
         },
         updateCacheSettings (jsonSettings) {
-            this.set('collection.settings', jsonSettings);
+            this.set('model.settings', jsonSettings);
         },
-        deleteCollection() {
-            this.get('collection').destroyRecord().then(() => this.transitionToRoute('/'));
+        updateFormSettings (jsonSettings) {
+          this.set('model.submissionSettings', jsonSettings);
         },
-        removeWorkflow(collectionWorkflow) {
-            const collection = this.get('collection');
-            collection.get('collectionWorkflows').removeObject(collectionWorkflow);
-            collection.get('workflows').removeObject(collectionWorkflow.workflow);
-            collection.save();
-            collectionWorkflow.destroyRecord();
-        },
-        addWorkflow() {
-            const collectionWorkflow = this.get('store').createRecord('collectionWorkflow');
-            collectionWorkflow.set('collection', this.get('collection'));
-            collectionWorkflow.save().then((collectionWorkflow) => {
-                const collection = this.get('collection');
-                collection.get('collectionWorkflows').addObject(collectionWorkflow);
-                collection.save();
-            });
+        updateItemViewSettings (jsonSettings) {
+          this.set('model.detailViewSettings', jsonSettings);
         },
         setCollectionType(ev) {
-            this.set('collection.type', ev.target.value);
-        },
-        setWorkflowTypeForCollectionWorkflow(collectionWorkflow, ev) {
-            collectionWorkflow.set('workflow', this.get('workflows')
-                .find(workflow => workflow.id === ev.target.value));
-            collectionWorkflow.save();
+            this.set('model.type', ev.target.value);
         },
         saveChanges() {
             // TODO: remove componentNames validation when we start supporting dynamically loaded components
@@ -86,7 +98,7 @@ export default Ember.Controller.extend({
                 'section-item-table', 'section-landing-board', 'section-landing-default', 'section-landing-info',
                 'section-landing-list', 'section-menu', 'section-paragraph', 'section-schedule', 'section-splash-image',
                 'section-sponsors', 'section-title'];
-            const jsonSettings = this.get('collection.settings');
+            const jsonSettings = this.get('model.settings');
             let isValid = true;
             isValid = (jsonSettings.layers !== undefined) && (jsonSettings.branding !== undefined);
             if (!isValid) {
@@ -109,27 +121,14 @@ export default Ember.Controller.extend({
                 }
             }
             if (isValid) {
-                this.get('collection').save();
-                this.toast.success('You\'re good to go!', 'Changes Saved');
+                this.get('model').save().then(() => {
+                    this.toast.success('You\'re good to go!', 'Changes Saved');
+                });
             }
-        },
-        setGroupForCollectionWorkflow(collectionWorkflow, ev) {
-            collectionWorkflow.set('selectedGroup', this.get('groups')
-                .find(group => group.id === ev.target.value));
-        },
-        addGroupToCollectionWorkflow(collectionWorkflow) {
-            collectionWorkflow.get('authorizedGroups').addObject(collectionWorkflow.get('selectedGroup'));
-            collectionWorkflow.save();
-        },
-        removeCollectionWorkflowGroup(collectionWorkflow, group) {
-            collectionWorkflow.get('authorizedGroups').removeObject(group);
-            collectionWorkflow.save();
         }
-
-
     },
     resetModelCache() {
-        const collection = this.get('collection');
+        const collection = this.get('model');
         return {
             title: collection.get('title'),
             description: collection.get('description'),

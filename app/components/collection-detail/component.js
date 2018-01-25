@@ -4,7 +4,11 @@ export default Ember.Component.extend({
     classNames: ['card', 'coll-single'],
 
     tags: Ember.computed(function() {
-        return this.get('collection.tags').split(',').filter(tag => tag !== '');
+        if (this.get('collection.tags')) {
+            return this.get('collection.tags').split(',').filter(tag => tag !== '');
+        } else {
+            return '';
+        }
     })
 
 });

@@ -3,15 +3,12 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
     model() {
-        return Ember.RSVP.hash({
-            workflows: this.get('store').findAll('workflow'),
-            groups: this.get('store').findAll('group')
-        });
+        return this.store.createRecord('collection');
     },
-
     setupController(controller, model) {
-        controller.set('workflows', model.workflows);
-        controller.set('groups', model.groups);
+        controller.set('collection', model);
+        controller.set('collection.anyoneCanSubmit', true);
+        controller.set('collection.collectionType', 'repository');
+        controller.set('collection.moderationRequired', false);
     }
-
 });
