@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "8"
+  - "9"
 
 sudo: false
 dist: trusty
@@ -23,6 +23,8 @@ before_install:
 
 install:
   - yarn install --non-interactive
+  - yarn add bower
+  - source ~/.bashrc
   - bower install
 
 script:
